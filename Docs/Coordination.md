@@ -1,5 +1,9 @@
 # Coordinación Cursor y Codex
 
+## Traspaso de contexto del 29 de octubre de 2026
+
+Codex completó Docs/Operation_Heist_Contexto_y_Avance_2026-10-29.docx: diez páginas renderizadas y revisadas visualmente, contexto comprobado, límites de pruebas, pendientes y guía para retomar. Por autorización expresa del usuario se publicó únicamente el documento en daer-1701/Operation-Heist, rama main, commit 862fd015ec3bc9b6289746298a91871801692da3. No se asignó trabajo de gameplay a Cursor ni se modificaron Assets, Packages o ProjectSettings. Reserva documental liberada. El botín sigue pendiente: la tarea se interrumpió antes de implementar código o encargar pruebas.
+
 ## Estado observado
 
 Revisión del 29 de octubre de 2026:

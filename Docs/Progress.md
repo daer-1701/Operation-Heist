@@ -2,6 +2,12 @@
 
 Actualizado: 29 de octubre de 2026. Contexto persistente; no sustituye reservas activas en [Coordination.md](Coordination.md).
 
+## Documento para retomar
+
+[Contexto y avance del 29 de octubre](Operation_Heist_Contexto_y_Avance_2026-10-29.docx): informe de diez páginas con implementación, procedencia, entorno, coordinación, pruebas, pendientes, prompt de continuación y prompt manual de Hunyuan. Renderizado y revisado visualmente. Publicado por petición del usuario en [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist/blob/main/Docs/Operation_Heist_Contexto_y_Avance_2026-10-29.docx), commit remoto 862fd015ec3bc9b6289746298a91871801692da3. Se publicó solo el documento; el código local no se sincronizó y no se configuró remoto para la historia local.
+
+Durante el informe se confirmó el XML previo de 23/23 y se repitió la auditoría de inventario (39/39); no se reejecutó Unity. La petición de recoger/cargar/soltar/depositar se interrumpió antes de editar código o asignar pruebas: sigue pendiente y no existe una verificación de duplicación de botín implementado.
+
 ## Implementado (real)
 
 - Editor fijado: Unity **6000.5.6f1**. Paquetes: URP, Input System, AI Navigation, Test Framework (ver `Packages/manifest.json`).
