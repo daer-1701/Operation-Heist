@@ -16,7 +16,7 @@ Se conservan Unity, paquetes técnicos y configuración del motor como herramien
 
 ## Coordinación autorizada por el usuario
 
-Codex coordina y revisa; Cursor Agent CLI ejecuta tareas acotadas. El usuario ha autorizado asignación y seguimiento sin copiar mensajes entre chats. Leer Docs/Coordination.md y Docs/Tasks antes de modificar archivos.
+Codex es el desarrollador principal: implementa, integra, coordina y revisa; Cursor Agent CLI apoya con tareas acotadas. El usuario ha autorizado asignación y seguimiento sin copiar mensajes entre chats. Leer Docs/Coordination.md y Docs/Tasks antes de modificar archivos.
 
 - Usar Assets/00_Scenes, 01_Scripts, 02_Prefabs, 03_Materials, 04_Models, 05_Textures y 06_UI según el tipo de recurso.
 - Respetar la versión del editor y las dependencias de Packages/manifest.json; no inventar APIs.

@@ -9,8 +9,8 @@ Vista compacta del prototipo actual frente a capas futuras. No afirma sistemas n
 | Presentación / cámara FPS | Existente: cámara hija del jugador en `FpsController` |
 | Entrada local | Existente: Input System (action map en runtime) |
 | Movimiento / postura | Existente: CharacterController + crouch/sprint |
-| Interacción (raycast) | Planeada; no hay scripts de interactor |
-| UI / HUD | Carpetas `06_UI` preparada; sin HUD de juego |
+| Interacción (raycast) | PlayerInteractor + IInteractable + PrototypeInteractable para inspección local |
+| UI / HUD | Aviso contextual y retícula de prototipo uGUI; sin HUD completo ni menús |
 | Props / escena gris | Existente: builders Editor + prefabs/meshes Codex |
 | Red / host-authority | Futura; **NGO no instalado**; `SetLocalControl` solo desactiva simulación local |
 | IA / misiones | Fuera del prototipo actual |
@@ -21,6 +21,8 @@ Vista compacta del prototipo actual frente a capas futuras. No afirma sistemas n
 
 - `OperationHeist.Player.FpsController` — `Assets/01_Scripts/Player/Movement/FpsController.cs`  
   Asmdef: `OperationHeist.Player`. Requiere `CharacterController`. Referencia serializada a `Camera`. API pública útil: `SetLocalControl`, `MouseSensitivity`, `FieldOfView`, `IsCrouching`, `HasLocalControl`, `PlayerCamera`.
+
+- `PlayerInteractor`, `IInteractable`, `PrototypeInteractable` en Player/Interaction; el asmdef ahora está en Player (GUID conservado). Query geométrica separada del permiso de entrada; inspección local única por prop. `InteractionPromptPresenter` en Scripts/UI/OperationHeist.UI muestra estado real, sin datos simulados de misión. Detalle: [Interaction.md](Interaction.md).
 
 ### Editor
 
@@ -45,7 +47,8 @@ Diseño previsto (GDD / coordinación): autoridad en host para estado compartido
 Assets/
   00_Scenes/          FPSPrototype.unity
   01_Scripts/
-    Player/Movement/  FpsController + asmdef
+    Player/           asmdef compartido; Movement/ e Interaction/
+    UI/               presenter de interacción + asmdef UI
     Editor/           builders + asmdef
     Tests/PlayMode/   pruebas Play Mode
   02_Prefabs/         Player/, Props/

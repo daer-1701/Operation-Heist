@@ -1,0 +1,4 @@
+{
+  "name": "OperationHeist.UI",
+  "references": ["OperationHeist.Player", "UnityEngine.UI"]
+}

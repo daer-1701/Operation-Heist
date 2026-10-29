@@ -19,7 +19,7 @@ Medidas exactas y triángulos en Docs/QA/OriginalModels-validation.txt tras gene
 
 Operation Heist → Crear kit original e integrar regenera los modelos y reemplaza la composición de FPSPrototype. Guardar cambios propios aparte antes de usarlo. Conserva GUID de meshes existentes y materiales ya creados.
 
-Son props estáticos de prototipo: la caja fuerte no se abre, la caja no se recoge y el collider de estantería ocupa su volumen exterior. No son sistemas de interacción terminados. Hunyuan queda pendiente; prompt en Docs/HunyuanPrompt.md.
+Ahora los cuatro props admiten inspección local única mediante raycast/E (ver Interaction.md). La caja fuerte no se abre, la caja no se recoge y el collider de estantería ocupa su volumen exterior. No se presenta la inspección como gameplay de botín terminado. Hunyuan queda pendiente; prompt en Docs/HunyuanPrompt.md.
 
 ## Verificación
 

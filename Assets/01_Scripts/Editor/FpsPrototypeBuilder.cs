@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using OperationHeist.Player;
+using OperationHeist.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -69,6 +70,8 @@ namespace OperationHeist.Editor
                 serialized.FindProperty("m_Script").objectReferenceValue = script;
                 serialized.FindProperty("playerCamera").objectReferenceValue = cameraObject.GetComponent<Camera>();
                 serialized.ApplyModifiedPropertiesWithoutUndo();
+                root.AddComponent<PlayerInteractor>();
+                root.AddComponent<InteractionPromptPresenter>();
                 PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
                 root.transform.position = new Vector3(0, 0.1f, -6);
                 Box("Ground", new Vector3(0, -0.5f, 0), new Vector3(24, 1, 24));

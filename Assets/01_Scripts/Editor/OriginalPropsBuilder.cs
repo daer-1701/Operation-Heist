@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using OperationHeist.Player;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -101,6 +102,8 @@ namespace OperationHeist.Editor
                 root.GetComponent<MeshRenderer>().sharedMaterials = materials;
                 var collider = root.GetComponent<BoxCollider>();
                 collider.center = mesh.bounds.center; collider.size = mesh.bounds.size;
+                string label = name == "TransportCrate" ? "caja de transporte" : name == "StorageShelf" ? "estantería" : name == "ServiceCounter" ? "mostrador" : "caja fuerte";
+                root.AddComponent<PrototypeInteractable>().Configure(label);
                 PrefabUtility.SaveAsPrefabAsset(root, $"{PrefabDirectory}/OH_{name}.prefab");
             }
             finally { UnityEngine.Object.DestroyImmediate(root); }

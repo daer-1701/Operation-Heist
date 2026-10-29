@@ -60,6 +60,7 @@ namespace OperationHeist.Player
 
         public bool IsCrouching { get; private set; }
         public bool HasLocalControl => _hasLocalControl;
+        public bool IsCursorCaptured => _cursorLocked;
 
         public float MouseSensitivity
         {

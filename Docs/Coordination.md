@@ -13,8 +13,12 @@ Revisión del 29 de octubre de 2026:
 
 ## Reparto de responsabilidades
 
-- Cursor: controlador FPS local con CharacterController e Input System. Ámbito propuesto: Assets/01_Scripts/Player/Movement/. Comunicar los archivos previstos antes de editarlos.
-- Codex: revisión de configuración y criterios de aceptación. Ámbito inicial: Docs/. No modificar el controlador mientras Cursor lo esté implementando.
+Asignación actual raycast: Codex es desarrollador principal y reserva Player/Interaction, Player/Movement/FpsController.cs, asmdef de Player, UI, builders de Editor, prefabs, FPSPrototype, manifest y documentación. Cursor reserva únicamente Assets/01_Scripts/Tests/PlayMode/PlayerInteractorTests.cs (+meta) y Docs/InteractionTestNotes.md para pruebas de apoyo; no modifica implementación ni otras pruebas. No se instalan paquetes ni modelos externos.
+
+Raycast completado y reservas liberadas: Codex implementó núcleo/UI/integración, revisó y reforzó pruebas de Cursor y validó 23/23 PlayMode, capturas de dos resoluciones y 39/39 recursos inventariados. No quedan tareas de Cursor activas sobre esta entrega. Codex mantiene el rol de desarrollador principal.
+
+- Codex: desarrollador principal de gameplay, arquitectura e integración; define contratos y criterios, reserva rutas y revisa las entregas.
+- Cursor: apoyo acotado en pruebas, documentación o revisiones, con archivos asignados expresamente. Las reservas específicas vigentes prevalecen sobre repartos históricos.
 - Escenas, prefabs, Packages y ProjectSettings: asignar un único responsable antes de modificarlos.
 - Codex administra Docs/Tasks y Tools/Invoke-CursorTask.ps1, asigna tareas, recoge resultados de CLI y revisa la entrega. Cursor no modifica esos registros durante una tarea.
 

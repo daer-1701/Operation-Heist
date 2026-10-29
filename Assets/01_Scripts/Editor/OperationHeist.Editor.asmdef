@@ -1,5 +1,5 @@
 {
   "name": "OperationHeist.Editor",
-  "references": ["OperationHeist.Player"],
+  "references": ["OperationHeist.Player", "OperationHeist.UI"],
   "includePlatforms": ["Editor"]
 }

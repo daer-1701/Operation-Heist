@@ -1,0 +1,18 @@
+{
+  "id": "interaction-tests",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "edit",
+  "expectedMarker": "INTERACTION_TESTS_READY",
+  "allowedPaths": [
+    "Assets/01_Scripts/Tests/PlayMode/PlayerInteractorTests.cs",
+    "Assets/01_Scripts/Tests/PlayMode/PlayerInteractorTests.cs.meta",
+    "Docs/InteractionTestNotes.md"
+  ],
+  "prompt": "Codex es desarrollador principal; tú apoyas con pruebas. Lee skill operation-heist-unity, Progress y código nuevo cuando esté disponible; si todavía no existe usa este contrato exacto. Implementa PlayMode NUnit/UnityTest en namespace OperationHeist.Tests, asmdef existente. Contrato runtime namespace OperationHeist.Player: PlayerInteractor : MonoBehaviour requiere FpsController, no sealed; public float MaxDistance {get;set;} default2.5; public PrototypeInteractable CurrentTarget {get;} public bool RefreshTarget() (query geométrica si HasLocalControl y enabled; ignora foco/cursor); public bool TryInteract() (refresca raycast, valida ownership, componente activo, FpsController activo, IsCursorCaptured y foco); protected virtual bool HasApplicationFocus => Application.isFocused (crear subclass test con bool Focused=true y override para no depender focoOS). FpsController.IsCursorCaptured getter; tests pueden invocar método privado SetCursorLocked via reflection como fixture existente. PrototypeInteractable : MonoBehaviour,IInteractable con public bool IsInspected {get;}, int InteractionCount{get;}, bool TryInteract(PlayerInteractor actor). Primera inspección incrementa una vez; repetidas devuelven false. Toda interacción requiere target actual visible/en alcance de ese actor, incluso llamada directa a prop.TryInteract. CanInteractWith(PrototypeInteractable target) public bool valida todo y refresca query. maxDistance medido desde cámara al primer hit. Colliders trigger ignorados; colliders propios ignorados; obstáculo sólido bloquea incluso sin componente; collider hijo resuelve prop padre. RefreshTarget limpia target al perder ownership/objeto deshabilitado. Input E probado usando InputTestFixture y Keyboard virtual si pertinente. Sin modificar otros archivos ni ejecutar Unity (Codex lo hace). Casos: alcance dentro/fuera, pared no interactuable delante, trigger delante ignorado, collider propio ignorado/hijo de prop, ownership falso, cursor libre, foco false, prop/componente deshabilitado o destruido, target cambió antes de pulsar E, repetidas sin duplicar, deshabilitar interactor no interactúa, componente directo no puede evadir rango/ownership, input E una acción por pulsación; al menos prueba integración con 4 prefabs existentes usando AssetDatabase en #if UNITY_EDITOR o escena sin regenerar assets. No abrir Library/Temp/Logs. No depender de escena actualmente abierta: crear escena aislada o posiciones lejos de props existentes, conservar estado global en teardown. Nota de montaje del fixture y límites. Espera archivos si necesario sin sobrescribirlos. Final INTERACTION_TESTS_READY.",
+  "startedAt": "2026-10-29T09:37:54.5620813-04:00",
+  "lastOutput": "Docs/AgentRuns/interaction-tests-20261029T133754586Z.json",
+  "lastError": "Docs/AgentRuns/interaction-tests-20261029T133754586Z.stderr.txt",
+  "finishedAt": "2026-10-29T09:43:48.2754529-04:00",
+  "review": "Codex revisó la entrega, corrigió alias Object ambiguo, aisló gravedad y eliminó fallback de componente en prefabs. Ahora prueba interacción de los cuatro assets reales. Compilación y suite completa 23/23 aprobadas; XML Interaction-PlayMode.xml. UI e implementación principal por Codex."
+}

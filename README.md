@@ -20,10 +20,13 @@ Dependencias declaradas relevantes: URP 17.5.0, Input System 1.20.0, AI Navigati
 | Ctrl izquierdo | Agacharse |
 | Escape | Liberar cursor |
 | Clic izquierdo | Recapturar cursor |
+| E | Inspeccionar el prop apuntado dentro de 2.5 m |
 
 Ajustes en el componente `FpsController` del prefab [Assets/02_Prefabs/Player/FPSPlayer.prefab](Assets/02_Prefabs/Player/FPSPlayer.prefab). Detalle: [Docs/FPSController.md](Docs/FPSController.md).
 
 Menús Editor: **Operation Heist → Crear prototipo FPS** y **Crear kit original e integrar** (regeneran recursos; guardar cambios propios antes).
+
+Los cuatro props tienen inspección por raycast y aviso contextual. Paredes bloquean la acción y una inspección no se duplica. No se implementan todavía recogida de botín ni apertura de caja fuerte. Ver [Docs/Interaction.md](Docs/Interaction.md).
 
 ## Modelos originales
 

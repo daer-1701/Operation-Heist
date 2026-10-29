@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6237867503636541845}
   - component: {fileID: 7733930405152946824}
   - component: {fileID: 7542796813965265124}
+  - component: {fileID: 4533207303259535277}
   m_Layer: 0
   m_Name: OH_CompactSafe
   m_TagString: Untagged
@@ -114,3 +115,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9, y: 1.3, z: 0.945}
   m_Center: {x: 0, y: 0.65, z: -0.0975}
+--- !u!114 &4533207303259535277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5899800426331518098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b4e2c703e7c3c4bbda9634e99b78bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Player::OperationHeist.Player.PrototypeInteractable
+  displayName: caja fuerte

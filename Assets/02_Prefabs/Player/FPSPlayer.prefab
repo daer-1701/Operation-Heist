@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: 8783795659217714359}
   - component: {fileID: 7793810685949227465}
   - component: {fileID: 8174785459714372841}
+  - component: {fileID: 834657146818728079}
+  - component: {fileID: 1808005246934235656}
   m_Layer: 0
   m_Name: FPSPlayer
   m_TagString: Untagged
@@ -179,3 +181,28 @@ MonoBehaviour:
   minPitch: -89
   maxPitch: 89
   fieldOfView: 75
+--- !u!114 &834657146818728079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431530463043719085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c183ec624a36ee048bd4f85e14d72822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Player::OperationHeist.Player.PlayerInteractor
+  maxDistance: 2.5
+--- !u!114 &1808005246934235656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431530463043719085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24172d3b279460649b5e2e55b2e3de17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.UI::OperationHeist.UI.InteractionPromptPresenter
