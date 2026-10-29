@@ -1,0 +1,6 @@
+---
+description: Prohibición obligatoria de assets gratuitos y procedencia de recursos
+alwaysApply: true
+---
+
+Leer AGENTS.md y Docs/GDD-AssetPolicy.md. El usuario prohíbe packs/assets gratuitos de terceros. No descargar contenido de galerías aunque sea CC0 ni sustituirlo por compras automáticamente. El usuario autorizó crear modelos nuevos en Hunyuan 3D (hy3d.tencent.ai) y mediante Codex: registrar prompts/recetas, herramienta y fecha; no afirmar autoría humana exclusiva ni aprobación institucional no documentada. Crear recursos originales, registrar cada archivo en Docs/AssetManifest.csv y ejecutar Tools/Audit-Assets.ps1. Unity y paquetes técnicos se consideran herramientas provisionalmente.

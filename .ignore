@@ -1,0 +1,17 @@
+# Fast default rg searches; use a targeted explicit path for diagnostics.
+/Library/
+/Temp/
+/Logs/
+/UserSettings/
+/obj/
+/Build/
+/Builds/
+/.git/
+/.vs/
+/.idea/
+/Docs/AgentRuns/
+/Docs/Archive/
+/Docs/QA/
+*.csproj
+*.sln
+*.slnx

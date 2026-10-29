@@ -1,0 +1,16 @@
+{
+  "id": "skills-readiness",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "read-only",
+  "expectedMarker": "SETUP_SKILLS_REVIEWED",
+  "allowedPaths": [
+    "Docs/AgentRuns"
+  ],
+  "prompt": "Verificación de skills y contexto, sin modificar archivos ni ejecutar Unity. Caso realista: el siguiente trabajo será un menú de pausa de Unity que mantenga visible la vista FPS y permita volver al juego. Identifica y lee la skill de proyecto apropiada en .agents/skills; consulta Progress y solo los símbolos de FpsController necesarios. Explica en menos de 200 palabras qué API usarías o añadirías para gestionar input/cursor, qué API existente tiene efectos que impedirían esa vista, dónde guardarías UI/scripts/prefabs y qué pruebas concretas harías. Menciona los nombres de las skills locales que encuentres y sus rutas. No abras Library/Logs/Temp ni recorras QA/AgentRuns. No implementes el menú. Termina SETUP_SKILLS_REVIEWED.",
+  "startedAt": "2026-10-29T09:31:14.3114687-04:00",
+  "lastOutput": "Docs/AgentRuns/skills-readiness-20261029T133114336Z.json",
+  "lastError": "Docs/AgentRuns/skills-readiness-20261029T133114336Z.stderr.txt",
+  "finishedAt": "2026-10-29T09:31:51.3789214-04:00",
+  "review": "Cursor descubrió ambas skills, leyó solo UI para el caso de pausa y evitó SetLocalControl(false) para mantener la cámara. El wrapper guardó el informe; no falta persistencia aunque Ask mode lo sugiera."
+}

@@ -1,0 +1,16 @@
+{
+  "id": "setup-review",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "edit",
+  "expectedMarker": "SETUP_REVIEW_WRITTEN",
+  "allowedPaths": [
+    "Docs/SetupReview.md"
+  ],
+  "prompt": "Crea únicamente Docs/SetupReview.md como revisión breve de configuración y criterios del primer prototipo, sin modificar ningún otro archivo. Lee AGENTS.md, Docs/Coordination.md, Packages/manifest.json y ProjectSettings/ProjectVersion.txt. Informa la versión exacta del editor, paquetes relevantes declarados y ausentes, estructura Assets exigida, y cinco comprobaciones manuales del primer controlador FPS. No instales paquetes, no invoques otros agentes y no ejecutes Unity. Explica que declarar un paquete no verifica su funcionamiento y que las pruebas de gameplay están pendientes. Usa español y menos de 500 palabras. Termina tu respuesta con SETUP_REVIEW_WRITTEN solo si creaste el archivo solicitado.",
+  "startedAt": "2026-10-29T08:28:06.3790307-04:00",
+  "lastOutput": "Docs/AgentRuns/setup-review-20261029T122806400Z.json",
+  "lastError": "Docs/AgentRuns/setup-review-20261029T122806400Z.stderr.txt",
+  "finishedAt": "2026-10-29T08:28:36.5676956-04:00",
+  "review": "Codex leyó Docs/SetupReview.md y contrastó versión, paquetes y carpetas con los archivos del proyecto. Alcance documental cumplido; compilación y Play Mode no ejecutados."
+}

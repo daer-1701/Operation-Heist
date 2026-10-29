@@ -1,0 +1,16 @@
+{
+  "id": "original-assets-plan",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "edit",
+  "expectedMarker": "ORIGINAL_ASSETS_PLAN_READY",
+  "allowedPaths": [
+    "Docs/AssetProductionPlan.md"
+  ],
+  "prompt": "Lee AGENTS.md y Docs/GDD-AssetPolicy.md. Nueva regla usuario: prohibido usar assets gratuitos. Redacta SOLO Docs/AssetProductionPlan.md, plan breve de contenido original para MVP dos golpes con presupuesto original 240h, sin afirmar que ese alcance sea garantizable. No descargues/importes ni compres nada, no generes imágenes IA, no modifiques código ni escenas. Proponer módulos geométricos propios reutilizables, materiales de colores propios sin texturas externas, UI simple sin fuentes descargadas, audio grabado/sintetizado propio y animaciones propias; herramientas motor permitidas provisionalmente y aclarar autorización institucional pendiente para fuentes integradas/IA. Recorta museo y capítulos3-5 hasta validar dos misiones; si 240h no alcanza, priorizar primer golpe y estabilidad. Lista mínima producción, origen documentado y ajustes a semanas/horas sin inventar avance ni declarar autoría humana de código asistido. Termina ORIGINAL_ASSETS_PLAN_READY.",
+  "startedAt": "2026-10-29T09:00:58.3160623-04:00",
+  "lastOutput": "Docs/AgentRuns/original-assets-plan-20261029T130058342Z.json",
+  "lastError": "Docs/AgentRuns/original-assets-plan-20261029T130058342Z.stderr.txt",
+  "finishedAt": "2026-10-29T09:02:00.0397194-04:00",
+  "review": "Revisado por Codex y complementado según autorización posterior de modelos nuevos generados con Hunyuan y Codex."
+}

@@ -1,0 +1,37 @@
+# AI context and indexing exclusions; terminal access is not sandboxed by this file.
+/Library/
+/Temp/
+/Logs/
+/UserSettings/
+/obj/
+/Build/
+/Builds/
+/MemoryCaptures/
+/Recordings/
+/.git/
+/.vs/
+/.idea/
+/Docs/AgentRuns/
+/Docs/Archive/
+/Docs/QA/
+*.csproj
+*.sln
+*.slnx
+*.docx
+*.pdf
+*.fbx
+*.glb
+*.blend
+*.png
+*.jpg
+*.jpeg
+*.wav
+*.mp3
+*.mp4
+# Serialized source assets, metadata, scripts, skills and package locks stay readable.
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key

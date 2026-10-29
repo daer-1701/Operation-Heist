@@ -1,0 +1,17 @@
+{
+  "id": "fps-review-fixes",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "edit",
+  "expectedMarker": "FPS_REVIEW_FIXED",
+  "allowedPaths": [
+    "Assets/01_Scripts/Player/Movement",
+    "Docs/FPSControllerImplementation.md"
+  ],
+  "prompt": "Revisión Codex del controlador: corrige estos defectos encontrados leyendo FpsController.cs. 1) Update ejecuta ApplyGravityOnly y UpdateCrouchHeight incluso cuando HasLocalControl=false: proxies remotos deben salir de Update sin mover ni cambiar cápsula. 2) cámara no baja al agacharse: cachear altura/offset de ojos y ajustar cámara con altura de cápsula manteniendo offset original; restaurar suavemente al levantarse, sin headbob. 3) ApplyControllerHeight tiene signo incorrecto al compensar centro no estándar: mantener posición mundial de pies anterior (previousBottom-newBottom) y dirección/escala coherentes. 4) CanStandUp satura buffer16 y podría ignorar obstáculo: si buffer lleno fallar conservadoramente; comprueba techo usando pies actuales y escala coherente (o documenta/restringe escala unitaria). No bloquear por colliders propios. 5) IsCrouching debe impedir sprint durante toda transición de altura reducida, no solo debajo de altura media. 6) Si no hay control por cursor liberado/foco perdido no aceptar movimiento/look; gravedad local está permitida, aclarar documentación. Revisa compilabilidad con Input System instalado: nombre de referencia asmdef Unity.InputSystem preferible GUID si no verificado. Codex ejecuta Unity, no lo abras. Final FPS_REVIEW_FIXED.",
+  "startedAt": "2026-10-29T08:35:46.5503248-04:00",
+  "lastOutput": "Docs/AgentRuns/fps-review-fixes-20261029T123546604Z.json",
+  "lastError": "Docs/AgentRuns/fps-review-fixes-20261029T123546604Z.stderr.txt",
+  "finishedAt": "2026-10-29T08:38:40.6213631-04:00",
+  "review": "Codex revisó implementación y correcciones; compilación Unity 6000.5.6f1 y generación de prefab/escena exitosas. Resultado final de PlayMode se registra en Docs/FPSController.md."
+}

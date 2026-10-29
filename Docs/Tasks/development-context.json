@@ -1,0 +1,19 @@
+{
+  "id": "development-context",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "edit",
+  "expectedMarker": "DEVELOPMENT_CONTEXT_READY",
+  "allowedPaths": [
+    "README.md",
+    "Docs/Progress.md",
+    "Docs/Architecture.md",
+    "Docs/CodingGuidelines.md"
+  ],
+  "prompt": "Prepara contexto persistente compacto para continuar Operation Heist. Solo escribe las cuatro rutas autorizadas. Lee AGENTS.md, Docs/Coordination.md, Docs/FPSController.md, Docs/OriginalModels.md, Docs/GDD-AssetPolicy.md y Packages/manifest.json. Puedes inspeccionar nombres/simbolos de scripts propios con rg, no Library/Temp/Logs ni binaries ni GDD DOCX completo. README: abrir Unity version fijada, escena FPSPrototype, controles, ubicacion modelos, como tests PlayMode y Audit-Assets y coordinacion CLI. Progress <=100 lineas: implementado real vs planeado, pruebas 6/6 previas con limites, Hunyuan pendiente, siguiente tarea sugerida interactor raycast local, networking no instalado. Architecture <=120: capas propuestas vs existentes, componentes reales FpsController y builders Editor/tests, host-authority futura no implementada, esquema carpetas real. CodingGuidelines <=100: nomenclatura, .meta, namespaces, Inspector/camera ownership, no inventar APIs, pruebas pertinentes sin prometer pruebas realizadas ahora. Usa enlaces relativos existentes, no decir que ya existe HUD/UI ni MCP Unity. Git/skills/C# se están configurando por Codex, no afirmar verificados. No modifiques AGENTS/skills/ignores/Packages ni ejecutes Unity ni otros agentes. No instales nada. Final DEVELOPMENT_CONTEXT_READY.",
+  "startedAt": "2026-10-29T09:24:32.464983-04:00",
+  "lastOutput": "Docs/AgentRuns/development-context-20261029T132432490Z.json",
+  "lastError": "Docs/AgentRuns/development-context-20261029T132432490Z.stderr.txt",
+  "finishedAt": "2026-10-29T09:26:08.8111769-04:00",
+  "review": "Codex revisó cuatro documentos, corrigió nombre de assembly de tests y registró estado real de Git/C#. No se implementó gameplay ni UI."
+}

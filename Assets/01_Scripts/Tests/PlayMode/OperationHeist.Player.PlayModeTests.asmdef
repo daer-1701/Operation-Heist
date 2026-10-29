@@ -1,0 +1,5 @@
+{
+  "name": "OperationHeist.Player.PlayModeTests",
+  "references": ["OperationHeist.Player", "Unity.InputSystem", "Unity.InputSystem.TestFramework", "Unity.RenderPipelines.Core.Runtime"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

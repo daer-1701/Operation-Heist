@@ -1,0 +1,16 @@
+{
+  "id": "cli-smoke",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "read-only",
+  "expectedMarker": "CLI_COORDINATION_OK",
+  "allowedPaths": [
+    "Docs/AgentRuns"
+  ],
+  "prompt": "Prueba de integración de solo lectura. Lee AGENTS.md, Docs/Coordination.md, Packages/manifest.json y ProjectSettings/ProjectVersion.txt. No modifiques archivos. Devuelve la versión exacta de Unity, las siete carpetas de Assets requeridas por el usuario y si manifest.json declara Netcode for GameObjects y Multiplayer Services. Termina con CLI_COORDINATION_OK si lograste leer los archivos.",
+  "startedAt": "2026-10-29T08:27:43.542559-04:00",
+  "lastOutput": "Docs/AgentRuns/cli-smoke-20261029T122743567Z.json",
+  "lastError": "Docs/AgentRuns/cli-smoke-20261029T122743567Z.stderr.txt",
+  "finishedAt": "2026-10-29T08:28:02.9563152-04:00",
+  "review": "Codex verificó versión 6000.5.6f1, siete carpetas y ausencia de NGO/MPS contra los archivos locales. Primera ejecución con launcher .cmd truncó el prompt; corregido usando launcher .ps1 y marcador de aceptación. Segunda ejecución válida."
+}

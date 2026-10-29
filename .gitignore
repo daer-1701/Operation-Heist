@@ -1,0 +1,46 @@
+# Unity generated data; source assets and their .meta files remain versioned.
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+/.vs/
+/.idea/
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.apk
+*.aab
+*.unitypackage
+sysinfo.txt
+.DS_Store
+Thumbs.db
+# Local execution history and quarantined template content are not source.
+/Docs/AgentRuns/
+/Docs/Archive/
+/Docs/QA/*.log
+/Tools/*.request
+/Tools/*.result
+/Tools/*.pid
+/Tools/*.path
+# Never commit credentials. Sample env files can be versioned.
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.key

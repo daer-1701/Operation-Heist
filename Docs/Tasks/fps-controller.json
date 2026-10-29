@@ -1,0 +1,17 @@
+{
+  "id": "fps-controller",
+  "owner": "cursor",
+  "status": "completed",
+  "mode": "edit",
+  "expectedMarker": "FPS_CONTROLLER_READY",
+  "allowedPaths": [
+    "Assets/01_Scripts/Player/Movement",
+    "Docs/FPSControllerImplementation.md"
+  ],
+  "prompt": "Implementa controlador FPS local según GDD sección 8.1 y criterios Docs/Coordination.md. Solo modifica rutas permitidas (crea .meta válidos si necesitas; Codex gestiona escenas/prefab/tests). Namespace OperationHeist.Player, clase public FpsController : MonoBehaviour con RequireComponent CharacterController. Un asmdef OperationHeist.Player referenciando Unity.InputSystem. Usa Input System instalado 1.20.0 con InputActions propios runtime WASD y flechas, mouse delta, LeftShift correr mantenido, LeftCtrl agacharse mantenido, Escape liberar cursor y clic izquierdo recapturar; gravedad, movimiento normalizado, colisiones CharacterController, velocidad según deltaTime pero mouse delta NO multiplicado por deltaTime; pitch limitado, yaw en raíz, sin headbob ni salto (opcional GDD). No mover mientras cursor liberado o aplicación sin foco. Camera serializada (campo playerCamera) y fallback GetComponentInChildren; si no hay camera mostrar error y desactivar sin NullReference. Cámara/audio/control pueden desactivarse mediante public SetLocalControl(bool) para futura integración de red, sin referencias NGO. Public propiedades IsCrouching (bool), HasLocalControl (bool), MouseSensitivity (float get/set clamp), FieldOfView (float get/set clamp), PlayerCamera (Camera get). Mantener pies al cambiar altura; antes de levantarse comprobar techo filtrando colliders propios (OverlapCapsuleNonAlloc o alternativa sin auto-bloqueo), no ignorar otras cápsulas ni obstáculos; agachado no corre. Desactivar/limpiar actions y cursor al desactivar/destruir, liberar al perder foco, evitar que no-owner desbloquee cursor del owner al desactivarse. No instales paquetes ni ejecutes Unity, Codex integra y prueba. Escribe explicación breve montaje/controles en Docs/FPSControllerImplementation.md. Lee configuración instalada y GDD si útil, no Library salvo Input System como diagnóstico puntual. Reporta archivos, verificaciones y límites; termina FPS_CONTROLLER_READY.",
+  "startedAt": "2026-10-29T08:31:00.3054341-04:00",
+  "lastOutput": "Docs/AgentRuns/fps-controller-20261029T123100332Z.json",
+  "lastError": "Docs/AgentRuns/fps-controller-20261029T123100332Z.stderr.txt",
+  "finishedAt": "2026-10-29T08:35:01.5196258-04:00",
+  "review": "Codex revisó implementación y correcciones; compilación Unity 6000.5.6f1 y generación de prefab/escena exitosas. Resultado final de PlayMode se registra en Docs/FPSController.md."
+}

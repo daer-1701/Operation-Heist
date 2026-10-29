@@ -1,0 +1,11 @@
+Development setup checked 2026-10-29
+Git: local main, generated folders excluded, Assets/.meta and package lock included, UnityYAMLMerge configured locally.
+Cursor: nromanov.dotrush 26.10.277; ms-dotnettools.vscode-dotnet-runtime 3.2.0 installed.
+SDK: .NET 8.0.308 and 10.0.302.
+C# LSP: initialize handshake OK; completion and hover capabilities advertised. DotRush process observed in Cursor after opening FpsController.cs.
+Skills: operation-heist-unity and operation-heist-ui validated with official quick_validate.py (isolated PyYAML 6.0.2 dependency).
+Cursor skill review: discovered both skills; selected UI for pause-menu scenario; preserved camera/audio by avoiding ownership deactivation. Read-only task; no menu implemented.
+Check-DevelopmentSetup.ps1: passed.
+Audit-Assets.ps1: 32 imported files registered.
+Not performed: interactive IntelliSense inspection, attached debugging session, new Unity compilation/PlayMode run. Existing gameplay tests are historical evidence only.
+No remote configured and no push performed. Initial local snapshot uses an explicit automation identity only when no user identity is configured.

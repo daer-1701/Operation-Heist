@@ -1,0 +1,8 @@
+---
+description: Contexto compacto y coordinación de Operation Heist
+alwaysApply: true
+---
+
+Leer AGENTS.md y Docs/Progress.md al retomar el trabajo. Consultar Docs/Architecture.md y Docs/CodingGuidelines.md solo cuando la tarea lo requiera. Consultar una skill de .agents/skills bajo demanda: operation-heist-unity para gameplay/escenas/pruebas; operation-heist-ui para HUD/menús de Unity. No cargar ambos documentos completos para una tarea ajena.
+
+Una tarea y rutas reservadas antes de editar; registrar decisiones y resultados comprobados en Progress al cerrar. Buscar símbolos con rg antes de leer archivos enteros. No recorrer Library, Temp, Logs, builds, Archive ni AgentRuns por defecto. Una exclusión de contexto no es una barrera de seguridad: cualquier diagnóstico debe acotarse a archivos concretos.

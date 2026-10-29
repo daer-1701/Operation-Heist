@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="6" result="Passed" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-29 13:19:31Z" end-time="2026-10-29 13:19:33Z" duration="1,1620974">
+  <test-suite type="TestSuite" id="1015" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-29 13:19:31Z" end-time="2026-10-29 13:19:33Z" duration="1.162097" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1009" name="OperationHeist.Player.PlayModeTests.dll" fullname="C:/Users/Usuariocc/AppData/Local/Temp/OperationHeist-FPS-35530faf62ce4067b71336a5a08a4157/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:33Z" duration="1.139116" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4000" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1010" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:33Z" duration="1.138073" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1011" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:33Z" duration="1.137612" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="FpsControllerTests" fullname="OperationHeist.Tests.FpsControllerTests" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:32Z" duration="0.255653" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1005" name="CrouchLowersViewAndCannotStandThroughCeiling" fullname="OperationHeist.Tests.FpsControllerTests.CrouchLowersViewAndCannotStandThroughCeiling" methodname="CrouchLowersViewAndCannotStandThroughCeiling" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1623038072" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:32Z" duration="0.117176" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="InputNormalizesDiagonalAndSprintIsFaster" fullname="OperationHeist.Tests.FpsControllerTests.InputNormalizesDiagonalAndSprintIsFaster" methodname="InputNormalizesDiagonalAndSprintIsFaster" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1570295553" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:32Z" duration="0.097771" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="PrefabKeepsControllerReference" fullname="OperationHeist.Tests.FpsControllerTests.PrefabKeepsControllerReference" methodname="PrefabKeepsControllerReference" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="873335979" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:32Z" duration="0.007225" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="RemoteControlDisablesLocalPresentationAndMotion" fullname="OperationHeist.Tests.FpsControllerTests.RemoteControlDisablesLocalPresentationAndMotion" methodname="RemoteControlDisablesLocalPresentationAndMotion" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="2502889" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:32Z" duration="0.007486" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="ViewSettingsApplyAndClamp" fullname="OperationHeist.Tests.FpsControllerTests.ViewSettingsApplyAndClamp" methodname="ViewSettingsApplyAndClamp" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1570281818" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:32Z" duration="0.003789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1007" name="OriginalModelsTests" fullname="OperationHeist.Tests.OriginalModelsTests" classname="OperationHeist.Tests.OriginalModelsTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:33Z" duration="0.880198" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1008" name="SceneLoadsFourOriginalPropsAndRenders" fullname="OperationHeist.Tests.OriginalModelsTests.SceneLoadsFourOriginalPropsAndRenders" methodname="SceneLoadsFourOriginalPropsAndRenders" classname="OperationHeist.Tests.OriginalModelsTests" runstate="Runnable" seed="216800639" result="Passed" start-time="2026-10-29 13:19:32Z" end-time="2026-10-29 13:19:33Z" duration="0.879337" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Preview pipeline: UnityEngine.Rendering.Universal.UniversalRenderPipeline
+Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

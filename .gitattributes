@@ -1,0 +1,28 @@
+* text=auto eol=lf
+*.cs text eol=lf
+*.md text eol=lf
+*.mdc text eol=lf
+*.ps1 text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.asmdef text eol=lf
+*.meta text eol=lf
+*.unity text eol=lf merge=unityyamlmerge
+*.prefab text eol=lf merge=unityyamlmerge
+*.mat text eol=lf
+*.asset text eol=lf
+*.docx binary
+*.png binary
+*.jpg binary
+*.fbx binary
+*.glb binary
+*.blend binary
+*.wav binary
+# Unity emits empty YAML fields with trailing spaces; Markdown uses hard breaks.
+*.meta whitespace=-blank-at-eol,-blank-at-eof
+*.unity whitespace=-blank-at-eol,-blank-at-eof
+*.prefab whitespace=-blank-at-eol,-blank-at-eof
+*.mat whitespace=-blank-at-eol,-blank-at-eof
+*.asset whitespace=-blank-at-eol,-blank-at-eof
+*.md whitespace=-blank-at-eol

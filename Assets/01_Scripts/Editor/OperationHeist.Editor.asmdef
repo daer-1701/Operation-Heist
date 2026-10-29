@@ -1,0 +1,5 @@
+{
+  "name": "OperationHeist.Editor",
+  "references": ["OperationHeist.Player"],
+  "includePlatforms": ["Editor"]
+}

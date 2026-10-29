@@ -1,0 +1,3 @@
+interface:
+  display_name: "Operation Heist UI"
+  short_description: "HUD y menus propios para Unity con uGUI"
