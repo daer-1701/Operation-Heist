@@ -2,7 +2,7 @@
 
 ## Publicación del proyecto completo del 3 de noviembre de 2026
 
-El usuario autorizó expresamente subir el proyecto completo a daer-1701/Operation-Heist. Cursor Agent (editor) reserva Docs/Progress.md, Docs/Coordination.md y Docs/ProjectReview-2026-11-03.md para documentar y completar el push; no modifica Assets, Packages ni ProjectSettings. Se respeta .gitignore de Unity (Library, Temp, Logs, UserSettings, builds, etc.). Estado: commit documental + push de main (historial local ya integrado en e8a9660) hacia origin.
+El usuario autorizó expresamente subir el proyecto completo a daer-1701/Operation-Heist. Cursor Agent (editor) documentó y completó el push; no modificó Assets, Packages ni ProjectSettings. Se respetó .gitignore de Unity. Estado: **cerrado** — `main` en origin apunta a 477c283 (`862fd01..477c283`); local y remoto alineados.
 
 ## Revisión integral del 3 de noviembre de 2026
 

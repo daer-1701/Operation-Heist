@@ -2,7 +2,7 @@
 
 ## Publicación a GitHub del 3 de noviembre de 2026
 
-El usuario autorizó subir el proyecto completo a [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist). Se incluye el código, Assets versionables, Docs, Tools, Packages y ProjectSettings ya presentes en main local (base e8a9660 más este commit documental). Exclusiones Unity vía .gitignore. Detalle de coordinación en [Coordination.md](Coordination.md).
+El usuario autorizó subir el proyecto completo a [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist). Push comprobado: `main` remoto en **477c283** (`862fd01..477c283`). Incluye código, Assets versionables, Docs, Tools, Packages y ProjectSettings; exclusiones Unity vía .gitignore. Local y `origin/main` alineados (0/0). Detalle en [Coordination.md](Coordination.md).
 
 ## Revisión verificada del 3 de noviembre de 2026
 
