@@ -1,8 +1,12 @@
 # Coordinación Cursor y Codex
 
+## Juego final — salud en red + minijuego (Cursor editor)
+
+Usuario pidió seguir avanzando y subir a git. Entrega: NetworkPlayerHealth/ReviveInteractor, WirePatchMinigame, lab regenerado, tests **3/3**. Reservas **liberadas**.
+
 ## Juego final — sistemas comunes (Cursor editor)
 
-Usuario pidió seguir avanzando. Entrega: PlayerHealth, ObjectiveBoard, HealthHudPresenter, enganche LocalMission, patch de builder, SystemsCommonTests **4/4**. Reservas **liberadas**. Para Heist_Depot abierto: menú **MVP → Añadir salud y objetivos al depósito abierto**.
+Entrega previa: PlayerHealth, ObjectiveBoard, HealthHudPresenter, SystemsCommonTests **4/4**. Reservas liberadas.
 
 ## Juego final — base cooperativa (Cursor editor)
 

@@ -25,6 +25,17 @@ Namespace `OperationHeist.Player`. Contenido original; sin packs de terceros. Pe
 - Builder del depósito añade `PlayerHealth` y un `ObjectiveBoard` con depósitos + extracción.
 - `HealthHudPresenter` muestra vida/derribo con datos reales.
 
-## Fuera de alcance en esta pasada
+## WirePatchMinigame
 
-Red de salud, minijuegos, inventario de 4 slots, roles, combate de guardia con armas, persistencia.
+- Minijuego abstracto de orden de cables: `Begin`, `TrySelect`, `Cancel`.
+- Resultados: Running / Success / Failed / Cancelled. `WirePatchRules` es pura y testeable.
+- Panel de lab en `Heist_NetworkLab`; aún no abre puertas de misión.
+
+## Red de salud
+
+- `NetworkPlayerHealth` + `NetworkReviveInteractor`: daño/reanimación con autoridad host (`NetworkHealthRules`).
+- Controles lab: H daño, F reanimar aliado derribado en rango.
+
+## Fuera de alcance aún
+
+Inventario de 4 slots, roles, combate de guardia con armas, persistencia, Multiplayer Services.

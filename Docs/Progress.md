@@ -1,8 +1,12 @@
 # Progreso — Operation Heist
 
+## Juego final — salud red + minijuego — 3 noviembre 2026
+
+`NetworkPlayerHealth` / reanimación host (H/F en lab), `WirePatchMinigame` abstracto, tests de reglas. Regenerar lab si hace falta. Usuario pidió subir este avance a git tras implementarlo.
+
 ## Publicación GitHub — avance juego final — 3 noviembre 2026
 
-El usuario autorizó subir el avance local a daer-1701/Operation-Heist: MVP depósito, base NGO LAN, sistemas de salud/objetivos, docs y evidencia Play Mode. Exclusiones Unity vía .gitignore.
+Subida previa `c507240`: MVP depósito, base NGO LAN, sistemas salud/objetivos locales.
 
 ## Juego final — sistemas comunes — 3 noviembre 2026
 

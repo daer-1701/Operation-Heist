@@ -32,9 +32,10 @@ namespace OperationHeist.Network
             _interact.Disable();
         }
 
-        private void OnDestroy()
+        public override void OnDestroy()
         {
             _interact?.Dispose();
+            base.OnDestroy();
         }
 
         private void Update()

@@ -50,7 +50,10 @@ namespace OperationHeist.Editor
             loot.AddComponent<NetworkLootItem>().Configure("DOSSIER RED / 01");
             networkManager.NetworkConfig.PlayerPrefab = player;
 
+            var panel = Box("PanelCableado", new Vector3(-4f, 1.1f, 4f), new Vector3(1.2f, 1.4f, 0.2f), accent);
+            panel.AddComponent<WirePatchMinigame>().Configure(4, 1);
             Sign("LAB RED LAN", new Vector3(0, 2.6f, -9.7f), accent.color);
+            Sign("H dano / F reanimar", new Vector3(0, 2.2f, -9.7f), Color.white);
             var light = new GameObject("Sol").AddComponent<Light>();
             light.type = LightType.Directional;
             light.intensity = 1.6f;
@@ -72,6 +75,12 @@ namespace OperationHeist.Editor
             if (instance.GetComponent<NetworkTransform>() == null) instance.AddComponent<NetworkTransform>();
             if (instance.GetComponent<NetworkPlayerMotor>() == null) instance.AddComponent<NetworkPlayerMotor>();
             if (instance.GetComponent<NetworkLootInteractor>() == null) instance.AddComponent<NetworkLootInteractor>();
+            var health = instance.GetComponent<PlayerHealth>() ?? instance.AddComponent<PlayerHealth>();
+            health.Configure(100f, 12f, false);
+            if (instance.GetComponent<NetworkPlayerHealth>() == null) instance.AddComponent<NetworkPlayerHealth>();
+            if (instance.GetComponent<NetworkReviveInteractor>() == null) instance.AddComponent<NetworkReviveInteractor>();
+            if (instance.GetComponent<OperationHeist.UI.HealthHudPresenter>() == null)
+                instance.AddComponent<OperationHeist.UI.HealthHudPresenter>().Configure(health);
             var prompt = instance.GetComponent<OperationHeist.UI.InteractionPromptPresenter>();
             if (prompt != null) Object.DestroyImmediate(prompt, true);
             var localInteractor = instance.GetComponent<PlayerInteractor>();

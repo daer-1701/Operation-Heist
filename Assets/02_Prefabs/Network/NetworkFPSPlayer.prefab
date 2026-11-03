@@ -15,6 +15,10 @@ GameObject:
   - component: {fileID: 7789645069508023207}
   - component: {fileID: 6033742892417321132}
   - component: {fileID: 8624574074894776855}
+  - component: {fileID: 4243067795886416537}
+  - component: {fileID: 5740819423157601861}
+  - component: {fileID: 5588433292920211514}
+  - component: {fileID: 1125937533671704423}
   m_Layer: 0
   m_Name: NetworkFPSPlayer
   m_TagString: Untagged
@@ -190,6 +194,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OperationHeist.Network::OperationHeist.Network.NetworkLootInteractor
   ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &4243067795886416537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382734040336577213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9cb1c1e2386e84ca7782c3a0ef90f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Player::OperationHeist.Player.PlayerHealth
+  maxHealth: 100
+  bleedoutDuration: 12
+  autoTick: 0
+--- !u!114 &5740819423157601861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382734040336577213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78a046b08a4d9e4ba427ea163177633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Network::OperationHeist.Network.NetworkPlayerHealth
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &5588433292920211514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382734040336577213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e894f51e4b96cc479677ec1a68981f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Network::OperationHeist.Network.NetworkReviveInteractor
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &1125937533671704423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382734040336577213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec97ed5c68d6f447ad2aa4a9049d716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.UI::OperationHeist.UI.HealthHudPresenter
+  health: {fileID: 4243067795886416537}
 --- !u!1 &3162140070629676955
 GameObject:
   m_ObjectHideFlags: 0
