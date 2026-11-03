@@ -1,5 +1,25 @@
 # Progreso — Operation Heist
 
+## Publicación GitHub — avance juego final — 3 noviembre 2026
+
+El usuario autorizó subir el avance local a daer-1701/Operation-Heist: MVP depósito, base NGO LAN, sistemas de salud/objetivos, docs y evidencia Play Mode. Exclusiones Unity vía .gitignore.
+
+## Juego final — sistemas comunes — 3 noviembre 2026
+
+`PlayerHealth`, `ObjectiveBoard`, `HealthHudPresenter`, enganche en `LocalMission` (derrota por sangrado; pausa congela sangrado). Menú **Operation Heist → MVP → Añadir salud y objetivos al depósito abierto**. Contrato: [SystemsContract.md](SystemsContract.md). Play Mode: **4/4** (`Docs/QA/Systems-PlayMode.xml`). Sin packs externos. Siguiente: reanimación cooperativo en red, minijuegos, o Multiplayer Services.
+
+## Juego final — base cooperativa — 3 noviembre 2026
+
+NGO **2.13.3**, `Network/**`, `Heist_NetworkLab`, reglas de botín **3/3**. Inventario previo 70/70. Multiplayer Services sigue pendiente.
+
+## Mejora MVP local — 3 noviembre 2026
+
+Usuario pidió mejorar el trabajo de Codex y avanzar. **Rechazado** importar packs gratuitos u ocultar procedencia (política AGENTS/GDD-AssetPolicy). Cursor editor reforzó el MVP original: guardia con salto de waypoint si está bloqueado y giro al detectar; banner HUD DETECTADO; feedback de extracción; null-safety en LootItem; pausa por pérdida de foco sin toggle; layout Heist_Depot enriquecido (techo, marco, oficina, cabina, palés, luces, props OH_*). Regeneración y Play Mode en copia `D:/ae/OperationHeist_MvpValidation`: **39/39** aprobadas (`Docs/QA/Mvp-PlayMode-Improve.xml`). Escena copiada al checkout principal. Build Windows y revisión visual con GPU siguen pendientes. Detalle: LocalMVP.md.
+
+## MVP local en validación — 3 noviembre 2026
+
+Base Codex: LocalMission, LootCarrier/LootItem, ExtractionPoint, PatrolGuard, MissionAudio, LocalMissionPresenter, Heist_Depot. Inventario previo 56/56. Mejoras posteriores en la entrada superior.
+
 ## Publicación a GitHub del 3 de noviembre de 2026
 
 El usuario autorizó subir el proyecto completo a [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist). Push comprobado: `main` remoto en **477c283** (`862fd01..477c283`). Incluye código, Assets versionables, Docs, Tools, Packages y ProjectSettings; exclusiones Unity vía .gitignore. Local y `origin/main` alineados (0/0). Detalle en [Coordination.md](Coordination.md).

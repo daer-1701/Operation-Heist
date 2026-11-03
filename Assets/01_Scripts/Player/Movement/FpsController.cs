@@ -57,6 +57,12 @@ namespace OperationHeist.Player
         bool _wantsCrouch;
         bool _actionsEnabled;
         bool _initialized;
+        bool _gameplayInputEnabled = true;
+        float _movementMultiplier = 1f;
+
+        public bool GameplayInputEnabled => _gameplayInputEnabled;
+        public bool SprintAllowed { get; set; } = true;
+        public float MovementMultiplier { get => _movementMultiplier; set => _movementMultiplier = Mathf.Clamp(value, 0.1f, 2f); }
 
         public bool IsCrouching { get; private set; }
         public bool HasLocalControl => _hasLocalControl;
@@ -124,7 +130,7 @@ namespace OperationHeist.Player
                 return;
             }
 
-            if (_hasLocalControl)
+            if (_hasLocalControl && _gameplayInputEnabled)
             {
                 EnableActions();
                 if (Application.isFocused)
@@ -174,7 +180,7 @@ namespace OperationHeist.Player
             }
 
             // Proxies remotos / sin ownership local: ni movimiento, ni gravedad local, ni cápsula.
-            if (!_hasLocalControl)
+            if (!_hasLocalControl || !_gameplayInputEnabled)
             {
                 return;
             }
@@ -210,6 +216,16 @@ namespace OperationHeist.Player
             ApplyLocalControlState(captureCursor: enabled && Application.isFocused && isActiveAndEnabled);
         }
 
+        public void SetGameplayInputEnabled(bool value)
+        {
+            _gameplayInputEnabled = value;
+            _wantsCrouch = false;
+            if (!_initialized) return;
+            if (value && _hasLocalControl && isActiveAndEnabled) EnableActions();
+            else DisableActions();
+            if (_hasLocalControl) SetCursorLocked(value && isActiveAndEnabled && Application.isFocused);
+        }
+
         void ResolveCamera()
         {
             if (playerCamera == null)
@@ -232,12 +248,12 @@ namespace OperationHeist.Player
 
             if (_hasLocalControl)
             {
-                if (isActiveAndEnabled)
+                if (isActiveAndEnabled && _gameplayInputEnabled)
                 {
                     EnableActions();
                 }
 
-                SetCursorLocked(captureCursor);
+                SetCursorLocked(captureCursor && _gameplayInputEnabled);
             }
             else
             {
@@ -330,7 +346,8 @@ namespace OperationHeist.Player
 
             if (_cursorLocked)
             {
-                if (_unlockCursorAction.WasPressedThisFrame())
+                var missionCarrier = GetComponent<LootCarrier>();
+                if (_unlockCursorAction.WasPressedThisFrame() && (missionCarrier == null || missionCarrier.Mission == null))
                 {
                     SetCursorLocked(false);
                 }
@@ -372,10 +389,10 @@ namespace OperationHeist.Player
                 move.Normalize();
             }
 
-            bool wantsRun = _runAction.IsPressed() && !IsCrouching;
+            bool wantsRun = SprintAllowed && _runAction.IsPressed() && !IsCrouching;
             float speed = IsCrouching ? crouchSpeed : (wantsRun ? runSpeed : walkSpeed);
 
-            Vector3 velocity = move * speed;
+            Vector3 velocity = move * speed * MovementMultiplier;
             if (_controller.isGrounded)
             {
                 if (_verticalVelocity.y < 0f)

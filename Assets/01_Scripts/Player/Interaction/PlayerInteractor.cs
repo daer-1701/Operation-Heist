@@ -17,7 +17,7 @@ namespace OperationHeist.Player
         public float MaxDistance { get => maxDistance; set => maxDistance = Mathf.Clamp(value, 0.1f, 5f); }
         public IInteractable FocusedInteractable => _target != null ? _target as IInteractable : null;
         public PrototypeInteractable CurrentTarget => FocusedInteractable as PrototypeInteractable;
-        public bool CanInteractNow => IsLocalPlayerActive && _controller.IsCursorCaptured && HasApplicationFocus;
+        public bool CanInteractNow => IsLocalPlayerActive && _controller.GameplayInputEnabled && _controller.IsCursorCaptured && HasApplicationFocus;
         protected virtual bool HasApplicationFocus => Application.isFocused;
         public event Action<IInteractable> TargetChanged;
         public event Action<IInteractable> InteractionPerformed;

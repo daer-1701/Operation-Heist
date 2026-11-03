@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/00_Scenes/Heist_Depot.unity
+    guid: ec3a7b7eb8b90e7448843f76e97cbf68
+  - enabled: 1
     path: Assets/00_Scenes/FPSPrototype.unity
     guid: 9bfde6c777a75aa409186de360644ec7
   m_configObjects:

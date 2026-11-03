@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0,0846416">
+  <test-suite type="TestSuite" id="1056" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.084642" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1050" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OperationHeist_MvpValidation/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.062662" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6708" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1051" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.059763" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1052" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.057641" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1027" name="NetworkLootAuthorityTests" fullname="OperationHeist.Tests.NetworkLootAuthorityTests" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.053055" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1028" name="AvailableLootCanBeAssignedToFreeCarrier" fullname="OperationHeist.Tests.NetworkLootAuthorityTests.AvailableLootCanBeAssignedToFreeCarrier" methodname="AvailableLootCanBeAssignedToFreeCarrier" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" seed="1396051791" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.025534" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="BusyCarrierCannotTakeAnotherAvailableLoot" fullname="OperationHeist.Tests.NetworkLootAuthorityTests.BusyCarrierCannotTakeAnotherAvailableLoot" methodname="BusyCarrierCannotTakeAnotherAvailableLoot" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" seed="1424482877" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.001368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="CarriedLootRejectsSecondAssignment" fullname="OperationHeist.Tests.NetworkLootAuthorityTests.CarriedLootRejectsSecondAssignment" methodname="CarriedLootRejectsSecondAssignment" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" seed="913713741" result="Passed" start-time="2026-11-03 16:09:25Z" end-time="2026-11-03 16:09:25Z" duration="0.000377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

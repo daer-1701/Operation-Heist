@@ -1,5 +1,25 @@
 # Coordinación Cursor y Codex
 
+## Juego final — sistemas comunes (Cursor editor)
+
+Usuario pidió seguir avanzando. Entrega: PlayerHealth, ObjectiveBoard, HealthHudPresenter, enganche LocalMission, patch de builder, SystemsCommonTests **4/4**. Reservas **liberadas**. Para Heist_Depot abierto: menú **MVP → Añadir salud y objetivos al depósito abierto**.
+
+## Juego final — base cooperativa (Cursor editor)
+
+Pasada LAN entregada: NGO 2.13.3, Network/*, Heist_NetworkLab, 3/3 reglas de botín. Reservas liberadas.
+
+## Informe del juego final — 3 noviembre 2026
+
+Codex entregó Docs/Operation_Heist_Estado_y_Plan_Final_2026-11-03.docx. Reserva documental liberada al abrir la etapa cooperativa.
+
+## Mejora MVP local — 3 noviembre 2026 (Cursor editor)
+
+Usuario pidió revisar lo de Codex, mejorarlo y seguir avanzando. **Prohibido** importar packs/prefabs gratuitos u ocultar procedencia. Pasada completada en scripts Mission/UI/builder/tests y Heist_Depot regenerada; Play Mode 39/39 en copia aislada. Reservas de esta pasada **liberadas**. Pendiente usuario: build Windows y playtest visual en el editor abierto. Siguiente gameplay sugerido: Hunyuan LootBag importado con trazabilidad, o red tras instalar NGO.
+
+## MVP local — 3 noviembre 2026 (Codex, base)
+
+Usuario confirmó MVP local primero. Codex entregó base LocalMission/Loot/Guard/UI/builder Heist_Depot. Validación y mejoras continúan en la entrada superior. Contrato: Docs/LocalMvpContract.md.
+
 ## Publicación del proyecto completo del 3 de noviembre de 2026
 
 El usuario autorizó expresamente subir el proyecto completo a daer-1701/Operation-Heist. Cursor Agent (editor) documentó y completó el push; no modificó Assets, Packages ni ProjectSettings. Se respetó .gitignore de Unity. Estado: **cerrado** — `main` en origin apunta a 477c283 (`862fd01..477c283`); local y remoto alineados.
@@ -81,3 +101,5 @@ Crear contenido propio en esas carpetas según su tipo. Settings permanece como 
 - setup-review completada por Cursor y revisada por Codex: Docs/SetupReview.md contiene configuración y criterios del primer prototipo. No se ejecutó Unity ni se modificó gameplay.
 - Trabajo FPS autorizado: Cursor implementa Assets/01_Scripts/Player/Movement y Docs/FPSControllerImplementation.md (tarea fps-controller). Codex reserva Assets/01_Scripts/Editor, Assets/01_Scripts/Tests, Assets/00_Scenes/FPSPrototype.unity, Assets/02_Prefabs/Player/FPSPlayer.prefab y Docs/FPSController.md para integración y validación. No se superponen ediciones.
 - Entrega FPS completada: tareas fps-controller y fps-review-fixes revisadas por Codex; prefab y escena generados; compilación correcta y 5/5 pruebas Play Mode aprobadas. Detalles y límites en Docs/FPSController.md; evidencia en Docs/QA. No quedan tareas Cursor activas. Los siguientes cambios requieren nuevas reservas.
+
+Actualización MVP: Cursor CLI no está instalado en la ruta configurada; invocación falló antes de ejecutar. Las rutas de LocalMissionTests y LocalMissionTestNotes se reasignan al subagente Codex tests. No hay Cursor activo.

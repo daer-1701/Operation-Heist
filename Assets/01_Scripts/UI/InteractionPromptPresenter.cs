@@ -69,7 +69,22 @@ namespace OperationHeist.UI
 
         private void OnInteracted(IInteractable target)
         {
-            _feedback.text = "Inspeccionado: " + target.DisplayName;
+            if (target is PrototypeInteractable)
+                _feedback.text = "Inspeccionado: " + target.DisplayName;
+            else if (target is LootItem)
+                _feedback.text = "Recogido: " + target.DisplayName;
+            else if (target is ExtractionPoint point)
+            {
+                var mission = point.Mission;
+                if (mission != null && mission.Phase == MissionPhase.Won)
+                    _feedback.text = "Evacuación confirmada";
+                else if (mission != null)
+                    _feedback.text = "Expediente asegurado (" + mission.DepositedCount + "/" + mission.RequiredLoot + ")";
+                else
+                    _feedback.text = "Acción en extracción";
+            }
+            else
+                _feedback.text = "Acción completada: " + target.DisplayName;
             _feedbackUntil = Time.unscaledTime + 2;
         }
 

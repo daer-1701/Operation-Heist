@@ -1,5 +1,11 @@
 {
   "name": "OperationHeist.Editor",
-  "references": ["OperationHeist.Player", "OperationHeist.UI"],
+  "references": [
+    "OperationHeist.Player",
+    "OperationHeist.UI",
+    "OperationHeist.Network",
+    "Unity.Netcode.Runtime",
+    "Unity.Networking.Transport"
+  ],
   "includePlatforms": ["Editor"]
 }

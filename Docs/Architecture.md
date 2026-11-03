@@ -2,6 +2,8 @@
 
 Vista compacta del prototipo actual frente a capas futuras. No afirma sistemas no presentes.
 
+Actualización MVP local (3 noviembre 2026): `Heist_Depot` añade LocalMission como coordinador de estados, LootItem/LootCarrier y ExtractionPoint para botín, PatrolGuard para patrulla y percepción, MissionAudio para síntesis original y LocalMissionPresenter para HUD/menús. Se mantiene el ensamblado Player para reglas y UI para presentación. La escena referencia el prefab FPS conectado. `SetGameplayInputEnabled` bloquea movimiento e input conservando cámara/audio; `SetLocalControl` sigue reservado a ownership. No hay stack de red. `FPSPrototype` queda como escenario de regresión.
+
 ## Capas propuestas vs existentes
 
 | Capa | Estado |
@@ -12,8 +14,9 @@ Vista compacta del prototipo actual frente a capas futuras. No afirma sistemas n
 | Interacción (raycast) | PlayerInteractor + IInteractable + PrototypeInteractable para inspección local |
 | UI / HUD | Aviso contextual y retícula de prototipo uGUI; sin HUD completo ni menús |
 | Props / escena gris | Existente: builders Editor + prefabs/meshes Codex |
-| Red / host-authority | Futura; **NGO no instalado**; `SetLocalControl` solo desactiva simulación local |
-| IA / misiones | Fuera del prototipo actual |
+| Red / host-authority | Base LAN: NGO 2.13.3, `HeistNetworkSession`, `NetworkPlayerMotor`, `NetworkLootItem` (ver Network.md). Multiplayer Services pendiente |
+| Salud / objetivos | `PlayerHealth`, `ObjectiveBoard` (SystemsContract.md); HUD vitalidad; misión local derrota por sangrado |
+| IA / misiones | Patrulla local + objetivos reutilizables; contratos finales pendientes |
 
 ## Componentes reales
 

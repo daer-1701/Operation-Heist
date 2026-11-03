@@ -1,5 +1,15 @@
 {
   "name": "OperationHeist.Player.PlayModeTests",
-  "references": ["OperationHeist.Player", "OperationHeist.UI", "UnityEngine.UI", "Unity.InputSystem", "Unity.InputSystem.TestFramework", "Unity.RenderPipelines.Core.Runtime"],
+  "references": [
+    "OperationHeist.Player",
+    "OperationHeist.UI",
+    "OperationHeist.Network",
+    "UnityEngine.UI",
+    "Unity.InputSystem",
+    "Unity.InputSystem.TestFramework",
+    "Unity.RenderPipelines.Core.Runtime",
+    "Unity.Netcode.Runtime",
+    "Unity.Networking.Transport"
+  ],
   "optionalUnityReferences": ["TestAssemblies"]
 }

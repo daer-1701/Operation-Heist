@@ -25,9 +25,10 @@ Normas compactas para scripts y recursos propios. Respetar [AGENTS.md](../AGENTS
 
 ## APIs y dependencias
 
-- Usar solo APIs de paquetes en `Packages/manifest.json` y la versión del editor fijada. **No inventar** APIs NGO/Multiplayer: no están instaladas.
+- Usar solo APIs de paquetes en `Packages/manifest.json` y la versión del editor fijada. NGO instalado: **2.13.3** (`OperationHeist.Network`). No usar NGO 3.x en Unity 6000.5.
 - Input: seguir el patrón actual (actions en runtime); no reintroducir assets de la plantilla archivada sin autorización.
-- `SetLocalControl` es contrato local para ownership futuro; no acoplar red hasta que exista paquete y reserva.
+- `SetLocalControl` marca ownership local del FPS; en red solo el owner debe activarlo (`NetworkPlayerMotor`).
+- Botín en red: intención por ServerRpc, mutación solo en host ([NetworkContract.md](NetworkContract.md)).
 
 ## Pruebas
 

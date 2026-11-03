@@ -1,0 +1,14 @@
+{
+  "status": "failed",
+  "prompt": "Implementa pruebas PlayMode del MVP local siguiendo Docs/LocalMvpContract.md y skill Unity. Solo rutas permitidas. Gameplay está creándose en paralelo: lee contrato y espera o consulta archivos de Player/Mission cuando existan. No modificar implementación ni contratos ni otros tests. No ejecutar Unity ni otros agentes. Usa InputTestFixture y interactor subclass foco true, controlador cámara, geometría aislada; puede reflection bloquear cursor igual suites existentes. Cubre pickup con fuera de alcance rechazado, un portador/objeto, soltar y recoger, depósito único y manos vacías tras depósito, no victoria antes de required loot, victoria extracción tras depósito suficiente, Tick timeout, alarma derrota, pausa congela reloj y cámara permanece habilitada, no-owner no adquiere input por cerrar pausa. APIs contrato exactas; prueba estados observables, no reimplementar lógica. Genera meta. Reporta limitaciones. Codex ejecuta compilación y pruebas. Final LOCAL_MVP_TESTS_READY.",
+  "id": "local-mvp-tests",
+  "allowedPaths": [
+    "Assets/01_Scripts/Tests/PlayMode/LocalMissionTests.cs",
+    "Assets/01_Scripts/Tests/PlayMode/LocalMissionTests.cs.meta",
+    "Docs/LocalMissionTestNotes.md"
+  ],
+  "owner": "cursor",
+  "expectedMarker": "LOCAL_MVP_TESTS_READY",
+  "mode": "edit",
+  "failure": "Cursor CLI no encontrado; no hubo ejecución ni ediciones. Reserva reasignada a subagente Codex tests."
+}

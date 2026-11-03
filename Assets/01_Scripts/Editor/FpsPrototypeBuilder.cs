@@ -37,6 +37,8 @@ namespace OperationHeist.Editor
         [MenuItem("Operation Heist/Crear prototipo FPS")]
         public static void Build()
         {
+            if (!Application.isBatchMode && File.Exists(ScenePath) &&
+                !EditorUtility.DisplayDialog("Regenerar prototipo", "Se reemplazará FPSPrototype. Conserva una copia de los cambios manuales antes de continuar.", "Regenerar", "Cancelar")) throw new OperationCanceledException("Regeneración cancelada.");
             Directory.CreateDirectory("Assets/02_Prefabs/Player");
             Directory.CreateDirectory("Assets/00_Scenes");
             Directory.CreateDirectory("Assets/03_Materials");
@@ -72,7 +74,7 @@ namespace OperationHeist.Editor
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 root.AddComponent<PlayerInteractor>();
                 root.AddComponent<InteractionPromptPresenter>();
-                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+                PrefabUtility.SaveAsPrefabAssetAndConnect(root, PrefabPath, InteractionMode.AutomatedAction);
                 root.transform.position = new Vector3(0, 0.1f, -6);
                 Box("Ground", new Vector3(0, -0.5f, 0), new Vector3(24, 1, 24));
                 Box("Wall_Left", new Vector3(-12, 1.5f, 0), new Vector3(0.5f, 3, 24));
