@@ -1,5 +1,17 @@
 # Coordinación Cursor y Codex
 
+## Publicación del proyecto completo del 3 de noviembre de 2026
+
+El usuario autorizó expresamente subir el proyecto completo a daer-1701/Operation-Heist. Cursor Agent (editor) reserva Docs/Progress.md, Docs/Coordination.md y Docs/ProjectReview-2026-11-03.md para documentar y completar el push; no modifica Assets, Packages ni ProjectSettings. Se respeta .gitignore de Unity (Library, Temp, Logs, UserSettings, builds, etc.). Estado: commit documental + push de main (historial local ya integrado en e8a9660) hacia origin.
+
+## Revisión integral del 3 de noviembre de 2026
+
+Codex reservó Docs/ProjectReview-2026-11-03.md, Docs/Progress.md y esta entrada para analizar el proyecto. Revisión completada: informe guardado, inventario y hashes 39/39, metadatos sin ausencias ni GUID duplicados. XML histórico 23/23 confirmado; Unity no reejecutado. Reservas de esa revisión liberadas.
+
+## Publicación del proyecto completo del 29 de octubre de 2026
+
+El usuario autorizó subir el proyecto completo a daer-1701/Operation-Heist respetando exclusiones de Unity. Codex reservó .gitignore, README.md y Docs/Progress.md/Coordination.md para integrar historiales. Historial local integrado en e8a9660; el push remoto quedó pendiente hasta la autorización del 3 de noviembre.
+
 ## Traspaso de contexto del 29 de octubre de 2026
 
 Codex completó Docs/Operation_Heist_Contexto_y_Avance_2026-10-29.docx: diez páginas renderizadas y revisadas visualmente, contexto comprobado, límites de pruebas, pendientes y guía para retomar. Por autorización expresa del usuario se publicó únicamente el documento en daer-1701/Operation-Heist, rama main, commit 862fd015ec3bc9b6289746298a91871801692da3. No se asignó trabajo de gameplay a Cursor ni se modificaron Assets, Packages o ProjectSettings. Reserva documental liberada. El botín sigue pendiente: la tarea se interrumpió antes de implementar código o encargar pruebas.

@@ -1,5 +1,17 @@
 # Progreso — Operation Heist
 
+## Publicación a GitHub del 3 de noviembre de 2026
+
+El usuario autorizó subir el proyecto completo a [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist). Se incluye el código, Assets versionables, Docs, Tools, Packages y ProjectSettings ya presentes en main local (base e8a9660 más este commit documental). Exclusiones Unity vía .gitignore. Detalle de coordinación en [Coordination.md](Coordination.md).
+
+## Revisión verificada del 3 de noviembre de 2026
+
+Análisis integral en [ProjectReview-2026-11-03.md](ProjectReview-2026-11-03.md). Estado real: prototipo FPS local e inspección; botín, misión completa y red pendientes. Auditoría reejecutada: 39/39; hashes del manifiesto 39/39 coincidentes; Assets sin .meta faltantes ni GUID duplicados. XML histórico de interacción confirmado: 23/23 del 29 de octubre; no se reejecutaron compilación, Unity ni build.
+
+Corrección al contexto histórico: Git tiene origin hacia daer-1701/Operation-Heist y HEAD local e8a9660 integra ambos historiales. La publicación remota se completa en esta misma fecha por petición del usuario.
+
+Hallazgos: jugador de FPSPrototype sin vínculo al prefab FPSPlayer; generadores sobrescriben escena; capturas UI usan Canvas distinto al runtime; documentación histórica contradictoria. Próximo paso de gameplay tras la publicación: reparar vínculo/proteger generación, después botín local y micro misión.
+
 Actualizado: 29 de octubre de 2026. Contexto persistente; no sustituye reservas activas en [Coordination.md](Coordination.md).
 
 ## Documento para retomar
