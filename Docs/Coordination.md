@@ -1,5 +1,9 @@
 # Coordinación Cursor y Codex
 
+## Integración de kit, animación rígida y banco — 5 noviembre 2026
+
+Kiro mejoró recetas y código. Cursor regeneró el kit en copia aislada y ejecutó `MissionSetBuilder.BuildAll`. Escenas y prefabs copiados al proyecto principal. Auditoría 250/250. Reserva liberada. Pendiente: prueba LAN de dos instancias, lámina GPU del catálogo, playtest físico y build Windows.
+
 ## Depósito cooperativo LAN — 5 noviembre 2026
 
 Cerrada. Codex reparó laboratorio, prefab y arranque LAN, e integró Heist_DepotCoop con acceso desde el briefing local. Pruebas en dos instancias aisladas: anfitrión 51/51, cliente 1/1. Reservas liberadas.

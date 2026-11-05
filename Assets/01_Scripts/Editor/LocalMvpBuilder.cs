@@ -162,6 +162,8 @@ namespace OperationHeist.Editor
             };
             if (File.Exists(NetworkLabBuilder.DepotScenePath))
                 scenes.Add(new EditorBuildSettingsScene(NetworkLabBuilder.DepotScenePath, true));
+            if (File.Exists(MissionSetBuilder.BankScenePath))
+                scenes.Add(new EditorBuildSettingsScene(MissionSetBuilder.BankScenePath, true));
             EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets(); Debug.Log("LOCAL_MVP_GENERATED");
         }

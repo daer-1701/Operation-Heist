@@ -41,7 +41,7 @@ namespace OperationHeist.Network
         {
             _session = NetworkManager.GetComponent<HeistNetworkSession>();
             _controller.SetLocalControl(IsOwner);
-            if (avatar != null) avatar.enabled = !IsOwner;
+            ApplyAvatar(!IsOwner);
             if (ownerHud != null) ownerHud.enabled = IsOwner;
             UpdateControl();
         }
@@ -71,6 +71,15 @@ namespace OperationHeist.Network
         {
             bool allow = IsOwner && IsPlaying && !IsDown && !MenuOpen;
             if (_controller.GameplayInputEnabled != allow) _controller.SetGameplayInputEnabled(allow);
+        }
+
+        private void ApplyAvatar(bool visible)
+        {
+            if (avatar == null) return;
+            Transform root = avatar.transform;
+            while (root.parent != null && root.parent != transform) root = root.parent;
+            foreach (var renderer in root.GetComponentsInChildren<Renderer>(true))
+                renderer.enabled = visible;
         }
 
         public bool CanReach(Collider target, float maxDistance)

@@ -1,5 +1,9 @@
 # Progreso — Operation Heist
 
+## Modelos mejorados e integración — 5 noviembre 2026
+
+Kiro reescribió 9 recetas (personajes, expediente, bolsa, estantería, mostrador, puerta de seguridad y bóveda) y añadió esferas y colores por modelo. La regeneración con `-nographics` guardó mallas y prefabs y falló solo en la lámina de vista previa: `La revisión visual requiere GPU`. Esos recursos ya están en el proyecto. `MissionSetBuilder.BuildAll` en copia aislada terminó con `NETWORK_DEPOT_GENERATED` y `MISSION_SET_INTEGRATED`. Auditoría **250/250**. `MissionSetTests` **3/3** en Play Mode sin gráficos. La lámina `Docs/QA/ProductionModels-preview.png` sigue siendo la anterior. Falta la prueba cooperativa de dos instancias, el playtest con teclado y ratón, y el build Windows.
+
 ## Modelos de depósito y banco — 5 noviembre 2026
 
 Producidos con Codex 55 modelos originales de estilo geométrico: arquitectura, depósito/tienda, banco, mobiliario, seguridad, botín, equipo y personajes agente/guardia/empleado. Entrega: 55 prefabs, 95 mallas nativas, 10 materiales URP y escena OH_ModelGallery. Recetas reproducibles en Tools/ModelRecipes.json y ProductionModelsBuilder.cs. Procedencia completa en AssetManifest.csv; ningún recurso de terceros importado.

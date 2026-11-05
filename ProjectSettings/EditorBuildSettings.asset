@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00_Scenes/Heist_DepotCoop.unity
     guid: e19f0c18790577d4883c09619ee58c22
+  - enabled: 1
+    path: Assets/00_Scenes/Heist_Bank.unity
+    guid: 9a23e38958ada7f43b4091abae0df2af
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
