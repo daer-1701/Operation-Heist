@@ -44,7 +44,7 @@ namespace OperationHeist.Network
         {
             if (!IsOwner || !IsSpawned) return;
             if (_hurt.WasPressedThisFrame())
-                _self.RequestDamageServerRpc(35f);
+                _self.RequestLabDamageServerRpc();
             if (!_revive.WasPressedThisFrame() || _self.LocalHealth.IsIncapacitated) return;
             var target = FindNearestDownedAlly();
             if (target != null)

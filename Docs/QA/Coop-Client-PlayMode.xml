@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9,2691822">
+  <test-suite type="TestSuite" id="1069" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="51" result="Passed" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9.269182" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1063" name="OperationHeist.Player.PlayModeTests.dll" fullname="C:/Users/Usuariocc/AppData/Local/Temp/OH-Coop-Client/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="51" result="Passed" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9.247496" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="2304" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1064" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="51" result="Passed" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9.246031" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1065" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="51" result="Passed" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9.244208" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CoopDepotLanTests" fullname="OperationHeist.Tests.CoopDepotLanTests" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9.240359" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="TwoInstancesCompleteDepot" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteDepot" methodname="TwoInstancesCompleteDepot" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="1207844868" result="Passed" start-time="2026-11-05 12:21:30Z" end-time="2026-11-05 12:21:39Z" duration="9.216928" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[COOP_DEPOT_OK client · 3/3 · extracción compartida
+Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

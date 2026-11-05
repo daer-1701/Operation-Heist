@@ -26,3 +26,7 @@ Ahora los cuatro props admiten inspección local única mediante raycast/E (ver 
 Compilación y generación correctas en Unity 6000.5.6f1. Seis pruebas Play Mode aprobadas: cinco del controlador y una de carga de los cuatro modelos en FPSPrototype, meshes, colliders y materiales sin texturas. Evidencia: Docs/QA/OriginalModels-PlayMode.xml. El inventario cubre 32 archivos importables; auditoría sin archivos pendientes de registrar.
 
 Vista general generada y revisada en Docs/QA/OriginalModels-preview.png. Para renderizar en Batch Mode, la prueba inicializa el pipeline configurado mediante un helper de reflexión específico de esta versión de Unity; actualizarlo si se cambia el editor. Este helper solo pertenece a pruebas, no al gameplay. Los archivos de entrega se compararon por hash con los de la copia validada. No se realizó todavía una build Windows ni una evaluación artística final.
+
+## Biblioteca de depósito y banco — noviembre 2026
+
+El kit posterior de 55 modelos está documentado en [ModelCatalog.md](ModelCatalog.md), con prefabs en Assets/02_Prefabs/Production y galería independiente OH_ModelGallery. Amplía los cuatro props iniciales sin reemplazarlos. La bolsa de botín se generó proceduralmente con Codex; no se utilizó Hunyuan ni contenido de galerías.

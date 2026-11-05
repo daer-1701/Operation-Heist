@@ -5,82 +5,87 @@ using UnityEngine.InputSystem;
 
 namespace OperationHeist.Network
 {
-    /// <summary>Owner-only intent: E requests host-validated loot actions.</summary>
-    [DisallowMultipleComponent, RequireComponent(typeof(NetworkPlayerMotor), typeof(FpsController))]
+    [DisallowMultipleComponent, RequireComponent(typeof(NetworkPlayerMotor))]
     public sealed class NetworkLootInteractor : NetworkBehaviour
     {
-        private const float MaxDistance = 2.5f;
-        private FpsController _controller;
-        private Camera _camera;
+        private const float Reach = 2.5f;
+        internal const float ServerReach = 2.75f;
+        private NetworkPlayerMotor _motor;
+        private NetworkDepotMission _mission;
         private InputAction _interact;
-        private readonly RaycastHit[] _hits = new RaycastHit[16];
+        private InputAction _drop;
 
         private void Awake()
         {
-            _controller = GetComponent<FpsController>();
+            _motor = GetComponent<NetworkPlayerMotor>();
             _interact = new InputAction("NetworkInteract", InputActionType.Button, "<Keyboard>/e");
+            _drop = new InputAction("NetworkDrop", InputActionType.Button, "<Keyboard>/g");
         }
 
         public override void OnNetworkSpawn()
         {
-            _camera = _controller.PlayerCamera;
-            if (IsOwner) _interact.Enable();
+            _mission = NetworkManager.GetComponent<HeistNetworkSession>().Depot;
+            if (!IsOwner) return;
+            _interact.Enable();
+            _drop.Enable();
         }
 
         public override void OnNetworkDespawn()
         {
             _interact.Disable();
+            _drop.Disable();
         }
 
         public override void OnDestroy()
         {
             _interact?.Dispose();
+            _drop?.Dispose();
             base.OnDestroy();
         }
 
         private void Update()
         {
-            if (!IsOwner || !_controller.HasLocalControl || !_controller.GameplayInputEnabled) return;
-            if (!_interact.WasPressedThisFrame()) return;
-            var carried = FindCarriedByLocalClient();
-            if (carried != null)
+            if (!IsSpawned || !IsOwner) return;
+            var controller = _motor.Controller;
+            var carried = NetworkLootItem.FindCarried(NetworkManager, OwnerClientId);
+            controller.MovementMultiplier = carried == null ? 1f : .65f;
+            controller.SprintAllowed = carried == null;
+            if (!controller.GameplayInputEnabled || !controller.IsCursorCaptured || !Application.isFocused) return;
+            if (_drop.WasPressedThisFrame() && carried != null)
+            {
+                carried.RequestDropServerRpc();
+                return;
+            }
+            if (_interact.WasPressedThisFrame()) Interact(carried);
+        }
+
+        private void Interact(NetworkLootItem carried)
+        {
+            if (_mission == null && carried != null)
             {
                 carried.RequestDepositServerRpc();
                 return;
             }
-            var loot = QueryLoot();
-            if (loot != null && loot.State == NetworkLootState.Available)
-                loot.RequestPickupServerRpc();
-        }
 
-        private static NetworkLootItem FindCarriedByLocalClient()
-        {
-            ulong localId = NetworkManager.Singleton.LocalClientId;
-            foreach (var loot in FindObjectsByType<NetworkLootItem>(FindObjectsSortMode.None))
+            var camera = _motor.Controller.PlayerCamera.transform;
+            Collider target = null;
+            float distance = Reach;
+            foreach (var hit in Physics.RaycastAll(camera.position, camera.forward, Reach, ~0, QueryTriggerInteraction.Ignore))
             {
-                if (loot != null && loot.IsSpawned && loot.State == NetworkLootState.Carried && loot.CarrierClientId == localId)
-                    return loot;
+                if (hit.collider.transform.IsChildOf(transform) || hit.distance > distance) continue;
+                target = hit.collider;
+                distance = hit.distance;
             }
-            return null;
-        }
 
-        private NetworkLootItem QueryLoot()
-        {
-            if (_camera == null) return null;
-            int count = Physics.RaycastNonAlloc(_camera.transform.position, _camera.transform.forward, _hits, MaxDistance, ~0, QueryTriggerInteraction.Ignore);
-            float best = float.MaxValue;
-            NetworkLootItem found = null;
-            for (int i = 0; i < count; i++)
+            if (target == null) return;
+            if (_mission != null && target == _mission.Terminal)
             {
-                var hit = _hits[i];
-                if (hit.collider != null && hit.collider.transform.IsChildOf(transform)) continue;
-                if (hit.distance >= best) continue;
-                var loot = hit.collider.GetComponentInParent<NetworkLootItem>();
-                if (loot == null) continue;
-                best = hit.distance;
-                found = loot;
+                if (carried != null) carried.RequestDepositServerRpc();
+                else _mission.RequestExtractServerRpc();
+                return;
             }
-            return found;
+            if (carried == null)
+                target.GetComponentInParent<NetworkLootItem>()?.RequestPickupServerRpc();
         }
     }
 }

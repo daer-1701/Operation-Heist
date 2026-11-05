@@ -4,7 +4,7 @@ Actualización posterior: el usuario autorizó modelos nuevos con Hunyuan y Code
 
 Fecha: 29 de octubre de 2026.  
 Base: `AGENTS.md`, `Docs/GDD-AssetPolicy.md`.  
-Estado: plan documental; **no** hay assets de contenido producidos bajo este plan. No inventa avance de producción ni atribuye autoría humana exclusiva al código asistido ya existente.
+Estado actualizado: biblioteca procedural producida con Codex para depósito/tienda y banco; catálogo y evidencia en Docs/ModelCatalog.md. Las secciones siguientes conservan el plan inicial. Animaciones, audio y montaje completo del banco siguen pendientes.
 
 ## Objetivo y límite de alcance
 
@@ -24,7 +24,7 @@ Estado: plan documental; **no** hay assets de contenido producidos bajo este pla
 | Audio grabado o sintetizado por el equipo, documentado | Silencio sustituido por SFX/música de terceros |
 | Animaciones propias sencillas | Rigs/clips Mixamo u otros |
 
-**Pendiente de autorización institucional:** criterio sobre fuentes integradas del motor y sobre arte/audio/animación generados con IA. Hasta confirmación: no importar fuentes de terceros; no incorporar contenido IA; UI final con tipografía integrada solo tras criterio académico.
+**Pendiente de autorización institucional:** criterio sobre fuentes integradas del motor y sobre arte/audio/animación generados con IA. La autorización posterior del usuario permite generar modelos originales con Codex/Hunyuan; no implica aprobación institucional. No importar fuentes de terceros.
 
 Cada recurso real se registrará en `Docs/AssetManifest.csv` (origen, método, estado). Un ítem de este plan **no** cuenta como producido.
 
@@ -108,4 +108,3 @@ Pendiente fuera de esta tarea: crear/actualizar `AssetManifest.csv` con filas re
 No descarga, importa ni compra recursos. No genera imágenes IA. No modifica código, escenas, prefabs ni registros de coordinación/tareas.
 
 ORIGINAL_ASSETS_PLAN_READY
-

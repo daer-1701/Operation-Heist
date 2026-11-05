@@ -27,6 +27,17 @@ namespace OperationHeist.Player
             MovePatrol(Time.deltaTime);
             DetectPlayer(Time.deltaTime);
         }
+        public void ResetPatrol(Vector3 position, Quaternion rotation)
+        {
+            transform.SetPositionAndRotation(position, rotation);
+            _waypoint = 0;
+            _blockedSeconds = 0f;
+            _lookHold = 0f;
+            SeesPlayer = false;
+        }
+
+        public void StepPatrol(float deltaTime) => MovePatrol(deltaTime);
+
         private void MovePatrol(float deltaTime)
         {
             if (route == null || route.Length == 0) return;
@@ -70,11 +81,17 @@ namespace OperationHeist.Player
         {
             var player = mission.Player;
             if (player == null || !player.HasLocalControl || player.PlayerCamera == null) return;
+            if (TryDetect(player.transform, player.PlayerCamera.transform.position, player.IsCrouching, deltaTime))
+                mission.RaiseAlarm(deltaTime * .24f);
+        }
+
+        public bool TryDetect(Transform player, Vector3 targetEye, bool crouching, float deltaTime)
+        {
             Vector3 eye = transform.position + Vector3.up * 1.6f;
-            Vector3 delta = player.PlayerCamera.transform.position - eye;
+            Vector3 delta = targetEye - eye;
             float distance = delta.magnitude;
-            float range = player.IsCrouching ? viewDistance * .6f : viewDistance;
-            if (distance > range || distance < .01f || Vector3.Angle(transform.forward, delta) > fieldOfView * .5f) return;
+            float range = crouching ? viewDistance * .6f : viewDistance;
+            if (distance > range || distance < .01f || Vector3.Angle(transform.forward, delta) > fieldOfView * .5f) return false;
             Collider first = null;
             float nearest = distance + .1f;
             foreach (var hit in Physics.RaycastAll(eye, delta.normalized, distance + .1f, ~0, QueryTriggerInteraction.Ignore))
@@ -83,12 +100,12 @@ namespace OperationHeist.Player
                 first = hit.collider;
                 nearest = hit.distance;
             }
-            if (first != null && first.transform != player.transform && !first.transform.IsChildOf(player.transform)) return;
+            if (first != null && !first.transform.IsChildOf(player)) return false;
             SeesPlayer = true;
             Vector3 flat = delta; flat.y = 0f;
             if (flat.sqrMagnitude > 0.001f)
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(flat.normalized), 220f * deltaTime);
-            mission.RaiseAlarm(deltaTime * .24f);
+            return true;
         }
         private bool IsOwn(Collider collider)
         {

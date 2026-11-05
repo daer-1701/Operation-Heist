@@ -22,7 +22,6 @@ namespace OperationHeist.Network
             false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
 
         private PlayerHealth _local;
-        private FpsController _controller;
         private bool _syncing;
 
         public float ReplicatedHealth => _health.Value;
@@ -32,7 +31,6 @@ namespace OperationHeist.Network
         private void Awake()
         {
             _local = GetComponent<PlayerHealth>();
-            _controller = GetComponent<FpsController>();
         }
 
         public override void OnNetworkSpawn()
@@ -50,7 +48,6 @@ namespace OperationHeist.Network
             {
                 ApplyReplica();
             }
-            ApplyOwnerControl();
         }
 
         public override void OnNetworkDespawn()
@@ -68,17 +65,13 @@ namespace OperationHeist.Network
         {
             if (!IsServer || _local == null) return;
             _local.Tick(Time.deltaTime);
-            ApplyOwnerControl();
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        public void RequestDamageServerRpc(float amount, ServerRpcParams rpcParams = default)
+        [ServerRpc]
+        public void RequestLabDamageServerRpc()
         {
-            // Lab/debug and future hazards: only host mutates.
-            if (amount <= 0f) return;
-            _local.ApplyDamage(amount, "Red");
-            PushFromLocal();
-            ApplyOwnerControl();
+            if (NetworkManager.GetComponent<HeistNetworkSession>().Depot != null) return;
+            _local.ApplyDamage(35f, "Prueba de laboratorio");
         }
 
         [ServerRpc(RequireOwnership = true)]
@@ -94,7 +87,6 @@ namespace OperationHeist.Network
                 return;
             target.LocalHealth.TryRevive(40f);
             target.PushFromLocal();
-            target.ApplyOwnerControl();
         }
 
         private void OnBleedoutExpired()
@@ -121,7 +113,6 @@ namespace OperationHeist.Network
         private void OnDownChanged(bool previous, bool next)
         {
             ApplyReplica();
-            ApplyOwnerControl();
         }
 
         private void ApplyReplica()
@@ -138,14 +129,6 @@ namespace OperationHeist.Network
                 if (target < _local.MaxHealth) _local.ApplyDamage(_local.MaxHealth - target, "Replica");
             }
             _syncing = false;
-            ApplyOwnerControl();
-        }
-
-        private void ApplyOwnerControl()
-        {
-            if (_controller == null || !IsOwner) return;
-            bool allow = !_down.Value && IsSpawned;
-            _controller.SetGameplayInputEnabled(allow);
         }
 
         private static bool TryGetPlayerHealth(ulong clientId, out NetworkPlayerHealth health)

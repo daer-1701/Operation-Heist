@@ -10,40 +10,38 @@ namespace OperationHeist.Network
         Deposited = 2
     }
 
-    /// <summary>Host-authoritative loot. Clients only send intent.</summary>
     [DisallowMultipleComponent, RequireComponent(typeof(NetworkObject))]
     public sealed class NetworkLootItem : NetworkBehaviour
     {
         [SerializeField] private string displayName = "Expediente en red";
-        private readonly NetworkVariable<NetworkLootState> _state = new NetworkVariable<NetworkLootState>(
-            NetworkLootState.Available,
-            NetworkVariableReadPermission.Everyone,
-            NetworkVariableWritePermission.Server);
-        private readonly NetworkVariable<ulong> _carrierId = new NetworkVariable<ulong>(
-            ulong.MaxValue,
-            NetworkVariableReadPermission.Everyone,
-            NetworkVariableWritePermission.Server);
+        private readonly NetworkVariable<NetworkLootState> _state = new();
+        private readonly NetworkVariable<ulong> _carrierId = new(ulong.MaxValue);
         private Vector3 _worldPosition;
         private Quaternion _worldRotation;
+        private Vector3 _worldScale;
+        private Renderer[] _renderers;
+        private Collider[] _colliders;
+        private NetworkDepotMission _mission;
 
         public string DisplayName => displayName;
         public NetworkLootState State => _state.Value;
         public ulong CarrierClientId => _carrierId.Value;
-        public bool IsAvailable => _state.Value == NetworkLootState.Available;
-        public string Prompt =>
-            _state.Value == NetworkLootState.Available ? "[E] Solicitar " + displayName :
-            _state.Value == NetworkLootState.Carried ? displayName + " (en tránsito)" :
-            displayName + " (asegurado)";
 
-        public void Configure(string label)
+        public void Configure(string label) => displayName = label;
+
+        private void Awake()
         {
-            displayName = string.IsNullOrWhiteSpace(label) ? "Expediente en red" : label;
+            _worldPosition = transform.position;
+            _worldRotation = transform.rotation;
+            _worldScale = transform.localScale;
+            _renderers = GetComponentsInChildren<Renderer>();
+            _colliders = GetComponentsInChildren<Collider>();
         }
 
         public override void OnNetworkSpawn()
         {
-            _worldPosition = transform.position;
-            _worldRotation = transform.rotation;
+            _mission = NetworkManager.GetComponent<HeistNetworkSession>().Depot;
+            if (IsServer) Restore();
             _state.OnValueChanged += OnStateChanged;
             ApplyVisual();
         }
@@ -51,84 +49,118 @@ namespace OperationHeist.Network
         public override void OnNetworkDespawn()
         {
             _state.OnValueChanged -= OnStateChanged;
+            RestoreTransform();
+            SetVisibility(true, true);
         }
 
         private void OnStateChanged(NetworkLootState previous, NetworkLootState next) => ApplyVisual();
 
         private void ApplyVisual()
         {
-            bool visible = _state.Value != NetworkLootState.Deposited;
-            foreach (var renderer in GetComponentsInChildren<Renderer>())
-                renderer.enabled = visible && _state.Value != NetworkLootState.Carried;
-            foreach (var collider in GetComponentsInChildren<Collider>())
-                collider.enabled = _state.Value == NetworkLootState.Available;
+            if (State != NetworkLootState.Carried) RestoreTransform();
+            SetVisibility(State == NetworkLootState.Available, State == NetworkLootState.Available);
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        public void RequestPickupServerRpc(ServerRpcParams rpcParams = default)
+        private void SetVisibility(bool visible, bool collidable)
         {
-            ulong sender = rpcParams.Receive.SenderClientId;
-            if (_state.Value != NetworkLootState.Available) return;
-            if (!IsSenderNear(sender, 2.6f)) return;
-            if (IsClientAlreadyCarrying(sender)) return;
-            _carrierId.Value = sender;
-            _state.Value = NetworkLootState.Carried;
-            ApplyVisual();
+            foreach (var renderer in _renderers) renderer.enabled = visible;
+            foreach (var collider in _colliders) collider.enabled = collidable;
         }
 
-        [ServerRpc(RequireOwnership = false)]
-        public void RequestDropServerRpc(Vector3 position, ServerRpcParams rpcParams = default)
+        private void LateUpdate()
         {
-            ulong sender = rpcParams.Receive.SenderClientId;
-            if (_state.Value != NetworkLootState.Carried || _carrierId.Value != sender) return;
-            transform.SetPositionAndRotation(position, _worldRotation);
-            _carrierId.Value = ulong.MaxValue;
-            _state.Value = NetworkLootState.Available;
-            ApplyVisual();
-        }
-
-        [ServerRpc(RequireOwnership = false)]
-        public void RequestDepositServerRpc(ServerRpcParams rpcParams = default)
-        {
-            ulong sender = rpcParams.Receive.SenderClientId;
-            if (_state.Value != NetworkLootState.Carried || _carrierId.Value != sender) return;
-            _carrierId.Value = ulong.MaxValue;
-            _state.Value = NetworkLootState.Deposited;
-            ApplyVisual();
-        }
-
-        private bool IsClientAlreadyCarrying(ulong clientId)
-        {
-            foreach (var loot in FindObjectsByType<NetworkLootItem>(FindObjectsSortMode.None))
+            if (!IsSpawned || State != NetworkLootState.Carried) return;
+            NetworkObject player = null;
+            foreach (var candidate in NetworkManager.SpawnManager.PlayerObjects)
             {
-                if (loot == null || loot == this || !loot.IsSpawned) continue;
-                if (loot._state.Value == NetworkLootState.Carried && loot._carrierId.Value == clientId)
-                    return true;
+                if (candidate.OwnerClientId != CarrierClientId) continue;
+                player = candidate;
+                break;
             }
-            return false;
+            if (player == null)
+            {
+                SetVisibility(false, false);
+                return;
+            }
+            var motor = player.GetComponent<NetworkPlayerMotor>();
+            Transform mount = player.IsOwner ? motor.Controller.PlayerCamera.transform : player.transform;
+            Vector3 offset = player.IsOwner ? new Vector3(.32f, -.48f, .7f) : new Vector3(.35f, .9f, .48f);
+            transform.SetPositionAndRotation(mount.TransformPoint(offset), mount.rotation);
+            transform.localScale = _worldScale * .65f;
+            SetVisibility(true, false);
         }
 
-        private bool IsSenderNear(ulong clientId, float maxDistance)
+        [ServerRpc(RequireOwnership = false)]
+        public void RequestPickupServerRpc(ServerRpcParams rpc = default)
         {
-            if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client)) return false;
-            if (client.PlayerObject == null) return false;
-            float distance = Vector3.Distance(client.PlayerObject.transform.position, transform.position);
-            return distance <= maxDistance;
+            ulong sender = rpc.Receive.SenderClientId;
+            if (!IsPlaying() || !NetworkLootRules.CanAssign(State, FindCarried(NetworkManager, sender) != null) ||
+                !TryGetActor(NetworkManager, sender, out var actor)) return;
+
+            foreach (var collider in _colliders)
+            {
+                if (!actor.CanReach(collider, NetworkLootInteractor.ServerReach)) continue;
+                _carrierId.Value = sender;
+                _state.Value = NetworkLootState.Carried;
+                return;
+            }
         }
 
-        /// <summary>Host-only helper for automated tests.</summary>
-        public bool HostForceAssignForTests(ulong clientId)
+        [ServerRpc(RequireOwnership = false)]
+        public void RequestDropServerRpc(ServerRpcParams rpc = default)
         {
-            if (!IsServer) return false;
-            if (!NetworkLootRules.CanAssign(_state.Value, IsClientAlreadyCarrying(clientId))) return false;
-            _carrierId.Value = clientId;
-            _state.Value = NetworkLootState.Carried;
-            ApplyVisual();
-            return true;
+            if (IsPlaying() && IsCarriedBy(rpc.Receive.SenderClientId)) Restore();
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void RequestDepositServerRpc(ServerRpcParams rpc = default)
+        {
+            ulong sender = rpc.Receive.SenderClientId;
+            if (!IsPlaying() || !IsCarriedBy(sender) || !TryGetActor(NetworkManager, sender, out var actor)) return;
+            if (_mission != null && !_mission.TryDeposit(this, actor)) return;
+            _state.Value = NetworkLootState.Deposited;
+            _carrierId.Value = ulong.MaxValue;
+        }
+
+        internal void RecoverIfCarriedBy(ulong clientId)
+        {
+            if (IsSpawned && IsServer && IsCarriedBy(clientId)) Restore();
+        }
+
+        private bool IsPlaying() => _mission == null || _mission.Phase == OperationHeist.Player.MissionPhase.Playing;
+
+        private bool IsCarriedBy(ulong clientId) => State == NetworkLootState.Carried && CarrierClientId == clientId;
+
+        private void Restore()
+        {
+            _state.Value = NetworkLootState.Available;
+            _carrierId.Value = ulong.MaxValue;
+            RestoreTransform();
+        }
+
+        private void RestoreTransform()
+        {
+            transform.SetPositionAndRotation(_worldPosition, _worldRotation);
+            transform.localScale = _worldScale;
+        }
+
+        internal static NetworkLootItem FindCarried(NetworkManager manager, ulong clientId)
+        {
+            foreach (var instance in manager.SpawnManager.SpawnedObjectsList)
+            {
+                if (instance.TryGetComponent(out NetworkLootItem loot) && loot.IsCarriedBy(clientId)) return loot;
+            }
+            return null;
+        }
+
+        internal static bool TryGetActor(NetworkManager manager, ulong id, out NetworkPlayerMotor actor)
+        {
+            actor = null;
+            return manager.ConnectedClients.TryGetValue(id, out var client) && client.PlayerObject != null &&
+                client.PlayerObject.TryGetComponent(out actor) && !actor.IsDown;
         }
     }
 
-    /// <summary>Pure host rules for loot assignment; safe to unit-test without a live session.</summary>
     public static class NetworkLootRules
     {
         public static bool CanAssign(NetworkLootState state, bool carrierAlreadyBusy) =>

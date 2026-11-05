@@ -155,7 +155,14 @@ namespace OperationHeist.Editor
             RenderSettings.skybox=null; RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Flat; RenderSettings.ambientLight=new Color(.45f,.52f,.58f);
             motor.PlayerCamera.backgroundColor=new Color(.055f,.085f,.11f);
             EditorSceneManager.SaveScene(scene,ScenePath);
-            EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(ScenePath,true),new EditorBuildSettingsScene("Assets/00_Scenes/FPSPrototype.unity",true)};
+            var scenes = new System.Collections.Generic.List<EditorBuildSettingsScene>
+            {
+                new(ScenePath, true),
+                new("Assets/00_Scenes/FPSPrototype.unity", true)
+            };
+            if (File.Exists(NetworkLabBuilder.DepotScenePath))
+                scenes.Add(new EditorBuildSettingsScene(NetworkLabBuilder.DepotScenePath, true));
+            EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets(); Debug.Log("LOCAL_MVP_GENERATED");
         }
 
@@ -164,7 +171,10 @@ namespace OperationHeist.Editor
             string output=Environment.GetEnvironmentVariable("OH_BUILD_OUTPUT");
             if(string.IsNullOrEmpty(output)) output=Path.GetFullPath("Builds/OperationHeist/OperationHeist.exe");
             Directory.CreateDirectory(Path.GetDirectoryName(output));
-            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{ScenePath},locationPathName=output,target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
+            string[] scenes = File.Exists(NetworkLabBuilder.DepotScenePath)
+                ? new[] { ScenePath, NetworkLabBuilder.DepotScenePath }
+                : new[] { ScenePath };
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=scenes,locationPathName=output,target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded) throw new Exception("Build fallido: "+report.summary.result);
             Debug.Log("LOCAL_MVP_BUILD_OK: "+output);
         }

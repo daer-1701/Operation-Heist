@@ -1,12 +1,12 @@
 # Operation Heist
 
-Juego en evolución hacia FPS cooperativo. Misión local: `Assets/00_Scenes/Heist_Depot.unity` ([Docs/LocalMVP.md](Docs/LocalMVP.md)). Base de red LAN: generar/abrir `Heist_NetworkLab` ([Docs/Network.md](Docs/Network.md)). Contenido original; ver [AGENTS.md](AGENTS.md).
+Juego en evolución hacia FPS cooperativo. Misión local: `Assets/00_Scenes/Heist_Depot.unity` ([Docs/LocalMVP.md](Docs/LocalMVP.md)). Para jugar en red, elige **Cooperativo LAN** en el briefing del depósito ([Docs/Network.md](Docs/Network.md)). Contenido original; ver [AGENTS.md](AGENTS.md).
 
 ## Abrir el proyecto
 
 1. Instalar **Unity 6000.5.6f1** (misma revisión que `ProjectSettings/ProjectVersion.txt`).
 2. Abrir esta carpeta como proyecto; no actualizar el editor ni añadir paquetes sin revisar [Packages/manifest.json](Packages/manifest.json).
-3. Tras resolver paquetes: **Operation Heist → Red → Generar laboratorio LAN** si aún no existe la escena.
+3. Abre `Heist_Depot` en Play y elige misión local o cooperativo. `Heist_NetworkLab` queda disponible en el editor para pruebas de red.
 
 Dependencias relevantes: URP 17.5.0, Input System 1.20.0, AI Navigation 2.0.14, Test Framework 1.7.0, **Netcode for GameObjects 2.13.3**. Multiplayer Services (códigos cloud) aún no.
 

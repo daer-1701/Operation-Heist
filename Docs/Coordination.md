@@ -1,5 +1,14 @@
 # Coordinación Cursor y Codex
 
+## Depósito cooperativo LAN — 5 noviembre 2026
+
+Cerrada. Codex reparó laboratorio, prefab y arranque LAN, e integró Heist_DepotCoop con acceso desde el briefing local. Pruebas en dos instancias aisladas: anfitrión 51/51, cliente 1/1. Reservas liberadas.
+
+
+## Auditoría integral — 5 noviembre 2026
+
+Codex revisó GDD, código y recursos serializados. Play Mode en copia aislada: 49/49 con la ruta completa de Windows. Cambios documentales en `Docs/Progress.md` y este registro. Reservas liberadas.
+
 ## Juego final — salud en red + minijuego (Cursor editor)
 
 Usuario pidió seguir avanzando y subir a git. Entrega: NetworkPlayerHealth/ReviveInteractor, WirePatchMinigame, lab regenerado, tests **3/3**. Reservas **liberadas**.
@@ -107,3 +116,9 @@ Crear contenido propio en esas carpetas según su tipo. Settings permanece como 
 - Entrega FPS completada: tareas fps-controller y fps-review-fixes revisadas por Codex; prefab y escena generados; compilación correcta y 5/5 pruebas Play Mode aprobadas. Detalles y límites en Docs/FPSController.md; evidencia en Docs/QA. No quedan tareas Cursor activas. Los siguientes cambios requieren nuevas reservas.
 
 Actualización MVP: Cursor CLI no está instalado en la ruta configurada; invocación falló antes de ejecutar. Las rutas de LocalMissionTests y LocalMissionTestNotes se reasignan al subagente Codex tests. No hay Cursor activo.
+
+## Kit de modelos depósito y banco — 5 noviembre 2026
+Codex reserva Tools/ModelRecipes.json, Scripts/Editor/ProductionModelsBuilder.cs, Models/Codex/Production, Prefabs/Production, materiales OH_Kit_*, escena OH_ModelGallery y catálogo/progreso/manifiesto. Producción procedural original autorizada.
+
+
+Kit completado por Codex: 55 prefabs, 95 mallas, 10 materiales, galería, catálogo y evidencia. Compilación/render y referencias revisados; auditoría 244/244. Reservas de producción liberadas. Sin tareas delegadas activas.

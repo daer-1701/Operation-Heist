@@ -1,5 +1,35 @@
 # Progreso — Operation Heist
 
+## Modelos de depósito y banco — 5 noviembre 2026
+
+Producidos con Codex 55 modelos originales de estilo geométrico: arquitectura, depósito/tienda, banco, mobiliario, seguridad, botín, equipo y personajes agente/guardia/empleado. Entrega: 55 prefabs, 95 mallas nativas, 10 materiales URP y escena OH_ModelGallery. Recetas reproducibles en Tools/ModelRecipes.json y ProductionModelsBuilder.cs. Procedencia completa en AssetManifest.csv; ningún recurso de terceros importado.
+
+Verificado en copia aislada con Unity 6000.5.6f1: compilación y generación correctas (PRODUCTION_MODELS_OK 55), render GPU revisado, apoyo al suelo y vértices finitos, referencias propias válidas y hashes idénticos a la entrega. Auditoría: 244/244 archivos importables. Catálogo y limitaciones en Docs/ModelCatalog.md; evidencia en Docs/QA/ProductionModels-validation.txt y ProductionModels-preview.png.
+
+Siguiente paso: integrar los prefabs en las misiones, producir animaciones originales para personajes articulados rígidos y ajustar colisiones durante playtest. Esta entrega no incluye skinning ni clips, montaje jugable del banco, una nueva build Windows o prueba física de los modelos. Los capítulos posteriores siguen congelados.
+
+
+## Depósito cooperativo LAN — 5 noviembre 2026
+
+Arranque LAN reparado en laboratorio y depósito. Unity Transport queda conectado a Netcode, la interfaz tiene EventSystem y el generador guarda identificadores y referencias válidos en escena y prefab. Movimiento con autoridad del propietario y réplica de posición/giro. El anfitrión gobierna botín, depósitos, patrulla, alarma, reloj y evacuación del equipo. Entrada **Cooperativo LAN** desde el briefing de `Heist_Depot`. La escena cooperativa deriva del depósito guardado. G devuelve la carga a su punto inicial, también usado al desconectarse el portador.
+
+**Verificado en Unity 6000.5.6f1.** Dos procesos Play Mode sin gráficos por UDP loopback. El anfitrión aprobó 51/51 (incluye arranque del laboratorio y misión completa), el cliente 1/1 (misión completa). Ambos recibieron 3/3 y victoria. Verificados la recogida disputada, el rechazo de depósito lejano y de extracción prematura, el reinicio de sala, la recuperación de carga tras desconexión y el retorno al modo local. XML en `Docs/QA/Coop-Host-PlayMode.xml` y `Docs/QA/Coop-Client-PlayMode.xml`. Hashes de código y recursos coinciden en ambas copias. Unity omitió `SENTIS_ANALYTICS_ENABLED` en las copias. Inventario 82/82 y cero referencias propias rotas en las escenas/prefab de red.
+
+**Siguiente comprobación.** Playtest con teclado y ratón en dos equipos físicos y revisión visual del ejecutable Windows. Uso y reproducción en `Docs/Network.md`.
+
+
+## Análisis del juego — 5 noviembre 2026
+
+El juego jugable es la misión solitaria `Heist_Depot`. `Heist_NetworkLab` es un laboratorio LAN paralelo (NGO 2.13.3) y no está en `EditorBuildSettings`. Hay dos modelos de botín (`LootItem` y `NetworkLootItem`). El minijuego de cables no altera la misión.
+
+**Validación actual.** Unity 6000.5.6f1 compiló y aprobó **49/49** en Play Mode sin gráficos en una copia aislada, al usar la ruta larga de Windows. La primera corrida con alias 8.3 dio 42/49 por scripts que Unity cargó como faltantes. Los hashes del código y assets coinciden con el checkout. La única diferencia de configuración tras la ejecución es que Unity quitó `SENTIS_ANALYTICS_ENABLED` en la copia. Los tests de red cubren reglas y no levantan host y cliente. Pendientes el playtest físico, la revisión visual, el build del checkout actual y la prueba LAN de dos instancias.
+
+**Hallazgos de integración.** El laboratorio tiene Unity Transport como componente, pero `NetworkConfig.NetworkTransport` está vacío y el bootstrap solo configura dirección y puerto. Falta un EventSystem para el panel LAN. Cuatro referencias MonoScript están rotas en el laboratorio y su prefab (cables, salud en red, reanimación y HUD de salud). El movimiento se ejecuta en el propietario y el NetworkTransform guardado tiene autoridad del servidor. El depósito crea salud y objetivos al resolver referencias, pero la escena no incluye el HUD de vitalidad y la patrulla solo genera alarma.
+
+**Recursos y build.** Auditoría actual de inventario 79/79, cero metadatos faltantes y cero GUID duplicados. El log de la copia histórica `D:/ae/OperationHeist_MvpValidation/Build.log` confirma build Windows exitoso del depósito el 3 de noviembre. Esa copia difiere del checkout actual.
+
+**Próximo paso propuesto.** Reparar el arranque LAN y las referencias serializadas, acordar la autoridad de movimiento, y validar con dos instancias la recogida simultánea, extracción y salida del portador. Llevar después el bucle completo del depósito a cooperativo antes de abrir otro contrato del GDD.
+
 ## Juego final — salud red + minijuego — 3 noviembre 2026
 
 `NetworkPlayerHealth` / reanimación host (H/F en lab), `WirePatchMinigame` abstracto, tests de reglas. Regenerar lab si hace falta. Usuario pidió subir este avance a git tras implementarlo.

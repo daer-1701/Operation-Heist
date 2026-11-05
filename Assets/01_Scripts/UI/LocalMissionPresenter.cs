@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace OperationHeist.UI
@@ -29,7 +30,7 @@ namespace OperationHeist.UI
         Text _title, _body, _primaryLabel, _phaseTag;
         Text _sensitivityText, _fovText, _volumeText;
         Image _alarmFill, _detectionPanel;
-        Button _primary, _restart;
+        Button _primary, _restart, _coop;
         Slider _sensitivity, _fov, _volume;
         MissionPhase? _lastPhase;
         PatrolGuard[] _guards;
@@ -163,6 +164,8 @@ namespace OperationHeist.UI
             _primary = ActionButton(panel, "PrimaryAction", "INICIAR MISIÓN", new Vector2(46, -714), new Vector2(450, 68), Teal, OnPrimary);
             _primaryLabel = _primary.GetComponentInChildren<Text>();
             _restart = ActionButton(panel, "Restart", "REINICIAR", new Vector2(514, -714), new Vector2(270, 68), new Color(.22f, .32f, .35f), () => { PlayerPrefs.Save(); mission?.RestartMission(); });
+            _coop = ActionButton(panel, "Coop", "COOPERATIVO LAN", new Vector2(514, -714), new Vector2(270, 68),
+                new Color(.22f, .32f, .35f), () => SceneManager.LoadScene("Heist_DepotCoop"));
             ActionButton(panel, "Quit", "SALIR", new Vector2(802, -714), new Vector2(272, 68), new Color(.22f, .32f, .35f), Quit);
             Label(panel, "MenuHint", "Tab / flechas para navegar  ·  Enter para confirmar", new Vector2(46, -803), new Vector2(1028, 27), 19, Muted);
         }
@@ -223,6 +226,8 @@ namespace OperationHeist.UI
             if (_lastPhase == mission.Phase) return;
             _lastPhase = mission.Phase;
             _restart.gameObject.SetActive(mission.Phase == MissionPhase.Paused);
+            _coop.gameObject.SetActive(mission.Phase == MissionPhase.Briefing &&
+                Application.CanStreamedLevelBeLoaded("Heist_DepotCoop"));
             switch (mission.Phase)
             {
                 case MissionPhase.Briefing:

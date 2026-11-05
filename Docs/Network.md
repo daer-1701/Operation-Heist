@@ -1,26 +1,25 @@
-# Red — laboratorio LAN
+# Depósito cooperativo LAN
 
-Base cooperativa del juego final (etapa 2). Paquete: Netcode for GameObjects **2.13.3**. Escena: `Assets/00_Scenes/Heist_NetworkLab.unity` (generar con **Operation Heist → Red → Generar laboratorio LAN**).
+En Unity 6000.5.6f1 abre `Heist_Depot` y pulsa **Cooperativo LAN** en el briefing, o abre `Heist_DepotCoop` directamente. El builder Windows incluye ambas escenas. Netcode for GameObjects 2.13.3 y Unity Transport usan el puerto UDP **7777**.
 
-## Cómo probar
+1. Una persona pulsa **Anfitrión**. En la segunda instancia, pulsa **Cliente** con `127.0.0.1` en la misma PC o con la IP local del anfitrión en otra PC de la LAN.
+2. Con el equipo reunido en el briefing, el anfitrión pulsa **Iniciar misión**. Se admiten hasta cuatro jugadores antes de iniciar.
+3. Cada agente puede cargar un expediente. Mira al expediente y pulsa **E**. Con carga se camina más despacio y se bloquea el sprint. **G** devuelve la carga a su punto de recogida.
+4. Mira al terminal turquesa y pulsa **E** con carga para depositarla. Tras asegurar los tres expedientes, todos los agentes conectados deben estar dentro de la zona turquesa. Pulsa **E** en el terminal con las manos libres para evacuar.
+5. **Esc** abre el menú del agente sin detener el reloj ni la patrulla del equipo. Tras el resultado, **Cerrar sesión** permite volver a montar la sala. **Modo local** vuelve al briefing individual.
 
-1. Deja que Unity resuelva el paquete NGO tras el cambio de `Packages/manifest.json`.
-2. Genera el laboratorio si la escena/prefab aún no existen.
-3. Abre `Heist_NetworkLab`, entra en Play, pulsa **HOST**.
-4. Abre un segundo build o instancia ParrelSync/copia del proyecto, **CLIENTE** a `127.0.0.1`.
-5. Solo el owner controla su cámara. Acércate al botín ámbar y pulsa **E** para solicitar recogida; el host valida. Un segundo jugador no puede tomar el mismo objeto. **E** de nuevo deposita (lab).
-6. **H** aplica daño de laboratorio (host). Si caes, un aliado cercano pulsa **F** para pedir reanimación validada en host.
+La patrulla, la alarma, el reloj, los depósitos y el resultado se sincronizan. El anfitrión devuelve la carga a su punto original si el portador sale. La sesión usa LAN directa y el anfitrión ejecuta la misión.
 
-## Evidencia
+## Laboratorio de red
 
-- Generación lab: `Docs/QA/Network-LabBuild.log` (`NETWORK_LAB_GENERATED`).
-- Reglas de asignación host: `Docs/QA/Network-PlayMode.xml` (**3/3**). Host/Cliente completo: playtest manual en el lab.
+Abre `Heist_NetworkLab` en Unity. Usa **Anfitrión** / **Cliente** como arriba. **E** recoge el expediente y **E** con carga lo deposita en modo laboratorio. **H** prueba daño en el agente propio y **F** solicita reanimar a un compañero cercano. El panel de cables conserva su componente de prueba.
 
-## Límites
+Los comandos **Operation Heist → Red → Generar laboratorio LAN** y **Generar depósito cooperativo** reemplazan sus escenas generadas. El depósito cooperativo se deriva del depósito local guardado y conserva su geometría original. Conserva una copia de cualquier ajuste manual antes de regenerar.
 
-- LAN/localhost; sin Relay ni códigos de sala cloud.
-- Máximo 4 jugadores por aprobación de conexión.
-- No sustituye la misión `Heist_Depot` local.
-- Procedencia: geometría/materiales originales; **no** packs gratuitos ni procedencia falseada.
+## Verificación con dos procesos
 
-Contrato: [NetworkContract.md](NetworkContract.md).
+La prueba `OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteDepot` se ejecuta en dos copias del proyecto con rutas absolutas completas. En ambas usa `-batchmode -nographics -runTests -testPlatform PlayMode -testFilter` con el nombre de la prueba y resultados XML distintos. Usa `OH_COOP_TEST_ROLE=host` en una y `OH_COOP_TEST_ROLE=client` en la otra. `OH_COOP_TEST_SYNC` apunta en ambas a la misma carpeta vacía para coordinar las etapas. El tráfico de juego pasa por Unity Transport en loopback.
+
+La prueba recorre la entrada desde el briefing, verifica posición y giro remotos, ejecuta la recogida disputada y los tres depósitos, exige que el equipo esté reunido para evacuar y comprueba el retorno al modo local. Automatiza la posición y las acciones para que la corrida sea reproducible sin foco físico. Consulta el [contrato de red](NetworkContract.md) para los límites de autoridad.
+
+Resultados de la corrida en loopback: [anfitrión 51/51](QA/Coop-Host-PlayMode.xml) y [cliente 1/1](QA/Coop-Client-PlayMode.xml).
