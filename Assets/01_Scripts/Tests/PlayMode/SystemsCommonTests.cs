@@ -102,4 +102,57 @@ namespace OperationHeist.Tests
             Assert.That(_mission.Phase, Is.Not.EqualTo(MissionPhase.Lost));
         }
     }
+
+    public class MissionAudioCueTests
+    {
+        [Test]
+        public void SynthesisStartsSilentAndStaysBounded()
+        {
+            var samples = MissionAudio.Synthesize(440f, 880f, 0.2f);
+            Assert.That(samples[0], Is.EqualTo(0f).Within(0.0001f));
+            float peak = 0f;
+            for (int i = 0; i < samples.Length; i++)
+            {
+                Assert.That(float.IsNaN(samples[i]), Is.False);
+                peak = Mathf.Max(peak, Mathf.Abs(samples[i]));
+            }
+            Assert.That(peak, Is.GreaterThan(0.05f));
+            Assert.That(peak, Is.LessThan(0.5f));
+            Assert.That(Mathf.Abs(samples[samples.Length - 1]), Is.LessThan(0.02f));
+        }
+
+        [Test]
+        public void ClockCuesOnceAtOneMinuteAndOnceAtTenSeconds()
+        {
+            var player = new GameObject("AudioPlayer");
+            player.AddComponent<CharacterController>();
+            var cam = new GameObject("Cam", typeof(Camera), typeof(AudioListener));
+            cam.transform.SetParent(player.transform, false);
+            var motor = player.AddComponent<FpsController>();
+            player.AddComponent<PlayerInteractor>();
+            var carrier = player.AddComponent<LootCarrier>();
+            var missionGo = new GameObject("AudioMission");
+            var mission = missionGo.AddComponent<LocalMission>();
+            mission.Configure(motor, carrier, 90f, 3);
+            mission.enabled = false;
+            var audio = missionGo.AddComponent<MissionAudio>();
+            audio.Configure(mission);
+            mission.StartMission();
+            Assert.That(audio.PlayedCues, Is.EqualTo(0));
+            mission.Tick(30f);
+            Assert.That(mission.RemainingSeconds, Is.EqualTo(60f));
+            Assert.That(audio.PlayedCues, Is.EqualTo(1));
+            mission.TogglePause();
+            mission.Tick(40f);
+            Assert.That(audio.PlayedCues, Is.EqualTo(1));
+            mission.TogglePause();
+            mission.Tick(20f);
+            Assert.That(audio.PlayedCues, Is.EqualTo(1));
+            mission.Tick(31f);
+            Assert.That(mission.RemainingSeconds, Is.EqualTo(9f));
+            Assert.That(audio.PlayedCues, Is.EqualTo(2));
+            Object.DestroyImmediate(player);
+            Object.DestroyImmediate(missionGo);
+        }
+    }
 }
