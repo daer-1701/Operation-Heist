@@ -1,5 +1,9 @@
 # Progreso — Operation Heist
 
+## Modelos nuevos y documento de pendientes — 10 noviembre 2026
+
+El usuario añadió FBX en `Assets/04_Models/nuevosmodelos` (`OH_Agent`, `OH_Guard`, `OH_BankClerk`, `OH_SecurityDoor` y un export sin renombrar). Quedan pendientes de montar en prefabs jugables, junto con `OH_VaultDoor`. Se publicó [Pendientes-2026-11-10.md](Pendientes-2026-11-10.md) junto al [Handoff-2026-11-10.md](Handoff-2026-11-10.md). Commit y push a `workspace/pending` solicitados por el usuario.
+
 ## Seguridad y cooperativo del banco — 10 noviembre 2026
 
 El banco tiene dos minijuegos integrados. El orden de cables abre una puerta física y un error añade diez puntos de alarma. Los interruptores cambian una máscara eléctrica hasta `101`, desactivan la detección de la cámara y habilitan la bóveda. El guardia sigue activo. En LAN el anfitrión valida alcance, línea de visión y fases. Con un equipo, dos agentes distintos confirman la bóveda dentro de diez segundos. Las puertas, el expediente y la salida se sincronizan.

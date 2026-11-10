@@ -1,5 +1,9 @@
 # Coordinación Cursor y Codex
 
+## Pendientes + push modelos — 10 noviembre 2026
+
+Responsable: Cursor (editor). Rutas: `Docs/Pendientes-2026-11-10.md`, enlace desde `Docs/Handoff-2026-11-10.md`, `Docs/Progress.md` (entrada breve), `Assets/04_Models/nuevosmodelos/OH_Agent.fbx*`, `OH_Guard.fbx*`, `OH_BankClerk.fbx*`, `OH_SecurityDoor.fbx*`, `20261111001229_7f7e96c8.fbx*`, filas nuevas en `Docs/AssetManifest.csv`, materiales Hunyuan tocados. Sin editar escenas/prefabs de banco (reservados a integración posterior). Push a `origin/workspace/pending`.
+
 ## Integración Hunyuan OH_LootBag — 10 noviembre 2026
 
 Responsable: Cursor (editor). Reserva: `Assets/04_Models/Hunyuan/**`, `Assets/05_Textures/Hunyuan/**` si aparecen, `Assets/02_Prefabs/Production/Loot/OH_LootBag.prefab` (+meta), `Assets/01_Scripts/Editor/HunyuanLootBagIntegrator.cs` (+meta), `Docs/HunyuanPrompt.md`, `Docs/ModelCatalog.md`. El usuario pidió integrar el FBX de Descargas como `OH_LootBag`. Se añadirán filas nuevas en `Docs/AssetManifest.csv` solo para estos recursos Hunyuan (append); no se reescribe el resto del manifiesto reservado por Codex.
