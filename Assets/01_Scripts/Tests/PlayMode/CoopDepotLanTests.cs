@@ -237,6 +237,138 @@ namespace OperationHeist.Tests
             yield return WaitFor(() => !session.IsListening && !manager.ShutdownInProgress, "cierre de la segunda sesión");
         }
 
+        [UnityTest]
+        public IEnumerator TwoInstancesCompleteBank()
+        {
+            _role = Environment.GetEnvironmentVariable("OH_COOP_TEST_ROLE");
+            string syncRoot = Environment.GetEnvironmentVariable("OH_COOP_TEST_SYNC");
+            if ((_role != "host" && _role != "client") || string.IsNullOrEmpty(syncRoot))
+                Assert.Ignore("Requiere dos procesos y una carpeta de coordinación compartida.");
+            _sync = Path.Combine(syncRoot, "bank");
+            Directory.CreateDirectory(_sync);
+
+            yield return SceneManager.LoadSceneAsync("Heist_Bank");
+            yield return null;
+            Click("Coop");
+            yield return WaitFor(() => SceneManager.GetActiveScene().name == "Heist_BankCoop", "entrada al banco LAN");
+            var session = Object.FindAnyObjectByType<HeistNetworkSession>();
+            var manager = session.Manager;
+            var mission = session.Depot;
+            var security = Object.FindAnyObjectByType<BankSecurity>();
+            var vault = Object.FindAnyObjectByType<BankVaultAccess>();
+            var item = Object.FindAnyObjectByType<NetworkLootItem>();
+            var controls = Object.FindObjectsByType<BankSecuritySwitch>().ToDictionary(control => control.Channel);
+            if (IsHost)
+            {
+                Click("Host");
+                Assert.That(manager.IsHost, Is.True, session.StatusMessage);
+                Signal("listening");
+            }
+            else
+            {
+                yield return WaitFor(() => OtherSignaled("listening"), "anfitrión escuchando", 180f);
+                Click("Client");
+            }
+            yield return WaitFor(() => manager.IsConnectedClient && manager.SpawnManager.PlayerObjects.Count == 2 &&
+                mission.IsSpawned, "dos agentes del banco", 180f);
+            var local = manager.LocalClient.PlayerObject.GetComponent<NetworkPlayerMotor>();
+            yield return Barrier("briefing");
+            if (IsHost) Click("StartMission");
+            yield return WaitFor(() => mission.Phase == MissionPhase.Playing, "inicio del banco");
+            Assert.That(item.GetComponent<Collider>().enabled, Is.False);
+            if (!IsHost)
+            {
+                mission.SelectBankSwitchServerRpc(1);
+                mission.OpenBankVaultServerRpc();
+            }
+            yield return new WaitForSecondsRealtime(.4f);
+            Assert.That(security.Wires, Is.Zero, "rechaza cable remoto");
+            Assert.That(vault.IsOpen, Is.False);
+
+            var wirePosition = new Vector3(5.55f, .05f, .85f);
+            var chamberPosition = new Vector3(5.55f, .05f, 3.65f);
+            var vaultAim = vault.transform.position + Vector3.up * 1.3f;
+            if (!IsHost) Place(local, wirePosition, controls[1].transform.position);
+            yield return new WaitForSecondsRealtime(.4f);
+            int progress = 0;
+            foreach (int channel in new[] { 1, 3, 0, 2 })
+            {
+                if (!IsHost)
+                {
+                    Place(local, wirePosition, controls[channel].transform.position);
+                    Interact(local);
+                }
+                int expected = ++progress;
+                yield return WaitFor(() => security.Wires == expected, "cable sincronizado " + expected);
+                yield return Barrier("wire-" + expected);
+            }
+            Assert.That(mission.AccessGranted, Is.True);
+            if (!IsHost) Place(local, chamberPosition, vaultAim);
+            yield return new WaitForSecondsRealtime(.4f);
+            if (!IsHost) Interact(local);
+            yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(vault.IsOpen, Is.False, "la bóveda exige cámaras desconectadas");
+            foreach (int channel in new[] { 4, 5 })
+            {
+                if (!IsHost)
+                {
+                    Place(local, chamberPosition, controls[channel].transform.position);
+                    Interact(local);
+                }
+                int expected = channel == 4 ? 3 : 5;
+                yield return WaitFor(() => security.Breakers == expected, "estado eléctrico " + expected);
+                yield return Barrier("breaker-" + expected);
+            }
+            Assert.That(mission.CamerasOffline, Is.True);
+            if (!IsHost)
+            {
+                Place(local, chamberPosition, vaultAim);
+                Interact(local);
+            }
+            yield return WaitFor(() => mission.VaultAwaitingPartner, "primera confirmación de bóveda");
+            if (!IsHost) Interact(local);
+            yield return new WaitForSecondsRealtime(.3f);
+            Assert.That(vault.IsOpen, Is.False, "la misma persona no puede confirmar dos veces");
+            yield return Barrier("duplicate-vault-rejected");
+            if (IsHost)
+            {
+                Place(local, chamberPosition + Vector3.right * .8f, vaultAim);
+                Interact(local);
+            }
+            yield return WaitFor(() => vault.IsOpen && item.GetComponent<Collider>().enabled, "bóveda y expediente replicados");
+
+            if (IsHost) Place(local, new Vector3(-.55f, .05f, -5.25f), mission.Terminal.transform.position);
+            if (!IsHost)
+            {
+                Place(local, new Vector3(5.55f, .05f, 5.75f), item.GetComponent<Collider>().bounds.center);
+                yield return new WaitForSecondsRealtime(.4f);
+                Interact(local);
+            }
+            yield return WaitFor(() => item.State == NetworkLootState.Carried, "expediente en manos del cliente");
+            var terminalAim = mission.Terminal.transform.position + Vector3.up * 1.4f;
+            if (!IsHost)
+            {
+                Place(local, new Vector3(.55f, .05f, -5.25f), terminalAim);
+                yield return new WaitForSecondsRealtime(.4f);
+                Interact(local, item);
+            }
+            yield return WaitFor(() => mission.Deposited == 1 && item.State == NetworkLootState.Deposited, "depósito único");
+            yield return Barrier("at-extraction");
+            if (!IsHost)
+            {
+                Place(local, new Vector3(.55f, .05f, -5.25f), terminalAim);
+                Interact(local);
+            }
+            yield return WaitFor(() => mission.Phase == MissionPhase.Won, "victoria compartida en el banco");
+            Debug.Log($"COOP_BANK_OK {_role} · seguridad, bóveda, 1/1 y extracción");
+            yield return Barrier("won");
+            if (IsHost) Click("Stop");
+            yield return WaitFor(() => !session.IsListening && !manager.ShutdownInProgress, "cierre de la sala");
+            yield return null;
+            Click("Solo");
+            yield return WaitFor(() => SceneManager.GetActiveScene().name == "Heist_Bank", "regreso al banco local");
+        }
+
 #if UNITY_EDITOR
         [UnityTest]
         public IEnumerator LabStartsWithRepairedComponents()
@@ -276,7 +408,8 @@ namespace OperationHeist.Tests
 
             // Other Play Mode fixtures create their collision geometry at the origin.
             var scene = SceneManager.GetActiveScene();
-            if (scene.name != "Heist_Depot" && scene.name != "Heist_DepotCoop" && scene.name != "Heist_NetworkLab")
+            if (scene.name != "Heist_Depot" && scene.name != "Heist_DepotCoop" && scene.name != "Heist_NetworkLab" &&
+                scene.name != "Heist_Bank" && scene.name != "Heist_BankCoop")
                 yield break;
             var empty = SceneManager.CreateScene("CoopTestCleanup");
             SceneManager.SetActiveScene(empty);
@@ -323,6 +456,9 @@ namespace OperationHeist.Tests
             player.transform.rotation = Quaternion.LookRotation(heading);
             capsule.enabled = true;
             player.Controller.PlayerCamera.transform.LookAt(target);
+            float pitch = Mathf.DeltaAngle(0f, player.Controller.PlayerCamera.transform.localEulerAngles.x);
+            typeof(FpsController).GetField("_pitch", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(player.Controller, pitch);
             Physics.SyncTransforms();
         }
 

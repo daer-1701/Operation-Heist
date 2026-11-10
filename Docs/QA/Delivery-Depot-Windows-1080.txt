@@ -1,0 +1,15 @@
+OH_WINDOWS_QA_PASS briefing
+OH_WINDOWS_QA_PASS vitalidad
+OH_WINDOWS_QA_PASS altura
+OH_WINDOWS_QA_PASS formato 16:9
+OH_WINDOWS_QA 1920x1080 Direct3D11
+OH_WINDOWS_QA_PASS Enter inicia el contrato
+OH_WINDOWS_QA_PASS foco y captura del cursor
+OH_WINDOWS_QA_PASS W desplaza la cápsula
+OH_WINDOWS_QA_PASS delta de ratón gira la cámara
+OH_WINDOWS_QA_PASS Escape pausa
+OH_WINDOWS_QA_PASS reloj detenido
+OH_WINDOWS_QA_PASS Enter reanuda
+OH_WINDOWS_QA_PASS señal sintética del reloj
+OH_WINDOWS_QA_PASS derrota por tiempo
+OH_WINDOWS_QA_OK

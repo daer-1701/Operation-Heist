@@ -14,6 +14,7 @@ namespace OperationHeist.Network
         private NetworkDepotMission _mission;
         private InputAction _interact;
         private InputAction _drop;
+        private readonly RaycastHit[] _hits = new RaycastHit[32];
 
         private void Awake()
         {
@@ -67,25 +68,56 @@ namespace OperationHeist.Network
                 return;
             }
 
-            var camera = _motor.Controller.PlayerCamera.transform;
-            Collider target = null;
-            float distance = Reach;
-            foreach (var hit in Physics.RaycastAll(camera.position, camera.forward, Reach, ~0, QueryTriggerInteraction.Ignore))
-            {
-                if (hit.collider.transform.IsChildOf(transform) || hit.distance > distance) continue;
-                target = hit.collider;
-                distance = hit.distance;
-            }
-
+            Collider target = FindTarget();
             if (target == null) return;
-            if (_mission != null && target == _mission.Terminal)
+            if (_mission != null && _mission.IsTerminal(target))
             {
                 if (carried != null) carried.RequestDepositServerRpc();
                 else _mission.RequestExtractServerRpc();
                 return;
             }
+            if (_mission != null && _mission.IsBank)
+            {
+                var control = target.GetComponentInParent<BankSecuritySwitch>();
+                if (control != null)
+                {
+                    _mission.SelectBankSwitchServerRpc(control.Channel);
+                    return;
+                }
+                if (target.GetComponentInParent<BankVaultAccess>() != null)
+                {
+                    _mission.OpenBankVaultServerRpc();
+                    return;
+                }
+            }
             if (carried == null)
                 target.GetComponentInParent<NetworkLootItem>()?.RequestPickupServerRpc();
+        }
+
+        internal string BankHint()
+        {
+            Collider target = FindTarget();
+            if (target == null) return null;
+            var control = target.GetComponentInParent<BankSecuritySwitch>();
+            if (control != null) return _mission.BankPrompt(control);
+            return target.GetComponentInParent<BankVaultAccess>() == null ? null : _mission.BankVaultPrompt(OwnerClientId);
+        }
+
+        private Collider FindTarget()
+        {
+            var camera = _motor.Controller.PlayerCamera.transform;
+            Collider target = null;
+            float distance = Reach;
+            int count = Physics.RaycastNonAlloc(camera.position, camera.forward, _hits, Reach, ~0, QueryTriggerInteraction.Ignore);
+            if (count == _hits.Length) return null;
+            for (int i = 0; i < count; i++)
+            {
+                var hit = _hits[i];
+                if (hit.collider.transform.IsChildOf(transform) || hit.distance > distance) continue;
+                target = hit.collider;
+                distance = hit.distance;
+            }
+            return target;
         }
     }
 }

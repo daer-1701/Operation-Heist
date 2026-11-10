@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,8 @@ namespace OperationHeist.Player
         [SerializeField] private LootCarrier carrier;
         [SerializeField] private PlayerHealth health;
         [SerializeField] private ObjectiveBoard objectives;
+        [SerializeField] private BankVaultAccess vault;
+        [SerializeField] private BankSecurity security;
         [SerializeField] private float duration = 300f;
         [SerializeField] private int requiredLoot = 3;
         private InputAction _pause;
@@ -29,6 +32,7 @@ namespace OperationHeist.Player
         public FpsController Player => player;
         public PlayerHealth Health => health;
         public ObjectiveBoard Objectives => objectives;
+        public bool IsBankContract => vault != null;
         public event Action Changed;
 
         private void Awake()
@@ -70,6 +74,32 @@ namespace OperationHeist.Player
             BindHealth();
         }
 
+        public void ConfigureVault(BankVaultAccess access, BankSecurity bankSecurity)
+        {
+            vault = access;
+            security = bankSecurity;
+        }
+
+        internal void OnSecurityChanged(bool wrongWire)
+        {
+            if (security.AccessGranted) objectives.TryComplete("security-access");
+            if (security.CamerasOffline) objectives.TryComplete("security-cameras");
+            StatusMessage = wrongWire ? "Cable incorrecto. Repite la secuencia 2–4–1–3."
+                : security.CamerasOffline ? "Cámaras desconectadas. Abre la bóveda."
+                : security.AccessGranted ? "Acceso abierto. Lleva los interruptores a 101."
+                : "Completa la secuencia del panel de acceso.";
+            if (wrongWire) RaiseAlarm(.1f);
+            Changed?.Invoke();
+        }
+
+        internal void OnVaultOpened(BankVaultAccess access)
+        {
+            if (vault != access || !access.IsOpen || Phase != MissionPhase.Playing) return;
+            objectives?.TryComplete("vault-access");
+            StatusMessage = "Bóveda abierta. Recoge el expediente y vuelve al terminal.";
+            Changed?.Invoke();
+        }
+
         private void ResolveRefs()
         {
             if (player == null && carrier != null) player = carrier.GetComponent<FpsController>();
@@ -79,14 +109,18 @@ namespace OperationHeist.Player
                 objectives = GetComponent<ObjectiveBoard>() ?? gameObject.AddComponent<ObjectiveBoard>();
             if (objectives != null && objectives.RequiredCount == 0)
             {
-                objectives.Configure(new[]
+                var steps = new List<MissionObjectiveState>();
+                if (security != null)
                 {
-                    new MissionObjectiveState("deposit-1", "Asegurar expediente 1"),
-                    new MissionObjectiveState("deposit-2", "Asegurar expediente 2"),
-                    new MissionObjectiveState("deposit-3", "Asegurar expediente 3"),
-                    new MissionObjectiveState("loot-secured", "Botín completo en extracción"),
-                    new MissionObjectiveState("extract", "Evacuar del depósito")
-                });
+                    steps.Add(new MissionObjectiveState("security-access", "Conectar el acceso"));
+                    steps.Add(new MissionObjectiveState("security-cameras", "Desconectar las cámaras"));
+                }
+                if (IsBankContract) steps.Add(new MissionObjectiveState("vault-access", "Abrir la bóveda"));
+                for (int i = 1; i <= requiredLoot; i++)
+                    steps.Add(new MissionObjectiveState("deposit-" + i, "Asegurar expediente " + i));
+                steps.Add(new MissionObjectiveState("loot-secured", "Botín completo en extracción"));
+                steps.Add(new MissionObjectiveState("extract", "Evacuar"));
+                objectives.Configure(steps);
             }
         }
 
@@ -136,7 +170,9 @@ namespace OperationHeist.Player
             BindHealth();
             health?.ResetHealth();
             objectives?.ResetAll();
-            SetPhase(MissionPhase.Playing, "Recupera los tres expedientes. Evita la mirada del guardia.");
+            SetPhase(MissionPhase.Playing, IsBankContract
+                ? "Conecta el panel de acceso en el pasillo derecho."
+                : "Recupera los tres expedientes. Evita la mirada del guardia.");
         }
         public void TogglePause()
         {
@@ -153,6 +189,9 @@ namespace OperationHeist.Player
             if (Phase != MissionPhase.Playing || deltaTime <= 0 || float.IsNaN(deltaTime)) return;
             RemainingSeconds = Mathf.Max(0, RemainingSeconds - deltaTime);
             Alarm = Mathf.Max(0, Alarm - deltaTime * 0.045f);
+            if (security != null && player != null && security.Detects(player.transform,
+                player.PlayerCamera.transform.position, player.IsCrouching))
+                RaiseAlarm(.16f * deltaTime);
             health?.Tick(deltaTime);
             if (RemainingSeconds <= 0) Fail("Tiempo agotado. La salida ha sido cerrada.");
             else Changed?.Invoke();
@@ -193,10 +232,12 @@ namespace OperationHeist.Player
         }
         public bool TryExtract(LootCarrier actor)
         {
-            if (!AtExtraction(actor) || actor.IsCarrying || DepositedCount < RequiredLoot) return false;
+            if (!AtExtraction(actor) || actor.IsCarrying || DepositedCount < RequiredLoot ||
+                (IsBankContract && !vault.IsOpen)) return false;
             if (health != null && health.IsIncapacitated) return false;
             objectives?.TryComplete("extract");
-            SetPhase(MissionPhase.Won, "Golpe completado. Los tres expedientes están a salvo.");
+            SetPhase(MissionPhase.Won, IsBankContract ? "Expediente de la bóveda a salvo."
+                : "Golpe completado. Los tres expedientes están a salvo.");
             return true;
         }
         private void SetPhase(MissionPhase phase, string message)

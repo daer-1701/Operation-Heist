@@ -1,5 +1,39 @@
 # Progreso — Operation Heist
 
+## Seguridad y cooperativo del banco — 10 noviembre 2026
+
+El banco tiene dos minijuegos integrados. El orden de cables abre una puerta física y un error añade diez puntos de alarma. Los interruptores cambian una máscara eléctrica hasta `101`, desactivan la detección de la cámara y habilitan la bóveda. El guardia sigue activo. En LAN el anfitrión valida alcance, línea de visión y fases. Con un equipo, dos agentes distintos confirman la bóveda dentro de diez segundos. Las puertas, el expediente y la salida se sincronizan.
+
+El Test Runner ejecutó en Player Windows el banco local **5/5**. En el editor, la revisión con el banco cooperativo y doble confirmación aprobó **59/59** en anfitrión y **2/2** en cliente por loopback. Ambos completaron banco 1/1 y depósito 3/3. El banco local comprobó también que la cámara detecta antes de desactivarla y deja de hacerlo después. [Windows local](QA/Bank-Security-Local-Windows.xml) · [Editor anfitrión](QA/Bank-Security-Editor-host.xml) · [Editor cliente](QA/Bank-Security-Editor-client.xml)
+
+Bolsa y expediente originales del usuario integrados desde Hunyuan en los prefabs de producción. Se extrajeron sus mapas embebidos y se mantuvieron los colliders. La bolsa está junto a extracción en ambos bancos y el expediente usa el nuevo visual dentro de la bóveda. Generación Unity correcta en copia aislada y transferencia al checkout. Inventario actual **269/269**. La puerta Hunyuan recién aportada queda registrada y pendiente de montar en la hoja articulada. El Player Windows cooperativo y el build final con modelos aún requieren verificación. [Traspaso](Handoff-2026-11-10.md)
+
+## Banco local, selector y aceptación Windows — 10 noviembre 2026
+
+El usuario autorizó continuar con validación automatizada tras dos fallos de captura de ventana en Windows. Un build de diagnóstico del depósito confirmó en Direct3D 11, a 1280 × 720 y 1920 × 1080, briefing, vitalidad, Enter para iniciar, W para mover la cápsula, giro con ratón virtual, Escape, congelación del reloj, reanudación, disparo de audio sintético y derrota por tiempo. Se revisaron los fotogramas de briefing y partida en ambas resoluciones. La entrada fue virtual por Input System. La prueba de audio verifica el disparo de la señal. El recorrido con periféricos físicos y la escucha siguen pendientes. [720p](QA/Delivery-Depot-Windows-720.txt) · [1080p](QA/Delivery-Depot-Windows-1080.txt)
+
+Banco local integrado con puerta articulada, expediente protegido, patrulla, cuatro minutos y extracción. Se apoya el expediente sobre una mesa original para que su collider quede sobre el suelo. El selector permite alternar contratos desde los briefings, la pausa o el resultado, y conserva la entrada LAN desde el depósito. Play Mode dirigido **5/5**, con bloqueo por la puerta cerrada, apertura, recorrido por la geometría, entrega, victoria y derrota. Inventario **251/251**. [XML](QA/Delivery-Bank-PlayMode.xml)
+
+Regresión de entrega **58/58** en anfitrión y **1/1** en cliente por loopback. Build Windows de las tres escenas correcto en copia aislada, con arranque del ejecutable comprobado. El ZIP pasó la prueba de integridad y contiene el ejecutable, bibliotecas y carpeta de datos. [Build Windows](D:/ae/OH_Audit_2223e7a4/OperationHeist-Windows.zip) · [XML anfitrión](QA/Delivery-Final-Host-PlayMode.xml) · [XML cliente](QA/Delivery-Final-Client-PlayMode.xml)
+
+Hito de dos contratos entregado con verificación automatizada. El GDD completo sigue abierto. Próximo tramo: ampliar las fases de seguridad del banco e integrar minijuegos y bóveda en su variante LAN. Después quedan base, progresión, guardado, sesión por código y los capítulos extendidos.
+
+## Cierre de entrega activa — 10 noviembre 2026
+
+Fase 0 terminada. `BuildWindows` usa la lista habilitada del editor: depósito individual, depósito LAN y banco. Prototipo y laboratorio se mantienen para QA en el editor. La galería queda fuera de distribución. En fase 1 se guardaron vitalidad y objetivos en el depósito, se documentaron las diferencias de alarma y carga en LAN y se habilitó la ejecución en segundo plano para mantener al anfitrión activo al perder foco.
+
+Fase 1 técnica verificada en Unity 6000.5.6f1: **56/56** en el anfitrión y **1/1** en el cliente por loopback, ambos con 3/3 y evacuación. Se verificaron reinicio, retorno al modo local y recuperación de carga tras desconexión. [XML anfitrión](QA/Delivery-Depot-Host-PlayMode.xml) · [XML cliente](QA/Delivery-Depot-Client-PlayMode.xml). Auditoría **250/250**. Build Windows de las tres escenas correcto en copia aislada. [Ejecutable](D:/ae/OH_Audit_2223e7a4/Phase1Windows/OperationHeist.exe) · [Log](D:/ae/OH_Audit_2223e7a4/phase1-windows.log)
+
+La automatización de Windows se detuvo con Escape al abrir el build de fase 1. Pendiente el recorrido con teclado y ratón, 720p/1080p, audio, colisiones y foco en el ejecutable. Próximo paso: terminar esa aceptación del depósito antes de iniciar el contrato del banco.
+
+## Revisión integral del checkout integrado — 10 noviembre 2026
+
+Informe en [ProjectReview-2026-11-10.md](ProjectReview-2026-11-10.md). Se revisó `workspace/pending` en `f720436` con la inclusión local del laboratorio en la lista del editor. El depósito es el primer contrato individual y LAN. El banco es un escenario recorrible con ambientación y animación rígida. Sus objetivos y extracción siguen pendientes. El generador Windows selecciona solo los dos modos del depósito.
+
+Unity 6000.5.6f1 compiló en copias aisladas y aprobó **56/56** en el anfitrión y **1/1** en el cliente por UDP loopback. Ambos lograron 3/3 y evacuación. Se confirmó la recuperación de carga al desconectarse el portador. Inventario **250/250**, sin metadatos faltantes ni GUID duplicados. Quedan 11 referencias de configuración URP sin resolver en el cotejo de GUID. El informe enlaza los XML y registra las diferencias de configuración que Unity introdujo en las copias.
+
+Próximo paso: recorrido completo del depósito en el ejecutable Windows, revisión visual a 720p y 1080p y partida entre dos equipos antes de convertir el banco en segundo contrato.
+
 ## Modelos mejorados e integración — 5 noviembre 2026
 
 Kiro reescribió 9 recetas (personajes, expediente, bolsa, estantería, mostrador, puerta de seguridad y bóveda) y añadió esferas y colores por modelo. La regeneración con `-nographics` guardó mallas y prefabs y falló solo en la lámina de vista previa: `La revisión visual requiere GPU`. Esos recursos ya están en el proyecto. `MissionSetBuilder.BuildAll` en copia aislada terminó con `NETWORK_DEPOT_GENERATED` y `MISSION_SET_INTEGRATED`. Auditoría **250/250**. `MissionSetTests` **3/3** en Play Mode sin gráficos. La lámina `Docs/QA/ProductionModels-preview.png` sigue siendo la anterior. Falta la prueba cooperativa de dos instancias, el playtest con teclado y ratón, y el build Windows.

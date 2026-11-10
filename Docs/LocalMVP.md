@@ -21,6 +21,8 @@ Recuperar las tres cajas identificadas con marcas ámbar en los pasillos y el fo
 
 La carga reduce velocidad e impide correr. Usar los separadores como cobertura y observar la patrulla central. La alarma desciende al dejar de ser visto. La pausa y la pérdida de foco detienen reloj y guardia; la cámara sigue visible. Victoria y derrota permiten reiniciar desde cero. Salir cierra el ejecutable o detiene Play Mode en el editor.
 
+La lista de distribución compartida por el editor y `BuildWindows` contiene `Heist_Depot`, `Heist_DepotCoop` y `Heist_Bank`. El prototipo y el laboratorio se abren desde el editor para QA. La galería es un catálogo de producción.
+
 ## Implementación y recursos
 
 - LocalMission controla briefing, juego, pausa, victoria y derrota; no cambia Time.timeScale global.

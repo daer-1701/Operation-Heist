@@ -1,5 +1,7 @@
 # Modelos originales para depósito y banco
 
+Actualización del 10 de noviembre. Los prefabs `OH_LootBag` y `OH_Dossier` usan las mallas Hunyuan aportadas por el usuario, ajustadas al volumen de los colliders originales. La bolsa tiene 49.994 triángulos y el expediente 50.000. Ambos usan el color y las normales extraídos de los FBX. La tabla inferior conserva las cifras del kit procedural original. El FBX de la puerta nueva está registrado para la siguiente integración. [Procedencia](AssetManifest.csv)
+
 Generados con Codex el 5 de noviembre de 2026. Recetas en Tools/ModelRecipes.json y ProductionModelsBuilder.cs.
 Unidades en metros, eje Y arriba, frente hacia -Z, escala de raíz uno. Materiales planos URP originales.
 Los personajes usan piezas rígidas articuladas. Las animaciones y la integración con gameplay quedan como trabajo posterior.

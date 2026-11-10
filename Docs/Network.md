@@ -1,5 +1,7 @@
 # Depósito cooperativo LAN
 
+El banco también ofrece **Cooperativo LAN** desde su briefing individual. El anfitrión abre la sala y la inicia. Cualquier integrante puede conectar los cables en orden y ajustar la máscara eléctrica. Con dos o más agentes, uno pulsa **E** en la bóveda y otro confirma allí dentro de diez segundos. Un agente en una sala de una sola persona puede abrirla directamente. El equipo vuelve a la zona turquesa de la entrada para la evacuación y **Modo local** regresa al briefing del banco.
+
 En Unity 6000.5.6f1 abre `Heist_Depot` y pulsa **Cooperativo LAN** en el briefing, o abre `Heist_DepotCoop` directamente. El builder Windows incluye ambas escenas. Netcode for GameObjects 2.13.3 y Unity Transport usan el puerto UDP **7777**.
 
 1. Una persona pulsa **Anfitrión**. En la segunda instancia, pulsa **Cliente** con `127.0.0.1` en la misma PC o con la IP local del anfitrión en otra PC de la LAN.

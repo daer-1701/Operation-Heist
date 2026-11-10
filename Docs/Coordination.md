@@ -1,5 +1,31 @@
 # Coordinación Cursor y Codex
 
+## Integración Hunyuan OH_LootBag — 10 noviembre 2026
+
+Responsable: Cursor (editor). Reserva: `Assets/04_Models/Hunyuan/**`, `Assets/05_Textures/Hunyuan/**` si aparecen, `Assets/02_Prefabs/Production/Loot/OH_LootBag.prefab` (+meta), `Assets/01_Scripts/Editor/HunyuanLootBagIntegrator.cs` (+meta), `Docs/HunyuanPrompt.md`, `Docs/ModelCatalog.md`. El usuario pidió integrar el FBX de Descargas como `OH_LootBag`. Se añadirán filas nuevas en `Docs/AssetManifest.csv` solo para estos recursos Hunyuan (append); no se reescribe el resto del manifiesto reservado por Codex.
+
+## Seguridad y cooperativo del banco — 10 noviembre 2026
+
+Responsable único: Codex. Reserva `Assets/00_Scenes/Heist_Bank*.unity*`, `Assets/01_Scripts/Player/Mission/Bank*.cs*`, `Assets/01_Scripts/Player/Mission/LocalMission.cs`, `Assets/01_Scripts/UI/LocalMissionPresenter.cs`, `Assets/01_Scripts/Network/NetworkDepotMission.cs`, `NetworkLootItem.cs`, `NetworkLootInteractor.cs` y `NetworkSessionHud.cs` de la misma carpeta, `Assets/01_Scripts/Editor/MissionSetBuilder.cs`, `LocalMvpBuilder.cs` y `NetworkLabBuilder.cs` de la misma carpeta, `Assets/01_Scripts/Tests/PlayMode/MissionSetTests.cs`, `CoopDepotLanTests.cs` de la misma carpeta, `ProjectSettings/EditorBuildSettings.asset`, `Docs/AssetManifest.csv`, `Docs/Architecture.md`, `Docs/Progress.md`, `Docs/NetworkContract.md`, `Docs/Network.md`, `Docs/QA` y `README.md`. Se genera y se verifica en las copias aisladas de QA.
+
+`Assets/01_Scripts/UI/InteractionPromptPresenter.cs` también queda reservado para la realimentación de los controles.
+
+Integración Hunyuan solicitada por el usuario. Se añaden a la reserva `Assets/01_Scripts/Editor/HunyuanLootBagIntegrator.cs`, `Assets/02_Prefabs/Production/Loot/OH_LootBag.prefab`, `Assets/02_Prefabs/Production/Loot/OH_Dossier.prefab`, `Assets/03_Materials/Hunyuan/` y sus metadatos, los ajustes de importación de los dos FBX usados y `Docs/ModelCatalog.md`. Los FBX originales se conservan.
+
+Las texturas generadas y embebidas en los FBX se extraen bajo `Assets/05_Textures/Hunyuan/` con sus metadatos.
+
+Punto de traspaso: bolsa y expediente transferidos al checkout y manifestados. La puerta Hunyuan requiere reservar también `Assets/02_Prefabs/Production/Bank/OH_VaultDoor.prefab` antes de montarla. Las reservas de esta etapa corresponden a Codex para la reanudación. [Estado y pruebas](Handoff-2026-11-10.md)
+
+## Cierre de entrega activa — 10 noviembre 2026
+
+Hito de dos contratos terminado con validación automatizada autorizada. Depósito Windows comprobado a 720p y 1080p mediante Input System virtual, banco local con bóveda y extracción, selector, regresión 58/58 y 1/1 y build Windows comprobado. Evidencia y alcance restante en [Progress.md](Progress.md). Reservas de este hito liberadas.
+
+Línea base del cierre, a cargo de Codex. Se alinearon las listas de escenas y se integraron los sistemas comunes del depósito. Play Mode 56/56 y 1/1, auditoría 250/250 y build Windows correcto. La validación interactiva se detuvo con Escape y el usuario autorizó el método automatizado que figura en la entrada anterior.
+
+## Revisión integral — 10 noviembre 2026
+
+Revisión cerrada por Codex. Informe en `Docs/ProjectReview-2026-11-10.md`. Línea base en copias aisladas: Play Mode 56/56 en anfitrión y 1/1 en cliente, victoria LAN 3/3, build Windows del depósito e inventario 250/250. Las reservas de esta revisión pasan al cierre de entrega activa donde corresponda.
+
 ## Integración de kit, animación rígida y banco — 5 noviembre 2026
 
 Kiro mejoró recetas y código. Cursor regeneró el kit en copia aislada y ejecutó `MissionSetBuilder.BuildAll`. Escenas y prefabs copiados al proyecto principal. Auditoría 250/250. Reserva liberada. Pendiente: prueba LAN de dos instancias, lámina GPU del catálogo, playtest físico y build Windows.

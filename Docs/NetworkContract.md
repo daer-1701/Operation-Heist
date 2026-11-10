@@ -1,5 +1,7 @@
 # Contrato del depósito cooperativo
 
+El banco comparte sesión, reglas de botín y extracción de equipo. El anfitrión conserva el progreso de cables, la máscara eléctrica y la apertura de bóveda. Cada solicitud se valida con alcance y visibilidad del agente. Con dos o más agentes conectados, la bóveda exige dos remitentes distintos al alcance dentro de diez segundos. El expediente se habilita al abrir la bóveda. Cerrar la sala restaura los paneles y las hojas de las puertas. Las cámaras permanecen desactivadas durante el resto de la incursión tras resolver el panel. El guardia sigue patrullando.
+
 - **Sesión.** `HeistNetworkSession` conecta el transporte, vincula el puerto UDP 7777 y asigna posiciones distintas de aparición. Admite hasta cuatro agentes en el briefing. Solo el anfitrión inicia la misión.
 - **Movimiento.** Cada propietario ejecuta el FPS y publica su transformación mediante `NetworkTransform` con autoridad de propietario. La cámara, el audio, la entrada y el HUD personal pertenecen al propietario. Los demás ven un cuerpo de referencia. El anfitrión usa la posición replicada para sus comprobaciones. Este modelo confía en los clientes LAN para el movimiento.
 - **Botín.** Cada expediente es un `NetworkObject` colocado en la escena. Solo el anfitrión modifica estado y portador. Comprueba fase, distancia, línea de visión y que el agente tenga las manos libres. Un agente solo puede cargar una pieza. Devolver o perder al portador restaura el expediente en su punto inicial.
@@ -8,3 +10,5 @@
 - **Laboratorio.** Comparte transporte y prefab con el depósito. Allí se mantienen el depósito de prueba y los controles de daño/reanimación. El daño de prueba está restringido al propio agente y al laboratorio.
 
 La verificación de dos procesos usa LAN directa por loopback. Quedan fuera de esta entrega Relay, migración de anfitrión, reconexión durante la misión y validación antitrampas de movimiento.
+
+En ambos modos la alarma baja a 4,5 puntos porcentuales por segundo sin detección. Durante exposición continua, el incremento efectivo es de 19,5 puntos por segundo en LAN y aproximadamente el mismo en local, donde el guardia añade 24 y la misión resta 4,5 en actualizaciones separadas. En LAN el anfitrión agrega la detección de todo el equipo como una sola exposición. G devuelve la carga a su origen para que el equipo la pueda recuperar en una posición conocida. En individual, G permite dejarla en suelo libre cerca del agente. El ejecutable mantiene la simulación del anfitrión cuando pierde foco. En individual, perder foco activa la pausa de misión.

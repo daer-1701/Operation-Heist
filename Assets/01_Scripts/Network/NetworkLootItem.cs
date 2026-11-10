@@ -55,10 +55,16 @@ namespace OperationHeist.Network
 
         private void OnStateChanged(NetworkLootState previous, NetworkLootState next) => ApplyVisual();
 
+        internal void RefreshAvailability()
+        {
+            if (IsSpawned) ApplyVisual();
+        }
+
         private void ApplyVisual()
         {
             if (State != NetworkLootState.Carried) RestoreTransform();
-            SetVisibility(State == NetworkLootState.Available, State == NetworkLootState.Available);
+            bool available = State == NetworkLootState.Available && (_mission == null || _mission.VaultAvailable);
+            SetVisibility(available, available);
         }
 
         private void SetVisibility(bool visible, bool collidable)
@@ -94,7 +100,8 @@ namespace OperationHeist.Network
         public void RequestPickupServerRpc(ServerRpcParams rpc = default)
         {
             ulong sender = rpc.Receive.SenderClientId;
-            if (!IsPlaying() || !NetworkLootRules.CanAssign(State, FindCarried(NetworkManager, sender) != null) ||
+            if (!IsPlaying() || (_mission != null && !_mission.VaultAvailable) ||
+                !NetworkLootRules.CanAssign(State, FindCarried(NetworkManager, sender) != null) ||
                 !TryGetActor(NetworkManager, sender, out var actor)) return;
 
             foreach (var collider in _colliders)

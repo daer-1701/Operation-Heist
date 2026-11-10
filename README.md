@@ -1,12 +1,14 @@
 # Operation Heist
 
-Juego en evolución hacia FPS cooperativo. Misión local: `Assets/00_Scenes/Heist_Depot.unity` ([Docs/LocalMVP.md](Docs/LocalMVP.md)). Para jugar en red, elige **Cooperativo LAN** en el briefing del depósito ([Docs/Network.md](Docs/Network.md)). Contenido original; ver [AGENTS.md](AGENTS.md).
+FPS de sigilo y extracción con dos contratos en individual y LAN. **El depósito** tiene tres expedientes. **Banco central** tiene un acceso cableado, un panel de cámaras y una bóveda. Ambos briefings permiten cambiar de contrato. Consulta [Progreso](Docs/Progress.md) para el alcance verificado y [AGENTS.md](AGENTS.md) para la política de recursos.
 
 ## Abrir el proyecto
 
 1. Instalar **Unity 6000.5.6f1** (misma revisión que `ProjectSettings/ProjectVersion.txt`).
 2. Abrir esta carpeta como proyecto; no actualizar el editor ni añadir paquetes sin revisar [Packages/manifest.json](Packages/manifest.json).
-3. Abre `Heist_Depot` en Play y elige misión local o cooperativo. `Heist_NetworkLab` queda disponible en el editor para pruebas de red.
+3. Abre `Heist_Depot` en Play y elige misión local, **Cooperativo LAN** o **Contrato 02 · Banco**. El laboratorio de red, el prototipo FPS y la galería se abren desde el editor.
+
+El build inicia en el briefing del depósito y empaqueta `Heist_Depot`, `Heist_DepotCoop`, `Heist_Bank` y `Heist_BankCoop`. La generación por lotes usa `OperationHeist.Editor.LocalMvpBuilder.BuildWindows` con `OH_BUILD_OUTPUT` para elegir la ruta del ejecutable.
 
 Dependencias relevantes: URP 17.5.0, Input System 1.20.0, AI Navigation 2.0.14, Test Framework 1.7.0, **Netcode for GameObjects 2.13.3**. Multiplayer Services (códigos cloud) aún no.
 
@@ -18,15 +20,16 @@ Dependencias relevantes: URP 17.5.0, Input System 1.20.0, AI Navigation 2.0.14, 
 | Ratón | Mirar |
 | Shift izquierdo | Correr |
 | Ctrl izquierdo | Agacharse |
-| Escape | Liberar cursor |
-| Clic izquierdo | Recapturar cursor |
-| E | Inspeccionar el prop apuntado dentro de 2.5 m |
+| Escape | Pausar o reanudar en local, abrir el menú individual en LAN |
+| E | Interactuar con la bóveda, el expediente o el terminal que se está mirando |
+| G | Soltar carga en local o devolverla a su origen en LAN |
+| Tab / flechas, Enter | Navegar y confirmar en el briefing |
 
 Ajustes en el componente `FpsController` del prefab [Assets/02_Prefabs/Player/FPSPlayer.prefab](Assets/02_Prefabs/Player/FPSPlayer.prefab). Detalle: [Docs/FPSController.md](Docs/FPSController.md).
 
 Menús Editor: **Operation Heist → Crear prototipo FPS** y **Crear kit original e integrar** (regeneran recursos; guardar cambios propios antes).
 
-Los cuatro props tienen inspección por raycast y aviso contextual. Paredes bloquean la acción y una inspección no se duplica. No se implementan todavía recogida de botín ni apertura de caja fuerte. Ver [Docs/Interaction.md](Docs/Interaction.md).
+En el depósito, entrega tres expedientes y vuelve a interactuar con el terminal para evacuar. En el banco, apunta y pulsa **E** en cada cable siguiendo la secuencia del panel. Cruza el acceso y cambia los interruptores hasta obtener `101`. Después abre la bóveda, recoge el expediente y vuelve al terminal. En LAN, el equipo se reúne en la zona turquesa para evacuar. Los ajustes de sensibilidad, FOV y volumen se comparten entre los contratos locales.
 
 ## Modelos originales
 
@@ -34,7 +37,7 @@ Kit procedural en [Assets/04_Models/Codex](Assets/04_Models/Codex), materiales e
 
 ## Pruebas Play Mode
 
-En Unity: **Window → General → Test Runner → PlayMode** → ensamblado `OperationHeist.Player.PlayModeTests`, namespace `OperationHeist.Tests` (`FpsControllerTests`, `OriginalModelsTests`). Prefab y escena de prototipo deben existir. La entrada física real y el build Windows siguen documentados como pendientes en [Docs/FPSController.md](Docs/FPSController.md).
+En Unity: **Window → General → Test Runner → PlayMode** → ensamblado `OperationHeist.Player.PlayModeTests`, namespace `OperationHeist.Tests`. Para verificar LAN con dos procesos, sigue [Docs/Network.md](Docs/Network.md). Los resultados vigentes se registran en [Docs/Progress.md](Docs/Progress.md).
 
 ## Auditoría de assets
 
@@ -58,7 +61,7 @@ Protocolo: [Docs/Coordination.md](Docs/Coordination.md) y [Docs/CursorCLI.md](Do
 
 ## Entorno de desarrollo
 
-Git local en rama main; datos generados excluidos, Assets y sus .meta versionados. No hay publicación ni remoto configurado. DotRush y .NET Install Tool instalados en Cursor, con selección de la solución Unity generada y configuración F5 para adjuntar a Unity. Los .csproj/.slnx se regeneran desde Unity y no se versionan. La instalación y el arranque LSP se verificaron; IntelliSense en la ventana y adjuntar el debugger necesitan comprobación interactiva. Recargar la ventana si la extensión no aparece.
+Git registra los recursos y sus `.meta`, paquetes y configuración. Los datos generados y los ejecutables se excluyen. DotRush y .NET Install Tool están configurados en Cursor. Unity regenera los `.csproj` y `.slnx`. Para el estado de integración de ramas consulta [Docs/Coordination.md](Docs/Coordination.md).
 
 Skills compartidas en [.agents/skills](.agents/skills): operation-heist-unity y operation-heist-ui, con activación por tarea. Las nuevas skills estarán disponibles en el siguiente turno; si el selector no se actualiza, reiniciar el agente. Son propias del proyecto, no paquetes artísticos ni un servidor MCP.
 

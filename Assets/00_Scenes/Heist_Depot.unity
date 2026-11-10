@@ -824,6 +824,7 @@ GameObject:
   - component: {fileID: 203898904}
   - component: {fileID: 203898906}
   - component: {fileID: 203898905}
+  - component: {fileID: 203898908}
   m_Layer: 0
   m_Name: Mision - Ultimo turno
   m_TagString: Untagged
@@ -845,8 +846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: OperationHeist.Player::OperationHeist.Player.LocalMission
   player: {fileID: 542667824}
   carrier: {fileID: 542667826}
-  health: {fileID: 0}
-  objectives: {fileID: 0}
+  health: {fileID: 542667828}
+  objectives: {fileID: 203898908}
   duration: 300
   requiredLoot: 3
 --- !u!114 &203898905
@@ -974,6 +975,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &203898908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203898903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f7f0741fc1b5f429a60945010bf5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Player::OperationHeist.Player.ObjectiveBoard
+  objectives: []
 --- !u!1 &205237336
 GameObject:
   m_ObjectHideFlags: 0
@@ -3078,6 +3092,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8431530463043719085, guid: 6f8b77c1161291c448f25818d3d7a53d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 542667827}
+    - targetCorrespondingSourceObject: {fileID: 8431530463043719085, guid: 6f8b77c1161291c448f25818d3d7a53d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 542667828}
+    - targetCorrespondingSourceObject: {fileID: 8431530463043719085, guid: 6f8b77c1161291c448f25818d3d7a53d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 542667829}
   m_SourcePrefab: {fileID: 100100000, guid: 6f8b77c1161291c448f25818d3d7a53d, type: 3}
 --- !u!114 &542667824 stripped
 MonoBehaviour:
@@ -3121,6 +3141,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: OperationHeist.UI::OperationHeist.UI.LocalMissionPresenter
   mission: {fileID: 203898904}
+--- !u!114 &542667828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542667825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9cb1c1e2386e84ca7782c3a0ef90f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.Player::OperationHeist.Player.PlayerHealth
+  maxHealth: 100
+  bleedoutDuration: 12
+  autoTick: 0
+--- !u!114 &542667829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542667825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c03ba46170f4c942a95ad40260fbd88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OperationHeist.UI::OperationHeist.UI.HealthHudPresenter
+  health: {fileID: 542667828}
 --- !u!1001 &558517962
 PrefabInstance:
   m_ObjectHideFlags: 0
