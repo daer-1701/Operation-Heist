@@ -8,7 +8,7 @@ Docs/Tasks conserva nueve registros históricos terminados o fallidos; no consti
 
 ## Navegación, refuerzos y defensa — 12 noviembre 2026
 
-Responsable único: Codex. En implementación/verificación.
+Responsable único: Codex. **Detenido por petición del usuario para retomar mañana.** No se marca completado: última prueba de aturdimiento en cliente pendiente. Consultar Retomar-2026-11-13.md y QA/Tactical-Validation.md antes de actuar. No hay agentes ni ejecuciones Cursor activas.
 
 Rutas reservadas bajo Assets/01_Scripts: Player/Mission/GuardNavigation.cs, GuardReinforcements.cs, PatrolGuard.cs, LocalMission.cs; Player/Systems/PlayerDefense.cs; Network/GuardSnapshot.cs, NetworkDepotMission.cs, NetworkReviveInteractor.cs, NetworkSessionHud.cs; UI/LocalMissionPresenter.cs; Tests/PlayMode/TacticalSystemsTests.cs y TacticalCoopTests.cs; .meta de scripts nuevos.
 

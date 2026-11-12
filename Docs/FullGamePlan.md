@@ -2,6 +2,8 @@
 
 Actualizado: 12 de noviembre de 2026. El usuario indicó dejar de orientar el desarrollo a la demo y centrarse en terminar el juego completo; primero, limpiar el proyecto. Este plan sustituye los recortes históricos a dos contratos y la congelación de capítulos. El GDD v2 define las mecánicas y la campaña; AGENTS.md y GDD-AssetPolicy.md prevalecen para recursos, coordinación y autorizaciones.
 
+Trabajo detenido a petición del usuario para continuar mañana. [Estado completo y orden de continuación](Retomar-2026-11-13.md). Navegación/refuerzos/defensa están implementados en el checkout, pero su validación final sigue abierta por una medida de inmovilidad en el cliente.
+
 ## Resultado esperado
 
 Campaña de cinco capítulos: Primer trabajo, Banco central, Sombras del museo, Blackout y El golpe perfecto. Práctica individual y cooperativo privado de hasta cuatro agentes, preparación de contratos, equipamiento/roles, sigilo con consecuencias, objetivos y extracción, recompensas, mejoras y progreso guardado. Todo el contenido del juego será original, con procedencia registrada.
@@ -34,6 +36,8 @@ Bolsa y expediente Hunyuan están integrados. La copia redundante de la bolsa fu
 | OH_VaultDoor.fbx | Montar visual sobre la hoja Door, conservando bisagra, marco y colliders |
 | OH_SecurityDoor.fbx | Integrar en la puerta articulada sin alterar reglas de seguridad |
 | OH_Agent.fbx, OH_Guard.fbx, OH_BankClerk.fbx | Integrar visuales/materiales originales en los personajes de producción y validar colisiones/animación |
+| OH_ElectricalPanel.fbx, OH_WirePanel.fbx, OH_SecurityCamera.fbx | Originales aportados el 12 de noviembre; herramienta/técnica/ajustes pendientes de indicar, sin integrar |
+| OH_ExtractionTerminal (.fbx | Revisar nombre provisional, importación/metadatos y detalles de procedencia; conservar sin renombrar automáticamente |
 | 20261111001229_7f7e96c8.fbx | Identificar visualmente antes de renombrar, usar o descartar; no es una copia idéntica de otro asset |
 
 Estos pendientes proceden del traspaso anterior; no se eliminan modelos por no estar referenciados todavía. La procedencia y prompts disponibles permanecen en AssetManifest.csv. La autorización de generación original con Hunyuan/Codex no implica aprobación institucional ni permite galerías o packs.

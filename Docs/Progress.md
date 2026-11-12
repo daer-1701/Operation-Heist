@@ -2,6 +2,8 @@
 
 Actualizado: 12 de noviembre de 2026. Objetivo vigente del usuario: terminar el juego completo de cinco capítulos. Leer este archivo al retomar y consultar FullGamePlan, Architecture y contratos según la tarea. No orientar el desarrollo a una demo ni reactivar recortes históricos.
 
+**Trabajo detenido a petición del usuario para seguir mañana.** Estado completo, pruebas fallidas, archivos nuevos y orden exacto de continuación en [Retomar-2026-11-13.md](Retomar-2026-11-13.md). No hay validación final de la nueva etapa táctica.
+
 ## Estado comprobado
 
 Depósito y banco tienen contratos individuales y LAN. El juego incluye FPS, interacción, botín único, objetivos, dos minijuegos, puertas/bóveda y extracción. Los guardias ya tienen sospecha, investigación, búsqueda, persecución y daño. Alarma por niveles con 60 s de evacuación al máximo. Salud, derribo, sangrado y reanimación integrados en contratos; F mantenida 3 s a 2,4 m sin obstáculos, con autoridad del host. Una recuperación propia por misión en individual/sala de un agente. Véase [SecuritySystems](SecuritySystems.md).
@@ -12,7 +14,7 @@ Validación anterior de seguridad: editor 62 aprobadas/3 omitidas de red, seguri
 
 Implementación en verificación: NavMesh runtime desde colliders originales, recálculo al cambiar puertas/obstáculos, rutas por esquinas; pool acotado de dos refuerzos de alarma, sin duplicar NetworkObjects; Q para pulso defensivo de tres cargas, 6 s de recarga y 5 s de aturdimiento. En LAN, anfitrión valida raycast, alcance, dirección, objetivo, estado y carga. Réplica de refuerzos/aturdimiento/consumo. Sin modificar escenas, prefabs, Packages ni ProjectSettings principales.
 
-Tras corregir inicialización nativa de NavMeshPath y limitar cada paso al siguiente vértice, las tres pruebas dirigidas individuales aprobaron 3/3: ruta alrededor de sólidos y reapertura, defensa/recarga/límites y ambos contratos con refuerzos/pausa. Prueba LAN en repetición con referencia persistente a la escena de geometría previa a migraciones Netcode. Resultados temporales en D:/ae/OH_Audit_2223e7a4/tactical-20261112-*.xml. No se da esta etapa por validada hasta recoger XML finales de individual y dos procesos.
+Se corrigieron inicialización nativa de NavMeshPath, avance por vértices, comparación horizontal y atasco de pasos tangentes a borde. Pruebas dirigidas intermedias 4/4; al añadir delta 0,005 s se obtuvo 4/5 y se implementó después la comprobación alternativa de microcamino, pendiente de repetir la suite final. En desarrollo LAN el depósito llegó a completar navegación, defensa, refuerzos y reset. La última prueba táctica no terminó: cliente observó 0,229 m de desplazamiento al medir aturdimiento (umbral 0,1 m); host pasó su medida pero agotó la espera de barrera. Puede ser interpolación pendiente, no se ha confirmado. [Estado de pruebas tácticas](QA/Tactical-Validation.md). No se ejecutó Windows ni revisión visual del HUD de esta etapa nueva.
 
 ## Documentación y recursos
 
@@ -20,6 +22,8 @@ Retirados once documentos operativos sustituidos; pendientes de modelos/campaña
 
 Solo contenido original; modelos del usuario, .meta y cambios previos conservados. Bolsa y expediente Hunyuan integrados; puertas/personajes nuevos e identificación del export sin nombre pendientes. No comprar/importar packs ni acceder a credenciales o servicios por desarrollo local. Autoría asistida documentada; aprobación institucional de IA no afirmada.
 
+Modelos añadidos durante la sesión: ElectricalPanel, WirePanel y SecurityCamera, originales del usuario de herramienta por indicar; registro con detalles pendientes, sin integración. Nuevo archivo de nombre provisional `OH_ExtractionTerminal (.fbx`, pendiente de revisar nombre/importación/meta. Conservar archivos del usuario sin renombrarlos automáticamente.
+
 ## Próximo paso
 
-Terminar regresión de navegación, defensa y refuerzos; probar depósito/banco con host/cliente en editor y Players Windows; renderizar HUD a 720p/1080p; actualizar inventario y evidencia. Después avanzar a preparación/lobby, progresión/guardado, ampliación de contratos y capítulos restantes según el plan. Las pruebas físicas entre PCs/cuatro agentes, rendimiento y latencia medidos siguen pendientes. Sin commit/push en estas etapas.
+Mañana: investigar inmovilidad autoritativa frente a convergencia de NetworkTransform del cliente, repetir TacticalSystemsTests y TacticalCoopTests sin rebajar exigencias para obtener verde, después regresión completa/misiones/salud y Players Windows con código final. Renderizar HUD 720p/1080p. El resto de la campaña y aceptación se detalla en Retomar y FullGamePlan. Sin commit/push; preservar cambios y archivos sin seguimiento. No continuar implementación hasta que el usuario retome.

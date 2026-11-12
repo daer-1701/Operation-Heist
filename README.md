@@ -2,6 +2,8 @@
 
 FPS de sigilo y extracción en desarrollo hacia una campaña completa de **cinco capítulos**, con práctica individual y cooperativo de hasta cuatro agentes. El alcance y orden de trabajo vigentes están en [Plan del juego completo](Docs/FullGamePlan.md).
 
+Estado de trabajo al cierre del 12 de noviembre: ampliación táctica implementada pero con validación LAN pendiente. [Qué existe, qué falta y cómo retomar](Docs/Retomar-2026-11-13.md). No considerar la rama una entrega final validada.
+
 Actualmente hay dos contratos implementados en individual y LAN: **el depósito**, con tres expedientes, y **Banco central**, con acceso cableado, panel de cámaras y bóveda. Ambos briefings permiten cambiar de contrato. Los otros tres capítulos, la progresión y varios sistemas de campaña siguen pendientes. Consulta [Progreso](Docs/Progress.md) para el estado comprobado y [AGENTS.md](AGENTS.md) para la política de recursos.
 
 ## Abrir el proyecto

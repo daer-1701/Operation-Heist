@@ -2,6 +2,8 @@
 
 Implementación original con asistencia de Codex, 12 de noviembre de 2026. Componentes reutilizables para los cinco capítulos; integrados por los componentes existentes del depósito y banco, sin regenerar escenas ni prefabs.
 
+**Estado al detener el trabajo:** la seguridad/salud anterior tiene evidencia propia; las ampliaciones de navegación, refuerzos y defensa descritas aquí están implementadas pero **no aceptadas todavía**. El último test LAN falla al medir movimiento de la réplica tras aturdimiento. [Estado exacto para retomar](Retomar-2026-11-13.md) y [pruebas tácticas](QA/Tactical-Validation.md). No extrapolar la validación de Security a los cambios nuevos.
+
 ## Guardias
 
 `PatrolGuard.TickSecurity` recibe los agentes elegibles y el nivel de alarma desde la misión individual o el anfitrión. Elige al agente visible más cercano, acumula sospecha durante un segundo (medio segundo en alerta 2–3), registra su última posición y pasa de patrulla a sospecha y alerta. En alerta se aproxima a velocidad 1,5× y aplica 25 puntos de daño cada segundo si sigue viendo al objetivo a 1,6 m o menos. Un agente derribado deja de ser objetivo de ataques.
