@@ -20,13 +20,28 @@ namespace OperationHeist.Player
         [SerializeField] private float duration = 300f;
         [SerializeField] private int requiredLoot = 3;
         private InputAction _pause;
+        private InputAction _recover;
+        private readonly MissionAlarm _alarm = new();
+        private PatrolGuard[] _guards;
+        private GuardNavigation _navigation;
+        private GuardReinforcements _reinforcements;
+        private readonly DefenseState _defense = new();
+        public int DefenseUses => _defense.UsesRemaining;
+        public float DefenseCooldown => _defense.CooldownRemaining;
+        public int ReinforcementCount => _reinforcements?.ActiveCount ?? 0;
+        public GuardReinforcements Reinforcements => _reinforcements;
+        public bool Detected { get; private set; }
+        public bool SelfRecoveryAvailable { get; private set; } = true;
+        public float RecoveryProgress { get; private set; }
         private PlayerHealth _boundHealth;
 
         public MissionPhase Phase { get; private set; } = MissionPhase.Briefing;
         public int DepositedCount { get; private set; }
         public int RequiredLoot => requiredLoot;
         public float RemainingSeconds { get; private set; }
-        public float Alarm { get; private set; }
+        public float Alarm => _alarm.Value;
+        public int AlarmLevel => _alarm.Level;
+        public float EmergencyRemaining => _alarm.Lockdown ? _alarm.EscapeRemaining : 0f;
         public string StatusMessage { get; private set; } = "Recupera los tres expedientes y vuelve a extracción.";
         public LootCarrier Carrier => carrier;
         public FpsController Player => player;
@@ -39,14 +54,16 @@ namespace OperationHeist.Player
         {
             RemainingSeconds = duration;
             _pause = new InputAction("PauseMission", InputActionType.Button, "<Keyboard>/escape");
+            _recover = new InputAction("SelfRecovery", InputActionType.Button, "<Keyboard>/f");
         }
-        private void OnEnable() { _pause?.Enable(); }
+        private void OnEnable() { _pause?.Enable(); _recover?.Enable(); }
         private void OnDisable()
         {
             _pause?.Disable();
+            _recover?.Disable();
             UnbindHealth();
         }
-        private void OnDestroy() { _pause?.Dispose(); UnbindHealth(); }
+        private void OnDestroy() { _pause?.Dispose(); _recover?.Dispose(); UnbindHealth(); _reinforcements?.Dispose(); _navigation?.Dispose(); }
         private void Start()
         {
             if (carrier != null) carrier.Configure(this);
@@ -102,6 +119,9 @@ namespace OperationHeist.Player
 
         private void ResolveRefs()
         {
+            if (_reinforcements == null) _guards = System.Array.FindAll(FindObjectsByType<PatrolGuard>(FindObjectsSortMode.None),
+                candidate => candidate.gameObject.scene == gameObject.scene);
+            if (player != null) (player.GetComponent<PlayerDefense>() ?? player.gameObject.AddComponent<PlayerDefense>()).Configure(this);
             if (player == null && carrier != null) player = carrier.GetComponent<FpsController>();
             if (player != null && health == null)
                 health = player.GetComponent<PlayerHealth>() ?? player.gameObject.AddComponent<PlayerHealth>();
@@ -151,12 +171,17 @@ namespace OperationHeist.Player
             Fail("Agente fuera de combate. La extracción se cancela.");
         }
 
-        private void OnHealthChanged() => Changed?.Invoke();
+        private void OnHealthChanged()
+        {
+            if (health != null && health.IsIncapacitated && carrier != null && carrier.IsCarrying)
+                carrier.RecoverItem(carrier.CarriedItem);
+            Changed?.Invoke();
+        }
 
         private void Update()
         {
             if (_pause.WasPressedThisFrame()) TogglePause();
-            Tick(Time.deltaTime);
+            Tick(Time.deltaTime, _recover.IsPressed());
         }
         private void OnApplicationFocus(bool focus)
         {
@@ -170,6 +195,7 @@ namespace OperationHeist.Player
             BindHealth();
             health?.ResetHealth();
             objectives?.ResetAll();
+            EnsureTactics(); _defense.Reset();
             SetPhase(MissionPhase.Playing, IsBankContract
                 ? "Conecta el panel de acceso en el pasillo derecho."
                 : "Recupera los tres expedientes. Evita la mirada del guardia.");
@@ -184,24 +210,60 @@ namespace OperationHeist.Player
             var scene = gameObject.scene;
             if (scene.IsValid() && scene.buildIndex >= 0) SceneManager.LoadScene(scene.buildIndex);
         }
-        public void Tick(float deltaTime)
+        public void Tick(float deltaTime, bool selfRecoveryHeld = false)
         {
-            if (Phase != MissionPhase.Playing || deltaTime <= 0 || float.IsNaN(deltaTime)) return;
+            if (Phase != MissionPhase.Playing || !MissionAlarm.FinitePositive(deltaTime)) return;
             RemainingSeconds = Mathf.Max(0, RemainingSeconds - deltaTime);
-            Alarm = Mathf.Max(0, Alarm - deltaTime * 0.045f);
-            if (security != null && player != null && security.Detects(player.transform,
-                player.PlayerCamera.transform.position, player.IsCrouching))
-                RaiseAlarm(.16f * deltaTime);
+            _navigation?.Tick(deltaTime); _defense.Tick(deltaTime);
+            bool spotted = false;
+            if (player != null && player.PlayerCamera != null)
+            {
+                var targets = new[] { new GuardTarget(player.transform, player.PlayerCamera.transform.position,
+                    player.IsCrouching, !player.IsCrouching && player.GetComponent<CharacterController>().velocity.magnitude > 4f, health) };
+                if (_guards != null) foreach (var guard in _guards)
+                    if (guard != null && guard.enabled) spotted |= guard.TickSecurity(deltaTime, targets, AlarmLevel);
+                if (_reinforcements != null) spotted |= _reinforcements.Tick(deltaTime, AlarmLevel == 3, targets);
+                spotted |= health != null && !health.IsIncapacitated && security != null &&
+                    security.Detects(player.transform, player.PlayerCamera.transform.position, player.IsCrouching);
+            }
+            Detected = spotted; _alarm.Tick(deltaTime, spotted);
             health?.Tick(deltaTime);
-            if (RemainingSeconds <= 0) Fail("Tiempo agotado. La salida ha sido cerrada.");
+            if (Phase != MissionPhase.Playing) return;
+            if (health != null && health.IsIncapacitated && health.IsAlive && SelfRecoveryAvailable && selfRecoveryHeld)
+            {
+                RecoveryProgress += deltaTime;
+                if (RecoveryProgress >= 3f && health.TryRevive(40f))
+                { SelfRecoveryAvailable = false; RecoveryProgress = 0f; }
+            }
+            else RecoveryProgress = 0f;
+            if (_alarm.Expired) Fail("Evacuación de emergencia agotada.");
+            else if (RemainingSeconds <= 0) Fail("Tiempo agotado. La salida ha sido cerrada.");
             else Changed?.Invoke();
         }
         public void RaiseAlarm(float amount)
         {
-            if (Phase != MissionPhase.Playing || amount <= 0 || float.IsNaN(amount)) return;
-            Alarm = Mathf.Clamp01(Alarm + amount);
-            if (Alarm >= 1f) Fail("Te han identificado. Operación comprometida.");
-            else Changed?.Invoke();
+            if (Phase != MissionPhase.Playing || !MissionAlarm.FinitePositive(amount)) return;
+            _alarm.Raise(amount);
+            Changed?.Invoke();
+        }
+
+        private void EnsureTactics()
+        {
+            if (_navigation != null || _guards == null || _guards.Length == 0) return;
+            _navigation = new GuardNavigation(gameObject.scene, _guards[0].transform.position);
+            foreach (var guard in _guards) guard.SetNavigation(_navigation);
+            _reinforcements = new GuardReinforcements(_guards[0], _navigation, transform);
+        }
+
+        public bool TryDefense(Vector3 direction)
+        {
+            if (Phase != MissionPhase.Playing || player == null || !player.HasLocalControl || !player.GameplayInputEnabled ||
+                health == null || health.IsIncapacitated ||
+                !DefenseState.TryHit(player.transform, player.PlayerCamera.transform.position, direction, out var guard)) return false;
+            bool owned = _guards != null && System.Array.IndexOf(_guards, guard) >= 0;
+            if (_reinforcements != null) for (int i = 0; i < GuardReinforcements.Capacity; i++) owned |= _reinforcements.Get(i) == guard;
+            if (!owned || !_defense.TryUse(guard)) return false;
+            StatusMessage = "Pulso defensivo · " + DefenseUses + "/3 cargas"; RaiseAlarm(.15f); return true;
         }
         public void Fail(string reason)
         {

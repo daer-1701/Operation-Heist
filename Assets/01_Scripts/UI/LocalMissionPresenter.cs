@@ -33,7 +33,6 @@ namespace OperationHeist.UI
         Button _primary, _restart, _coop, _otherContract;
         Slider _sensitivity, _fov, _volume;
         MissionPhase? _lastPhase;
-        PatrolGuard[] _guards;
         readonly System.Collections.Generic.List<Selectable> _navigation = new System.Collections.Generic.List<Selectable>();
 
         public void Configure(LocalMission value)
@@ -136,7 +135,7 @@ namespace OperationHeist.UI
             Label(bottom, "Controls", "WASD mover   ·   E interactuar   ·   G soltar   ·   Ctrl sigilo   ·   Shift correr   ·   Esc pausa", new Vector2(20, -39), new Vector2(1140, 25), 20, Muted);
             var alert = Box("DetectionBanner", _hud.transform, new Vector2(0, -210), new Vector2(560, 54), new Color(.55f, .12f, .1f, .92f), new Vector2(.5f, 1));
             _detectionPanel = alert.GetComponent<Image>();
-            _detection = Label(alert, "DetectionText", "DETECTADO — AGÁCHATE O BUSCA COBERTURA", new Vector2(0, 0), new Vector2(560, 54), 24, Color.white);
+            _detection = Label(alert, "DetectionText", "DETECTADO · BUSCA COBERTURA", new Vector2(0, 0), new Vector2(560, 54), 24, Color.white);
             _detection.alignment = TextAnchor.MiddleCenter;
             _detectionPanel.gameObject.SetActive(false);
 
@@ -207,21 +206,21 @@ namespace OperationHeist.UI
                     ? "Botín asegurado. Vuelve al punto de extracción."
                     : "Deposita el botín  " + mission.DepositedCount + " / " + mission.RequiredLoot;
             var item = mission.Carrier != null ? mission.Carrier.CarriedItem : null;
-            _cargo.text = item != null ? "CARGA: " + item.DisplayName + "  ·  G para soltar" : "MANOS LIBRES  ·  Una pieza por viaje";
+            _cargo.text = (item != null ? "CARGA " + item.DisplayName + " · G" : "MANOS LIBRES") + " · Q DEFENSA " + mission.DefenseUses + "/3" +
+                (mission.DefenseCooldown > 0f ? " · " + Mathf.CeilToInt(mission.DefenseCooldown) + "s" : "") + " · REFUERZOS " + mission.ReinforcementCount;
             int seconds = Mathf.CeilToInt(Mathf.Max(0f, mission.RemainingSeconds));
             _clock.text = "TIEMPO  " + (seconds / 60).ToString("00") + ":" + (seconds % 60).ToString("00");
             _clock.color = seconds <= 30 ? Amber : Color.white;
-            _alarmText.text = "ALARMA  " + Mathf.RoundToInt(mission.Alarm * 100f) + "%";
+            _alarmText.text = "ALARMA " + mission.AlarmLevel + " · " + Mathf.RoundToInt(mission.Alarm * 100f) + "%";
             _alarmFill.rectTransform.sizeDelta = new Vector2(325 * Mathf.Clamp01(mission.Alarm), 10);
             _status.text = mission.StatusMessage;
-            bool spotted = false;
-            if (playing)
-            {
-                if (_guards == null || _guards.Length == 0 || _guards[0] == null)
-                    _guards = Object.FindObjectsByType<PatrolGuard>(FindObjectsSortMode.None);
-                for (int i = 0; i < _guards.Length; i++)
-                    if (_guards[i] != null && _guards[i].SeesPlayer) { spotted = true; break; }
-            }
+            if (playing && mission.AlarmLevel == 3)
+                _status.text = "EVACUACIÓN DE EMERGENCIA · " + Mathf.CeilToInt(mission.EmergencyRemaining) + "s";
+            if (playing && mission.Health != null && mission.Health.IsIncapacitated)
+                _status.text = mission.SelfRecoveryAvailable && mission.Health.IsAlive
+                    ? "Mantén F para recuperarte · " + mission.RecoveryProgress.ToString("0.0") + "/3s · Un uso por misión"
+                    : "Agente fuera de combate";
+            bool spotted = playing && mission.Detected && (mission.Health == null || !mission.Health.IsIncapacitated);
             if (_detectionPanel != null)
             {
                 _detectionPanel.gameObject.SetActive(spotted);

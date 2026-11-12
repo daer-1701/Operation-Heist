@@ -15,6 +15,8 @@ namespace OperationHeist.Network
         private FpsController _controller;
         private NetworkPlayerHealth _health;
         private HeistNetworkSession _session;
+        private Vector3 _previousPosition;
+        public float ObservedSpeed { get; private set; }
 
         public FpsController Controller => _controller;
         public bool IsCrouched => _crouched.Value;
@@ -40,6 +42,7 @@ namespace OperationHeist.Network
         public override void OnNetworkSpawn()
         {
             _session = NetworkManager.GetComponent<HeistNetworkSession>();
+            _previousPosition = transform.position;
             _controller.SetLocalControl(IsOwner);
             ApplyAvatar(!IsOwner);
             if (ownerHud != null) ownerHud.enabled = IsOwner;
@@ -54,6 +57,11 @@ namespace OperationHeist.Network
 
         private void Update()
         {
+            if (IsSpawned)
+            {
+                ObservedSpeed = Time.deltaTime > 0f ? Vector3.Distance(transform.position, _previousPosition) / Time.deltaTime : 0f;
+                _previousPosition = transform.position;
+            }
             if (!IsSpawned || !IsOwner) return;
             if (IsPlaying && Keyboard.current?.escapeKey.wasPressedThisFrame == true) MenuOpen = !MenuOpen;
             if (_crouched.Value != _controller.IsCrouching) _crouched.Value = _controller.IsCrouching;

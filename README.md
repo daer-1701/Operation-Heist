@@ -1,6 +1,8 @@
 # Operation Heist
 
-FPS de sigilo y extracción con dos contratos en individual y LAN. **El depósito** tiene tres expedientes. **Banco central** tiene un acceso cableado, un panel de cámaras y una bóveda. Ambos briefings permiten cambiar de contrato. Consulta [Progreso](Docs/Progress.md) para el alcance verificado y [AGENTS.md](AGENTS.md) para la política de recursos.
+FPS de sigilo y extracción en desarrollo hacia una campaña completa de **cinco capítulos**, con práctica individual y cooperativo de hasta cuatro agentes. El alcance y orden de trabajo vigentes están en [Plan del juego completo](Docs/FullGamePlan.md).
+
+Actualmente hay dos contratos implementados en individual y LAN: **el depósito**, con tres expedientes, y **Banco central**, con acceso cableado, panel de cámaras y bóveda. Ambos briefings permiten cambiar de contrato. Los otros tres capítulos, la progresión y varios sistemas de campaña siguen pendientes. Consulta [Progreso](Docs/Progress.md) para el estado comprobado y [AGENTS.md](AGENTS.md) para la política de recursos.
 
 ## Abrir el proyecto
 
@@ -23,17 +25,23 @@ Dependencias relevantes: URP 17.5.0, Input System 1.20.0, AI Navigation 2.0.14, 
 | Escape | Pausar o reanudar en local, abrir el menú individual en LAN |
 | E | Interactuar con la bóveda, el expediente o el terminal que se está mirando |
 | G | Soltar carga en local o devolverla a su origen en LAN |
+| Mantener F | Reanimar aliado cercano durante tres segundos; en individual, una recuperación propia por misión |
+| Q | Pulso defensivo: tres cargas, 3 m de alcance y 6 s de recarga; aturde al guardia 5 s |
 | Tab / flechas, Enter | Navegar y confirmar en el briefing |
 
 Ajustes en el componente `FpsController` del prefab [Assets/02_Prefabs/Player/FPSPlayer.prefab](Assets/02_Prefabs/Player/FPSPlayer.prefab). Detalle: [Docs/FPSController.md](Docs/FPSController.md).
 
-Menús Editor: **Operation Heist → Crear prototipo FPS** y **Crear kit original e integrar** (regeneran recursos; guardar cambios propios antes).
+Los menús de generación del Editor pueden reemplazar escenas, prefabs y modelos; se ejecutan en copia aislada después de conservar cambios manuales. El prototipo FPS, el laboratorio LAN y la galería son herramientas de desarrollo y pruebas.
 
 En el depósito, entrega tres expedientes y vuelve a interactuar con el terminal para evacuar. En el banco, apunta y pulsa **E** en cada cable siguiendo la secuencia del panel. Cruza el acceso y cambia los interruptores hasta obtener `101`. Después abre la bóveda, recoge el expediente y vuelve al terminal. En LAN, el equipo se reúne en la zona turquesa para evacuar. Los ajustes de sensibilidad, FOV y volumen se comparten entre los contratos locales.
 
+Los guardias acumulan sospecha, investigan, buscan y persiguen con daño a corta distancia. Alarma máxima activa 60 segundos de evacuación. Al derribo, la carga vuelve a su origen; la reanimación requiere un aliado consciente a 2,4 m o menos, sin obstáculos, antes de agotar el sangrado. [Seguridad y supervivencia](Docs/SecuritySystems.md).
+
+La navegación usa una malla generada desde la geometría original y se actualiza al abrir puertas. En nivel 3 pueden llegar hasta dos refuerzos por misión. Q permite defenderse de un guardia cercano y visible; el uso válido aumenta alarma. En cooperativo el anfitrión decide rutas, despliegue y defensa, y replica el resultado al equipo.
+
 ## Modelos originales
 
-Kit procedural en [Assets/04_Models/Codex](Assets/04_Models/Codex), materiales en [Assets/03_Materials](Assets/03_Materials), prefabs en [Assets/02_Prefabs/Props](Assets/02_Prefabs/Props). Inventario: [Docs/AssetManifest.csv](Docs/AssetManifest.csv). Guía: [Docs/OriginalModels.md](Docs/OriginalModels.md). Hunyuan 3D pendiente de exportación manual ([Docs/HunyuanPrompt.md](Docs/HunyuanPrompt.md)).
+Kit procedural en [Assets/04_Models/Codex](Assets/04_Models/Codex), materiales en [Assets/03_Materials](Assets/03_Materials) y prefabs en [Assets/02_Prefabs/Production](Assets/02_Prefabs/Production). Bolsa y expediente originales Hunyuan integrados; personajes y puertas nuevos pendientes de integración. La bolsa conserva una única fuente en `Assets/04_Models/Hunyuan/LootBag/OH_LootBag.fbx`. Inventario: [Docs/AssetManifest.csv](Docs/AssetManifest.csv). Guías: [Docs/ModelCatalog.md](Docs/ModelCatalog.md) y [Docs/HunyuanPrompt.md](Docs/HunyuanPrompt.md).
 
 ## Pruebas Play Mode
 

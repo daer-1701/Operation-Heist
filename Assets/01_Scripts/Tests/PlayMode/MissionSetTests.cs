@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using OperationHeist.Player;
@@ -52,7 +53,10 @@ namespace OperationHeist.Tests
             Assert.That(GameObject.Find("OH_FloorTile"), Is.Not.Null);
             var bag = GameObject.Find("OH_LootBag");
             Assert.That(bag, Is.Not.Null);
-            Assert.That(bag.transform.Find("Modelo Hunyuan").GetComponentInChildren<MeshRenderer>(), Is.Not.Null);
+            var visual = Object.FindObjectsByType<Transform>().FirstOrDefault(t => t.name == "Modelo Hunyuan" &&
+                t.parent != null && t.parent.name == "OH_LootBag");
+            Assert.That(visual, Is.Not.Null, "Visual integrado bajo la raíz del prefab, no el nodo homónimo del FBX");
+            Assert.That(visual.GetComponentInChildren<MeshRenderer>(), Is.Not.Null);
         }
 
         [UnityTest]

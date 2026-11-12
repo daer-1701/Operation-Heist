@@ -407,6 +407,7 @@ namespace OperationHeist.Tests
             }
 
             // Other Play Mode fixtures create their collision geometry at the origin.
+            if (!Application.isEditor) yield break;
             var scene = SceneManager.GetActiveScene();
             if (scene.name != "Heist_Depot" && scene.name != "Heist_DepotCoop" && scene.name != "Heist_NetworkLab" &&
                 scene.name != "Heist_Bank" && scene.name != "Heist_BankCoop")

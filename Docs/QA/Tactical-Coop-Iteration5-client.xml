@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Failed(Child)" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9,7929779">
+  <test-suite type="TestSuite" id="1096" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9.792978" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1090" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/client/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9.770857" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="19832" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1091" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9.768159" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1092" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9.765608" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1081" name="TacticalCoopTests" fullname="OperationHeist.Tests.TacticalCoopTests" classname="OperationHeist.Tests.TacticalCoopTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9.760503" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1082" name="BothContractsRouteDefendDeployAndResetAcrossTwoProcesses" fullname="OperationHeist.Tests.TacticalCoopTests.BothContractsRouteDefendDeployAndResetAcrossTwoProcesses" methodname="BothContractsRouteDefendDeployAndResetAcrossTwoProcesses" classname="OperationHeist.Tests.TacticalCoopTests" runstate="Runnable" seed="2147276428" result="Failed" start-time="2026-11-12 13:49:56Z" end-time="2026-11-12 13:50:06Z" duration="9.737098" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  stun freezes movement
+  Expected: less than 0.100000001f
+  But was:  0.22901535f
+]]></message>
+                <stack-trace><![CDATA[at OperationHeist.Tests.TacticalCoopTests+<BothContractsRouteDefendDeployAndResetAcrossTwoProcesses>d__8.MoveNext () [0x00c8a] in D:\ae\OH_Audit_2223e7a4\client\Assets\01_Scripts\Tests\PlayMode\TacticalCoopTests.cs:97
+at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in .\Library\PackageCache\com.unity.test-framework@1405238725ab\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:44
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

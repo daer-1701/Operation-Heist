@@ -133,16 +133,38 @@ namespace OperationHeist.Network
                 {
                     MissionPhase.Won => "EXTRACCIÓN CONFIRMADA · Equipo a salvo",
                     MissionPhase.Lost => "OPERACIÓN INTERRUMPIDA · " +
-                        (depot.Seconds == 0 ? "Tiempo agotado" : "Alarma máxima"),
+                        depot.FailureReason,
                     _ => $"BOTÍN  {depot.Deposited}/{depot.Required}   ·   " +
-                        $"{depot.Seconds / 60:00}:{depot.Seconds % 60:00}   ·   ALARMA  {depot.AlarmPercent}%"
+                        $"{depot.Seconds / 60:00}:{depot.Seconds % 60:00} · ALERTA {depot.AlarmLevel}"
                 };
+                if (depot.Phase == MissionPhase.Playing && player != null)
+                {
+                    var defense = player.GetComponent<NetworkReviveInteractor>();
+                    _status.text += "\nQ DEFENSA " + defense.DefenseUses + "/3 · " + Mathf.CeilToInt(defense.DefenseCooldown) +
+                        "s · REFUERZOS " + depot.ReinforcementCount;
+                }
                 var carried = player == null ? null : NetworkLootItem.FindCarried(manager, player.OwnerClientId);
                 _hint.text = depot.Phase != MissionPhase.Playing ? "Cierra la sesión para volver al briefing." :
                     carried != null ? $"CARGA: {carried.DisplayName}\nE en terminal · G devuelve la carga" :
                     depot.Deposited == depot.Required ? "Reúne al equipo ante el terminal.\nMíralo y pulsa E para evacuar." :
                     depot.IsBank ? GetBankHint(depot, aiming) :
                     "E recoge un expediente · Ctrl para agacharte\nEsc abre el menú sin pausar al equipo";
+                if (depot.Phase == MissionPhase.Playing)
+                {
+                    var health = player == null ? null : player.GetComponent<NetworkPlayerHealth>();
+                    if (health != null && health.ReplicatedIncapacitated)
+                    {
+                        if (!health.LocalHealth.IsAlive) _hint.text = "Fuera de combate. Espera la extracción del equipo.";
+                        else if (manager.SpawnManager.PlayerObjects.Count == 1)
+                            _hint.text = health.SelfRecoveryAvailable ? "Mantén F para recuperarte (3s). Un uso por misión."
+                                : "Sin recuperaciones disponibles.";
+                        else _hint.text = "Derribado. Un compañero debe acercarse y mantener F.";
+                    }
+                    else if (health != null && health.ReviveProgress > 0f)
+                        _hint.text = "Reanimando · " + health.ReviveProgress.ToString("0.0") + "/3s · Mantén F";
+                    else _hint.text = "Mantén F junto a un aliado derribado para reanimarlo.\n" +
+                        (depot.AlarmLevel == 3 ? "EVACUACIÓN DE EMERGENCIA · " + depot.EmergencyRemaining + "s" : _hint.text.Split('\n')[0]);
+                }
                 return;
             }
             _status.text = _session.StatusMessage;

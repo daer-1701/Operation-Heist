@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Failed(Child)" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1,6460837">
+  <test-suite type="TestSuite" id="1096" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1.646084" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1090" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/host/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1.624715" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10480" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1091" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1.621956" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1092" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="71" result="Failed" site="Child" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1.619487" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1083" name="TacticalSystemsTests" fullname="OperationHeist.Tests.TacticalSystemsTests" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1.615621" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1089" name="BothLocalContractsDefendDeployPauseAndCapReinforcements" fullname="OperationHeist.Tests.TacticalSystemsTests.BothLocalContractsDefendDeployPauseAndCapReinforcements" methodname="BothLocalContractsDefendDeployPauseAndCapReinforcements" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="1506141683" result="Passed" start-time="2026-11-12 13:44:37Z" end-time="2026-11-12 13:44:39Z" duration="1.482482" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1088" name="DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" fullname="OperationHeist.Tests.TacticalSystemsTests.DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" methodname="DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="1272079016" result="Passed" start-time="2026-11-12 13:44:39Z" end-time="2026-11-12 13:44:39Z" duration="0.006285" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1087" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-11-12 13:44:39Z" end-time="2026-11-12 13:44:39Z" duration="0.105047" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[One or more child tests had errors]]></message>
+              </failure>
+              <test-case id="1084" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(0.0f,20.0f,0.1f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(0.0f,20.0f,0.1f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="368854435" result="Passed" start-time="2026-11-12 13:44:39Z" end-time="2026-11-12 13:44:39Z" duration="0.032467" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1085" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.1f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.1f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="229473441" result="Passed" start-time="2026-11-12 13:44:39Z" end-time="2026-11-12 13:44:39Z" duration="0.025305" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1086" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.005f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.005f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="1585524733" result="Failed" start-time="2026-11-12 13:44:39Z" end-time="2026-11-12 13:44:39Z" duration="0.044177" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <failure>
+                  <message><![CDATA[  guard final offset (-2.40, 0.05, -0.30) nav-edge corner=2 path=(37.60, 8.05, -0.30);(37.60, 8.05, -0.30);(37.60, 8.05, 0.30);(40.00, 8.05, 4.00)
+  Expected: less than 0.400000006f
+  But was:  4.92649889f
+]]></message>
+                  <stack-trace><![CDATA[at OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor (System.Single height, System.Single floorSize, System.Single delta) [0x0027a] in D:\ae\OH_Audit_2223e7a4\host\Assets\01_Scripts\Tests\PlayMode\TacticalSystemsTests.cs:44
+]]></stack-trace>
+                </failure>
+                <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
