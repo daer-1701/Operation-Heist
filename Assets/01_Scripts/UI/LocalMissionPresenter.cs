@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace OperationHeist.UI
 {
-    /// <summary>Original runtime uGUI presentation for the local depot mission.</summary>
+    /// <summary>Original runtime uGUI presentation for local contracts.</summary>
     [DisallowMultipleComponent, DefaultExecutionOrder(250)]
     public sealed class LocalMissionPresenter : MonoBehaviour
     {
@@ -27,13 +27,12 @@ namespace OperationHeist.UI
         InputActionAsset _uiActions;
         Font _font;
         Text _objective, _cargo, _clock, _alarmText, _status, _detection;
-        Text _title, _body, _primaryLabel, _phaseTag;
+        Text _title, _body, _primaryLabel, _phaseTag, _contract;
         Text _sensitivityText, _fovText, _volumeText;
         Image _alarmFill, _detectionPanel;
-        Button _primary, _restart, _coop;
+        Button _primary, _restart, _coop, _otherContract;
         Slider _sensitivity, _fov, _volume;
         MissionPhase? _lastPhase;
-        PatrolGuard[] _guards;
         readonly System.Collections.Generic.List<Selectable> _navigation = new System.Collections.Generic.List<Selectable>();
 
         public void Configure(LocalMission value)
@@ -123,7 +122,7 @@ namespace OperationHeist.UI
             _hud = Rect("MissionHUD", root.transform).gameObject;
             Stretch(_hud.GetComponent<RectTransform>());
             var left = Box("ObjectivePanel", _hud.transform, new Vector2(40, -36), new Vector2(720, 150), Panel, new Vector2(0, 1));
-            Label(left, "Contract", "CONTRATO 01  /  EL DEPÓSITO", new Vector2(24, -18), new Vector2(670, 30), 22, Teal);
+            _contract = Label(left, "Contract", "", new Vector2(24, -18), new Vector2(670, 30), 22, Teal);
             _objective = Label(left, "Objective", "", new Vector2(24, -55), new Vector2(670, 42), 29, Color.white);
             _cargo = Label(left, "Cargo", "", new Vector2(24, -103), new Vector2(670, 30), 22, Muted);
             var right = Box("SecurityPanel", _hud.transform, new Vector2(-40, -36), new Vector2(370, 150), Panel, new Vector2(1, 1));
@@ -136,7 +135,7 @@ namespace OperationHeist.UI
             Label(bottom, "Controls", "WASD mover   ·   E interactuar   ·   G soltar   ·   Ctrl sigilo   ·   Shift correr   ·   Esc pausa", new Vector2(20, -39), new Vector2(1140, 25), 20, Muted);
             var alert = Box("DetectionBanner", _hud.transform, new Vector2(0, -210), new Vector2(560, 54), new Color(.55f, .12f, .1f, .92f), new Vector2(.5f, 1));
             _detectionPanel = alert.GetComponent<Image>();
-            _detection = Label(alert, "DetectionText", "DETECTADO — AGÁCHATE O BUSCA COBERTURA", new Vector2(0, 0), new Vector2(560, 54), 24, Color.white);
+            _detection = Label(alert, "DetectionText", "DETECTADO · BUSCA COBERTURA", new Vector2(0, 0), new Vector2(560, 54), 24, Color.white);
             _detection.alignment = TextAnchor.MiddleCenter;
             _detectionPanel.gameObject.SetActive(false);
 
@@ -165,10 +164,15 @@ namespace OperationHeist.UI
             _primaryLabel = _primary.GetComponentInChildren<Text>();
             _restart = ActionButton(panel, "Restart", "REINICIAR", new Vector2(514, -714), new Vector2(270, 68), new Color(.22f, .32f, .35f), () => { PlayerPrefs.Save(); mission?.RestartMission(); });
             _coop = ActionButton(panel, "Coop", "COOPERATIVO LAN", new Vector2(514, -714), new Vector2(270, 68),
-                new Color(.22f, .32f, .35f), () => SceneManager.LoadScene("Heist_DepotCoop"));
+                new Color(.22f, .32f, .35f), () => SceneManager.LoadScene(CoopScene));
+            _otherContract = ActionButton(panel, "OtherContract", "", new Vector2(680, -643), new Vector2(394, 50),
+                new Color(.22f, .32f, .35f), () => { PlayerPrefs.Save(); SceneManager.LoadScene(OtherContractScene); });
             ActionButton(panel, "Quit", "SALIR", new Vector2(802, -714), new Vector2(272, 68), new Color(.22f, .32f, .35f), Quit);
             Label(panel, "MenuHint", "Tab / flechas para navegar  ·  Enter para confirmar", new Vector2(46, -803), new Vector2(1028, 27), 19, Muted);
         }
+
+        string OtherContractScene => mission.IsBankContract ? "Heist_Depot" : "Heist_Bank";
+        string CoopScene => mission.IsBankContract ? "Heist_BankCoop" : "Heist_DepotCoop";
 
         void OnPrimary()
         {
@@ -202,21 +206,21 @@ namespace OperationHeist.UI
                     ? "Botín asegurado. Vuelve al punto de extracción."
                     : "Deposita el botín  " + mission.DepositedCount + " / " + mission.RequiredLoot;
             var item = mission.Carrier != null ? mission.Carrier.CarriedItem : null;
-            _cargo.text = item != null ? "CARGA: " + item.DisplayName + "  ·  G para soltar" : "MANOS LIBRES  ·  Una pieza por viaje";
+            _cargo.text = (item != null ? "CARGA " + item.DisplayName + " · G" : "MANOS LIBRES") + " · Q DEFENSA " + mission.DefenseUses + "/3" +
+                (mission.DefenseCooldown > 0f ? " · " + Mathf.CeilToInt(mission.DefenseCooldown) + "s" : "") + " · REFUERZOS " + mission.ReinforcementCount;
             int seconds = Mathf.CeilToInt(Mathf.Max(0f, mission.RemainingSeconds));
             _clock.text = "TIEMPO  " + (seconds / 60).ToString("00") + ":" + (seconds % 60).ToString("00");
             _clock.color = seconds <= 30 ? Amber : Color.white;
-            _alarmText.text = "ALARMA  " + Mathf.RoundToInt(mission.Alarm * 100f) + "%";
+            _alarmText.text = "ALARMA " + mission.AlarmLevel + " · " + Mathf.RoundToInt(mission.Alarm * 100f) + "%";
             _alarmFill.rectTransform.sizeDelta = new Vector2(325 * Mathf.Clamp01(mission.Alarm), 10);
             _status.text = mission.StatusMessage;
-            bool spotted = false;
-            if (playing)
-            {
-                if (_guards == null || _guards.Length == 0 || _guards[0] == null)
-                    _guards = Object.FindObjectsByType<PatrolGuard>(FindObjectsSortMode.None);
-                for (int i = 0; i < _guards.Length; i++)
-                    if (_guards[i] != null && _guards[i].SeesPlayer) { spotted = true; break; }
-            }
+            if (playing && mission.AlarmLevel == 3)
+                _status.text = "EVACUACIÓN DE EMERGENCIA · " + Mathf.CeilToInt(mission.EmergencyRemaining) + "s";
+            if (playing && mission.Health != null && mission.Health.IsIncapacitated)
+                _status.text = mission.SelfRecoveryAvailable && mission.Health.IsAlive
+                    ? "Mantén F para recuperarte · " + mission.RecoveryProgress.ToString("0.0") + "/3s · Un uso por misión"
+                    : "Agente fuera de combate";
+            bool spotted = playing && mission.Detected && (mission.Health == null || !mission.Health.IsIncapacitated);
             if (_detectionPanel != null)
             {
                 _detectionPanel.gameObject.SetActive(spotted);
@@ -225,15 +229,21 @@ namespace OperationHeist.UI
             }
             if (_lastPhase == mission.Phase) return;
             _lastPhase = mission.Phase;
+            bool bank = mission.IsBankContract;
+            _contract.text = bank ? "CONTRATO 02  /  BANCO CENTRAL" : "CONTRATO 01  /  EL DEPÓSITO";
+            _otherContract.gameObject.SetActive(!playing && Application.CanStreamedLevelBeLoaded(OtherContractScene));
+            _otherContract.GetComponentInChildren<Text>(true).text = bank ? "CONTRATO 01 · DEPÓSITO" : "CONTRATO 02 · BANCO";
             _restart.gameObject.SetActive(mission.Phase == MissionPhase.Paused);
             _coop.gameObject.SetActive(mission.Phase == MissionPhase.Briefing &&
-                Application.CanStreamedLevelBeLoaded("Heist_DepotCoop"));
+                Application.CanStreamedLevelBeLoaded(CoopScene));
             switch (mission.Phase)
             {
                 case MissionPhase.Briefing:
-                    _phaseTag.text = "MISIÓN LOCAL  /  01";
-                    _title.text = "El depósito";
-                    _body.text = "Recupera las tres piezas de botín y llévalas al punto de extracción, una por viaje.\n\nEvita la mirada del guardia: agáchate y usa cobertura. Deposita con E y vuelve a pulsar E, sin carga, para evacuar.";
+                    _phaseTag.text = bank ? "MISIÓN LOCAL  /  02" : "MISIÓN LOCAL  /  01";
+                    _title.text = bank ? "Banco central" : "El depósito";
+                    _body.text = bank
+                        ? "En el pasillo derecho, conecta los cables 2–4–1–3 con E. Cruza la puerta y ajusta el panel de cámaras a 101.\n\nAbre la bóveda, recoge el expediente y vuelve al terminal. Pulsa E para entregar y otra vez para evacuar."
+                        : "Recupera las tres piezas de botín y llévalas al punto de extracción, una por viaje.\n\nEvita la mirada del guardia: agáchate y usa cobertura. Deposita con E y vuelve a pulsar E, sin carga, para evacuar.";
                     _primaryLabel.text = "INICIAR MISIÓN";
                     break;
                 case MissionPhase.Paused:
@@ -245,7 +255,7 @@ namespace OperationHeist.UI
                 case MissionPhase.Won:
                     _phaseTag.text = "CONTRATO COMPLETADO";
                     _title.text = "Extracción confirmada";
-                    _body.text = "Las tres piezas están a salvo.\n\nBotín asegurado: " + mission.DepositedCount + " / " + mission.RequiredLoot + "\nTiempo restante: " + (seconds / 60).ToString("00") + ":" + (seconds % 60).ToString("00") + "\n\nVuelve a intentarlo para mejorar tu ruta.";
+                    _body.text = mission.StatusMessage + "\n\nBotín asegurado: " + mission.DepositedCount + " / " + mission.RequiredLoot + "\nTiempo restante: " + (seconds / 60).ToString("00") + ":" + (seconds % 60).ToString("00") + "\n\nVuelve a intentarlo para mejorar tu ruta.";
                     _primaryLabel.text = "JUGAR DE NUEVO";
                     break;
                 case MissionPhase.Lost:

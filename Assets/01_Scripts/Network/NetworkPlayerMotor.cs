@@ -15,6 +15,8 @@ namespace OperationHeist.Network
         private FpsController _controller;
         private NetworkPlayerHealth _health;
         private HeistNetworkSession _session;
+        private Vector3 _previousPosition;
+        public float ObservedSpeed { get; private set; }
 
         public FpsController Controller => _controller;
         public bool IsCrouched => _crouched.Value;
@@ -40,8 +42,9 @@ namespace OperationHeist.Network
         public override void OnNetworkSpawn()
         {
             _session = NetworkManager.GetComponent<HeistNetworkSession>();
+            _previousPosition = transform.position;
             _controller.SetLocalControl(IsOwner);
-            if (avatar != null) avatar.enabled = !IsOwner;
+            ApplyAvatar(!IsOwner);
             if (ownerHud != null) ownerHud.enabled = IsOwner;
             UpdateControl();
         }
@@ -54,6 +57,11 @@ namespace OperationHeist.Network
 
         private void Update()
         {
+            if (IsSpawned)
+            {
+                ObservedSpeed = Time.deltaTime > 0f ? Vector3.Distance(transform.position, _previousPosition) / Time.deltaTime : 0f;
+                _previousPosition = transform.position;
+            }
             if (!IsSpawned || !IsOwner) return;
             if (IsPlaying && Keyboard.current?.escapeKey.wasPressedThisFrame == true) MenuOpen = !MenuOpen;
             if (_crouched.Value != _controller.IsCrouching) _crouched.Value = _controller.IsCrouching;
@@ -71,6 +79,15 @@ namespace OperationHeist.Network
         {
             bool allow = IsOwner && IsPlaying && !IsDown && !MenuOpen;
             if (_controller.GameplayInputEnabled != allow) _controller.SetGameplayInputEnabled(allow);
+        }
+
+        private void ApplyAvatar(bool visible)
+        {
+            if (avatar == null) return;
+            Transform root = avatar.transform;
+            while (root.parent != null && root.parent != transform) root = root.parent;
+            foreach (var renderer in root.GetComponentsInChildren<Renderer>(true))
+                renderer.enabled = visible;
         }
 
         public bool CanReach(Collider target, float maxDistance)

@@ -93,7 +93,7 @@ namespace OperationHeist.UI
                 ? new Color(0.95f, 0.35f, 0.25f, 1f)
                 : Color.Lerp(new Color(0.9f, 0.35f, 0.25f), new Color(0.35f, 0.85f, 0.7f), health.NormalizedHealth);
             _label.text = health.IsIncapacitated
-                ? "DERRIBADO  ·  sangrado " + Mathf.CeilToInt(health.BleedoutRemaining) + "s"
+                ? (health.IsAlive ? "DERRIBADO  ·  sangrado " + Mathf.CeilToInt(health.BleedoutRemaining) + "s" : "FUERA DE COMBATE")
                 : "VITALIDAD  " + Mathf.CeilToInt(health.CurrentHealth) + " / " + Mathf.CeilToInt(health.MaxHealth);
         }
 

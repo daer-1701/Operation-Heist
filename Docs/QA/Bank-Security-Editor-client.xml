@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:46Z" duration="13,5735155">
+  <test-suite type="TestSuite" id="1079" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="59" result="Passed" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:46Z" duration="13.573516" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1073" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/client/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="59" result="Passed" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:46Z" duration="13.560844" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="10268" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1074" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="59" result="Passed" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:46Z" duration="13.559538" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1075" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="59" result="Passed" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:46Z" duration="13.558665" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CoopDepotLanTests" fullname="OperationHeist.Tests.CoopDepotLanTests" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:46Z" duration="13.555555" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1003" name="TwoInstancesCompleteBank" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteBank" methodname="TwoInstancesCompleteBank" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="1357842810" result="Passed" start-time="2026-11-10 15:42:32Z" end-time="2026-11-10 15:42:38Z" duration="5.913999" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[COOP_BANK_OK client · seguridad, bóveda, 1/1 y extracción
+]]></output>
+            </test-case>
+            <test-case id="1002" name="TwoInstancesCompleteDepot" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteDepot" methodname="TwoInstancesCompleteDepot" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="916755288" result="Passed" start-time="2026-11-10 15:42:38Z" end-time="2026-11-10 15:42:46Z" duration="7.613459" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[COOP_DEPOT_OK client · 3/3 · extracción compartida
+Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -14,17 +14,25 @@ namespace OperationHeist.Editor
     public static class ProductionModelsBuilder
     {
         [Serializable] private class Recipes { public Model[] models; }
-        [Serializable] private class Model { public string name, category; public Part[] parts; }
+        [Serializable] private class Model
+        {
+            public string name, category;
+            public Part[] parts;
+            // Optional per-model material overrides: index maps palette slot → new Color RGBA.
+            // Stored as flat array: [slot0R, slot0G, slot0B, slot0A, slot1R, ...].  Empty = use defaults.
+            public float[] materialOverrides;
+        }
         [Serializable] private class Part
         {
             public string name, group;
             public Vector3 position, size, pivot, rotation;
             public int material, shape;
+            // shape 0 = cube, 1 = cylinder, 2 = ingot, 3 = sphere
         }
         private const string MeshFolder = "Assets/04_Models/Codex/Production";
         private const string PrefabFolder = "Assets/02_Prefabs/Production";
         private static Material[] materials;
-        private static Mesh cube, cylinder, ingot;
+        private static Mesh cube, cylinder, ingot, sphere;
 
         [MenuItem("Operation Heist/Modelos/Generar kit depósito y banco")]
         public static void Build()
@@ -52,6 +60,7 @@ namespace OperationHeist.Editor
             ingot.RecalculateNormals(); ingot.RecalculateBounds();
             ingot = SaveMesh(ingot, MeshFolder + "/OH_KitIngot.asset");
             cylinder = SaveMesh(CreateCylinder(), MeshFolder + "/OH_KitCylinder.asset");
+            sphere = SaveMesh(CreateSphere(), MeshFolder + "/OH_KitSphere.asset");
             var gallery = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var report = new List<string> {
                 "# Modelos originales para depósito y banco", "",
@@ -93,6 +102,22 @@ namespace OperationHeist.Editor
 
         private static GameObject CreateModel(Model model)
         {
+            // Build effective palette: start from global materials, apply per-model overrides if present.
+            var palette = (Material[])materials.Clone();
+            if (model.materialOverrides != null && model.materialOverrides.Length >= 4)
+            {
+                int overrideCount = model.materialOverrides.Length / 4;
+                for (int oi = 0; oi < overrideCount && oi < palette.Length; oi++)
+                {
+                    float r = model.materialOverrides[oi * 4 + 0];
+                    float g = model.materialOverrides[oi * 4 + 1];
+                    float b = model.materialOverrides[oi * 4 + 2];
+                    float a = model.materialOverrides[oi * 4 + 3];
+                    if (a > 0f) // a==0 means "keep default"
+                        palette[oi] = FpsPrototypeBuilder.OriginalMaterial("OH_" + model.name + "_Mat" + oi, new Color(r, g, b));
+                }
+            }
+
             var root = new GameObject("OH_" + model.name);
             var groups = new Dictionary<string, Transform> { [""] = root.transform };
             var partsByGroup = new Dictionary<string, List<Part>>();
@@ -111,12 +136,15 @@ namespace OperationHeist.Editor
             foreach (var entry in partsByGroup)
             {
                 Transform group = groups[entry.Key];
-                var combinations = new List<CombineInstance>[materials.Length];
+                var combinations = new List<CombineInstance>[palette.Length];
                 for (int i = 0; i < combinations.Length; i++) combinations[i] = new List<CombineInstance>();
                 foreach (var part in entry.Value)
                 {
+                    Mesh sourceMesh = part.shape == 3 ? sphere :
+                                      part.shape == 2 ? ingot :
+                                      part.shape == 1 ? cylinder : cube;
                     combinations[part.material].Add(new CombineInstance {
-                        mesh = part.shape == 2 ? ingot : part.shape == 1 ? cylinder : cube,
+                        mesh = sourceMesh,
                         transform = Matrix4x4.TRS(part.position - group.position, Quaternion.Euler(part.rotation), part.size)
                     });
                     if (model.category == "Architecture" || model.category == "Depot" || model.category == "Bank" || part.group == "Door")
@@ -139,7 +167,7 @@ namespace OperationHeist.Editor
                     var submesh = new Mesh();
                     submesh.CombineMeshes(list.ToArray(), true, true);
                     submeshes.Add(new CombineInstance { mesh = submesh, transform = Matrix4x4.identity });
-                    usedMaterials.Add(materials[Array.IndexOf(combinations, list)]);
+                    usedMaterials.Add(palette[Array.IndexOf(combinations, list)]);
                 }
                 var combined = new Mesh { name = "OH_" + model.name + "_" + (entry.Key == "" ? "Body" : entry.Key) };
                 combined.CombineMeshes(submeshes.ToArray(), false, false);
@@ -195,6 +223,45 @@ namespace OperationHeist.Editor
                 Triangle(Vector3.up * .5f, q + Vector3.up, p + Vector3.up);
             }
             var mesh = new Mesh { name = "OH_KitCylinder" };
+            mesh.SetVertices(vertices); mesh.SetTriangles(triangles, 0);
+            mesh.RecalculateNormals(); mesh.RecalculateBounds();
+            return mesh;
+        }
+
+        /// <summary>UV sphere with 16 latitudinal rings and 16 longitudinal segments, radius 0.5.</summary>
+        private static Mesh CreateSphere()
+        {
+            const int lat = 16, lon = 16;
+            var vertices = new List<Vector3>();
+            var triangles = new List<int>();
+
+            for (int i = 0; i <= lat; i++)
+            {
+                float phi = Mathf.PI * i / lat;           // 0 → π (top to bottom)
+                float sinPhi = Mathf.Sin(phi);
+                float cosPhi = Mathf.Cos(phi);
+                for (int j = 0; j <= lon; j++)
+                {
+                    float theta = 2f * Mathf.PI * j / lon; // 0 → 2π
+                    vertices.Add(new Vector3(
+                        Mathf.Cos(theta) * sinPhi * .5f,
+                        cosPhi * .5f,
+                        Mathf.Sin(theta) * sinPhi * .5f));
+                }
+            }
+
+            for (int i = 0; i < lat; i++)
+            {
+                for (int j = 0; j < lon; j++)
+                {
+                    int a = i * (lon + 1) + j;
+                    int b = a + lon + 1;
+                    triangles.Add(a); triangles.Add(b); triangles.Add(a + 1);
+                    triangles.Add(a + 1); triangles.Add(b); triangles.Add(b + 1);
+                }
+            }
+
+            var mesh = new Mesh { name = "OH_KitSphere" };
             mesh.SetVertices(vertices); mesh.SetTriangles(triangles, 0);
             mesh.RecalculateNormals(); mesh.RecalculateBounds();
             return mesh;

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1,5864089">
+  <test-suite type="TestSuite" id="1095" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="70" result="Passed" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1.586409" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1089" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/host/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="70" result="Passed" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1.565075" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3360" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1090" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="70" result="Passed" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1.562367" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1091" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="70" result="Passed" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1.560033" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1083" name="TacticalSystemsTests" fullname="OperationHeist.Tests.TacticalSystemsTests" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1.555504" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1088" name="BothLocalContractsDefendDeployPauseAndCapReinforcements" fullname="OperationHeist.Tests.TacticalSystemsTests.BothLocalContractsDefendDeployPauseAndCapReinforcements" methodname="BothLocalContractsDefendDeployPauseAndCapReinforcements" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="155218386" result="Passed" start-time="2026-11-12 13:42:12Z" end-time="2026-11-12 13:42:14Z" duration="1.461088" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" fullname="OperationHeist.Tests.TacticalSystemsTests.DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" methodname="DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="62159672" result="Passed" start-time="2026-11-12 13:42:14Z" end-time="2026-11-12 13:42:14Z" duration="0.006156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1086" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-12 13:42:14Z" end-time="2026-11-12 13:42:14Z" duration="0.066918" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1084" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(0.0f,20.0f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(0.0f,20.0f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="2040801375" result="Passed" start-time="2026-11-12 13:42:14Z" end-time="2026-11-12 13:42:14Z" duration="0.035023" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1085" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="1548738862" result="Passed" start-time="2026-11-12 13:42:14Z" end-time="2026-11-12 13:42:14Z" duration="0.028653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

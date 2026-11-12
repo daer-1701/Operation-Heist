@@ -64,7 +64,8 @@ namespace OperationHeist.Network
             scaler.referenceResolution = new Vector2(1920, 1080);
 
             _panel = Box(root.transform, "Panel", new Vector2(24, -24), new Vector2(560, 262), new Color(.05f, .08f, .1f, .94f));
-            string title = _session.Depot != null ? "EL DEPÓSITO  /  COOPERATIVO LAN" : "OPERATION HEIST  /  LAB LAN";
+            string title = _session.Depot == null ? "OPERATION HEIST  /  LAB LAN" :
+                _session.Depot.IsBank ? "BANCO CENTRAL  /  COOPERATIVO LAN" : "EL DEPÓSITO  /  COOPERATIVO LAN";
             Label(_panel, "Title", title, new Vector2(18, -16), new Vector2(520, 28), 22, new Color(.35f, .9f, .8f));
             _status = Label(_panel, "Status", "", new Vector2(18, -54), new Vector2(520, 48), 20, Color.white);
             _hint = Label(_panel, "Hint", "", new Vector2(18, -108), new Vector2(520, 52), 17, new Color(.77f, .86f, .86f));
@@ -89,7 +90,7 @@ namespace OperationHeist.Network
         {
             if (_session.IsListening || _session.Manager.ShutdownInProgress) return;
             Destroy(_session.gameObject);
-            SceneManager.LoadScene("Heist_Depot");
+            SceneManager.LoadScene(_session.Depot.IsBank ? "Heist_Bank" : "Heist_Depot");
         }
 
         private void Refresh()
@@ -132,22 +133,55 @@ namespace OperationHeist.Network
                 {
                     MissionPhase.Won => "EXTRACCIÓN CONFIRMADA · Equipo a salvo",
                     MissionPhase.Lost => "OPERACIÓN INTERRUMPIDA · " +
-                        (depot.Seconds == 0 ? "Tiempo agotado" : "Alarma máxima"),
+                        depot.FailureReason,
                     _ => $"BOTÍN  {depot.Deposited}/{depot.Required}   ·   " +
-                        $"{depot.Seconds / 60:00}:{depot.Seconds % 60:00}   ·   ALARMA  {depot.AlarmPercent}%"
+                        $"{depot.Seconds / 60:00}:{depot.Seconds % 60:00} · ALERTA {depot.AlarmLevel}"
                 };
+                if (depot.Phase == MissionPhase.Playing && player != null)
+                {
+                    var defense = player.GetComponent<NetworkReviveInteractor>();
+                    _status.text += "\nQ DEFENSA " + defense.DefenseUses + "/3 · " + Mathf.CeilToInt(defense.DefenseCooldown) +
+                        "s · REFUERZOS " + depot.ReinforcementCount;
+                }
                 var carried = player == null ? null : NetworkLootItem.FindCarried(manager, player.OwnerClientId);
                 _hint.text = depot.Phase != MissionPhase.Playing ? "Cierra la sesión para volver al briefing." :
                     carried != null ? $"CARGA: {carried.DisplayName}\nE en terminal · G devuelve la carga" :
-                    depot.Deposited == depot.Required ? "Reúne al equipo en la zona turquesa.\nMira al terminal y pulsa E para evacuar." :
+                    depot.Deposited == depot.Required ? "Reúne al equipo ante el terminal.\nMíralo y pulsa E para evacuar." :
+                    depot.IsBank ? GetBankHint(depot, aiming) :
                     "E recoge un expediente · Ctrl para agacharte\nEsc abre el menú sin pausar al equipo";
+                if (depot.Phase == MissionPhase.Playing)
+                {
+                    var health = player == null ? null : player.GetComponent<NetworkPlayerHealth>();
+                    if (health != null && health.ReplicatedIncapacitated)
+                    {
+                        if (!health.LocalHealth.IsAlive) _hint.text = "Fuera de combate. Espera la extracción del equipo.";
+                        else if (manager.SpawnManager.PlayerObjects.Count == 1)
+                            _hint.text = health.SelfRecoveryAvailable ? "Mantén F para recuperarte (3s). Un uso por misión."
+                                : "Sin recuperaciones disponibles.";
+                        else _hint.text = "Derribado. Un compañero debe acercarse y mantener F.";
+                    }
+                    else if (health != null && health.ReviveProgress > 0f)
+                        _hint.text = "Reanimando · " + health.ReviveProgress.ToString("0.0") + "/3s · Mantén F";
+                    else _hint.text = "Mantén F junto a un aliado derribado para reanimarlo.\n" +
+                        (depot.AlarmLevel == 3 ? "EVACUACIÓN DE EMERGENCIA · " + depot.EmergencyRemaining + "s" : _hint.text.Split('\n')[0]);
+                }
                 return;
             }
             _status.text = _session.StatusMessage;
             _hint.text = !listening ? "Introduce la IP local del anfitrión para unirte. Máx. 4." :
-                inMission ? "Reúne al equipo antes de iniciar.\nRecuperen los tres expedientes y vuelvan al terminal." :
+                inMission ? (depot.IsBank ? "Reúne al equipo.\nAbre el acceso, desconecta las cámaras y llega a la bóveda." :
+                    "Reúne al equipo antes de iniciar.\nRecuperen los tres expedientes y vuelvan al terminal.") :
                 _session.Depot == null ? "E recoge y deposita · G devuelve la carga\nH prueba daño · F reanima · Esc abre el menú" :
                 "Esperando a que se sincronice la sesión.";
+        }
+
+        private string GetBankHint(NetworkDepotMission mission, bool aiming)
+        {
+            var prompt = aiming ? _localMotor.GetComponent<NetworkLootInteractor>().BankHint() : null;
+            return prompt ?? (!mission.AccessGranted ? "Conecta los cables del pasillo derecho: 2–4–1–3." :
+                !mission.CamerasOffline ? "Activa los interruptores hasta obtener el estado 101." :
+                !mission.VaultAvailable ? "Cámaras desconectadas. Acérquense a la bóveda y confirmen con E." :
+                "Recoge el expediente y vuelve al terminal.");
         }
 
         private static RectTransform Box(Transform parent, string name, Vector2 pos, Vector2 size, Color color)

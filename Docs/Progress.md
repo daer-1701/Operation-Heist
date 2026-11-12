@@ -1,117 +1,29 @@
 # Progreso — Operation Heist
 
-## Modelos de depósito y banco — 5 noviembre 2026
+Actualizado: 12 de noviembre de 2026. Objetivo vigente del usuario: terminar el juego completo de cinco capítulos. Leer este archivo al retomar y consultar FullGamePlan, Architecture y contratos según la tarea. No orientar el desarrollo a una demo ni reactivar recortes históricos.
 
-Producidos con Codex 55 modelos originales de estilo geométrico: arquitectura, depósito/tienda, banco, mobiliario, seguridad, botín, equipo y personajes agente/guardia/empleado. Entrega: 55 prefabs, 95 mallas nativas, 10 materiales URP y escena OH_ModelGallery. Recetas reproducibles en Tools/ModelRecipes.json y ProductionModelsBuilder.cs. Procedencia completa en AssetManifest.csv; ningún recurso de terceros importado.
+**Trabajo detenido a petición del usuario para seguir mañana.** Estado completo, pruebas fallidas, archivos nuevos y orden exacto de continuación en [Retomar-2026-11-13.md](Retomar-2026-11-13.md). No hay validación final de la nueva etapa táctica.
 
-Verificado en copia aislada con Unity 6000.5.6f1: compilación y generación correctas (PRODUCTION_MODELS_OK 55), render GPU revisado, apoyo al suelo y vértices finitos, referencias propias válidas y hashes idénticos a la entrega. Auditoría: 244/244 archivos importables. Catálogo y limitaciones en Docs/ModelCatalog.md; evidencia en Docs/QA/ProductionModels-validation.txt y ProductionModels-preview.png.
+## Estado comprobado
 
-Siguiente paso: integrar los prefabs en las misiones, producir animaciones originales para personajes articulados rígidos y ajustar colisiones durante playtest. Esta entrega no incluye skinning ni clips, montaje jugable del banco, una nueva build Windows o prueba física de los modelos. Los capítulos posteriores siguen congelados.
+Depósito y banco tienen contratos individuales y LAN. El juego incluye FPS, interacción, botín único, objetivos, dos minijuegos, puertas/bóveda y extracción. Los guardias ya tienen sospecha, investigación, búsqueda, persecución y daño. Alarma por niveles con 60 s de evacuación al máximo. Salud, derribo, sangrado y reanimación integrados en contratos; F mantenida 3 s a 2,4 m sin obstáculos, con autoridad del host. Una recuperación propia por misión en individual/sala de un agente. Véase [SecuritySystems](SecuritySystems.md).
 
+Validación anterior de seguridad: editor 62 aprobadas/3 omitidas de red, seguridad LAN 1/1 por rol en ambos contratos, misiones completas 2/2 por rol; Windows local/sala individual 4/4 y dos Players cooperativos 1/1 por rol. [Evidencia de seguridad](QA/Security-Validation.md). Esa evidencia no certifica modificaciones posteriores.
 
-## Depósito cooperativo LAN — 5 noviembre 2026
+## Etapa actual — navegación, refuerzos y defensa
 
-Arranque LAN reparado en laboratorio y depósito. Unity Transport queda conectado a Netcode, la interfaz tiene EventSystem y el generador guarda identificadores y referencias válidos en escena y prefab. Movimiento con autoridad del propietario y réplica de posición/giro. El anfitrión gobierna botín, depósitos, patrulla, alarma, reloj y evacuación del equipo. Entrada **Cooperativo LAN** desde el briefing de `Heist_Depot`. La escena cooperativa deriva del depósito guardado. G devuelve la carga a su punto inicial, también usado al desconectarse el portador.
+Implementación en verificación: NavMesh runtime desde colliders originales, recálculo al cambiar puertas/obstáculos, rutas por esquinas; pool acotado de dos refuerzos de alarma, sin duplicar NetworkObjects; Q para pulso defensivo de tres cargas, 6 s de recarga y 5 s de aturdimiento. En LAN, anfitrión valida raycast, alcance, dirección, objetivo, estado y carga. Réplica de refuerzos/aturdimiento/consumo. Sin modificar escenas, prefabs, Packages ni ProjectSettings principales.
 
-**Verificado en Unity 6000.5.6f1.** Dos procesos Play Mode sin gráficos por UDP loopback. El anfitrión aprobó 51/51 (incluye arranque del laboratorio y misión completa), el cliente 1/1 (misión completa). Ambos recibieron 3/3 y victoria. Verificados la recogida disputada, el rechazo de depósito lejano y de extracción prematura, el reinicio de sala, la recuperación de carga tras desconexión y el retorno al modo local. XML en `Docs/QA/Coop-Host-PlayMode.xml` y `Docs/QA/Coop-Client-PlayMode.xml`. Hashes de código y recursos coinciden en ambas copias. Unity omitió `SENTIS_ANALYTICS_ENABLED` en las copias. Inventario 82/82 y cero referencias propias rotas en las escenas/prefab de red.
+Se corrigieron inicialización nativa de NavMeshPath, avance por vértices, comparación horizontal y atasco de pasos tangentes a borde. Pruebas dirigidas intermedias 4/4; al añadir delta 0,005 s se obtuvo 4/5 y se implementó después la comprobación alternativa de microcamino, pendiente de repetir la suite final. En desarrollo LAN el depósito llegó a completar navegación, defensa, refuerzos y reset. La última prueba táctica no terminó: cliente observó 0,229 m de desplazamiento al medir aturdimiento (umbral 0,1 m); host pasó su medida pero agotó la espera de barrera. Puede ser interpolación pendiente, no se ha confirmado. [Estado de pruebas tácticas](QA/Tactical-Validation.md). No se ejecutó Windows ni revisión visual del HUD de esta etapa nueva.
 
-**Siguiente comprobación.** Playtest con teclado y ratón en dos equipos físicos y revisión visual del ejecutable Windows. Uso y reproducción en `Docs/Network.md`.
+## Documentación y recursos
 
+Retirados once documentos operativos sustituidos; pendientes de modelos/campaña/render conservados en [FullGamePlan](FullGamePlan.md). [Registro de limpieza](DocumentationCleanup-2026-11-12.md). Se mantienen QA, GDD/adenda, manifiesto, recetas, catálogo y entregables académicos fechados. Docs/Tasks contiene registros históricos terminales, no la cola actual.
 
-## Análisis del juego — 5 noviembre 2026
+Solo contenido original; modelos del usuario, .meta y cambios previos conservados. Bolsa y expediente Hunyuan integrados; puertas/personajes nuevos e identificación del export sin nombre pendientes. No comprar/importar packs ni acceder a credenciales o servicios por desarrollo local. Autoría asistida documentada; aprobación institucional de IA no afirmada.
 
-El juego jugable es la misión solitaria `Heist_Depot`. `Heist_NetworkLab` es un laboratorio LAN paralelo (NGO 2.13.3) y no está en `EditorBuildSettings`. Hay dos modelos de botín (`LootItem` y `NetworkLootItem`). El minijuego de cables no altera la misión.
+Modelos añadidos durante la sesión: ElectricalPanel, WirePanel y SecurityCamera, originales del usuario de herramienta por indicar; registro con detalles pendientes, sin integración. El export `OH_ExtractionTerminal (.fbx` se renombró a `OH_ExtractionTerminal.fbx` (+meta) al subir a git para corregir el nombre inválido. Cotejo estático final: inventario 286/286, sin metadatos faltantes/huérfanos, GUID duplicados o enlaces Markdown locales rotos. Hashes de 23 scripts en QA/Tactical-CodeSnapshot.json. Ninguna prueba nueva tras la petición de detenerse; QA táctica sin procesos activos.
 
-**Validación actual.** Unity 6000.5.6f1 compiló y aprobó **49/49** en Play Mode sin gráficos en una copia aislada, al usar la ruta larga de Windows. La primera corrida con alias 8.3 dio 42/49 por scripts que Unity cargó como faltantes. Los hashes del código y assets coinciden con el checkout. La única diferencia de configuración tras la ejecución es que Unity quitó `SENTIS_ANALYTICS_ENABLED` en la copia. Los tests de red cubren reglas y no levantan host y cliente. Pendientes el playtest físico, la revisión visual, el build del checkout actual y la prueba LAN de dos instancias.
+## Próximo paso
 
-**Hallazgos de integración.** El laboratorio tiene Unity Transport como componente, pero `NetworkConfig.NetworkTransport` está vacío y el bootstrap solo configura dirección y puerto. Falta un EventSystem para el panel LAN. Cuatro referencias MonoScript están rotas en el laboratorio y su prefab (cables, salud en red, reanimación y HUD de salud). El movimiento se ejecuta en el propietario y el NetworkTransform guardado tiene autoridad del servidor. El depósito crea salud y objetivos al resolver referencias, pero la escena no incluye el HUD de vitalidad y la patrulla solo genera alarma.
-
-**Recursos y build.** Auditoría actual de inventario 79/79, cero metadatos faltantes y cero GUID duplicados. El log de la copia histórica `D:/ae/OperationHeist_MvpValidation/Build.log` confirma build Windows exitoso del depósito el 3 de noviembre. Esa copia difiere del checkout actual.
-
-**Próximo paso propuesto.** Reparar el arranque LAN y las referencias serializadas, acordar la autoridad de movimiento, y validar con dos instancias la recogida simultánea, extracción y salida del portador. Llevar después el bucle completo del depósito a cooperativo antes de abrir otro contrato del GDD.
-
-## Juego final — salud red + minijuego — 3 noviembre 2026
-
-`NetworkPlayerHealth` / reanimación host (H/F en lab), `WirePatchMinigame` abstracto, tests de reglas. Regenerar lab si hace falta. Usuario pidió subir este avance a git tras implementarlo.
-
-## Publicación GitHub — avance juego final — 3 noviembre 2026
-
-Subida previa `c507240`: MVP depósito, base NGO LAN, sistemas salud/objetivos locales.
-
-## Juego final — sistemas comunes — 3 noviembre 2026
-
-`PlayerHealth`, `ObjectiveBoard`, `HealthHudPresenter`, enganche en `LocalMission` (derrota por sangrado; pausa congela sangrado). Menú **Operation Heist → MVP → Añadir salud y objetivos al depósito abierto**. Contrato: [SystemsContract.md](SystemsContract.md). Play Mode: **4/4** (`Docs/QA/Systems-PlayMode.xml`). Sin packs externos. Siguiente: reanimación cooperativo en red, minijuegos, o Multiplayer Services.
-
-## Juego final — base cooperativa — 3 noviembre 2026
-
-NGO **2.13.3**, `Network/**`, `Heist_NetworkLab`, reglas de botín **3/3**. Inventario previo 70/70. Multiplayer Services sigue pendiente.
-
-## Mejora MVP local — 3 noviembre 2026
-
-Usuario pidió mejorar el trabajo de Codex y avanzar. **Rechazado** importar packs gratuitos u ocultar procedencia (política AGENTS/GDD-AssetPolicy). Cursor editor reforzó el MVP original: guardia con salto de waypoint si está bloqueado y giro al detectar; banner HUD DETECTADO; feedback de extracción; null-safety en LootItem; pausa por pérdida de foco sin toggle; layout Heist_Depot enriquecido (techo, marco, oficina, cabina, palés, luces, props OH_*). Regeneración y Play Mode en copia `D:/ae/OperationHeist_MvpValidation`: **39/39** aprobadas (`Docs/QA/Mvp-PlayMode-Improve.xml`). Escena copiada al checkout principal. Build Windows y revisión visual con GPU siguen pendientes. Detalle: LocalMVP.md.
-
-## MVP local en validación — 3 noviembre 2026
-
-Base Codex: LocalMission, LootCarrier/LootItem, ExtractionPoint, PatrolGuard, MissionAudio, LocalMissionPresenter, Heist_Depot. Inventario previo 56/56. Mejoras posteriores en la entrada superior.
-
-## Publicación a GitHub del 3 de noviembre de 2026
-
-El usuario autorizó subir el proyecto completo a [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist). Push comprobado: `main` remoto en **477c283** (`862fd01..477c283`). Incluye código, Assets versionables, Docs, Tools, Packages y ProjectSettings; exclusiones Unity vía .gitignore. Local y `origin/main` alineados (0/0). Detalle en [Coordination.md](Coordination.md).
-
-## Revisión verificada del 3 de noviembre de 2026
-
-Análisis integral en [ProjectReview-2026-11-03.md](ProjectReview-2026-11-03.md). Estado real: prototipo FPS local e inspección; botín, misión completa y red pendientes. Auditoría reejecutada: 39/39; hashes del manifiesto 39/39 coincidentes; Assets sin .meta faltantes ni GUID duplicados. XML histórico de interacción confirmado: 23/23 del 29 de octubre; no se reejecutaron compilación, Unity ni build.
-
-Corrección al contexto histórico: Git tiene origin hacia daer-1701/Operation-Heist y HEAD local e8a9660 integra ambos historiales. La publicación remota se completa en esta misma fecha por petición del usuario.
-
-Hallazgos: jugador de FPSPrototype sin vínculo al prefab FPSPlayer; generadores sobrescriben escena; capturas UI usan Canvas distinto al runtime; documentación histórica contradictoria. Próximo paso de gameplay tras la publicación: reparar vínculo/proteger generación, después botín local y micro misión.
-
-Actualizado: 29 de octubre de 2026. Contexto persistente; no sustituye reservas activas en [Coordination.md](Coordination.md).
-
-## Documento para retomar
-
-[Contexto y avance del 29 de octubre](Operation_Heist_Contexto_y_Avance_2026-10-29.docx): informe de diez páginas con implementación, procedencia, entorno, coordinación, pruebas, pendientes, prompt de continuación y prompt manual de Hunyuan. Renderizado y revisado visualmente. Publicado por petición del usuario en [daer-1701/Operation-Heist](https://github.com/daer-1701/Operation-Heist/blob/main/Docs/Operation_Heist_Contexto_y_Avance_2026-10-29.docx), commit remoto 862fd015ec3bc9b6289746298a91871801692da3. Se publicó solo el documento; el código local no se sincronizó y no se configuró remoto para la historia local.
-
-Durante el informe se confirmó el XML previo de 23/23 y se repitió la auditoría de inventario (39/39); no se reejecutó Unity. La petición de recoger/cargar/soltar/depositar se interrumpió antes de editar código o asignar pruebas: sigue pendiente y no existe una verificación de duplicación de botín implementado.
-
-## Implementado (real)
-
-- Editor fijado: Unity **6000.5.6f1**. Paquetes: URP, Input System, AI Navigation, Test Framework (ver `Packages/manifest.json`).
-- `FpsController` local (`Assets/01_Scripts/Player/Movement/`): CharacterController, Input System en runtime, caminar/correr/agacharse, cursor, `SetLocalControl` sin red.
-- Prefab `FPSPlayer` y escena `FPSPrototype` generables vía `FpsPrototypeBuilder`.
-- Kit procedural Codex: 4 meshes (`OH_*`), materiales URP propios, prefabs en `02_Prefabs/Props`, integrados en la escena; builders en `Assets/01_Scripts/Editor/`.
-- Inventario en [AssetManifest.csv](AssetManifest.csv); política en [GDD-AssetPolicy.md](GDD-AssetPolicy.md).
-- Coordinación CLI: [CursorCLI.md](CursorCLI.md), `Tools/Invoke-CursorTask.ps1`.
-- Interacción local por raycast: inspección con E de los cuatro props, alcance 2.5 m, obstáculos sólidos, ownership y control de entrada; aviso contextual/retícula uGUI. Codex implementó y revisó; Cursor apoyó con pruebas. Ver Interaction.md.
-
-## Planeado / no hecho
-
-- Recogida/entrega de botín, apertura de caja fuerte, HUD completo/menús, audio propio y animaciones.
-- Generación Hunyuan 3D (prompt listo; exportación manual pendiente).
-- Netcode / Multiplayer Services: **no instalados**; host-authority no implementada.
-- Build Windows y evaluación artística final.
-- Capítulos/misiones del GDD más allá del prototipo gris.
-
-## Pruebas previas (límites)
-
-Reportadas en revisiones Codex (29 oct 2026), evidencia en `Docs/QA/`:
-
-| Suite | Resultado | Límite |
-| --- | --- | --- |
-| `FpsControllerTests` (5) | Aprobadas | Input simulado / foco aislado; no sustituyen ratón real |
-| `OriginalModelsTests` (1) | Aprobada | Carga escena/props; no build player |
-| **Total** | **6/6** | Compilación + Play Mode en copia validada; sesión Unity del usuario pudo quedar abierta |
-
-Comprobación manual con entrada física y ejecutable: pendientes ([FPSController.md](FPSController.md)). Auditoría inventario previa: 32/32; reejecutar `Tools/Audit-Assets.ps1` tras nuevos assets. Esta tarea de contexto **no** reejecutó Unity ni la auditoría.
-
-Actualización raycast: compilación y 23/23 pruebas Play Mode aprobadas (regresión incluida), 4 prefabs reales inspeccionados sin inyección de componentes de respaldo, presentación revisada a 1280x720 y 1920x1080. Evidencia: QA/Interaction-PlayMode.xml y capturas Interaction-*.png. Inventario 39/39 y hashes de los 39 archivos importables comparados con copia validada. Falta entrada física y build Windows; no hay pruebas de red.
-
-## Siguiente tarea sugerida
-
-**Botín local**: ampliar el contrato IInteractable con recoger/cargar/soltar y depósito idempotente; inspección está completa como prototipo. Reservar rutas. Networking solo tras instalar paquetes y asignar responsable único.
-
-## Notas
-
-Entorno configurado por Codex: Git local main, .gitignore/.cursorignore/.ignore, contexto compacto y skills compartidas operation-heist-unity/operation-heist-ui. DotRush 26.10.277 y .NET Install Tool 3.2.0 instalados; handshake del servidor C# comprobado (completion/hover anunciados). SDK .NET 8.0.308 y 10.0.302 presentes. Depuración adjunta e IntelliSense interactivo aún no comprobados. Ver DevelopmentSetup.md. No se modificó gameplay ni se reejecutó Unity durante esta configuración. Carpetas `05_Textures` y `06_UI` existen vacías de contenido de juego.
-
-Verificaciones de entorno aprobadas: Check-DevelopmentSetup, validación oficial de ambas skills, handshake LSP y revisión de skills por Cursor. Git local; sin remoto. Codex es desarrollador principal. Las reservas de configuración y raycast están cerradas; continuar por botín local antes de abrir networking.
+Mañana: investigar inmovilidad autoritativa frente a convergencia de NetworkTransform del cliente, repetir TacticalSystemsTests y TacticalCoopTests sin rebajar exigencias para obtener verde, después regresión completa/misiones/salud y Players Windows con código final. Renderizar HUD 720p/1080p. El resto de la campaña y aceptación se detalla en Retomar y FullGamePlan. Sin commit/push; preservar cambios y archivos sin seguimiento. No continuar implementación hasta que el usuario retome.
