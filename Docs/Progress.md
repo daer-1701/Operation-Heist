@@ -22,7 +22,7 @@ Retirados once documentos operativos sustituidos; pendientes de modelos/campaña
 
 Solo contenido original; modelos del usuario, .meta y cambios previos conservados. Bolsa y expediente Hunyuan integrados; puertas/personajes nuevos e identificación del export sin nombre pendientes. No comprar/importar packs ni acceder a credenciales o servicios por desarrollo local. Autoría asistida documentada; aprobación institucional de IA no afirmada.
 
-Modelos añadidos durante la sesión: ElectricalPanel, WirePanel y SecurityCamera, originales del usuario de herramienta por indicar; registro con detalles pendientes, sin integración. Nuevo archivo de nombre provisional `OH_ExtractionTerminal (.fbx`, pendiente de revisar nombre/importación/meta. Conservar archivos del usuario sin renombrarlos automáticamente.
+Modelos añadidos durante la sesión: ElectricalPanel, WirePanel y SecurityCamera, originales del usuario de herramienta por indicar; registro con detalles pendientes, sin integración. El export `OH_ExtractionTerminal (.fbx` se renombró a `OH_ExtractionTerminal.fbx` (+meta) al subir a git para corregir el nombre inválido. Cotejo estático final: inventario 286/286, sin metadatos faltantes/huérfanos, GUID duplicados o enlaces Markdown locales rotos. Hashes de 23 scripts en QA/Tactical-CodeSnapshot.json. Ninguna prueba nueva tras la petición de detenerse; QA táctica sin procesos activos.
 
 ## Próximo paso
 

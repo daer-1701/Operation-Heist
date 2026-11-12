@@ -18,3 +18,5 @@ No se ejecutó la nueva etapa en Player Windows ni se renderizó su HUD a 720p/1
 Scripts nuevos: GuardNavigation, GuardReinforcements, PlayerDefense, GuardSnapshot, TacticalSystemsTests y TacticalCoopTests, con `.meta`. Modificados PatrolGuard, LocalMission, NetworkDepotMission, NetworkReviveInteractor, NetworkSessionHud y LocalMissionPresenter. Sin cambios de escenas, prefabs, Packages o ProjectSettings principales. Los modelos nuevos del usuario no se integraron ni se usaron en estas pruebas.
 
 Contexto, recursos pendientes, herramientas de QA y lista completa del juego restante en [Retomar-2026-11-13](../Retomar-2026-11-13.md).
+
+Cierre estático: manifiesto 286/286, metadatos/GUID y enlaces activos revisados; snapshot de 23 scripts en [Tactical-CodeSnapshot.json](Tactical-CodeSnapshot.json). Sin nuevas pruebas ni procesos tácticos de Unity activos tras detenerse. La validación funcional sigue pendiente.
