@@ -1,16 +1,18 @@
 # Operation Heist
 
+[Estado y trabajo pendiente del 24 de noviembre](Docs/Entrega-2026-11-24.md) reúne jugabilidad, arte y pruebas de ambos chats.
+
 FPS de sigilo y extracción en desarrollo hacia una campaña completa de **cinco capítulos**, con práctica individual y cooperativo de hasta cuatro agentes. El alcance y orden de trabajo vigentes están en [Plan del juego completo](Docs/FullGamePlan.md).
 
-Estado de trabajo al cierre del 12 de noviembre: ampliación táctica implementada pero con validación LAN pendiente. [Qué existe, qué falta y cómo retomar](Docs/Retomar-2026-11-13.md). No considerar la rama una entrega final validada.
+El tablero de expedientes permite jugar la campaña individual, practicar ambos golpes o abrir una sala LAN.
 
-Actualmente hay dos contratos implementados en individual y LAN: **el depósito**, con tres expedientes, y **Banco central**, con acceso cableado, panel de cámaras y bóveda. Ambos briefings permiten cambiar de contrato. Los otros tres capítulos, la progresión y varios sistemas de campaña siguen pendientes. Consulta [Progreso](Docs/Progress.md) para el estado comprobado y [AGENTS.md](AGENTS.md) para la política de recursos.
+Actualmente hay dos contratos implementados en individual y LAN: **el depósito**, con tres expedientes, y **Banco central**, con acceso cableado, panel de cámaras y bóveda. En campaña, elige rol y dificultad. Extraer del depósito desbloquea Banco central y guarda créditos y experiencia por intento. Los otros tres capítulos y la progresión cooperativa siguen en desarrollo. Consulta [Progreso](Docs/Progress.md) para el estado comprobado y [AGENTS.md](AGENTS.md) para la política de recursos.
 
 ## Abrir el proyecto
 
 1. Instalar **Unity 6000.5.6f1** (misma revisión que `ProjectSettings/ProjectVersion.txt`).
 2. Abrir esta carpeta como proyecto; no actualizar el editor ni añadir paquetes sin revisar [Packages/manifest.json](Packages/manifest.json).
-3. Abre `Heist_Depot` en Play y elige misión local, **Cooperativo LAN** o **Contrato 02 · Banco**. El laboratorio de red, el prototipo FPS y la galería se abren desde el editor.
+3. Abre `Heist_Depot` en Play y elige **Jugar en campaña**, **Práctica individual** o **Cooperativo LAN**. Usa **Abrir expediente 02** para cambiar al banco. El laboratorio de red, el prototipo FPS y la galería se abren desde el editor.
 
 El build inicia en el briefing del depósito y empaqueta `Heist_Depot`, `Heist_DepotCoop`, `Heist_Bank` y `Heist_BankCoop`. La generación por lotes usa `OperationHeist.Editor.LocalMvpBuilder.BuildWindows` con `OH_BUILD_OUTPUT` para elegir la ruta del ejecutable.
 

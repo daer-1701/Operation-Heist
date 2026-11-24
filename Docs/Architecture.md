@@ -11,6 +11,12 @@ Unity 6000.5.6f1, URP, Input System y uGUI. El build usa las escenas habilitadas
 - `Heist_Depot` usa tres expedientes y cinco minutos. `Heist_Bank` usa cuatro minutos y un expediente de bóveda. `BankSecurity` aplica el orden de cables y el estado de los interruptores. Cada acción pasa por el raycast de `BankSecuritySwitch`. Resolver el primer panel abre el acceso. Resolver el segundo detiene la detección por cámara y permite abrir la bóveda. La patrulla sigue activa.
 - `LocalMissionPresenter` construye las pantallas uGUI desde el estado de misión. `HealthHudPresenter` muestra la vitalidad. `MissionAudio` sintetiza las señales locales y `RigidCharacterCycle` anima las articulaciones de los modelos originales.
 
+## Campaña local
+
+El briefing expone campaña, práctica y LAN. En campaña, el depósito es el primer contrato y una extracción válida abre el banco. La práctica sigue accesible en ambos mapas. Los cuatro roles modifican parámetros de una incursión individual al iniciarla: cargas y penalización del panel, ruido de pasos, vida máxima o ventana de evacuación. LAN conserva sus reglas de rol base.
+
+CampaignProgress registra créditos, XP, contratos completados e identificadores de intentos premiados. El perfil JSON usa un esquema versionado y se guarda en Application.persistentDataPath con reemplazo atómico y copia de respaldo. El premio se calcula con el pico de alarma y el tiempo restante. Experto reduce un 20 % el reloj, aumenta un 25 % la acumulación por detección y bonifica el premio un 25 %. Una partida fallida o de práctica no genera premio. El cambio de escena al siguiente contrato se ofrece después de confirmar el guardado.
+
 ## Red
 
 `Heist_DepotCoop` usa Netcode for GameObjects 2.13.3 y Unity Transport. El propietario publica su movimiento. El anfitrión arbitra sesión, IA, salud, sangrado, reanimación, alarma, reloj, depósitos y extracción usando las posiciones replicadas. La misión replica estado/sospecha/detección del guardia; su NetworkTransform conserva la réplica de posición/giro. `NetworkPlayerHealth` valida y mantiene la reanimación por F y replica salud/derribo/sangrado sin habilitar controles de proxies. Los clientes LAN siguen siendo de confianza para el movimiento. [Contrato LAN](NetworkContract.md)
@@ -27,4 +33,4 @@ El prototipo FPS y el laboratorio se abren desde el editor para regresión. La g
 
 ## Alcance frente al GDD
 
-La entrega actual incluye depósito y banco en local y LAN. El GDD completo añade base de operaciones, guardado de progreso, más contratos y conexión por código, entre otros sistemas. El estado de implementación y su validación se registran en Progreso.
+La entrega actual incluye depósito y banco en local y LAN. El GDD completo añade base de operaciones, mejoras, más contratos, progresión cooperativa y conexión por código, entre otros sistemas. El estado de implementación y su validación se registran en Progreso.

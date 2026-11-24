@@ -27,6 +27,9 @@ namespace OperationHeist.Player
         private GuardReinforcements _reinforcements;
         private readonly DefenseState _defense = new();
         public int DefenseUses => _defense.UsesRemaining;
+        public int DefenseCapacity => _role == CampaignRole.Hacker ? 5 : 3;
+        private CampaignRole? _role;
+        private bool _expert;
         public float DefenseCooldown => _defense.CooldownRemaining;
         public int ReinforcementCount => _reinforcements?.ActiveCount ?? 0;
         public GuardReinforcements Reinforcements => _reinforcements;
@@ -38,9 +41,11 @@ namespace OperationHeist.Player
         public MissionPhase Phase { get; private set; } = MissionPhase.Briefing;
         public int DepositedCount { get; private set; }
         public int RequiredLoot => requiredLoot;
+        public float StartingSeconds(bool expert) => duration * (expert ? .8f : 1f);
         public float RemainingSeconds { get; private set; }
         public float Alarm => _alarm.Value;
         public int AlarmLevel => _alarm.Level;
+        public int PeakAlarmLevel { get; private set; }
         public float EmergencyRemaining => _alarm.Lockdown ? _alarm.EscapeRemaining : 0f;
         public string StatusMessage { get; private set; } = "Recupera los tres expedientes y vuelve a extracción.";
         public LootCarrier Carrier => carrier;
@@ -105,7 +110,7 @@ namespace OperationHeist.Player
                 : security.CamerasOffline ? "Cámaras desconectadas. Abre la bóveda."
                 : security.AccessGranted ? "Acceso abierto. Lleva los interruptores a 101."
                 : "Completa la secuencia del panel de acceso.";
-            if (wrongWire) RaiseAlarm(.1f);
+            if (wrongWire) RaiseAlarm(_role == CampaignRole.Hacker ? .05f : .1f);
             Changed?.Invoke();
         }
 
@@ -188,14 +193,23 @@ namespace OperationHeist.Player
             if (!focus && Phase == MissionPhase.Playing)
                 SetPhase(MissionPhase.Paused, "Operación en pausa");
         }
-        public void StartMission()
+        public void StartMission() => StartMission(null);
+
+        public void StartMission(CampaignRole? role, bool expert = false)
         {
             if (Phase != MissionPhase.Briefing || player == null || carrier == null) return;
             ResolveRefs();
             BindHealth();
-            health?.ResetHealth();
+            _role = role;
+            _expert = expert;
+            RemainingSeconds = StartingSeconds(expert);
+            if (health != null && role == CampaignRole.Specialist)
+                health.Configure(health.MaxHealth + 25f, health.BleedoutDuration, tickAutomatically: false);
+            else health?.ResetHealth();
             objectives?.ResetAll();
-            EnsureTactics(); _defense.Reset();
+            EnsureTactics();
+            _defense.Reset(DefenseCapacity);
+            if (role == CampaignRole.Driver) _alarm.AddEvacuationTime(20f);
             SetPhase(MissionPhase.Playing, IsBankContract
                 ? "Conecta el panel de acceso en el pasillo derecho."
                 : "Recupera los tres expedientes. Evita la mirada del guardia.");
@@ -219,14 +233,15 @@ namespace OperationHeist.Player
             if (player != null && player.PlayerCamera != null)
             {
                 var targets = new[] { new GuardTarget(player.transform, player.PlayerCamera.transform.position,
-                    player.IsCrouching, !player.IsCrouching && player.GetComponent<CharacterController>().velocity.magnitude > 4f, health) };
+                    player.IsCrouching, !player.IsCrouching && player.GetComponent<CharacterController>().velocity.magnitude > (_role == CampaignRole.Infiltrator ? 5.5f : 4f), health) };
                 if (_guards != null) foreach (var guard in _guards)
                     if (guard != null && guard.enabled) spotted |= guard.TickSecurity(deltaTime, targets, AlarmLevel);
                 if (_reinforcements != null) spotted |= _reinforcements.Tick(deltaTime, AlarmLevel == 3, targets);
                 spotted |= health != null && !health.IsIncapacitated && security != null &&
                     security.Detects(player.transform, player.PlayerCamera.transform.position, player.IsCrouching);
             }
-            Detected = spotted; _alarm.Tick(deltaTime, spotted);
+            Detected = spotted; _alarm.Tick(deltaTime, spotted, _expert ? 1.25f : 1f);
+            PeakAlarmLevel = Mathf.Max(PeakAlarmLevel, AlarmLevel);
             health?.Tick(deltaTime);
             if (Phase != MissionPhase.Playing) return;
             if (health != null && health.IsIncapacitated && health.IsAlive && SelfRecoveryAvailable && selfRecoveryHeld)
@@ -244,6 +259,7 @@ namespace OperationHeist.Player
         {
             if (Phase != MissionPhase.Playing || !MissionAlarm.FinitePositive(amount)) return;
             _alarm.Raise(amount);
+            PeakAlarmLevel = Mathf.Max(PeakAlarmLevel, AlarmLevel);
             Changed?.Invoke();
         }
 
@@ -263,7 +279,7 @@ namespace OperationHeist.Player
             bool owned = _guards != null && System.Array.IndexOf(_guards, guard) >= 0;
             if (_reinforcements != null) for (int i = 0; i < GuardReinforcements.Capacity; i++) owned |= _reinforcements.Get(i) == guard;
             if (!owned || !_defense.TryUse(guard)) return false;
-            StatusMessage = "Pulso defensivo · " + DefenseUses + "/3 cargas"; RaiseAlarm(.15f); return true;
+            StatusMessage = "Pulso defensivo · " + DefenseUses + "/" + DefenseCapacity + " cargas"; RaiseAlarm(.15f); return true;
         }
         public void Fail(string reason)
         {

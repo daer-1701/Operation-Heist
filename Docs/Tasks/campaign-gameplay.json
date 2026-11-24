@@ -1,0 +1,32 @@
+{
+  "id": "campaign-gameplay",
+  "owner": "codex",
+  "status": "in_progress",
+  "mode": "edit",
+  "allowedPaths": [
+    "Assets/01_Scripts/Player/Campaign/**",
+    "Assets/01_Scripts/Player/Campaign.meta",
+    "Assets/01_Scripts/Player/Mission/LocalMission.cs",
+    "Assets/01_Scripts/Player/Mission/MissionAlarm.cs",
+    "Assets/01_Scripts/Player/Systems/PlayerDefense.cs",
+    "Assets/01_Scripts/Network/NetworkDepotMission.cs",
+    "Assets/01_Scripts/Network/NetworkSessionHud.cs",
+    "Assets/01_Scripts/UI/LocalMissionPresenter.cs",
+    "Assets/01_Scripts/UI/HealthHudPresenter.cs",
+    "Assets/01_Scripts/Tests/PlayMode/TacticalCoopTests.cs",
+    "Assets/01_Scripts/Tests/PlayMode/CampaignProgressTests.cs",
+    "Assets/01_Scripts/Tests/PlayMode/CampaignProgressTests.cs.meta",
+    "Docs/Tasks/campaign-gameplay.json",
+    "Docs/Coordination.md",
+    "Docs/Progress.md",
+    "Docs/Architecture.md",
+    "README.md",
+    "Docs/AssetManifest.csv",
+    "Docs/QA/Campaign-2026-11-24/**"
+  ],
+  "startedAt": "2026-11-24",
+  "prompt": "Desarrollar gameplay y campaña, verificar tácticas LAN y rediseñar el briefing, menú y resultados con interfaz original. Coordinar la edición simultánea de documentación con el chat de arte."
+}
+
+
+

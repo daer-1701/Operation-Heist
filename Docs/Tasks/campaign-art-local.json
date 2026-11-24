@@ -1,0 +1,24 @@
+{
+  "id": "campaign-art-local",
+  "owner": "codex",
+  "status": "in_progress",
+  "mode": "edit",
+  "allowedPaths": [
+    "Assets/04_Models/Codex/CampaignArt/**",
+    "Assets/04_Models/Codex/CampaignArt.meta",
+    "Assets/02_Prefabs/Art/CampaignArt/**",
+    "Assets/02_Prefabs/Art/CampaignArt.meta",
+    "Assets/02_Prefabs/Art.meta",
+    "Docs/ModelCatalog.md",
+    "Docs/QA/CampaignArt-2026-11-24/**",
+    "Tools/ArtProduction/**",
+    "Docs/Tasks/campaign-art-local.json",
+    "Docs/Coordination.md",
+    "Docs/AssetManifest.csv",
+    "Docs/Progress.md",
+    "Assets/03_Materials/CampaignArt/**",
+    "Assets/03_Materials/CampaignArt.meta"
+  ],
+  "startedAt": "2026-11-24",
+  "prompt": "Instalar Hunyuan3D en entorno local aislado, auditar FBX existentes y producir y validar modelos originales para la campaña. Conservar originales y reservar integración de gameplay para su responsable."
+}

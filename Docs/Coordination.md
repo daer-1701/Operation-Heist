@@ -19,3 +19,13 @@ Se mantienen fuera de edición los FBX/materiales de integración anterior, esce
 ## Etapas anteriores
 
 Limpieza de recursos y seguridad/salud/reanimación completadas; reservas de esas etapas liberadas. Evidencia en QA/Security-Validation.md y Cleanup-2026-11-12.md. Pendientes de modelos conservados en FullGamePlan; requieren una nueva reserva específica antes de integrarlos. Ninguna ejecución CLI anterior se considera aprobación automática de código.
+
+## Arte de campaña y Hunyuan3D local — 24 noviembre 2026
+
+Responsable: Codex en el chat de modelos. Reserva activa en [campaign-art-local](Tasks/campaign-art-local.json) para geometría y prefabs visuales nuevos de CampaignArt, herramientas de arte y evidencia. AssetManifest, Progress y ModelCatalog reciben adiciones de esta tarea; conservar ediciones simultáneas. Los FBX originales, escenas, prefabs de gameplay y colliders de juego se auditan en lectura. Pruebas en una copia aislada. La instalación de Hunyuan3D y sus pesos quedan fuera del repositorio.
+
+## Jugabilidad, campaña e interfaz — 24 noviembre 2026
+
+Responsable: Codex en el chat principal. Reserva activa en [campaign-gameplay](Tasks/campaign-gameplay.json). Diagnóstico de tácticas LAN, progreso, menú y reglas de contratos. El chat de modelos conserva sus rutas de arte. Las notas de ambas tareas en Progress y AssetManifest se agregan sin retirar las entradas de la otra tarea.
+
+Se reserva también Assets/03_Materials/CampaignArt y su .meta para el vidrio original de las vitrinas.

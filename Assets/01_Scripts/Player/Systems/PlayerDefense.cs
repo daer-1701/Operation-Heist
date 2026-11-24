@@ -8,7 +8,12 @@ namespace OperationHeist.Player
         public const float Range = 3f, CooldownSeconds = 6f, StunSeconds = 5f;
         public int UsesRemaining { get; private set; } = 3;
         public float CooldownRemaining { get; private set; }
-        public void Reset() { UsesRemaining = 3; CooldownRemaining = 0f; }
+        public void Reset() => Reset(3);
+        public void Reset(int charges)
+        {
+            UsesRemaining = charges;
+            CooldownRemaining = 0f;
+        }
         public void Tick(float delta) { if (MissionAlarm.FinitePositive(delta)) CooldownRemaining = Mathf.Max(0f, CooldownRemaining - delta); }
         public bool TryUse(PatrolGuard guard)
         {

@@ -18,6 +18,7 @@ namespace OperationHeist.Tests
         private bool Host => _role == "host";
         private HeistNetworkSession _session;
         private GameObject _floor, _wall;
+        private int? _originalFrameRate;
 
         [UnityTest]
         public IEnumerator BothContractsRouteDefendDeployAndResetAcrossTwoProcesses()
@@ -25,6 +26,9 @@ namespace OperationHeist.Tests
             _role = Environment.GetEnvironmentVariable("OH_COOP_TEST_ROLE");
             _sync = Environment.GetEnvironmentVariable("OH_COOP_TEST_SYNC");
             if ((_role != "host" && _role != "client") || string.IsNullOrEmpty(_sync)) Assert.Ignore("Requires two processes and a fresh shared folder.");
+            // Keep the two headless editors from monopolizing frame processing on the same PC.
+            _originalFrameRate = Application.targetFrameRate;
+            Application.targetFrameRate = 60;
             foreach (string contract in new[] { "Depot", "Bank" })
             {
                 _prefix = contract;
@@ -90,11 +94,31 @@ namespace OperationHeist.Tests
                 _wall.SetActive(false); Physics.SyncTransforms(); yield return Barrier("defense-clear");
                 if (shooter) defense.RequestDefenseServerRpc(0, aim);
                 yield return Until(() => shooterDefense.DefenseUses == 2 && guard.State == GuardState.Stunned, "defense and stun replicated");
-                Vector3 still = guard.transform.position;
+                string stunFile = Path.Combine(_sync, _prefix + "-stunned-position.json");
+                if (Host)
+                {
+                    File.WriteAllText(stunFile, JsonUtility.ToJson(new Position { value = guard.transform.position }));
+                    Signal("stun-position");
+                }
+                yield return Until(() => Host || Other("stun-position"), "authoritative stun position", 1.5f);
+                Vector3 still = JsonUtility.FromJson<Position>(File.ReadAllText(stunFile)).value;
+                // The state and the interpolated transform are published independently.
+                float initialDistance = Vector3.Distance(guard.transform.position, still);
+                yield return Until(() => Vector3.Distance(guard.transform.position, still) < .05f,
+                    "stunned guard position converges to host", 1.5f);
+                Debug.Log($"TACTICAL_STUN {contract} {_role} distance at state reception: {initialDistance:F3} m");
                 if (shooter) defense.RequestDefenseServerRpc(0, aim);
-                yield return new WaitForSecondsRealtime(.3f);
+                float healthBefore = self.GetComponent<NetworkPlayerHealth>().LocalHealth.CurrentHealth;
+                float holdUntil = Time.realtimeSinceStartup + .3f;
+                do
+                {
+                    Assert.That(guard.State, Is.EqualTo(GuardState.Stunned));
+                    Assert.That(Vector3.Distance(guard.transform.position, still), Is.LessThan(.1f), "stun freezes movement at host position");
+                    Assert.That(self.GetComponent<NetworkPlayerHealth>().LocalHealth.CurrentHealth,
+                        Is.EqualTo(healthBefore), "stunned guard deals no damage");
+                    yield return null;
+                } while (Time.realtimeSinceStartup < holdUntil);
                 Assert.That(shooterDefense.DefenseUses, Is.EqualTo(2), "cooldown rejects rapid repeat");
-                Assert.That(Vector3.Distance(guard.transform.position, still), Is.LessThan(.1f), "stun freezes movement");
                 yield return Barrier("defended");
 
                 Place(self, mission.SpawnPosition(Host ? 0 : 1), mission.Terminal.bounds.center);
@@ -145,6 +169,11 @@ namespace OperationHeist.Tests
         [UnityTearDown]
         public IEnumerator Cleanup()
         {
+            if (_originalFrameRate.HasValue)
+            {
+                Application.targetFrameRate = _originalFrameRate.Value;
+                _originalFrameRate = null;
+            }
             if (_floor != null) Object.Destroy(_floor); if (_wall != null) Object.Destroy(_wall);
             if (_session != null)
             {

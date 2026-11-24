@@ -28,6 +28,10 @@ namespace OperationHeist.Network
         private Text _status;
         private InputField _address;
         private Font _font;
+        private static readonly Color Amber = new(.98f, .72f, .39f);
+        private static readonly Color Paper = new(.97f, .91f, .80f);
+        private static readonly Color Muted = new(.77f, .70f, .62f);
+        private static readonly Color Ink = new(.10f, .083f, .073f, .97f);
 
         private void Awake()
         {
@@ -63,12 +67,13 @@ namespace OperationHeist.Network
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920, 1080);
 
-            _panel = Box(root.transform, "Panel", new Vector2(24, -24), new Vector2(560, 262), new Color(.05f, .08f, .1f, .94f));
+            _panel = Box(root.transform, "Panel", new Vector2(24, -24), new Vector2(560, 262), Ink);
+            Box(_panel, "SessionAccent", Vector2.zero, new Vector2(560, 4), Amber).GetComponent<Image>().raycastTarget = false;
             string title = _session.Depot == null ? "OPERATION HEIST  /  LAB LAN" :
                 _session.Depot.IsBank ? "BANCO CENTRAL  /  COOPERATIVO LAN" : "EL DEPÓSITO  /  COOPERATIVO LAN";
-            Label(_panel, "Title", title, new Vector2(18, -16), new Vector2(520, 28), 22, new Color(.35f, .9f, .8f));
-            _status = Label(_panel, "Status", "", new Vector2(18, -54), new Vector2(520, 48), 20, Color.white);
-            _hint = Label(_panel, "Hint", "", new Vector2(18, -108), new Vector2(520, 52), 17, new Color(.77f, .86f, .86f));
+            Label(_panel, "Title", title, new Vector2(18, -16), new Vector2(520, 28), 22, Amber).fontStyle = FontStyle.Bold;
+            _status = Label(_panel, "Status", "", new Vector2(18, -54), new Vector2(520, 48), 20, Paper);
+            _hint = Label(_panel, "Hint", "", new Vector2(18, -108), new Vector2(520, 52), 19, Muted);
             _address = Field(_panel, "Address", new Vector2(18, -165), new Vector2(520, 34), "127.0.0.1");
             _host = Button(_panel, "Host", "ANFITRIÓN", new Vector2(18, -207), new Vector2(164, 40), () => _session.StartHost());
             _client = Button(_panel, "Client", "CLIENTE", new Vector2(196, -207), new Vector2(164, 40), () => _session.StartClient(_address.text));
@@ -215,8 +220,8 @@ namespace OperationHeist.Network
 
         private InputField Field(Transform parent, string name, Vector2 pos, Vector2 size, string value)
         {
-            var box = Box(parent, name, pos, size, new Color(0.12f, 0.18f, 0.2f, 1f));
-            var text = Label(box, "Text", value, new Vector2(10, -6), size - new Vector2(20, 12), 20, Color.white);
+            var box = Box(parent, name, pos, size, new Color(.19f, .16f, .14f));
+            var text = Label(box, "Text", value, new Vector2(10, -6), size - new Vector2(20, 12), 20, Paper);
             text.raycastTarget = true;
             var field = box.gameObject.AddComponent<InputField>();
             field.textComponent = text;
@@ -226,11 +231,16 @@ namespace OperationHeist.Network
 
         private Button Button(Transform parent, string name, string caption, Vector2 pos, Vector2 size, UnityEngine.Events.UnityAction action)
         {
-            var box = Box(parent, name, pos, size, new Color(0.2f, 0.55f, 0.5f, 1f));
+            var box = Box(parent, name, pos, size, new Color(.34f, .25f, .18f));
             var button = box.gameObject.AddComponent<Button>();
             button.targetGraphic = box.GetComponent<Image>();
+            var colors = button.colors;
+            colors.highlightedColor = Amber;
+            colors.selectedColor = Amber;
+            colors.pressedColor = Muted;
+            button.colors = colors;
             button.onClick.AddListener(action);
-            var label = Label(box, "Label", caption, Vector2.zero, size, 20, Color.white);
+            var label = Label(box, "Label", caption, Vector2.zero, size, 20, Paper);
             label.alignment = TextAnchor.MiddleCenter;
             return button;
         }

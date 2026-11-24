@@ -1,0 +1,2 @@
+Auditoría de inventario OK: 373 archivos importables registrados, sin .meta.
+Comprueba inventario y origen declarado; no demuestra autoría ni aprobación institucional.

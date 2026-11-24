@@ -1,0 +1,8 @@
+Unity 6000.5.6f1 — ejecución batch en copia aislada
+CAMPAIGN_ART_BUILD_OK 41/41
+CAMPAIGN_ART_REVIEW_OK campana 41
+CAMPAIGN_ART_REVIEW_OK originales-reverso 12
+CAMPAIGN_ART_REVIEW_OK poses 8
+CAMPAIGN_ART_REVIEW_OK produccion 11
+CAMPAIGN_ART_REVIEW_OK reutilizables 34
+Los recursos entregados y sus .meta coinciden por SHA-256 con la copia verificada.

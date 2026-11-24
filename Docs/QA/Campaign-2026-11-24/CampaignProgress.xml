@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4,5612309">
+  <test-suite type="TestSuite" id="1100" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="74" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4.561231" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1094" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/client/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="74" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4.548244" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14360" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1095" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="74" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4.546574" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1096" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="74" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4.545044" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CampaignProgressTests" fullname="OperationHeist.Tests.CampaignProgressTests" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4.540224" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1003" name="CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved" fullname="OperationHeist.Tests.CampaignProgressTests.CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved" methodname="CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" seed="435578993" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:22Z" duration="0.074867" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="DepotWinPaysOnceAndOpensTheBank" fullname="OperationHeist.Tests.CampaignProgressTests.DepotWinPaysOnceAndOpensTheBank" methodname="DepotWinPaysOnceAndOpensTheBank" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" seed="1411929457" result="Passed" start-time="2026-11-24 15:24:22Z" end-time="2026-11-24 15:24:26Z" duration="4.346613" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+]]></output>
+            </test-case>
+            <test-case id="1002" name="ReopeningAndRetryingAnAttemptKeepsTheSameBalance" fullname="OperationHeist.Tests.CampaignProgressTests.ReopeningAndRetryingAnAttemptKeepsTheSameBalance" methodname="ReopeningAndRetryingAnAttemptKeepsTheSameBalance" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" seed="547215348" result="Passed" start-time="2026-11-24 15:24:26Z" end-time="2026-11-24 15:24:26Z" duration="0.095969" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

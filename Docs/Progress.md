@@ -1,6 +1,31 @@
 # Progreso — Operation Heist
 
-Actualizado: 12 de noviembre de 2026. Objetivo vigente del usuario: terminar el juego completo de cinco capítulos. Leer este archivo al retomar y consultar FullGamePlan, Architecture y contratos según la tarea. No orientar el desarrollo a una demo ni reactivar recortes históricos.
+[Estado y trabajo pendiente del 24 de noviembre](Entrega-2026-11-24.md) reúne jugabilidad, arte y pruebas de ambos chats.
+
+Objetivo vigente del usuario: terminar el juego completo de cinco capítulos. Leer este archivo al retomar y consultar FullGamePlan, Architecture y contratos según la tarea. No orientar el desarrollo a una demo ni reactivar recortes históricos.
+
+## Campaña individual e interfaz — 24 de noviembre de 2026
+
+Se retomó gameplay en el chat principal. El briefing abre un tablero de expedientes con práctica, cooperativo LAN y campaña individual. La campaña añade cuatro roles con efectos reales, dificultad Estándar/Experto, crédito y XP por extracción, bonificación según alarma máxima y tiempo, desbloqueo del banco y perfil JSON versionado con respaldo y protección contra premios duplicados. El botón de práctica conserva las reglas base en depósito y banco. El HUD muestra ayudas contextuales durante la misión y LAN comparte la paleta del tablero. Se mantiene la reserva de arte del otro chat.
+
+La regresión Play Mode con GPU pasó 70 pruebas y omitió cuatro que requieren dos procesos. El caso de campaña completa el depósito real en Experto, acredita el premio una vez, recarga el perfil y abre el banco. Se comprobaron recuperación de respaldo y preservación de esquemas futuros. Evidencia en [PlayMode.xml](QA/Campaign-2026-11-24/PlayMode.xml). La versión final de la interfaz pasó 3/3 pruebas de campaña y se revisaron el briefing y el resultado a 720p y 1080p. [Pruebas de campaña](QA/Campaign-2026-11-24/CampaignProgress.xml) · [Briefing](QA/Campaign-2026-11-24/Campaign-Depot-Briefing-720.png) · [Resultado](QA/Campaign-2026-11-24/Campaign-Depot-Result-1080.png).
+
+La prueba táctica LAN con dos procesos aprobó 1/1 por rol e incluyó depósito y banco. La réplica convergió a la posición autoritativa y permaneció inmóvil durante la medición, sin infligir daño. Las distancias al recibir Stunned fueron 0,024 m en depósito y 0,006 m en banco. El fixture limitó ambos editores a 60 FPS tras una corrida con saturación de recepción. Se conservaron las tolerancias de posición. [Host](QA/Campaign-2026-11-24/Tactical-host.xml) · [Cliente](QA/Campaign-2026-11-24/Tactical-client.xml).
+
+Se generó el Player Windows x64 y se verificó su arranque sin gráficos. Ejecutable y logs en `D:/ae/OH_Audit_2223e7a4/campaign-package-f4bede3f/`. Falta una partida manual de aceptación en Windows.
+
+Próxima etapa. Ampliar rutas, objetivos y botín de depósito y banco, construir los capítulos 3–5, conectar roles y progresión con cooperativo, integrar salas por código e implementar equipamiento y mejoras. Quedan por verificar red en dos PCs, cuatro agentes y el paquete de campaña completa.
+
+
+## Revisión de alcance del 24 de noviembre de 2026
+
+Auditoría del checkout `9be1f05` (`workspace/pending`) frente al GDD y al plan vigente. Build configurado con cuatro escenas que corresponden a dos contratos breves, individual y LAN. Depósito: tres expedientes, 300 s. Banco: dos paneles, bóveda, un expediente, 240 s. El inventario y los `.meta` pasaron la auditoría estática (286 importables registrados, sin metadatos faltantes/huérfanos ni GUID duplicados). Los 23 scripts cotejados coinciden con el snapshot táctico. Bolsa y expediente referenciados por prefabs. Los diez FBX restantes carecen de referencia directa en escenas/prefabs, incluido `OH_ExtractionTerminal.fbx` con su nombre ya corregido.
+
+Regresión Play Mode en copia aislada, Unity 6000.5.6f1 sin render: 67 aprobadas, 0 fallos y 4 omitidas de dos procesos. La suite táctica local pasó 5/5, incluido el paso pequeño de 0,005 s que falló en la iteración anterior. XML y log en `D:/ae/OH_Audit_2223e7a4/review-20261124-4b83e83c/`. Quedan pendientes el aturdimiento LAN, la revisión visual de esta etapa y el Player Windows actual. El log de pruebas incluye avisos de APIs obsoletas y dos `AudioListener` activos en la suite, pendiente de aislar en partida normal.
+
+Prioridad de cierre: validar navegación, defensa y refuerzos en ambos contratos LAN; usar después depósito y banco para verificar el flujo completo de preparación, resultado, premio único y guardado. Ampliar esos dos contratos y construir museo, Blackout y el final sobre ese flujo. Resolver diferencias con el GDD al ampliar el banco: un expediente frente a 2–4 piezas previstas, cámaras desactivadas hasta que termina la incursión y salida de todos los supervivientes conscientes frente a la victoria con al menos un agente y el objetivo. Siguen pendientes la sesión por código, el pulido audiovisual original, las pruebas entre PCs y la entrega Windows final. La revisión no reanuda la implementación.
+
+## Estado de implementación del 12 de noviembre de 2026
 
 **Trabajo detenido a petición del usuario para seguir mañana.** Estado completo, pruebas fallidas, archivos nuevos y orden exacto de continuación en [Retomar-2026-11-13.md](Retomar-2026-11-13.md). No hay validación final de la nueva etapa táctica.
 

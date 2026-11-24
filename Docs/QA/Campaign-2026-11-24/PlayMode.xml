@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="74" result="Skipped:Ignored" total="74" passed="70" failed="0" inconclusive="0" skipped="4" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:48Z" duration="39,8727264">
+  <test-suite type="TestSuite" id="1100" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="74" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:48Z" duration="39.872726" total="74" passed="70" failed="0" inconclusive="0" skipped="4" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <reason>
+      <message><![CDATA[One or more child tests were ignored]]></message>
+    </reason>
+    <test-suite type="Assembly" id="1094" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/host/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="74" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:48Z" duration="39.831206" total="74" passed="70" failed="0" inconclusive="0" skipped="4" asserts="0">
+      <properties>
+        <property name="_PID" value="17888" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <reason>
+        <message><![CDATA[One or more child tests were ignored]]></message>
+      </reason>
+      <test-suite type="TestSuite" id="1095" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="74" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:48Z" duration="39.780589" total="74" passed="70" failed="0" inconclusive="0" skipped="4" asserts="0">
+        <properties />
+        <reason>
+          <message><![CDATA[One or more child tests were ignored]]></message>
+        </reason>
+        <test-suite type="TestSuite" id="1096" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="74" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:48Z" duration="39.766568" total="74" passed="70" failed="0" inconclusive="0" skipped="4" asserts="0">
+          <properties />
+          <reason>
+            <message><![CDATA[One or more child tests were ignored]]></message>
+          </reason>
+          <test-suite type="TestFixture" id="1001" name="CampaignProgressTests" fullname="OperationHeist.Tests.CampaignProgressTests" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:13Z" duration="5.333887" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1003" name="CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved" fullname="OperationHeist.Tests.CampaignProgressTests.CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved" methodname="CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" seed="1203087621" result="Passed" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:08Z" duration="0.078304" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="DepotWinPaysOnceAndOpensTheBank" fullname="OperationHeist.Tests.CampaignProgressTests.DepotWinPaysOnceAndOpensTheBank" methodname="DepotWinPaysOnceAndOpensTheBank" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" seed="2038725633" result="Passed" start-time="2026-11-24 15:18:08Z" end-time="2026-11-24 15:18:13Z" duration="5.161092" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+]]></output>
+            </test-case>
+            <test-case id="1002" name="ReopeningAndRetryingAnAttemptKeepsTheSameBalance" fullname="OperationHeist.Tests.CampaignProgressTests.ReopeningAndRetryingAnAttemptKeepsTheSameBalance" methodname="ReopeningAndRetryingAnAttemptKeepsTheSameBalance" classname="OperationHeist.Tests.CampaignProgressTests" runstate="Runnable" seed="1488144114" result="Passed" start-time="2026-11-24 15:18:13Z" end-time="2026-11-24 15:18:13Z" duration="0.050706" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1005" name="CoopDepotLanTests" fullname="OperationHeist.Tests.CoopDepotLanTests" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" testcasecount="3" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:13Z" end-time="2026-11-24 15:18:15Z" duration="1.364732" total="3" passed="1" failed="0" inconclusive="0" skipped="2" asserts="0">
+            <properties />
+            <reason>
+              <message><![CDATA[One or more child tests were ignored]]></message>
+            </reason>
+            <test-case id="1008" name="LabStartsWithRepairedComponents" fullname="OperationHeist.Tests.CoopDepotLanTests.LabStartsWithRepairedComponents" methodname="LabStartsWithRepairedComponents" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="1267154868" result="Passed" start-time="2026-11-24 15:18:13Z" end-time="2026-11-24 15:18:15Z" duration="1.285488" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="TwoInstancesCompleteBank" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteBank" methodname="TwoInstancesCompleteBank" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="502815271" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.013357" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[Requiere dos procesos y una carpeta de coordinación compartida.]]></message>
+              </reason>
+            </test-case>
+            <test-case id="1006" name="TwoInstancesCompleteDepot" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteDepot" methodname="TwoInstancesCompleteDepot" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="1952979353" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.015723" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[Requiere dos procesos Unity y una carpeta de coordinación compartida.]]></message>
+              </reason>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1009" name="FpsControllerTests" fullname="OperationHeist.Tests.FpsControllerTests" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.590803" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1013" name="CrouchLowersViewAndCannotStandThroughCeiling" fullname="OperationHeist.Tests.FpsControllerTests.CrouchLowersViewAndCannotStandThroughCeiling" methodname="CrouchLowersViewAndCannotStandThroughCeiling" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="948359436" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.432426" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="InputNormalizesDiagonalAndSprintIsFaster" fullname="OperationHeist.Tests.FpsControllerTests.InputNormalizesDiagonalAndSprintIsFaster" methodname="InputNormalizesDiagonalAndSprintIsFaster" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1911937788" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.127877" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="PrefabKeepsControllerReference" fullname="OperationHeist.Tests.FpsControllerTests.PrefabKeepsControllerReference" methodname="PrefabKeepsControllerReference" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1162362812" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.005713" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="RemoteControlDisablesLocalPresentationAndMotion" fullname="OperationHeist.Tests.FpsControllerTests.RemoteControlDisablesLocalPresentationAndMotion" methodname="RemoteControlDisablesLocalPresentationAndMotion" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1211657982" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.008748" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="ViewSettingsApplyAndClamp" fullname="OperationHeist.Tests.FpsControllerTests.ViewSettingsApplyAndClamp" methodname="ViewSettingsApplyAndClamp" classname="OperationHeist.Tests.FpsControllerTests" runstate="Runnable" seed="1434729529" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:15Z" duration="0.004748" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1015" name="InteractionPresentationTests" fullname="OperationHeist.Tests.InteractionPresentationTests" classname="OperationHeist.Tests.InteractionPresentationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:16Z" duration="1.129197" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1016" name="ModelInspectionUpdatesPromptAndFeedback" fullname="OperationHeist.Tests.InteractionPresentationTests.ModelInspectionUpdatesPromptAndFeedback" methodname="ModelInspectionUpdatesPromptAndFeedback" classname="OperationHeist.Tests.InteractionPresentationTests" runstate="Runnable" seed="689874475" result="Passed" start-time="2026-11-24 15:18:15Z" end-time="2026-11-24 15:18:16Z" duration="1.125274" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1017" name="LocalMissionTests" fullname="OperationHeist.Tests.LocalMissionTests" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:17Z" duration="0.108870" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1018" name="BriefingBlocksPickupUntilMissionStarts" fullname="OperationHeist.Tests.LocalMissionTests.BriefingBlocksPickupUntilMissionStarts" methodname="BriefingBlocksPickupUntilMissionStarts" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="84539484" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.008415" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="ClosingPauseDoesNotGiveRemoteProxyLocalControl" fullname="OperationHeist.Tests.LocalMissionTests.ClosingPauseDoesNotGiveRemoteProxyLocalControl" methodname="ClosingPauseDoesNotGiveRemoteProxyLocalControl" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="818827868" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.005003" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="DepositRequiresVisibleExtractionAndCountsEachItemOnce" fullname="OperationHeist.Tests.LocalMissionTests.DepositRequiresVisibleExtractionAndCountsEachItemOnce" methodname="DepositRequiresVisibleExtractionAndCountsEachItemOnce" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="1219073095" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.005703" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="DisablingCarrierRecoversWorldLoot" fullname="OperationHeist.Tests.LocalMissionTests.DisablingCarrierRecoversWorldLoot" methodname="DisablingCarrierRecoversWorldLoot" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="428880105" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.007319" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="DropNeverTeleportsThroughBlockingWall" fullname="OperationHeist.Tests.LocalMissionTests.DropNeverTeleportsThroughBlockingWall" methodname="DropNeverTeleportsThroughBlockingWall" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="941980253" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.008355" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="DroppedLootCanBePickedUpAgain" fullname="OperationHeist.Tests.LocalMissionTests.DroppedLootCanBePickedUpAgain" methodname="DroppedLootCanBePickedUpAgain" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="988834643" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.009377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="IncapacitationRecoversCarriedLootAndBlocksFurtherPickup" fullname="OperationHeist.Tests.LocalMissionTests.IncapacitationRecoversCarriedLootAndBlocksFurtherPickup" methodname="IncapacitationRecoversCarriedLootAndBlocksFurtherPickup" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="647150164" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.005405" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="MaximumAlarmStartsEmergencyBeforeMissionFails" fullname="OperationHeist.Tests.LocalMissionTests.MaximumAlarmStartsEmergencyBeforeMissionFails" methodname="MaximumAlarmStartsEmergencyBeforeMissionFails" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="1917806415" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.006769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="PatrolGuardSkipsWaypointWhenBlockedLongEnough" fullname="OperationHeist.Tests.LocalMissionTests.PatrolGuardSkipsWaypointWhenBlockedLongEnough" methodname="PatrolGuardSkipsWaypointWhenBlockedLongEnough" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="1248098874" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.009869" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="PauseFreezesTimeAndAlarmAndPreservesCamera" fullname="OperationHeist.Tests.LocalMissionTests.PauseFreezesTimeAndAlarmAndPreservesCamera" methodname="PauseFreezesTimeAndAlarmAndPreservesCamera" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="918100146" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:16Z" duration="0.009190" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="PickupHasOneOwnerAndDisablesSprintUntilDrop" fullname="OperationHeist.Tests.LocalMissionTests.PickupHasOneOwnerAndDisablesSprintUntilDrop" methodname="PickupHasOneOwnerAndDisablesSprintUntilDrop" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="689434972" result="Passed" start-time="2026-11-24 15:18:16Z" end-time="2026-11-24 15:18:17Z" duration="0.011259" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="PickupRejectsOutOfRangeAndSolidWall" fullname="OperationHeist.Tests.LocalMissionTests.PickupRejectsOutOfRangeAndSolidWall" methodname="PickupRejectsOutOfRangeAndSolidWall" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="1960219455" result="Passed" start-time="2026-11-24 15:18:17Z" end-time="2026-11-24 15:18:17Z" duration="0.006295" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="TimeoutEndsMissionAndCannotBecomeVictory" fullname="OperationHeist.Tests.LocalMissionTests.TimeoutEndsMissionAndCannotBecomeVictory" methodname="TimeoutEndsMissionAndCannotBecomeVictory" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="1653730852" result="Passed" start-time="2026-11-24 15:18:17Z" end-time="2026-11-24 15:18:17Z" duration="0.004428" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="VictoryRequiresAllLootAndSeparateExtraction" fullname="OperationHeist.Tests.LocalMissionTests.VictoryRequiresAllLootAndSeparateExtraction" methodname="VictoryRequiresAllLootAndSeparateExtraction" classname="OperationHeist.Tests.LocalMissionTests" runstate="Runnable" seed="899365753" result="Passed" start-time="2026-11-24 15:18:17Z" end-time="2026-11-24 15:18:17Z" duration="0.006210" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1032" name="LocalMvpSceneTests" fullname="OperationHeist.Tests.LocalMvpSceneTests" classname="OperationHeist.Tests.LocalMvpSceneTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 15:18:17Z" end-time="2026-11-24 15:18:20Z" duration="3.413252" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1035" name="DepotBootsPausesFailsAndRestartsWithRealUi" fullname="OperationHeist.Tests.LocalMvpSceneTests.DepotBootsPausesFailsAndRestartsWithRealUi" methodname="DepotBootsPausesFailsAndRestartsWithRealUi" classname="OperationHeist.Tests.LocalMvpSceneTests" runstate="Runnable" seed="1250756698" result="Passed" start-time="2026-11-24 15:18:17Z" end-time="2026-11-24 15:18:19Z" duration="1.989698" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="DepotRealLootCanAllBeDeliveredAndExtracted" fullname="OperationHeist.Tests.LocalMvpSceneTests.DepotRealLootCanAllBeDeliveredAndExtracted" methodname="DepotRealLootCanAllBeDeliveredAndExtracted" classname="OperationHeist.Tests.LocalMvpSceneTests" runstate="Runnable" seed="32850790" result="Passed" start-time="2026-11-24 15:18:19Z" end-time="2026-11-24 15:18:19Z" duration="0.716273" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="GuardRaisesAlarmOnlyWithClearLineOfSight" fullname="OperationHeist.Tests.LocalMvpSceneTests.GuardRaisesAlarmOnlyWithClearLineOfSight" methodname="GuardRaisesAlarmOnlyWithClearLineOfSight" classname="OperationHeist.Tests.LocalMvpSceneTests" runstate="Runnable" seed="1471081653" result="Passed" start-time="2026-11-24 15:18:19Z" end-time="2026-11-24 15:18:20Z" duration="0.676956" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1082" name="MissionAudioCueTests" fullname="OperationHeist.Tests.MissionAudioCueTests" classname="OperationHeist.Tests.MissionAudioCueTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 15:18:20Z" end-time="2026-11-24 15:18:20Z" duration="0.030579" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1084" name="ClockCuesOnceAtOneMinuteAndOnceAtTenSeconds" fullname="OperationHeist.Tests.MissionAudioCueTests.ClockCuesOnceAtOneMinuteAndOnceAtTenSeconds" methodname="ClockCuesOnceAtOneMinuteAndOnceAtTenSeconds" classname="OperationHeist.Tests.MissionAudioCueTests" runstate="Runnable" seed="1567003286" result="Passed" start-time="2026-11-24 15:18:20Z" end-time="2026-11-24 15:18:20Z" duration="0.020308" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1083" name="SynthesisStartsSilentAndStaysBounded" fullname="OperationHeist.Tests.MissionAudioCueTests.SynthesisStartsSilentAndStaysBounded" methodname="SynthesisStartsSilentAndStaysBounded" classname="OperationHeist.Tests.MissionAudioCueTests" runstate="Runnable" seed="340079655" result="Passed" start-time="2026-11-24 15:18:20Z" end-time="2026-11-24 15:18:20Z" duration="0.004008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1036" name="MissionSetTests" fullname="OperationHeist.Tests.MissionSetTests" classname="OperationHeist.Tests.MissionSetTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 15:18:20Z" end-time="2026-11-24 15:18:25Z" duration="5.075197" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="BankContractOpensVaultAndExtractsThroughRealScene" fullname="OperationHeist.Tests.MissionSetTests.BankContractOpensVaultAndExtractsThroughRealScene" methodname="BankContractOpensVaultAndExtractsThroughRealScene" classname="OperationHeist.Tests.MissionSetTests" runstate="Runnable" seed="761075093" result="Passed" start-time="2026-11-24 15:18:20Z" end-time="2026-11-24 15:18:22Z" duration="2.227783" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="BankSetContainsTellerClerkAndWalkableFloor" fullname="OperationHeist.Tests.MissionSetTests.BankSetContainsTellerClerkAndWalkableFloor" methodname="BankSetContainsTellerClerkAndWalkableFloor" classname="OperationHeist.Tests.MissionSetTests" runstate="Runnable" seed="190680040" result="Passed" start-time="2026-11-24 15:18:22Z" end-time="2026-11-24 15:18:23Z" duration="0.587508" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene
+]]></output>
+            </test-case>
+            <test-case id="1041" name="BankTimeoutAndReturnToDepot" fullname="OperationHeist.Tests.MissionSetTests.BankTimeoutAndReturnToDepot" methodname="BankTimeoutAndReturnToDepot" classname="OperationHeist.Tests.MissionSetTests" runstate="Runnable" seed="1500695737" result="Passed" start-time="2026-11-24 15:18:23Z" end-time="2026-11-24 15:18:24Z" duration="1.648151" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="DepotUsesProductionGuardAndDossiers" fullname="OperationHeist.Tests.MissionSetTests.DepotUsesProductionGuardAndDossiers" methodname="DepotUsesProductionGuardAndDossiers" classname="OperationHeist.Tests.MissionSetTests" runstate="Runnable" seed="528103043" result="Passed" start-time="2026-11-24 15:18:24Z" end-time="2026-11-24 15:18:25Z" duration="0.579046" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="WalkCycleSwingsHipsInOppositeDirections" fullname="OperationHeist.Tests.MissionSetTests.WalkCycleSwingsHipsInOppositeDirections" methodname="WalkCycleSwingsHipsInOppositeDirections" classname="OperationHeist.Tests.MissionSetTests" runstate="Runnable" seed="1930749234" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.001047" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1042" name="NetworkHealthRulesTests" fullname="OperationHeist.Tests.NetworkHealthRulesTests" classname="OperationHeist.Tests.NetworkHealthRulesTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.002176" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="ReviveRequiresDownedTargetHealthyMedicAndRange" fullname="OperationHeist.Tests.NetworkHealthRulesTests.ReviveRequiresDownedTargetHealthyMedicAndRange" methodname="ReviveRequiresDownedTargetHealthyMedicAndRange" classname="OperationHeist.Tests.NetworkHealthRulesTests" runstate="Runnable" seed="1623281501" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.000498" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1047" name="NetworkLootAuthorityTests" fullname="OperationHeist.Tests.NetworkLootAuthorityTests" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.005611" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1048" name="AvailableLootCanBeAssignedToFreeCarrier" fullname="OperationHeist.Tests.NetworkLootAuthorityTests.AvailableLootCanBeAssignedToFreeCarrier" methodname="AvailableLootCanBeAssignedToFreeCarrier" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" seed="925096938" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.000293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="BusyCarrierCannotTakeAnotherAvailableLoot" fullname="OperationHeist.Tests.NetworkLootAuthorityTests.BusyCarrierCannotTakeAnotherAvailableLoot" methodname="BusyCarrierCannotTakeAnotherAvailableLoot" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" seed="108915202" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.000215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1049" name="CarriedLootRejectsSecondAssignment" fullname="OperationHeist.Tests.NetworkLootAuthorityTests.CarriedLootRejectsSecondAssignment" methodname="CarriedLootRejectsSecondAssignment" classname="OperationHeist.Tests.NetworkLootAuthorityTests" runstate="Runnable" seed="1792193132" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:25Z" duration="0.000215" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1051" name="OriginalModelsTests" fullname="OperationHeist.Tests.OriginalModelsTests" classname="OperationHeist.Tests.OriginalModelsTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:26Z" duration="0.708350" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1052" name="SceneLoadsFourOriginalPropsAndRenders" fullname="OperationHeist.Tests.OriginalModelsTests.SceneLoadsFourOriginalPropsAndRenders" methodname="SceneLoadsFourOriginalPropsAndRenders" classname="OperationHeist.Tests.OriginalModelsTests" runstate="Runnable" seed="902847850" result="Passed" start-time="2026-11-24 15:18:25Z" end-time="2026-11-24 15:18:26Z" duration="0.702930" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Preview pipeline: UnityEngine.Rendering.Universal.UniversalRenderPipeline
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1053" name="PlayerInteractorTests" fullname="OperationHeist.Tests.PlayerInteractorTests" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.659898" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1054" name="DefaultMaxDistanceIsTwoPointFive" fullname="OperationHeist.Tests.PlayerInteractorTests.DefaultMaxDistanceIsTwoPointFive" methodname="DefaultMaxDistanceIsTwoPointFive" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1865392540" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.008313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="DirectPropTryInteract_CannotBypassRangeOrOwnership" fullname="OperationHeist.Tests.PlayerInteractorTests.DirectPropTryInteract_CannotBypassRangeOrOwnership" methodname="DirectPropTryInteract_CannotBypassRangeOrOwnership" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1265428947" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.116042" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1066" name="DisabledInteractor_DoesNotInteract" fullname="OperationHeist.Tests.PlayerInteractorTests.DisabledInteractor_DoesNotInteract" methodname="DisabledInteractor_DoesNotInteract" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="877056215" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.073131" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1063" name="DisabledOrDestroyedProp_ClearsTargetAndRejectsInteract" fullname="OperationHeist.Tests.PlayerInteractorTests.DisabledOrDestroyedProp_ClearsTargetAndRejectsInteract" methodname="DisabledOrDestroyedProp_ClearsTargetAndRejectsInteract" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="441610408" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.109406" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1069" name="ExistingPropPrefabs_SupportPrototypeInteractionWithoutRegeneratingAssets" fullname="OperationHeist.Tests.PlayerInteractorTests.ExistingPropPrefabs_SupportPrototypeInteractionWithoutRegeneratingAssets" methodname="ExistingPropPrefabs_SupportPrototypeInteractionWithoutRegeneratingAssets" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1918089164" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.072678" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1061" name="FreeCursor_BlocksTryInteract_ButRefreshTargetStillQueries" fullname="OperationHeist.Tests.PlayerInteractorTests.FreeCursor_BlocksTryInteract_ButRefreshTargetStillQueries" methodname="FreeCursor_BlocksTryInteract_ButRefreshTargetStillQueries" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1008639256" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.057365" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1068" name="InteractKey_PerformsSingleActionPerPress" fullname="OperationHeist.Tests.PlayerInteractorTests.InteractKey_PerformsSingleActionPerPress" methodname="InteractKey_PerformsSingleActionPerPress" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="269704855" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.120765" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1062" name="MissingApplicationFocus_BlocksTryInteract_ButRefreshTargetStillQueries" fullname="OperationHeist.Tests.PlayerInteractorTests.MissingApplicationFocus_BlocksTryInteract_ButRefreshTargetStillQueries" methodname="MissingApplicationFocus_BlocksTryInteract_ButRefreshTargetStillQueries" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1375292031" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.010894" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1059" name="OwnColliderIgnored_AndChildColliderResolvesParentProp" fullname="OperationHeist.Tests.PlayerInteractorTests.OwnColliderIgnored_AndChildColliderResolvesParentProp" methodname="OwnColliderIgnored_AndChildColliderResolvesParentProp" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="390506918" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.010652" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1056" name="RefreshTarget_OutsideMaxDistance_ClearsTarget" fullname="OperationHeist.Tests.PlayerInteractorTests.RefreshTarget_OutsideMaxDistance_ClearsTarget" methodname="RefreshTarget_OutsideMaxDistance_ClearsTarget" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="489013820" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.009622" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1055" name="RefreshTarget_WithinRange_SetsCurrentTarget" fullname="OperationHeist.Tests.PlayerInteractorTests.RefreshTarget_WithinRange_SetsCurrentTarget" methodname="RefreshTarget_WithinRange_SetsCurrentTarget" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="640043314" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.009325" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1065" name="RepeatedInteract_DoesNotDuplicateInspection" fullname="OperationHeist.Tests.PlayerInteractorTests.RepeatedInteract_DoesNotDuplicateInspection" methodname="RepeatedInteract_DoesNotDuplicateInspection" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="221010226" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.009183" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1057" name="SolidWallWithoutInteractable_BlocksPropBehind" fullname="OperationHeist.Tests.PlayerInteractorTests.SolidWallWithoutInteractable_BlocksPropBehind" methodname="SolidWallWithoutInteractable_BlocksPropBehind" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="862692552" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.009839" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1064" name="TargetChangedBeforeInteract_UsesFreshRaycast" fullname="OperationHeist.Tests.PlayerInteractorTests.TargetChangedBeforeInteract_UsesFreshRaycast" methodname="TargetChangedBeforeInteract_UsesFreshRaycast" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1025997060" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.012830" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1058" name="TriggerColliderInFront_IsIgnored_PropRemainsReachable" fullname="OperationHeist.Tests.PlayerInteractorTests.TriggerColliderInFront_IsIgnored_PropRemainsReachable" methodname="TriggerColliderInFront_IsIgnored_PropRemainsReachable" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="1819392601" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.012738" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+            <test-case id="1060" name="WithoutLocalOwnership_RefreshClearsAndInteractFails" fullname="OperationHeist.Tests.PlayerInteractorTests.WithoutLocalOwnership_RefreshClearsAndInteractFails" methodname="WithoutLocalOwnership_RefreshClearsAndInteractFails" classname="OperationHeist.Tests.PlayerInteractorTests" runstate="Runnable" seed="229133632" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.009800" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+There are 2 audio listeners in the scene. Please ensure there is always exactly one audio listener in the scene.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1070" name="SecurityCoopTests" fullname="OperationHeist.Tests.SecurityCoopTests" classname="OperationHeist.Tests.SecurityCoopTests" runstate="Runnable" testcasecount="1" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.058273" total="1" passed="0" failed="0" inconclusive="0" skipped="1" asserts="0">
+            <properties />
+            <reason>
+              <message><![CDATA[One or more child tests were ignored]]></message>
+            </reason>
+            <test-case id="1071" name="BothContractsReplicateGuardDamageReviveAndTeamDefeat" fullname="OperationHeist.Tests.SecurityCoopTests.BothContractsReplicateGuardDamageReviveAndTeamDefeat" methodname="BothContractsReplicateGuardDamageReviveAndTeamDefeat" classname="OperationHeist.Tests.SecurityCoopTests" runstate="Runnable" seed="559516898" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.056575" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[Requires two Unity processes and a fresh coordination folder.]]></message>
+              </reason>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1072" name="SecuritySystemsTests" fullname="OperationHeist.Tests.SecuritySystemsTests" classname="OperationHeist.Tests.SecuritySystemsTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:45Z" duration="18.965053" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1073" name="AlarmEscalatesDecaysAndLocksDownWithoutImmediateFailure" fullname="OperationHeist.Tests.SecuritySystemsTests.AlarmEscalatesDecaysAndLocksDownWithoutImmediateFailure" methodname="AlarmEscalatesDecaysAndLocksDownWithoutImmediateFailure" classname="OperationHeist.Tests.SecuritySystemsTests" runstate="Runnable" seed="652415968" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:26Z" duration="0.021536" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1075" name="BothLocalContractsApplyGuardDamageRecoveryAndBleedout" fullname="OperationHeist.Tests.SecuritySystemsTests.BothLocalContractsApplyGuardDamageRecoveryAndBleedout" methodname="BothLocalContractsApplyGuardDamageRecoveryAndBleedout" classname="OperationHeist.Tests.SecuritySystemsTests" runstate="Runnable" seed="1381887678" result="Passed" start-time="2026-11-24 15:18:26Z" end-time="2026-11-24 15:18:29Z" duration="2.549571" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="GuardInvestigatesNoiseSearchesAndReturnsWithoutSeeingThroughWalls" fullname="OperationHeist.Tests.SecuritySystemsTests.GuardInvestigatesNoiseSearchesAndReturnsWithoutSeeingThroughWalls" methodname="GuardInvestigatesNoiseSearchesAndReturnsWithoutSeeingThroughWalls" classname="OperationHeist.Tests.SecuritySystemsTests" runstate="Runnable" seed="782911902" result="Passed" start-time="2026-11-24 15:18:29Z" end-time="2026-11-24 15:18:29Z" duration="0.028548" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="OneAgentLanCanUseOnlyOneRecovery" fullname="OperationHeist.Tests.SecuritySystemsTests.OneAgentLanCanUseOnlyOneRecovery" methodname="OneAgentLanCanUseOnlyOneRecovery" classname="OperationHeist.Tests.SecuritySystemsTests" runstate="Runnable" seed="1445578948" result="Passed" start-time="2026-11-24 15:18:29Z" end-time="2026-11-24 15:18:45Z" duration="16.359863" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1077" name="SystemsCommonTests" fullname="OperationHeist.Tests.SystemsCommonTests" classname="OperationHeist.Tests.SystemsCommonTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.018015" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1078" name="DamageIncapacitatesAndBleedoutFailsMission" fullname="OperationHeist.Tests.SystemsCommonTests.DamageIncapacitatesAndBleedoutFailsMission" methodname="DamageIncapacitatesAndBleedoutFailsMission" classname="OperationHeist.Tests.SystemsCommonTests" runstate="Runnable" seed="1003594501" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.002381" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1080" name="ObjectiveBoardCompletesIdempotently" fullname="OperationHeist.Tests.SystemsCommonTests.ObjectiveBoardCompletesIdempotently" methodname="ObjectiveBoardCompletesIdempotently" classname="OperationHeist.Tests.SystemsCommonTests" runstate="Runnable" seed="570654603" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.001274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1081" name="PauseDoesNotAdvanceBleedout" fullname="OperationHeist.Tests.SystemsCommonTests.PauseDoesNotAdvanceBleedout" methodname="PauseDoesNotAdvanceBleedout" classname="OperationHeist.Tests.SystemsCommonTests" runstate="Runnable" seed="1783555223" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.001325" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1079" name="ReviveDuringBleedoutRestoresControlWhilePlaying" fullname="OperationHeist.Tests.SystemsCommonTests.ReviveDuringBleedoutRestoresControlWhilePlaying" methodname="ReviveDuringBleedoutRestoresControlWhilePlaying" classname="OperationHeist.Tests.SystemsCommonTests" runstate="Runnable" seed="543234734" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.001430" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1085" name="TacticalCoopTests" fullname="OperationHeist.Tests.TacticalCoopTests" classname="OperationHeist.Tests.TacticalCoopTests" runstate="Runnable" testcasecount="1" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.028128" total="1" passed="0" failed="0" inconclusive="0" skipped="1" asserts="0">
+            <properties />
+            <reason>
+              <message><![CDATA[One or more child tests were ignored]]></message>
+            </reason>
+            <test-case id="1086" name="BothContractsRouteDefendDeployAndResetAcrossTwoProcesses" fullname="OperationHeist.Tests.TacticalCoopTests.BothContractsRouteDefendDeployAndResetAcrossTwoProcesses" methodname="BothContractsRouteDefendDeployAndResetAcrossTwoProcesses" classname="OperationHeist.Tests.TacticalCoopTests" runstate="Runnable" seed="2036485459" result="Skipped" label="Ignored" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:45Z" duration="0.023374" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <reason>
+                <message><![CDATA[Requires two processes and a fresh shared folder.]]></message>
+              </reason>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1087" name="TacticalSystemsTests" fullname="OperationHeist.Tests.TacticalSystemsTests" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:48Z" duration="2.261335" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1093" name="BothLocalContractsDefendDeployPauseAndCapReinforcements" fullname="OperationHeist.Tests.TacticalSystemsTests.BothLocalContractsDefendDeployPauseAndCapReinforcements" methodname="BothLocalContractsDefendDeployPauseAndCapReinforcements" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="1001929602" result="Passed" start-time="2026-11-24 15:18:45Z" end-time="2026-11-24 15:18:48Z" duration="2.102409" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1092" name="DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" fullname="OperationHeist.Tests.TacticalSystemsTests.DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" methodname="DefenseRejectsWallsAndRangeThenHonorsCooldownAndThreeUses" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="8449887" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.015915" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1091" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.138626" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1088" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(0.0f,20.0f,0.1f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(0.0f,20.0f,0.1f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="729976541" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.033592" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.1f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.1f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="1004989533" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.046594" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.005f)" fullname="OperationHeist.Tests.TacticalSystemsTests.NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor(8.0f,24.0f,0.005f)" methodname="NavMeshRoutesAroundSolidWallAndRefreshesBlockedDoor" classname="OperationHeist.Tests.TacticalSystemsTests" runstate="Runnable" seed="798757467" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.056862" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1044" name="WirePatchMinigameTests" fullname="OperationHeist.Tests.WirePatchMinigameTests" classname="OperationHeist.Tests.WirePatchMinigameTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.004146" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1045" name="CorrectOrderSucceedsAndWrongExceedsMistakesFails" fullname="OperationHeist.Tests.WirePatchMinigameTests.CorrectOrderSucceedsAndWrongExceedsMistakesFails" methodname="CorrectOrderSucceedsAndWrongExceedsMistakesFails" classname="OperationHeist.Tests.WirePatchMinigameTests" runstate="Runnable" seed="692256310" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.001659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="FullCorrectSequenceSucceeds" fullname="OperationHeist.Tests.WirePatchMinigameTests.FullCorrectSequenceSucceeds" methodname="FullCorrectSequenceSucceeds" classname="OperationHeist.Tests.WirePatchMinigameTests" runstate="Runnable" seed="2117588355" result="Passed" start-time="2026-11-24 15:18:48Z" end-time="2026-11-24 15:18:48Z" duration="0.000652" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
