@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-26 12:45:50Z" end-time="2026-11-26 12:45:53Z" duration="2,7634886">
+  <test-suite type="TestSuite" id="1107" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-11-26 12:45:50Z" end-time="2026-11-26 12:45:53Z" duration="2.763489" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1101" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH-Campaign-Complete-20261126/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-11-26 12:45:51Z" end-time="2026-11-26 12:45:53Z" duration="2.745772" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="16136" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1102" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-11-26 12:45:51Z" end-time="2026-11-26 12:45:53Z" duration="2.742348" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1103" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="80" result="Passed" start-time="2026-11-26 12:45:51Z" end-time="2026-11-26 12:45:53Z" duration="2.726433" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CampaignChapterTests" fullname="OperationHeist.Tests.CampaignChapterTests" classname="OperationHeist.Tests.CampaignChapterTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-26 12:45:51Z" end-time="2026-11-26 12:45:53Z" duration="2.716714" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1005" name="BlackoutReplicatesPanelsLightingAndTeamExtraction" fullname="OperationHeist.Tests.CampaignChapterTests.BlackoutReplicatesPanelsLightingAndTeamExtraction" methodname="BlackoutReplicatesPanelsLightingAndTeamExtraction" classname="OperationHeist.Tests.CampaignChapterTests" runstate="Runnable" seed="771697005" result="Passed" start-time="2026-11-26 12:45:51Z" end-time="2026-11-26 12:45:53Z" duration="2.681008" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+Saving result file failed.
+IOException: Sharing violation on path C:\Users\Usuariocc\AppData\LocalLow\DefaultCompany\Operation Heist\TestResults.xml
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+(wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding, System.Int32 bufferSize) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+(wrapper remoting-invoke-with-check) System.IO.StreamWriter..ctor(string,bool)
+System.IO.File.CreateText (System.String path) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+UnityEditor.TestTools.TestRunner.Api.ResultsWriter.WriteResultToFile (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor result, System.String filePath) (at ./Library/PackageCache/com.unity.test-framework@1405238725ab/UnityEditor.TestRunner/Api/ResultsWriter.cs:43)
+UnityEditor.TestTools.TestRunner.Api.ResultsWriter:WriteResultToFile(ITestResultAdaptor, String)
+Unity.PerformanceTesting.Editor.PerformanceTestRunSaver:UnityEditor.TestTools.TestRunner.Api.ICallbacks.RunFinished(ITestResultAdaptor) (at ./Library/PackageCache/com.unity.test-framework.performance@8b56083ec0f0/Editor/PerformanceTestRunSaver.cs:27)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+Saving results to: D:/ae/OH-Campaign-Complete-20261126/blackout-host-retry.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

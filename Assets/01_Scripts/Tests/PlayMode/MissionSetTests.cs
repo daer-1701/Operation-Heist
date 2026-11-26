@@ -64,7 +64,7 @@ namespace OperationHeist.Tests
         {
             yield return SceneManager.LoadSceneAsync("Heist_Depot");
             yield return null;
-            GameObject.Find("OtherContract").GetComponent<Button>().onClick.Invoke();
+            GameObject.Find("Contract2").GetComponent<Button>().onClick.Invoke();
             yield return null;
             yield return null;
             Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo("Heist_Bank"));
@@ -131,7 +131,9 @@ namespace OperationHeist.Tests
             Assert.That(actor.TryInteract(), Is.True, "Apertura por raycast");
             Assert.That(mission.Objectives.IsComplete("vault-access"), Is.True);
             Assert.That(loot.gameObject.activeSelf, Is.True);
-            Assert.That(loot.transform.Find("Modelo Hunyuan").GetComponentInChildren<MeshRenderer>(), Is.Not.Null);
+            var dossierVisual = loot.transform.Find("Expediente visual");
+            Assert.That(dossierVisual, Is.Not.Null);
+            Assert.That(dossierVisual.GetComponentInChildren<MeshRenderer>(), Is.Not.Null);
             Physics.SyncTransforms();
             Move(capsule, new Vector3(5.55f, spawn.y, 5.75f));
             Aim(camera, loot.GetComponent<Collider>().bounds.center);
@@ -154,7 +156,7 @@ namespace OperationHeist.Tests
             var mission = Object.FindAnyObjectByType<LocalMission>();
             mission.Tick(mission.RemainingSeconds);
             Assert.That(mission.Phase, Is.EqualTo(MissionPhase.Lost));
-            GameObject.Find("OtherContract").GetComponent<Button>().onClick.Invoke();
+            GameObject.Find("Contract1").GetComponent<Button>().onClick.Invoke();
             yield return null;
             yield return null;
             Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo("Heist_Depot"));

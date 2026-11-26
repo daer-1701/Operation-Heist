@@ -143,6 +143,7 @@ Thumbs.db
 # Local execution history and quarantined template content are not source.
 /Docs/AgentRuns/
 /Docs/Archive/
+/Hunyuan3D-2mini-Turbo/
 /Docs/QA/*.log
 /Tools/*.request
 /Tools/*.result

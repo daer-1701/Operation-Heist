@@ -2,7 +2,7 @@
 
 Implementación original con asistencia de Codex, 12 de noviembre de 2026. Componentes reutilizables para los cinco capítulos; integrados por los componentes existentes del depósito y banco, sin regenerar escenas ni prefabs.
 
-**Estado al detener el trabajo:** la seguridad/salud anterior tiene evidencia propia; las ampliaciones de navegación, refuerzos y defensa descritas aquí están implementadas pero **no aceptadas todavía**. El último test LAN falla al medir movimiento de la réplica tras aturdimiento. [Estado exacto para retomar](Retomar-2026-11-13.md) y [pruebas tácticas](QA/Tactical-Validation.md). No extrapolar la validación de Security a los cambios nuevos.
+La primera validación de seguridad y salud está registrada en [QA/Security-Validation](QA/Security-Validation.md). Las pruebas del 24 de noviembre verificaron las ampliaciones de navegación, refuerzos y defensa con dos procesos en depósito y banco. [Anfitrión](QA/Campaign-2026-11-24/Tactical-host.xml) · [Cliente](QA/Campaign-2026-11-24/Tactical-client.xml)
 
 ## Guardias
 

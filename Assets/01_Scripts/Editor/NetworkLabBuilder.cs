@@ -77,12 +77,14 @@ namespace OperationHeist.Editor
 
         public static void BuildBank() => BuildContract(MissionSetBuilder.BankScenePath, BankScenePath, true);
 
-        private static void BuildContract(string source, string destination, bool bank)
+        internal static void BuildContract(string source, string destination, bool bank)
         {
             var player = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
             if (player == null) player = CreatePlayerPrefab();
             var scene = EditorSceneManager.OpenScene(source, OpenSceneMode.Single);
             var localMission = Object.FindAnyObjectByType<LocalMission>();
+            float duration = localMission.Duration;
+            var controls = localMission.Controls;
             var localPlayer = Object.FindAnyObjectByType<LootCarrier>();
             Vector3 spawn = localPlayer.transform.position;
             Object.DestroyImmediate(localMission.gameObject);
@@ -107,16 +109,19 @@ namespace OperationHeist.Editor
                 dossiers[i].Configure(label);
             }
 
-            var guard = Object.FindAnyObjectByType<PatrolGuard>();
+            var guards = Object.FindObjectsByType<PatrolGuard>();
+            var guard = System.Array.Find(guards, candidate => candidate.name != "Patrulla interior");
+            var interior = System.Array.Find(guards, candidate => candidate.name == "Patrulla interior");
             // The cooperative mission explicitly steps the same patrol on the host.
             guard.enabled = false;
             if (guard.TryGetComponent(out CapsuleCollider capsule)) capsule.enabled = true;
             guard.gameObject.AddComponent<NetworkObject>();
             guard.gameObject.AddComponent<NetworkTransform>();
+            if (interior != null) interior.enabled = false;
 
             var mission = new GameObject("Misión cooperativa", typeof(NetworkObject), typeof(NetworkDepotMission))
                 .GetComponent<NetworkDepotMission>();
-            mission.Configure(dossiers, terminal, zone, guard, spawn);
+            mission.Configure(dossiers, terminal, zone, guard, spawn, duration, controls, interior);
             if (bank) mission.ConfigureBank(Object.FindAnyObjectByType<BankSecurity>(),
                 Object.FindObjectsByType<BankSecuritySwitch>(), Object.FindAnyObjectByType<BankVaultAccess>());
             CreateSession(player, mission, spawn + new Vector3(0, 2.5f, -1), Quaternion.Euler(8, 0, 0));

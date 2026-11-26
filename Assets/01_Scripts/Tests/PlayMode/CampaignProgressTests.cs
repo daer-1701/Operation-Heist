@@ -47,6 +47,41 @@ namespace OperationHeist.Tests
         }
 
         [Test]
+        public void EquipmentPurchaseValidatesExperienceAndChargesOnlyOnceAcrossInstances()
+        {
+            var progress = new CampaignProgress(SavePath);
+            var stale = new CampaignProgress(SavePath);
+            Assert.That(progress.TryPurchase(CampaignEquipment.Capacitor), Is.False);
+            Assert.That(progress.TryReward(CampaignContract.Depot, Guid.NewGuid(), 0, 120, out _), Is.True);
+            Assert.That(progress.TryPurchase(CampaignEquipment.Armor), Is.False);
+            Assert.That(stale.TryPurchase(CampaignEquipment.Capacitor), Is.True);
+            Assert.That(progress.TryPurchase(CampaignEquipment.Capacitor), Is.True);
+            var reopened = new CampaignProgress(SavePath);
+            Assert.That(reopened.Owns(CampaignEquipment.Capacitor), Is.True);
+            Assert.That(reopened.Credits, Is.EqualTo(280));
+        }
+
+        [Test]
+        public void VersionOneSaveRetainsBankAndUnlocksTheRestInOrder()
+        {
+            File.WriteAllText(SavePath, "{\"version\":1,\"credits\":950,\"experience\":130,\"depotCleared\":true,\"bankCleared\":true,\"rewardedAttempts\":[]}");
+            var progress = new CampaignProgress(SavePath);
+            Assert.That(progress.Credits, Is.EqualTo(950));
+            Assert.That(progress.IsCleared(CampaignContract.Bank), Is.True);
+            Assert.That(progress.IsUnlocked(CampaignContract.Museum), Is.True);
+            Assert.That(progress.IsUnlocked(CampaignContract.Finale), Is.False);
+
+            for (var chapter = CampaignContract.Museum; chapter != null; chapter = chapter.Next)
+            {
+                Assert.That(progress.IsUnlocked(chapter), Is.True);
+                Assert.That(progress.TryReward(chapter, Guid.NewGuid(), 0, 0, out _), Is.True);
+                progress = new CampaignProgress(SavePath);
+                Assert.That(progress.IsCleared(chapter), Is.True);
+            }
+            Assert.That(progress.IsCleared(CampaignContract.Finale), Is.True);
+        }
+
+        [Test]
         public void CorruptPrimaryRecoversBackupAndFutureSchemaIsPreserved()
         {
             var profile = new CampaignProgress(SavePath);

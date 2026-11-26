@@ -8,7 +8,7 @@ Docs/Tasks conserva nueve registros históricos terminados o fallidos; no consti
 
 ## Navegación, refuerzos y defensa — 12 noviembre 2026
 
-Responsable único: Codex. **Detenido por petición del usuario para retomar mañana.** No se marca completado: última prueba de aturdimiento en cliente pendiente. Consultar Retomar-2026-11-13.md y QA/Tactical-Validation.md antes de actuar. No hay agentes ni ejecuciones Cursor activas.
+Responsable de esa etapa: Codex. La corrida del 12 de noviembre dejó pendiente el aturdimiento del cliente. El 24 de noviembre se verificó con dos procesos y con ambos contratos. Consultar el historial en Progress y los XML de QA/Campaign-2026-11-24.
 
 Rutas reservadas bajo Assets/01_Scripts: Player/Mission/GuardNavigation.cs, GuardReinforcements.cs, PatrolGuard.cs, LocalMission.cs; Player/Systems/PlayerDefense.cs; Network/GuardSnapshot.cs, NetworkDepotMission.cs, NetworkReviveInteractor.cs, NetworkSessionHud.cs; UI/LocalMissionPresenter.cs; Tests/PlayMode/TacticalSystemsTests.cs y TacticalCoopTests.cs; .meta de scripts nuevos.
 
@@ -29,3 +29,7 @@ Responsable: Codex en el chat de modelos. Reserva activa en [campaign-art-local]
 Responsable: Codex en el chat principal. Reserva activa en [campaign-gameplay](Tasks/campaign-gameplay.json). Diagnóstico de tácticas LAN, progreso, menú y reglas de contratos. El chat de modelos conserva sus rutas de arte. Las notas de ambas tareas en Progress y AssetManifest se agregan sin retirar las entradas de la otra tarea.
 
 Se reserva también Assets/03_Materials/CampaignArt y su .meta para el vidrio original de las vitrinas.
+
+## Capítulos jugables y tablero de campaña — 26 noviembre 2026
+
+Responsable: Codex en el chat principal. El registro campaign-gameplay amplía su reserva a las seis escenas nuevas de los capítulos 3–5, configuración de escenas del build, control de objetivos, su conversión LAN, interfaz y pruebas. La producción de modelos pertenece al chat de arte. Las escenas nuevas se generan en una copia aislada y se trasladan con sus metadatos.

@@ -15,12 +15,12 @@ namespace OperationHeist.UI
         const string SensitivityKey = "OH.MouseSensitivity";
         const string FovKey = "OH.FieldOfView";
         const string VolumeKey = "OH.MasterVolume";
-        static readonly Color Ink = new Color(.073f, .059f, .053f, .99f);
-        static readonly Color Panel = new Color(.17f, .14f, .12f, .97f);
-        static readonly Color Paper = new Color(.97f, .91f, .80f);
-        static readonly Color Amber = new Color(.98f, .72f, .39f);
-        static readonly Color Muted = new Color(.77f, .70f, .62f);
-        static readonly Color Ember = new Color(.73f, .29f, .18f);
+        static readonly Color Ink = new Color(.046f, .064f, .073f, .99f);
+        static readonly Color Panel = new Color(.105f, .15f, .17f, .97f);
+        static readonly Color Paper = new Color(.90f, .94f, .93f);
+        static readonly Color Amber = new Color(.94f, .73f, .35f);
+        static readonly Color Muted = new Color(.66f, .74f, .75f);
+        static readonly Color Teal = new Color(.17f, .56f, .52f);
         [SerializeField] LocalMission mission;
         HealthHudPresenter _healthHud;
         CampaignProgress _progress;
@@ -28,6 +28,7 @@ namespace OperationHeist.UI
         System.Guid _attempt;
         bool _rewardSaved;
         CampaignRole _role = CampaignRole.Infiltrator;
+        CampaignEquipment _equipment;
         bool _expert;
         LocalMission _subscribed;
         Canvas _canvas;
@@ -36,11 +37,19 @@ namespace OperationHeist.UI
         Font _font;
         Text _objective, _cargo, _clock, _alarmText, _status, _detection;
         Text _title, _body, _primaryLabel, _phaseTag, _contract;
-        Text _sensitivityText, _fovText, _volumeText, _missionNote, _wallet, _index, _campaignLabel, _contextHint, _roleLabel, _difficultyLabel;
+        Text _sensitivityText, _fovText, _volumeText, _missionNote, _wallet, _campaignLabel, _contextHint, _roleLabel, _difficultyLabel;
+        Text _equipmentLabel, _purchaseLabel, _equipmentStatus;
+        Text _resolutionLabel;
+        Vector2Int _displaySize;
         Image _alarmFill, _detectionPanel;
-        Button _primary, _restart, _coop, _otherContract, _campaignAction, _roleAction, _difficultyAction;
+        Button _primary, _restart, _coop, _campaignAction, _roleAction, _difficultyAction;
+        Button _equipmentAction, _purchaseAction;
+        readonly Button[] _contractButtons = new Button[CampaignContract.All.Count];
         Slider _sensitivity, _fov, _volume;
         MissionPhase? _lastPhase;
+        Vector3 _tutorialOrigin;
+        bool _tutorialMoved, _tutorialCrouched;
+        static readonly Vector2Int[] DisplaySizes = { new(1280, 720), new(1600, 900), new(1920, 1080) };
         readonly System.Collections.Generic.List<Selectable> _navigation = new System.Collections.Generic.List<Selectable>();
 
         public void Configure(LocalMission value)
@@ -66,6 +75,7 @@ namespace OperationHeist.UI
         void Start()
         {
             if (mission == null) mission = FindFirstObjectByType<LocalMission>();
+            if (mission != null && mission.Player != null) _tutorialOrigin = mission.Player.transform.position;
             Subscribe();
             ApplySettings();
             Refresh();
@@ -151,21 +161,35 @@ namespace OperationHeist.UI
             _detectionPanel.gameObject.SetActive(false);
 
 
-            _menu = Box("MissionMenu", root.transform, Vector2.zero, Vector2.zero, new Color(.026f, .023f, .021f, .87f), new Vector2(.5f, .5f)).gameObject;
+            _menu = Box("MissionMenu", root.transform, Vector2.zero, Vector2.zero, new Color(.022f, .034f, .041f, .89f), new Vector2(.5f, .5f)).gameObject;
             Stretch(_menu.GetComponent<RectTransform>());
             var board = Box("OperationsBoard", _menu.transform, Vector2.zero, new Vector2(1440, 820), Ink, new Vector2(.5f, .5f));
-            var rail = Box("DossierIndex", board, Vector2.zero, new Vector2(390, 820), new Color(.12f, .105f, .093f), new Vector2(0, 1));
-            Box("RailEdge", rail, new Vector2(387, 0), new Vector2(3, 820), new Color(.25f, .21f, .16f), new Vector2(0, 1));
+            var rail = Box("DossierIndex", board, Vector2.zero, new Vector2(390, 820), Panel, new Vector2(0, 1));
             Label(rail, "Brand", "OPERATION\nHEIST", new Vector2(36, -39), new Vector2(320, 122), 50, Paper).fontStyle = FontStyle.Bold;
-            Box("IndexRule", rail, new Vector2(36, -180), new Vector2(318, 3), Ember, new Vector2(0, 1));
+            Box("IndexRule", rail, new Vector2(36, -180), new Vector2(318, 3), Teal, new Vector2(0, 1));
             Label(rail, "IndexTitle", "CONTRATOS", new Vector2(36, -209), new Vector2(318, 31), 19, Amber);
-            _index = Label(rail, "CampaignIndex", "", new Vector2(36, -265), new Vector2(320, 265), 22, Paper);
-            _index.lineSpacing = 1.38f;
-            _wallet = Label(rail, "Profile", "", new Vector2(36, -569), new Vector2(320, 64), 23, Amber);
-            _otherContract = ActionButton(rail, "OtherContract", "", new Vector2(36, -661), new Vector2(318, 50), Panel, GoToOtherContract);
+            foreach (var contract in CampaignContract.All)
+            {
+                var button = ActionButton(rail, "Contract" + contract.Number, "", new Vector2(36, -252 - (contract.Number - 1) * 55),
+                    new Vector2(318, 47), Ink, () => OpenContract(contract));
+                var label = button.GetComponentInChildren<Text>();
+                label.alignment = TextAnchor.MiddleLeft;
+                label.rectTransform.anchoredPosition = new Vector2(12, 0);
+                label.rectTransform.sizeDelta = new Vector2(294, 47);
+                label.fontSize = 20;
+                _contractButtons[contract.Number - 1] = button;
+            }
+            _wallet = Label(rail, "Profile", "", new Vector2(36, -543), new Vector2(320, 64), 23, Amber);
+            _equipmentAction = ActionButton(rail, "Equipment", "", new Vector2(36, -623), new Vector2(318, 40), Ink, CycleEquipment);
+            _equipmentLabel = _equipmentAction.GetComponentInChildren<Text>();
+            _equipmentLabel.fontSize = 19;
+            _equipmentStatus = Label(rail, "EquipmentStatus", "", new Vector2(36, -677), new Vector2(318, 29), 17, Muted);
+            _purchaseAction = ActionButton(rail, "Purchase", "", new Vector2(36, -671), new Vector2(318, 38), Ink, PurchaseEquipment);
+            _purchaseLabel = _purchaseAction.GetComponentInChildren<Text>();
+            _purchaseLabel.fontSize = 18;
             ActionButton(rail, "Quit", "SALIR DEL JUEGO", new Vector2(36, -729), new Vector2(318, 44), Panel, Quit);
-            var sheet = Box("ContractDossier", board, new Vector2(390, 0), new Vector2(1050, 820), new Color(.10f, .083f, .073f), new Vector2(0, 1));
-            Box("DossierRule", sheet, new Vector2(54, -57), new Vector2(56, 4), Ember, new Vector2(0, 1));
+            var sheet = Box("ContractDossier", board, new Vector2(390, 0), new Vector2(1050, 820), Ink, new Vector2(0, 1));
+            Box("DossierRule", sheet, new Vector2(54, -57), new Vector2(56, 4), Teal, new Vector2(0, 1));
             _phaseTag = Label(sheet, "Phase", "", new Vector2(130, -42), new Vector2(820, 30), 21, Amber);
             _title = Label(sheet, "Title", "", new Vector2(52, -90), new Vector2(960, 81), 64, Paper);
             _title.fontStyle = FontStyle.Bold;
@@ -193,20 +217,21 @@ namespace OperationHeist.UI
             _primaryLabel = _primary.GetComponentInChildren<Text>();
             _restart = ActionButton(sheet, "Restart", "REINICIAR", new Vector2(716, -680), new Vector2(274, 65), Panel, () => { PlayerPrefs.Save(); mission?.RestartMission(); });
             _coop = ActionButton(sheet, "Coop", "COOPERATIVO LAN", new Vector2(716, -680), new Vector2(274, 65),
-                Panel, () => SceneManager.LoadScene(CoopScene));
-            Label(sheet, "MenuHint", "Tab / flechas para navegar  ·  Enter para confirmar", new Vector2(56, -769), new Vector2(934, 26), 19, Muted);
+                Panel, () => SceneManager.LoadScene(CurrentContract.CoopScene));
+            Label(sheet, "MenuHint", "Tab / flechas para navegar  ·  Enter para confirmar", new Vector2(56, -769), new Vector2(580, 26), 19, Muted);
+            var resolution = ActionButton(sheet, "Resolution", "", new Vector2(716, -757), new Vector2(274, 40), Panel, CycleResolution);
+            _resolutionLabel = resolution.GetComponentInChildren<Text>();
+            _resolutionLabel.fontSize = 19;
+            resolution.gameObject.SetActive(!Application.isEditor);
         }
 
-        string OtherContractScene => mission.IsBankContract ? "Heist_Depot" : "Heist_Bank";
-        string CoopScene => mission.IsBankContract ? "Heist_BankCoop" : "Heist_DepotCoop";
+        CampaignContract CurrentContract => CampaignContract.ForScene(mission.gameObject.scene.name) ??
+            (mission.IsBankContract ? CampaignContract.Bank : CampaignContract.Depot);
 
-
-        CampaignContract CurrentContract => mission.IsBankContract ? CampaignContract.Bank : CampaignContract.Depot;
-
-        void GoToOtherContract()
+        void OpenContract(CampaignContract contract)
         {
             PlayerPrefs.Save();
-            SceneManager.LoadScene(OtherContractScene);
+            SceneManager.LoadScene(contract.Scene);
         }
 
         void OnCampaignAction()
@@ -216,7 +241,7 @@ namespace OperationHeist.UI
             {
                 PlayerPrefs.Save();
                 _attempt = System.Guid.NewGuid();
-                mission.StartMission(_role, _expert);
+                mission.StartMission(_role, _expert, _progress.Owns(_equipment) ? _equipment : CampaignEquipment.None);
                 if (mission.Phase != MissionPhase.Playing) _attempt = System.Guid.Empty;
             }
             else if (mission.Phase == MissionPhase.Won && _attempt != System.Guid.Empty && !_rewardSaved)
@@ -225,10 +250,8 @@ namespace OperationHeist.UI
                 _lastPhase = null;
                 Refresh();
             }
-            else if (mission.Phase == MissionPhase.Won && _rewardSaved && CurrentContract.Next != null)
-            {
-                SceneManager.LoadScene(CurrentContract.Next.Scene);
-            }
+            else if (mission.Phase == MissionPhase.Won && _rewardSaved)
+                OpenContract(CurrentContract.Next ?? CampaignContract.Depot);
         }
 
         void CycleRole()
@@ -243,6 +266,47 @@ namespace OperationHeist.UI
             UpdatePreparation();
         }
 
+        void CycleEquipment()
+        {
+            _equipment = _equipment == CampaignEquipment.Beacon ? CampaignEquipment.None : _equipment + 1;
+            UpdateEquipment();
+        }
+
+        void PurchaseEquipment()
+        {
+            if (_progress.TryPurchase(_equipment))
+            {
+                UpdateWallet();
+                UpdateEquipment();
+            }
+            else _purchaseLabel.text = "COMPRA PENDIENTE · REINTENTAR";
+        }
+
+        void UpdateWallet() => _wallet.text = _progress.Available
+            ? $"FONDOS   {_progress.Credits:N0} CR\nEXPERIENCIA   {_progress.Experience:N0} XP" : "PERFIL NO DISPONIBLE";
+
+        void UpdateEquipment()
+        {
+            _equipmentLabel.text = CampaignEquipmentCatalog.Name(_equipment).ToUpperInvariant() + "   ›";
+            bool briefing = mission.Phase == MissionPhase.Briefing && _progress.IsUnlocked(CurrentContract);
+            bool owned = _progress.Owns(_equipment);
+            _equipmentAction.gameObject.SetActive(briefing);
+            _equipmentStatus.gameObject.SetActive(briefing && owned && _equipment != CampaignEquipment.None);
+            _equipmentStatus.text = CampaignEquipmentCatalog.Benefit(_equipment);
+            _purchaseAction.gameObject.SetActive(briefing && !owned);
+            int cost = CampaignEquipmentCatalog.Price(_equipment);
+            int xp = CampaignEquipmentCatalog.RequiredExperience(_equipment);
+            _purchaseAction.interactable = _progress.Credits >= cost && _progress.Experience >= xp;
+            _purchaseLabel.text = _purchaseAction.interactable ? $"COMPRAR POR {cost} CR" : $"REQUIERE {cost} CR Y {xp} XP";
+        }
+
+        void CycleResolution()
+        {
+            int index = System.Array.FindIndex(DisplaySizes, size => size.x > Screen.width);
+            Vector2Int next = DisplaySizes[index < 0 ? 0 : index];
+            Screen.SetResolution(next.x, next.y, Screen.fullScreenMode);
+        }
+
         void UpdatePreparation()
         {
             _roleLabel.text = "ROL   " + CampaignRoles.Name(_role).ToUpperInvariant() + "    ›";
@@ -255,7 +319,7 @@ namespace OperationHeist.UI
         string BriefingTag(bool expert)
         {
             int seconds = Mathf.CeilToInt(mission.StartingSeconds(expert));
-            return $"EXPEDIENTE {(mission.IsBankContract ? "02" : "01")}  /  {seconds / 60:00}:{seconds % 60:00}";
+            return $"CONTRATO {CurrentContract.Number:00}  /  {seconds / 60:00}:{seconds % 60:00}";
         }
 
         void SaveReward()
@@ -264,11 +328,6 @@ namespace OperationHeist.UI
                 _rewardSaved = _progress.TryReward(CurrentContract, _attempt, mission.PeakAlarmLevel, mission.RemainingSeconds, out _reward, _expert);
         }
 
-        string FormatIndex(CampaignContract contract, string title)
-        {
-            string state = _progress.IsCleared(contract) ? " · LISTO" : _progress.IsUnlocked(contract) ? "" : " · CERRADO";
-            return (contract == CurrentContract ? "› " : "   ") + title + state;
-        }
         void OnPrimary()
         {
             if (mission == null) return;
@@ -294,11 +353,19 @@ namespace OperationHeist.UI
         void Refresh()
         {
             if (_canvas == null || mission == null) return;
+            var displaySize = new Vector2Int(Screen.width, Screen.height);
+            if (_resolutionLabel != null && _displaySize != displaySize)
+            {
+                _displaySize = displaySize;
+                _resolutionLabel.text = $"{displaySize.x} × {displaySize.y}   ›";
+            }
             bool playing = mission.Phase == MissionPhase.Playing;
             _hud.SetActive(playing);
             _healthHud?.SetVisible(playing);
             _menu.SetActive(!playing);
-            if (mission.Objectives != null && mission.Objectives.RequiredCount > 0)
+            if (mission.CurrentInstruction != null)
+                _objective.text = mission.CurrentInstruction;
+            else if (mission.Objectives != null && mission.Objectives.RequiredCount > 0)
                 _objective.text = "Objetivos  " + mission.Objectives.CompletedRequiredCount + " / " + mission.Objectives.RequiredCount
                     + "   ·   botín " + mission.DepositedCount + " / " + mission.RequiredLoot;
             else
@@ -317,8 +384,8 @@ namespace OperationHeist.UI
                 ? "E en el terminal para evacuar"
                 : item != null
                     ? "E en el terminal para entregar la carga  ·  G para soltar"
-                    : CurrentContract == CampaignContract.Depot && mission.DepositedCount == 0
-                        ? "Ctrl para moverte agachado  ·  E al mirar un expediente"
+                    : playing && CurrentContract == CampaignContract.Depot && mission.DepositedCount == 0
+                        ? DepotTutorialHint()
                         : "";
             _status.text = mission.StatusMessage;
             if (playing && mission.AlarmLevel == 3)
@@ -339,17 +406,21 @@ namespace OperationHeist.UI
             if (mission.Phase == MissionPhase.Won) SaveReward();
 
             CampaignContract contract = CurrentContract;
-            bool bank = mission.IsBankContract;
-            _contract.text = bank ? "BANCO CENTRAL" : "EL DEPÓSITO";
-            _index.text = FormatIndex(CampaignContract.Depot, "01    Primer trabajo") + "\n"
-                + FormatIndex(CampaignContract.Bank, "02    Banco central") + "\n"
-                + "<color=#C3A995>03    Sombras del museo\n04    Blackout\n05    El golpe perfecto</color>";
-            _wallet.text = _progress.Available ? $"FONDOS   {_progress.Credits:N0} CR\nEXPERIENCIA   {_progress.Experience:N0} XP" : "PERFIL NO DISPONIBLE";
-            _otherContract.gameObject.SetActive(!playing && Application.CanStreamedLevelBeLoaded(OtherContractScene));
-            _otherContract.GetComponentInChildren<Text>(true).text = bank ? "ABRIR EXPEDIENTE 01" : "ABRIR EXPEDIENTE 02";
+            _contract.text = contract.Title.ToUpperInvariant();
+            foreach (var entry in CampaignContract.All)
+            {
+                var button = _contractButtons[entry.Number - 1];
+                var label = button.GetComponentInChildren<Text>();
+                string marker = entry == contract ? "›" : _progress.IsCleared(entry) ? "✓" : "  ";
+                label.text = $"{marker}  {entry.Number:00}  {entry.Title}";
+                label.color = entry == contract ? Amber : _progress.IsUnlocked(entry) ? Paper : Muted;
+                button.interactable = entry != contract && Application.CanStreamedLevelBeLoaded(entry.Scene);
+            }
+            UpdateWallet();
+            UpdateEquipment();
             _restart.gameObject.SetActive(mission.Phase == MissionPhase.Paused);
             _coop.gameObject.SetActive(mission.Phase == MissionPhase.Briefing &&
-                Application.CanStreamedLevelBeLoaded(CoopScene));
+                Application.CanStreamedLevelBeLoaded(contract.CoopScene));
             _campaignAction.gameObject.SetActive(false);
             _roleAction.gameObject.SetActive(false);
             _difficultyAction.gameObject.SetActive(false);
@@ -359,12 +430,10 @@ namespace OperationHeist.UI
                 case MissionPhase.Briefing:
                     _phaseTag.text = BriefingTag(false);
                     _title.text = contract.Title;
-                    _body.text = bank
-                        ? "Entra por el pasillo derecho. Restablece el acceso y desactiva las cámaras antes de abrir la bóveda. Recupera el expediente y vuelve al terminal."
-                        : "Infiltra el depósito y entrega los tres expedientes en el terminal, uno por viaje. Mantente fuera de la vista del guardia. Cuando la carga esté asegurada, vuelve al terminal para evacuar.";
+                    _body.text = contract.Briefing;
                     _missionNote.text = _progress.IsUnlocked(contract)
                         ? "WASD / flechas para moverte · Ctrl para agacharte · E para interactuar\nQ para defenderte · G para soltar · Esc para pausar"
-                        : (_progress.Available ? "Completa Primer trabajo en campaña para desbloquear Banco central."
+                        : (_progress.Available ? $"Completa {contract.Previous?.Title} en campaña para abrir este golpe."
                             : "El perfil no está disponible. Puedes entrar en práctica o LAN.");
                     bool unlocked = _progress.IsUnlocked(contract);
                     _roleAction.gameObject.SetActive(unlocked);
@@ -381,14 +450,16 @@ namespace OperationHeist.UI
                     _primaryLabel.text = "REANUDAR";
                     break;
                 case MissionPhase.Won:
-                    _phaseTag.text = "CONTRATO COMPLETADO";
+                    bool campaignComplete = contract.Next == null && _attempt != System.Guid.Empty && _rewardSaved;
+                    _phaseTag.text = campaignComplete ? "CAMPAÑA COMPLETADA" : "CONTRATO COMPLETADO";
                     _title.text = "Extracción confirmada";
                     _body.text = $"{mission.StatusMessage}\n\nBotín asegurado: {mission.DepositedCount} / {mission.RequiredLoot}  ·  Tiempo restante: {seconds / 60:00}:{seconds % 60:00}";
                     if (_attempt != System.Guid.Empty)
                     {
                         _missionNote.text = _rewardSaved ? $"+{_reward.Credits} CR  /  +{_reward.Experience} XP" : "El premio está pendiente de guardado.";
-                        _campaignAction.gameObject.SetActive(!_rewardSaved || contract.Next != null);
-                        _campaignLabel.text = _rewardSaved ? "SIGUIENTE CONTRATO" : "REINTENTAR GUARDADO";
+                        _campaignAction.gameObject.SetActive(true);
+                        _campaignLabel.text = !_rewardSaved ? "REINTENTAR GUARDADO" :
+                            campaignComplete ? "VOLVER AL INICIO" : "SIGUIENTE CONTRATO";
                     }
                     else _missionNote.text = "Práctica completada.";
                     _primaryLabel.text = "VOLVER AL BRIEFING";
@@ -402,6 +473,20 @@ namespace OperationHeist.UI
             }
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(playing ? null : (_campaignAction.gameObject.activeSelf ? _campaignAction : _primary).gameObject);
+        }
+
+        string DepotTutorialHint()
+        {
+            if (mission.Player == null) return "";
+            if (!_tutorialMoved)
+            {
+                _tutorialMoved = Vector3.Distance(_tutorialOrigin, mission.Player.transform.position) > 1.5f;
+                if (!_tutorialMoved) return "WASD para moverte  ·  Ratón para mirar";
+            }
+            _tutorialCrouched |= mission.Player.IsCrouching;
+            return _tutorialCrouched
+                ? "Mira un expediente y pulsa E para recogerlo"
+                : "Ctrl para agacharte y pasar junto a la seguridad";
         }
 
         void SaveSettings()
@@ -488,8 +573,10 @@ namespace OperationHeist.UI
             var button = rect.gameObject.AddComponent<Button>();
             button.targetGraphic = rect.GetComponent<Image>();
             var colors = button.colors;
-            colors.normalColor = Color.white; colors.highlightedColor = new Color(1.15f, 1.15f, 1.15f);
-            colors.selectedColor = new Color(1.3f, 1.3f, 1.3f); colors.pressedColor = new Color(.7f, .8f, .8f);
+            colors.normalColor = Color.white;
+            colors.highlightedColor = color == Amber ? new Color(1.03f, 1.02f, .92f) : new Color(1.2f, 1.3f, 1.35f);
+            colors.selectedColor = color == Amber ? new Color(1.06f, 1.03f, .88f) : new Color(1.35f, 1.5f, 1.55f);
+            colors.pressedColor = new Color(.7f, .8f, .8f);
             button.colors = colors;
             var label = Label(rect, "Label", caption, Vector2.zero, size, 24, Color.white);
             label.alignment = TextAnchor.MiddleCenter;

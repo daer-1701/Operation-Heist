@@ -1,14 +1,12 @@
 # Plan vigente del juego completo
 
-Actualizado: 12 de noviembre de 2026. El usuario indicó dejar de orientar el desarrollo a la demo y centrarse en terminar el juego completo; primero, limpiar el proyecto. Este plan sustituye los recortes históricos a dos contratos y la congelación de capítulos. El GDD v2 define las mecánicas y la campaña; AGENTS.md y GDD-AssetPolicy.md prevalecen para recursos, coordinación y autorizaciones.
-
-Trabajo detenido a petición del usuario para continuar mañana. [Estado completo y orden de continuación](Retomar-2026-11-13.md). Navegación/refuerzos/defensa están implementados en el checkout, pero su validación final sigue abierta por una medida de inmovilidad en el cliente.
+Actualizado el 26 de noviembre de 2026. El alcance vigente es el juego completo de cinco capítulos. El GDD v2 define las mecánicas. AGENTS.md y GDD-AssetPolicy.md prevalecen para recursos, coordinación y autorizaciones. El estado de implementación, arte y pruebas se registra en [Progress](Progress.md).
 
 ## Resultado esperado
 
 Campaña de cinco capítulos: Primer trabajo, Banco central, Sombras del museo, Blackout y El golpe perfecto. Práctica individual y cooperativo privado de hasta cuatro agentes, preparación de contratos, equipamiento/roles, sigilo con consecuencias, objetivos y extracción, recompensas, mejoras y progreso guardado. Todo el contenido del juego será original, con procedencia registrada.
 
-Hoy están implementados los recorridos cortos de depósito y banco con variantes LAN. La seguridad compartida incorpora estados de guardia, alarma por niveles, daño, sangrado y reanimación dentro de los contratos; ver [SecuritySystems.md](SecuritySystems.md) y Progress para evidencia. Campaña y modo online por código siguen pendientes. Refuerzos, herramientas de defensa y navegación más rica no quedan cerrados por esta integración.
+El tablero individual enlaza los cinco contratos y guarda progreso, créditos y equipo. Cada misión cuenta con una variante LAN por IP. El estado de listo, IA, alarma y objetivos se replican. La progresión cooperativa y el modo online por código siguen pendientes. El pulido de los recorridos, la base de operaciones, los objetivos opcionales y la aceptación entre PCs siguen abiertos.
 
 ## Orden de producción
 
@@ -25,11 +23,11 @@ Las etapas organizan dependencias; no reducen el resultado a una demo. Validar c
 
 ## Próximo trabajo de implementación
 
-La base compartida de estados del guardia, alarma, salud y reanimación ya se implementó y comprobó en editor y Players Windows para ambos contratos. Continuar con navegación más rica, refuerzos y defensa del jugador, y validar entre PCs/cuatro agentes. Después completar preparación, progresión y persistencia para que museo, Blackout y el final reutilicen los mismos sistemas. Integrar los modelos nuevos como parte de esa producción; no eliminar modelos pendientes por no tener referencias todavía. El export sin nombre requiere identificación visual antes de decidir destino.
+La base compartida incluye navegación, refuerzos, defensa y salud. El trabajo de campaña enlaza los cinco golpes y añade equipo al perfil local. Quedan la base de operaciones, entradas y objetivos alternativos, botín adicional del banco y progresión cooperativa. Validar los cinco recorridos entre PCs y con cuatro agentes. La conexión por código necesita el servicio online del proyecto. El montaje de los modelos y animaciones nuevos se coordina con la reserva de arte.
 
 ## Modelos originales y pendientes conservados
 
-Bolsa y expediente Hunyuan están integrados. La copia redundante de la bolsa fue retirada; la fuente usada sigue en `Assets/04_Models/Hunyuan/LootBag/OH_LootBag.fbx`.
+Se conserva la bolsa Hunyuan de `Assets/04_Models/Hunyuan/LootBag/OH_LootBag.fbx`. El prefab de expediente ya usa el visual procedural corregido del lote CampaignArt. La revisión del arte y el montaje por capítulo están en [Progress](Progress.md).
 
 | Recurso en `Assets/04_Models/nuevosmodelos` | Trabajo pendiente |
 | --- | --- |
@@ -42,10 +40,10 @@ Bolsa y expediente Hunyuan están integrados. La copia redundante de la bolsa fu
 
 Estos pendientes proceden del traspaso anterior; no se eliminan modelos por no estar referenciados todavía. La procedencia y prompts disponibles permanecen en AssetManifest.csv. La autorización de generación original con Hunyuan/Codex no implica aprobación institucional ni permite galerías o packs.
 
-Otros pendientes transversales: audio original más allá de señales sintetizadas, animación más rica, variantes/objetivos opcionales, tutorial y entradas alternativas del banco, perfiles/guardado, base/roles/equipamiento, sesiones por código y capítulos 3–5. Las tres configuraciones URP reserializadas por Unity en QA y las referencias heredadas de renderer/volumen necesitan revisión técnica específica si afectan visual; no modificar configuración principal como efecto lateral de otras tareas.
+Quedan audio original de entorno, animación de personajes, más rutas y objetivos opcionales, progresión de roles en equipo y sesiones por código. Las tres configuraciones URP reserializadas por Unity en QA y las referencias heredadas de renderer y volumen se revisan si aparece un defecto de renderizado.
 
 ## Duración y validación vigente
 
-El GDD apunta a 3–5 horas lineales y 4–7 horas con opcionales/repetición. Son objetivos de diseño por comprobar con jugadores. Los temporizadores cortos actuales no representan el alcance final y se reajustarán junto con recorridos, decisiones y objetivos. La estimación de trabajo restante está en [Analysis-2026-11-12.md](Analysis-2026-11-12.md); sus escenarios de demo/MVP son comparaciones históricas, no la prioridad vigente.
+El GDD apunta a 3–5 horas lineales y 4–7 horas con opcionales y repetición. Se comprobarán con jugadores y recorridos completos. La estimación vigente por áreas está en el [informe de estado](Estado_Operation_Heist.docx).
 
 Conservar pruebas y evidencia útil, recetas originales, escenas de laboratorio y generadores utilizados. No borrar contenido por su nombre `MVP`, `Prototype` o `Lab`: comprobar consumidores y función antes. No modificar dependencias del motor como efecto lateral de la limpieza.

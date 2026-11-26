@@ -13,6 +13,7 @@ namespace OperationHeist.Network
     {
         [SerializeField] private Camera lobbyCamera;
         private HeistNetworkSession _session;
+        private CampaignContract _contract;
         private GameObject _eventSystem;
         private RectTransform _panel;
         private Button _host;
@@ -22,20 +23,23 @@ namespace OperationHeist.Network
         private Button _resume;
         private NetworkPlayerMotor _localMotor;
         private Button _start;
+        private Button _ready;
+        private Text _readyLabel;
         private Text _hint;
         private Text _reticle;
         private Canvas _canvas;
         private Text _status;
         private InputField _address;
         private Font _font;
-        private static readonly Color Amber = new(.98f, .72f, .39f);
-        private static readonly Color Paper = new(.97f, .91f, .80f);
-        private static readonly Color Muted = new(.77f, .70f, .62f);
-        private static readonly Color Ink = new(.10f, .083f, .073f, .97f);
+        private static readonly Color Amber = new(.94f, .73f, .35f);
+        private static readonly Color Paper = new(.90f, .94f, .93f);
+        private static readonly Color Muted = new(.66f, .74f, .75f);
+        private static readonly Color Ink = new(.046f, .064f, .073f, .97f);
 
         private void Awake()
         {
             _session = GetComponent<HeistNetworkSession>();
+            _contract = CampaignContract.ForScene(gameObject.scene.name);
             _font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             Build();
         }
@@ -69,8 +73,7 @@ namespace OperationHeist.Network
 
             _panel = Box(root.transform, "Panel", new Vector2(24, -24), new Vector2(560, 262), Ink);
             Box(_panel, "SessionAccent", Vector2.zero, new Vector2(560, 4), Amber).GetComponent<Image>().raycastTarget = false;
-            string title = _session.Depot == null ? "OPERATION HEIST  /  LAB LAN" :
-                _session.Depot.IsBank ? "BANCO CENTRAL  /  COOPERATIVO LAN" : "EL DEPÓSITO  /  COOPERATIVO LAN";
+            string title = _contract == null ? "OPERATION HEIST  /  LAB LAN" : _contract.Title.ToUpperInvariant() + "  /  LAN";
             Label(_panel, "Title", title, new Vector2(18, -16), new Vector2(520, 28), 22, Amber).fontStyle = FontStyle.Bold;
             _status = Label(_panel, "Status", "", new Vector2(18, -54), new Vector2(520, 48), 20, Paper);
             _hint = Label(_panel, "Hint", "", new Vector2(18, -108), new Vector2(520, 52), 19, Muted);
@@ -80,6 +83,9 @@ namespace OperationHeist.Network
             _solo = Button(_panel, "Solo", "MODO LOCAL", new Vector2(374, -207), new Vector2(164, 40),
                 ReturnToSolo);
             _start = Button(_panel, "StartMission", "INICIAR MISIÓN", new Vector2(18, -165), new Vector2(244, 40), () => _session.Depot.StartMission());
+            _ready = Button(_panel, "Ready", "ESTOY LISTO", new Vector2(18, -165), new Vector2(244, 40),
+                () => _session.Depot.SetReadyServerRpc(!_session.Depot.IsReady(_session.Manager.LocalClientId)));
+            _readyLabel = _ready.GetComponentInChildren<Text>();
             _resume = Button(_panel, "Resume", "REANUDAR", new Vector2(18, -165), new Vector2(244, 40),
                 () => _localMotor?.Resume());
             _stop = Button(_panel, "Stop", "CERRAR SESIÓN", new Vector2(294, -165), new Vector2(244, 40), () => _session.ShutdownSession());
@@ -95,7 +101,7 @@ namespace OperationHeist.Network
         {
             if (_session.IsListening || _session.Manager.ShutdownInProgress) return;
             Destroy(_session.gameObject);
-            SceneManager.LoadScene(_session.Depot.IsBank ? "Heist_Bank" : "Heist_Depot");
+            SceneManager.LoadScene((_contract ?? CampaignContract.Depot).Scene);
         }
 
         private void Refresh()
@@ -120,6 +126,8 @@ namespace OperationHeist.Network
             _resume.gameObject.SetActive(menuOpen);
             _solo.gameObject.SetActive(!listening && _session.Depot != null);
             _start.gameObject.SetActive(inMission && _session.IsHost && depot.Phase == MissionPhase.Briefing);
+            _ready.gameObject.SetActive(inMission && !_session.IsHost && depot.Phase == MissionPhase.Briefing && player != null);
+            if (_ready.gameObject.activeSelf) _readyLabel.text = depot.IsReady(manager.LocalClientId) ? "CANCELAR LISTO" : "ESTOY LISTO";
             _start.interactable = !_session.Manager.ShutdownInProgress;
             _stop.interactable = !_session.Manager.ShutdownInProgress;
             var events = EventSystem.current;
@@ -129,7 +137,8 @@ namespace OperationHeist.Network
                 if (playing && !menuOpen && selected != null) events.SetSelectedGameObject(null);
                 else if ((!listening || showActions) && (selected == null || !selected.activeInHierarchy))
                     events.SetSelectedGameObject(!listening ? _host.gameObject :
-                        _start.gameObject.activeSelf ? _start.gameObject : menuOpen ? _resume.gameObject : _stop.gameObject);
+                        _start.gameObject.activeSelf ? _start.gameObject : _ready.gameObject.activeSelf ? _ready.gameObject :
+                        menuOpen ? _resume.gameObject : _stop.gameObject);
             }
 
             if (inMission && depot.Phase != MissionPhase.Briefing)
@@ -151,9 +160,10 @@ namespace OperationHeist.Network
                 var carried = player == null ? null : NetworkLootItem.FindCarried(manager, player.OwnerClientId);
                 _hint.text = depot.Phase != MissionPhase.Playing ? "Cierra la sesión para volver al briefing." :
                     carried != null ? $"CARGA: {carried.DisplayName}\nE en terminal · G devuelve la carga" :
-                    depot.Deposited == depot.Required ? "Reúne al equipo ante el terminal.\nMíralo y pulsa E para evacuar." :
+                    depot.Deposited == depot.Required ? (depot.IsBank ? "Entra en la zona del terminal y pulsa E para evacuar." :
+                        "Reúne al equipo ante el terminal.\nMíralo y pulsa E para evacuar.") :
                     depot.IsBank ? GetBankHint(depot, aiming) :
-                    "E recoge un expediente · Ctrl para agacharte\nEsc abre el menú sin pausar al equipo";
+                    depot.CurrentInstruction ?? "Recoge el botín y llévalo al terminal.";
                 if (depot.Phase == MissionPhase.Playing)
                 {
                     var health = player == null ? null : player.GetComponent<NetworkPlayerHealth>();
@@ -173,9 +183,10 @@ namespace OperationHeist.Network
                 return;
             }
             _status.text = _session.StatusMessage;
+            if (inMission && player != null)
+                _status.text += $"\n{depot.ReadyAgents}/{manager.SpawnManager.PlayerObjects.Count} agentes listos";
             _hint.text = !listening ? "Introduce la IP local del anfitrión para unirte. Máx. 4." :
-                inMission ? (depot.IsBank ? "Reúne al equipo.\nAbre el acceso, desconecta las cámaras y llega a la bóveda." :
-                    "Reúne al equipo antes de iniciar.\nRecuperen los tres expedientes y vuelvan al terminal.") :
+                inMission ? (depot.CurrentInstruction ?? "Reúne al equipo y recuperen el botín antes de evacuar.") :
                 _session.Depot == null ? "E recoge y deposita · G devuelve la carga\nH prueba daño · F reanima · Esc abre el menú" :
                 "Esperando a que se sincronice la sesión.";
         }

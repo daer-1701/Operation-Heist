@@ -19,6 +19,8 @@ namespace OperationHeist.Player
         [SerializeField] private BankSecurity security;
         [SerializeField] private float duration = 300f;
         [SerializeField] private int requiredLoot = 3;
+        [SerializeField] private MissionControl[] controls;
+        private int _controlProgress;
         private InputAction _pause;
         private InputAction _recover;
         private readonly MissionAlarm _alarm = new();
@@ -27,8 +29,10 @@ namespace OperationHeist.Player
         private GuardReinforcements _reinforcements;
         private readonly DefenseState _defense = new();
         public int DefenseUses => _defense.UsesRemaining;
-        public int DefenseCapacity => _role == CampaignRole.Hacker ? 5 : 3;
+        public int DefenseCapacity => (_role == CampaignRole.Hacker ? 5 : 3) +
+            (_equipment == CampaignEquipment.Capacitor ? 1 : 0);
         private CampaignRole? _role;
+        private CampaignEquipment _equipment;
         private bool _expert;
         public float DefenseCooldown => _defense.CooldownRemaining;
         public int ReinforcementCount => _reinforcements?.ActiveCount ?? 0;
@@ -53,6 +57,10 @@ namespace OperationHeist.Player
         public PlayerHealth Health => health;
         public ObjectiveBoard Objectives => objectives;
         public bool IsBankContract => vault != null;
+        public float Duration => duration;
+        public MissionControl[] Controls => controls;
+        public string CurrentInstruction => controls != null && _controlProgress < controls.Length
+            ? controls[_controlProgress].Action : null;
         public event Action Changed;
 
         private void Awake()
@@ -102,6 +110,23 @@ namespace OperationHeist.Player
             security = bankSecurity;
         }
 
+        public void ConfigureControls(MissionControl[] sequence) => controls = sequence;
+
+        internal bool CanUseControl(MissionControl control) =>
+            Phase == MissionPhase.Playing && control != null && CurrentInstruction != null &&
+            controls[_controlProgress] == control && (health == null || !health.IsIncapacitated);
+
+        internal bool TryUseControl(MissionControl control)
+        {
+            if (!CanUseControl(control)) return false;
+            objectives?.TryComplete("control-" + _controlProgress);
+            _controlProgress++;
+            control.ApplyProgress(_controlProgress);
+            StatusMessage = CurrentInstruction ?? "Recoge el botín y llévalo a extracción.";
+            Changed?.Invoke();
+            return true;
+        }
+
         internal void OnSecurityChanged(bool wrongWire)
         {
             if (security.AccessGranted) objectives.TryComplete("security-access");
@@ -126,15 +151,26 @@ namespace OperationHeist.Player
         {
             if (_reinforcements == null) _guards = System.Array.FindAll(FindObjectsByType<PatrolGuard>(FindObjectsSortMode.None),
                 candidate => candidate.gameObject.scene == gameObject.scene);
-            if (player != null) (player.GetComponent<PlayerDefense>() ?? player.gameObject.AddComponent<PlayerDefense>()).Configure(this);
             if (player == null && carrier != null) player = carrier.GetComponent<FpsController>();
+            if (player != null)
+            {
+                if (!player.TryGetComponent(out PlayerDefense defense)) defense = player.gameObject.AddComponent<PlayerDefense>();
+                defense.Configure(this);
+            }
             if (player != null && health == null)
-                health = player.GetComponent<PlayerHealth>() ?? player.gameObject.AddComponent<PlayerHealth>();
+            {
+                if (!player.TryGetComponent(out health)) health = player.gameObject.AddComponent<PlayerHealth>();
+            }
             if (objectives == null)
-                objectives = GetComponent<ObjectiveBoard>() ?? gameObject.AddComponent<ObjectiveBoard>();
+            {
+                if (!TryGetComponent(out objectives)) objectives = gameObject.AddComponent<ObjectiveBoard>();
+            }
             if (objectives != null && objectives.RequiredCount == 0)
             {
                 var steps = new List<MissionObjectiveState>();
+                if (controls != null)
+                    foreach (var control in controls)
+                        steps.Add(new MissionObjectiveState("control-" + control.Step, control.Action));
                 if (security != null)
                 {
                     steps.Add(new MissionObjectiveState("security-access", "Conectar el acceso"));
@@ -142,7 +178,7 @@ namespace OperationHeist.Player
                 }
                 if (IsBankContract) steps.Add(new MissionObjectiveState("vault-access", "Abrir la bóveda"));
                 for (int i = 1; i <= requiredLoot; i++)
-                    steps.Add(new MissionObjectiveState("deposit-" + i, "Asegurar expediente " + i));
+                    steps.Add(new MissionObjectiveState("deposit-" + i, "Entregar pieza " + i));
                 steps.Add(new MissionObjectiveState("loot-secured", "Botín completo en extracción"));
                 steps.Add(new MissionObjectiveState("extract", "Evacuar"));
                 objectives.Configure(steps);
@@ -195,24 +231,27 @@ namespace OperationHeist.Player
         }
         public void StartMission() => StartMission(null);
 
-        public void StartMission(CampaignRole? role, bool expert = false)
+        public void StartMission(CampaignRole? role, bool expert = false, CampaignEquipment equipment = CampaignEquipment.None)
         {
             if (Phase != MissionPhase.Briefing || player == null || carrier == null) return;
             ResolveRefs();
             BindHealth();
             _role = role;
+            _equipment = equipment;
             _expert = expert;
             RemainingSeconds = StartingSeconds(expert);
-            if (health != null && role == CampaignRole.Specialist)
-                health.Configure(health.MaxHealth + 25f, health.BleedoutDuration, tickAutomatically: false);
+            int bonusHealth = (role == CampaignRole.Specialist ? 25 : 0) + (equipment == CampaignEquipment.Armor ? 20 : 0);
+            if (health != null && bonusHealth > 0)
+                health.Configure(health.MaxHealth + bonusHealth, health.BleedoutDuration, tickAutomatically: false);
             else health?.ResetHealth();
             objectives?.ResetAll();
             EnsureTactics();
             _defense.Reset(DefenseCapacity);
             if (role == CampaignRole.Driver) _alarm.AddEvacuationTime(20f);
-            SetPhase(MissionPhase.Playing, IsBankContract
+            if (equipment == CampaignEquipment.Beacon) _alarm.AddEvacuationTime(15f);
+            SetPhase(MissionPhase.Playing, CurrentInstruction ?? (IsBankContract
                 ? "Conecta el panel de acceso en el pasillo derecho."
-                : "Recupera los tres expedientes. Evita la mirada del guardia.");
+                : "Recupera los tres expedientes. Evita la mirada del guardia."));
         }
         public void TogglePause()
         {
@@ -229,6 +268,8 @@ namespace OperationHeist.Player
             if (Phase != MissionPhase.Playing || !MissionAlarm.FinitePositive(deltaTime)) return;
             RemainingSeconds = Mathf.Max(0, RemainingSeconds - deltaTime);
             _navigation?.Tick(deltaTime); _defense.Tick(deltaTime);
+            if (security != null && security.AdvanceCameraTimer(deltaTime))
+                StatusMessage = "Las cámaras vuelven a estar activas.";
             bool spotted = false;
             if (player != null && player.PlayerCamera != null)
             {
@@ -304,18 +345,20 @@ namespace OperationHeist.Player
             DepositedCount++;
             objectives?.TryComplete("deposit-" + DepositedCount);
             if (DepositedCount >= RequiredLoot) objectives?.TryComplete("loot-secured");
-            StatusMessage = DepositedCount == RequiredLoot ? "Botín asegurado. Pulsa E en extracción para evacuar." : "Expediente asegurado. Busca el siguiente.";
+            StatusMessage = DepositedCount == RequiredLoot ? "Botín asegurado. Pulsa E en extracción para evacuar." : "Carga asegurada. Busca la siguiente pieza.";
             Changed?.Invoke();
             return true;
         }
         public bool TryExtract(LootCarrier actor)
         {
             if (!AtExtraction(actor) || actor.IsCarrying || DepositedCount < RequiredLoot ||
-                (IsBankContract && !vault.IsOpen)) return false;
+                CurrentInstruction != null || (IsBankContract && !vault.IsOpen)) return false;
             if (health != null && health.IsIncapacitated) return false;
             objectives?.TryComplete("extract");
-            SetPhase(MissionPhase.Won, IsBankContract ? "Expediente de la bóveda a salvo."
-                : "Golpe completado. Los tres expedientes están a salvo.");
+            var contract = CampaignContract.ForScene(gameObject.scene.name);
+            SetPhase(MissionPhase.Won, contract == CampaignContract.Finale
+                ? "El núcleo llegó a salvo. The Syndicate ya tiene las pruebas."
+                : "Objetivos asegurados. El botín ha llegado a extracción.");
             return true;
         }
         private void SetPhase(MissionPhase phase, string message)

@@ -7,11 +7,13 @@ namespace OperationHeist.Player
         private static readonly int[] WireOrder = { 1, 3, 0, 2 };
         private static readonly int[] BreakerMasks = { 3, 6, 4 };
         private const int TargetMask = 5;
+        private const float CameraDisruptionSeconds = 75f;
 
         [SerializeField] private LocalMission mission;
         [SerializeField] private Transform gate;
         [SerializeField] private Light cameraIndicator;
         private Quaternion _closedGate;
+        private float _cameraDisruption;
 
         public int Wires { get; private set; }
         public int Breakers { get; private set; }
@@ -43,7 +45,17 @@ namespace OperationHeist.Player
             else
             {
                 Apply(Wires, Breakers ^ BreakerMasks[channel - WireOrder.Length]);
+                if (CamerasOffline) _cameraDisruption = CameraDisruptionSeconds;
             }
+            return true;
+        }
+
+        public bool AdvanceCameraTimer(float delta)
+        {
+            if (!CamerasOffline || !MissionAlarm.FinitePositive(delta) || _cameraDisruption <= 0f) return false;
+            _cameraDisruption = Mathf.Max(0f, _cameraDisruption - delta);
+            if (_cameraDisruption > 0f) return false;
+            Apply(Wires, 0);
             return true;
         }
 
@@ -51,6 +63,7 @@ namespace OperationHeist.Player
         {
             Wires = wires;
             Breakers = breakers;
+            if (!CamerasOffline) _cameraDisruption = 0f;
             gate.localRotation = AccessGranted ? _closedGate * Quaternion.Euler(0f, -90f, 0f) : _closedGate;
             cameraIndicator.enabled = !CamerasOffline;
         }

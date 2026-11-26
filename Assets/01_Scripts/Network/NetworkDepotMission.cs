@@ -13,11 +13,13 @@ namespace OperationHeist.Network
         [SerializeField] private Collider terminal;
         [SerializeField] private Renderer extractionZone;
         [SerializeField] private PatrolGuard guard;
+        [SerializeField] private PatrolGuard innerGuard;
         [SerializeField] private Vector3 spawnPoint;
         [SerializeField] private float duration = 300f;
         [SerializeField] private BankSecurity bankSecurity;
         [SerializeField] private BankSecuritySwitch[] bankSwitches;
         [SerializeField] private BankVaultAccess bankVault;
+        [SerializeField] private MissionControl[] controls;
 
         private readonly NetworkVariable<MissionPhase> _phase = new(MissionPhase.Briefing);
         private readonly NetworkVariable<int> _deposited = new();
@@ -25,6 +27,8 @@ namespace OperationHeist.Network
         private readonly NetworkVariable<int> _alarmPercent = new();
         private readonly NetworkVariable<int> _wires = new();
         private readonly NetworkVariable<int> _breakers = new();
+        private readonly NetworkVariable<int> _controlProgress = new();
+        private NetworkList<ulong> _readyAgents;
         private readonly NetworkVariable<bool> _vaultOpen = new();
         private readonly NetworkVariable<ulong> _vaultRequester = new(NoVaultRequester);
         private float _vaultConfirmBy;
@@ -39,20 +43,28 @@ namespace OperationHeist.Network
         private readonly NetworkVariable<float> _guardStun = new();
         private readonly NetworkVariable<GuardSnapshot> _reinforcementOne = new();
         private readonly NetworkVariable<GuardSnapshot> _reinforcementTwo = new();
+        private readonly NetworkVariable<GuardSnapshot> _innerGuardSnapshot = new();
         private GuardNavigation _navigation;
         private UnityEngine.SceneManagement.Scene _levelScene;
         public GuardNavigation Navigation => _navigation;
         private GuardReinforcements _reinforcements;
         public int ReinforcementCount => _reinforcements?.ActiveCount ?? 0;
-        public PatrolGuard GetGuard(int id) => id == 0 ? guard : _reinforcements?.Get(id - 1);
+        public PatrolGuard GetGuard(int id) => id == 0 ? guard :
+            id == GuardReinforcements.Capacity + 1 ? innerGuard : _reinforcements?.Get(id - 1);
         public int GuardId(PatrolGuard target)
-        { for (int i = 0; i <= GuardReinforcements.Capacity; i++) if (GetGuard(i) == target) return i; return -1; }
+        {
+            if (target == null) return -1;
+            for (int i = 0; i <= GuardReinforcements.Capacity + 1; i++) if (GetGuard(i) == target) return i;
+            return -1;
+        }
         public int AlarmLevel => _alarmLevel.Value;
         public int EmergencyRemaining => _emergency.Value;
         public string FailureReason => _failure.Value == 1 ? "Tiempo agotado" :
             _failure.Value == 2 ? "Evacuación de emergencia agotada" : "Equipo fuera de combate";
         private Vector3 _guardPosition;
         private Quaternion _guardRotation;
+        private Vector3 _innerGuardPosition;
+        private Quaternion _innerGuardRotation;
 
         public MissionPhase Phase => _phase.Value;
         public int Deposited => _deposited.Value;
@@ -61,6 +73,10 @@ namespace OperationHeist.Network
         public int AlarmPercent => _alarmPercent.Value;
         public Collider Terminal => terminal;
         public bool IsBank => bankSecurity != null;
+        public int ReadyAgents => _readyAgents.Count + 1;
+        public bool IsReady(ulong playerId) => playerId == NetworkManager.ServerClientId || _readyAgents.Contains(playerId);
+        public string CurrentInstruction => controls != null && _controlProgress.Value < controls.Length
+            ? controls[_controlProgress.Value].Action : null;
         public bool VaultAvailable => !IsBank || _vaultOpen.Value;
         public bool AccessGranted => IsBank && bankSecurity.AccessGranted;
         public bool CamerasOffline => IsBank && bankSecurity.CamerasOffline;
@@ -78,33 +94,49 @@ namespace OperationHeist.Network
         }
 
         public void Configure(NetworkLootItem[] items, Collider extractionTerminal, Renderer zone,
-            PatrolGuard patrol, Vector3 playerSpawn)
+            PatrolGuard patrol, Vector3 playerSpawn, float seconds = 300f, MissionControl[] sequence = null,
+            PatrolGuard interior = null)
         {
             dossiers = items;
             terminal = extractionTerminal;
             extractionZone = zone;
             guard = patrol;
             spawnPoint = playerSpawn;
+            duration = seconds;
+            controls = sequence;
+            innerGuard = interior;
         }
 
         private void Awake()
         {
+            _readyAgents = new NetworkList<ulong>();
             _levelScene = gameObject.scene;
             _guardPosition = guard.transform.position;
             _guardRotation = guard.transform.rotation;
+            if (innerGuard != null)
+            {
+                _innerGuardPosition = innerGuard.transform.position;
+                _innerGuardRotation = innerGuard.transform.rotation;
+            }
         }
 
         public override void OnNetworkSpawn()
         {
             if (IsServer)
             {
+                _readyAgents.Clear();
+                NetworkManager.OnClientDisconnectCallback += RemoveReadyAgent;
                 var ignored = System.Array.ConvertAll(dossiers, item => item.transform);
                 _navigation = new GuardNavigation(_levelScene, guard.transform.position, ignored);
                 guard.SetNavigation(_navigation);
+                if (innerGuard != null) innerGuard.SetNavigation(_navigation);
             }
             _reinforcements?.Dispose();
             _reinforcements = new GuardReinforcements(guard, _navigation, transform);
             _reinforcements.Reset();
+            _controlProgress.OnValueChanged += ApplyControls;
+            if (IsServer) _controlProgress.Value = 0;
+            ApplyControls(0, _controlProgress.Value);
             if (IsBank)
             {
                 _wires.OnValueChanged += ApplySecurity;
@@ -130,10 +162,14 @@ namespace OperationHeist.Network
             _alarmLevel.Value = 0; _emergency.Value = 0; _failure.Value = 0;
             _guardState.Value = GuardState.Patrol; _suspicion.Value = 0f; _spotted.Value = false;
             _guardStun.Value = 0f; _reinforcementOne.Value = default; _reinforcementTwo.Value = default;
+            if (innerGuard != null) _innerGuardSnapshot.Value = GuardSnapshot.Capture(innerGuard);
         }
 
         public override void OnNetworkDespawn()
         {
+            if (IsServer) NetworkManager.OnClientDisconnectCallback -= RemoveReadyAgent;
+            _controlProgress.OnValueChanged -= ApplyControls;
+            ApplyControls(0, 0);
             if (IsBank)
             {
                 _wires.OnValueChanged -= ApplySecurity;
@@ -142,7 +178,8 @@ namespace OperationHeist.Network
                 bankSecurity.Apply(0, 0);
                 bankVault.SetOpen(false);
             }
-            guard.ResetPatrol(_guardPosition, _guardRotation);
+            if (guard != null) guard.ResetPatrol(_guardPosition, _guardRotation);
+            if (innerGuard != null) innerGuard.ResetPatrol(_innerGuardPosition, _innerGuardRotation);
             _reinforcements?.Reset(); _navigation?.Dispose(); _navigation = null;
         }
 
@@ -150,6 +187,36 @@ namespace OperationHeist.Network
         { _reinforcements?.Dispose(); _navigation?.Dispose(); base.OnDestroy(); }
 
         private void ApplySecurity(int _, int __) => bankSecurity.Apply(_wires.Value, _breakers.Value);
+
+        private void RemoveReadyAgent(ulong playerId)
+        {
+            if (IsSpawned) _readyAgents.Remove(playerId);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void SetReadyServerRpc(bool ready, ServerRpcParams rpc = default)
+        {
+            ulong sender = rpc.Receive.SenderClientId;
+            if (Phase != MissionPhase.Briefing || sender == NetworkManager.ServerClientId ||
+                !NetworkManager.ConnectedClients.ContainsKey(sender)) return;
+            if (ready && !_readyAgents.Contains(sender)) _readyAgents.Add(sender);
+            else if (!ready) _readyAgents.Remove(sender);
+        }
+
+        private void ApplyControls(int _, int progress)
+        {
+            if (controls == null) return;
+            foreach (var control in controls) control.ApplyProgress(progress);
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void UseControlServerRpc(int step, ServerRpcParams rpc = default)
+        {
+            if (Phase != MissionPhase.Playing || CurrentInstruction == null || step != _controlProgress.Value ||
+                !NetworkLootItem.TryGetActor(NetworkManager, rpc.Receive.SenderClientId, out var actor) ||
+                !actor.CanReach(controls[step].Target, NetworkLootInteractor.ServerReach)) return;
+            _controlProgress.Value++;
+        }
 
         private void ApplyVault(bool _, bool open)
         {
@@ -231,6 +298,7 @@ namespace OperationHeist.Network
             if (!IsServer)
             {
                 guard.ApplyReplica(_guardState.Value, _suspicion.Value, _spotted.Value, _guardStun.Value);
+                if (innerGuard != null) _innerGuardSnapshot.Value.Apply(innerGuard);
                 _reinforcementOne.Value.Apply(_reinforcements.Get(0)); _reinforcementTwo.Value.Apply(_reinforcements.Get(1)); return;
             }
             if (Phase != MissionPhase.Playing) return;
@@ -238,6 +306,11 @@ namespace OperationHeist.Network
                 _vaultRequester.Value = NoVaultRequester;
             float delta = Time.deltaTime;
             _navigation?.Tick(delta);
+            if (IsBank && bankSecurity.AdvanceCameraTimer(delta))
+            {
+                _breakers.Value = bankSecurity.Breakers;
+                _vaultRequester.Value = NoVaultRequester;
+            }
             _remaining = Mathf.Max(0f, _remaining - delta);
             _seconds.Value = Mathf.CeilToInt(_remaining);
             bool spotted = false;
@@ -255,8 +328,14 @@ namespace OperationHeist.Network
                 if (!player.IsDown && IsBank && bankSecurity.Detects(player.transform, player.EyePosition, player.IsCrouched))
                     spotted = true;
             }
-            spotted |= guard.TickSecurity(delta, targets.ToArray(), AlarmLevel);
-            spotted |= _reinforcements.Tick(delta, AlarmLevel == 3, targets.ToArray());
+            GuardTarget[] agents = targets.ToArray();
+            spotted |= guard.TickSecurity(delta, agents, AlarmLevel);
+            if (innerGuard != null)
+            {
+                spotted |= innerGuard.TickSecurity(delta, agents, AlarmLevel);
+                _innerGuardSnapshot.Value = GuardSnapshot.Capture(innerGuard);
+            }
+            spotted |= _reinforcements.Tick(delta, AlarmLevel == 3, agents);
             _guardState.Value = guard.State; _suspicion.Value = guard.Suspicion; _spotted.Value = guard.SeesPlayer;
             _guardStun.Value = Mathf.Ceil(guard.StunRemaining * 10f) / 10f;
             _reinforcementOne.Value = GuardSnapshot.Capture(_reinforcements.Get(0));
@@ -300,11 +379,18 @@ namespace OperationHeist.Network
         [ServerRpc(RequireOwnership = false)]
         public void RequestExtractServerRpc(ServerRpcParams rpc = default)
         {
-            if (Phase != MissionPhase.Playing || Deposited != Required ||
+            if (Phase != MissionPhase.Playing || Deposited != Required || CurrentInstruction != null ||
                 !NetworkLootItem.TryGetActor(NetworkManager, rpc.Receive.SenderClientId, out var actor) ||
                 !CanReachTerminal(actor)) return;
 
             Bounds zone = extractionZone.bounds;
+            if (IsBank)
+            {
+                Vector3 extracted = actor.transform.position;
+                extracted.y = zone.center.y;
+                if (zone.Contains(extracted)) _phase.Value = MissionPhase.Won;
+                return;
+            }
             foreach (var client in NetworkManager.ConnectedClientsList)
             {
                 if (client.PlayerObject == null) return;

@@ -76,6 +76,12 @@ namespace OperationHeist.Network
                 else _mission.RequestExtractServerRpc();
                 return;
             }
+            var missionControl = target.GetComponentInParent<MissionControl>();
+            if (_mission != null && missionControl != null)
+            {
+                _mission.UseControlServerRpc(missionControl.Step);
+                return;
+            }
             if (_mission != null && _mission.IsBank)
             {
                 var control = target.GetComponentInParent<BankSecuritySwitch>();
