@@ -7,139 +7,113 @@ namespace OperationHeist.Network
     public static class NetworkHealthRules
     {
         public const float ReviveMaxDistance = 2.4f;
-
-        public static bool CanRevive(bool targetIncapacitated, bool medicIncapacitated, float distance) =>
-            targetIncapacitated && !medicIncapacitated && distance <= ReviveMaxDistance;
+        public const float ReviveSeconds = 3f;
+        public static bool CanRevive(bool targetDown, bool medicDown, float distance) =>
+            targetDown && !medicDown && distance >= 0f && !float.IsNaN(distance) && distance <= ReviveMaxDistance;
     }
 
-    /// <summary>Host-authoritative health mirror over PlayerHealth.</summary>
     [DisallowMultipleComponent, RequireComponent(typeof(NetworkObject), typeof(PlayerHealth), typeof(FpsController))]
     public sealed class NetworkPlayerHealth : NetworkBehaviour
     {
-        private readonly NetworkVariable<float> _health = new NetworkVariable<float>(
-            100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-        private readonly NetworkVariable<bool> _down = new NetworkVariable<bool>(
-            false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
-
+        private readonly NetworkVariable<float> _health = new(100f);
+        private readonly NetworkVariable<bool> _down = new();
+        private readonly NetworkVariable<float> _bleedout = new();
+        private readonly NetworkVariable<float> _reviveProgress = new();
+        private readonly NetworkVariable<bool> _selfRecovery = new(true);
+        private ulong _reviveTarget = ulong.MaxValue;
+        private float _lastHeldRequest;
         private PlayerHealth _local;
-        private bool _syncing;
-
         public float ReplicatedHealth => _health.Value;
         public bool ReplicatedIncapacitated => _down.Value;
         public PlayerHealth LocalHealth => _local;
+        public float ReviveProgress => _reviveProgress.Value;
+        public bool SelfRecoveryAvailable => _selfRecovery.Value;
+        private NetworkDepotMission Mission => NetworkManager.GetComponent<HeistNetworkSession>().Depot;
 
-        private void Awake()
-        {
-            _local = GetComponent<PlayerHealth>();
-        }
-
+        private void Awake() => _local = GetComponent<PlayerHealth>();
         public override void OnNetworkSpawn()
         {
-            _local.Configure(_local.MaxHealth > 0 ? _local.MaxHealth : 100f, _local.BleedoutDuration > 0 ? _local.BleedoutDuration : 12f, false);
-            _health.OnValueChanged += OnHealthChanged;
-            _down.OnValueChanged += OnDownChanged;
-            if (IsServer)
-            {
-                _local.Changed += PushFromLocal;
-                _local.BleedoutExpired += OnBleedoutExpired;
-                PushFromLocal();
-            }
-            else
-            {
-                ApplyReplica();
-            }
+            _local.Configure(_local.MaxHealth, _local.BleedoutDuration, false, false);
+            _health.OnValueChanged += OnValue; _bleedout.OnValueChanged += OnValue;
+            _down.OnValueChanged += OnDown;
+            if (IsServer) { _local.Changed += PushFromLocal; PushFromLocal(); }
+            else ApplyReplica();
         }
-
         public override void OnNetworkDespawn()
         {
-            _health.OnValueChanged -= OnHealthChanged;
-            _down.OnValueChanged -= OnDownChanged;
-            if (_local != null)
-            {
-                _local.Changed -= PushFromLocal;
-                _local.BleedoutExpired -= OnBleedoutExpired;
-            }
+            _health.OnValueChanged -= OnValue; _bleedout.OnValueChanged -= OnValue;
+            _down.OnValueChanged -= OnDown;
+            if (_local != null) _local.Changed -= PushFromLocal;
         }
-
         private void Update()
         {
-            if (!IsServer || _local == null) return;
+            if (!IsSpawned || !IsServer || (Mission != null && Mission.Phase != MissionPhase.Playing)) return;
             _local.Tick(Time.deltaTime);
+            if (_local.IsIncapacitated && Mission != null)
+                foreach (var instance in NetworkManager.SpawnManager.SpawnedObjectsList)
+                    if (instance.TryGetComponent(out NetworkLootItem loot)) loot.RecoverIfCarriedBy(OwnerClientId);
+            if (_reviveTarget == ulong.MaxValue) return;
+            if (Time.unscaledTime - _lastHeldRequest > .6f || !TryGetHealth(_reviveTarget, out var target) || !CanRevive(target))
+            { CancelRevive(); return; }
+            _reviveProgress.Value += Time.deltaTime;
+            if (_reviveProgress.Value < NetworkHealthRules.ReviveSeconds) return;
+            if (target.LocalHealth.TryRevive(40f) && target == this) _selfRecovery.Value = false;
+            CancelRevive();
         }
 
         [ServerRpc]
         public void RequestLabDamageServerRpc()
         {
-            if (NetworkManager.GetComponent<HeistNetworkSession>().Depot != null) return;
-            _local.ApplyDamage(35f, "Prueba de laboratorio");
+            if (Mission == null) _local.ApplyDamage(35f, "Prueba de laboratorio");
         }
 
-        [ServerRpc(RequireOwnership = true)]
+        [ServerRpc]
         public void RequestReviveTargetServerRpc(ulong targetClientId, ServerRpcParams rpcParams = default)
         {
-            ulong medicId = OwnerClientId;
-            if (medicId != rpcParams.Receive.SenderClientId) return;
-            if (!TryGetPlayerHealth(medicId, out var medic) || !TryGetPlayerHealth(targetClientId, out var target))
-                return;
-            if (medicId == targetClientId) return;
-            float distance = Vector3.Distance(medic.transform.position, target.transform.position);
-            if (!NetworkHealthRules.CanRevive(target.LocalHealth.IsIncapacitated, medic.LocalHealth.IsIncapacitated, distance))
-                return;
-            target.LocalHealth.TryRevive(40f);
-            target.PushFromLocal();
+            if (rpcParams.Receive.SenderClientId != OwnerClientId ||
+                (Mission != null && Mission.Phase != MissionPhase.Playing) ||
+                !TryGetHealth(targetClientId, out var target) || !CanRevive(target))
+            { CancelRevive(); return; }
+            if (_reviveTarget != targetClientId) _reviveProgress.Value = 0f;
+            _reviveTarget = targetClientId;
+            _lastHeldRequest = Time.unscaledTime;
         }
 
-        private void OnBleedoutExpired()
+        [ServerRpc]
+        public void CancelReviveServerRpc() => CancelRevive();
+        private void CancelRevive() { _reviveTarget = ulong.MaxValue; _reviveProgress.Value = 0f; }
+
+        private bool CanRevive(NetworkPlayerHealth target)
         {
-            // Lab: downed players stay down visually; mission fail is local-only for now.
-            PushFromLocal();
+            if (!target.LocalHealth.IsIncapacitated || !target.LocalHealth.IsAlive) return false;
+            if (target == this)
+                return Mission != null && NetworkManager.ConnectedClientsList.Count == 1 && _selfRecovery.Value;
+            if (!NetworkHealthRules.CanRevive(true, _local.IsIncapacitated,
+                Vector3.Distance(transform.position, target.transform.position))) return false;
+            var motor = GetComponent<NetworkPlayerMotor>();
+            var targetMotor = target.GetComponent<NetworkPlayerMotor>();
+            foreach (var hit in Physics.RaycastAll(motor.EyePosition,
+                (targetMotor.EyePosition - motor.EyePosition).normalized,
+                Vector3.Distance(motor.EyePosition, targetMotor.EyePosition), ~0, QueryTriggerInteraction.Ignore))
+                if (!hit.transform.IsChildOf(transform) && !hit.transform.IsChildOf(target.transform)) return false;
+            return true;
         }
 
         private void PushFromLocal()
         {
-            if (!IsServer || _local == null || _syncing) return;
-            _syncing = true;
-            _health.Value = _local.CurrentHealth;
-            _down.Value = _local.IsIncapacitated;
-            _syncing = false;
+            if (!IsSpawned || !IsServer) return;
+            _health.Value = _local.CurrentHealth; _down.Value = _local.IsIncapacitated;
+            _bleedout.Value = Mathf.Ceil(_local.BleedoutRemaining * 10f) / 10f;
         }
-
-        private void OnHealthChanged(float previous, float next)
-        {
-            if (IsServer) return;
-            ApplyReplica();
-        }
-
-        private void OnDownChanged(bool previous, bool next)
-        {
-            ApplyReplica();
-        }
-
+        private void OnValue(float previous, float next) => ApplyReplica();
+        private void OnDown(bool previous, bool next) => ApplyReplica();
         private void ApplyReplica()
-        {
-            if (_local == null || IsServer) return;
-            _syncing = true;
-            if (_down.Value && !_local.IsIncapacitated) _local.ApplyDamage(_local.CurrentHealth, "Replica");
-            else if (!_down.Value && _local.IsIncapacitated) _local.TryRevive(Mathf.Max(1f, _health.Value));
-            else if (!_down.Value && Mathf.Abs(_local.CurrentHealth - _health.Value) > 0.1f)
-            {
-                // Align standing health downward/upward via reset+damage for clients without public setters.
-                float target = Mathf.Clamp(_health.Value, 0f, _local.MaxHealth);
-                _local.ResetHealth();
-                if (target < _local.MaxHealth) _local.ApplyDamage(_local.MaxHealth - target, "Replica");
-            }
-            _syncing = false;
-        }
-
-        private static bool TryGetPlayerHealth(ulong clientId, out NetworkPlayerHealth health)
+        { if (!IsServer && _local != null) _local.ApplyReplica(_health.Value, _down.Value, _bleedout.Value); }
+        private bool TryGetHealth(ulong id, out NetworkPlayerHealth health)
         {
             health = null;
-            if (NetworkManager.Singleton == null ||
-                !NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client) ||
-                client.PlayerObject == null)
-                return false;
-            health = client.PlayerObject.GetComponent<NetworkPlayerHealth>();
-            return health != null;
+            return NetworkManager.ConnectedClients.TryGetValue(id, out var client) && client.PlayerObject != null &&
+                client.PlayerObject.TryGetComponent(out health);
         }
     }
 }

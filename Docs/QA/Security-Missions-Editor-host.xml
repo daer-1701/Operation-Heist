@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:43Z" duration="17,6511947">
+  <test-suite type="TestSuite" id="1087" name="Operation Heist" fullname="Operation Heist" runstate="Runnable" testcasecount="65" result="Passed" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:43Z" duration="17.651195" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1081" name="OperationHeist.Player.PlayModeTests.dll" fullname="D:/ae/OH_Audit_2223e7a4/host/Library/ScriptAssemblies/OperationHeist.Player.PlayModeTests.dll" runstate="Runnable" testcasecount="65" result="Passed" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:43Z" duration="17.616511" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="18144" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1082" name="OperationHeist" fullname="OperationHeist" runstate="Runnable" testcasecount="65" result="Passed" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:43Z" duration="17.614732" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1083" name="Tests" fullname="OperationHeist.Tests" runstate="Runnable" testcasecount="65" result="Passed" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:43Z" duration="17.613470" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="CoopDepotLanTests" fullname="OperationHeist.Tests.CoopDepotLanTests" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:43Z" duration="17.609102" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1003" name="TwoInstancesCompleteBank" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteBank" methodname="TwoInstancesCompleteBank" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="499364464" result="Passed" start-time="2026-11-12 12:44:26Z" end-time="2026-11-12 12:44:36Z" duration="10.271782" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[COOP_BANK_OK host · seguridad, bóveda, 1/1 y extracción
+]]></output>
+            </test-case>
+            <test-case id="1002" name="TwoInstancesCompleteDepot" fullname="OperationHeist.Tests.CoopDepotLanTests.TwoInstancesCompleteDepot" methodname="TwoInstancesCompleteDepot" classname="OperationHeist.Tests.CoopDepotLanTests" runstate="Runnable" seed="1253110704" result="Passed" start-time="2026-11-12 12:44:36Z" end-time="2026-11-12 12:44:43Z" duration="7.312561" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[COOP_DEPOT_OK host · 3/3 · extracción compartida
+COOP_DEPOT_RECOVERY_OK · expediente recuperado tras desconexión
+Saving results to: C:/Users/Usuariocc/AppData/LocalLow/DefaultCompany/Operation Heist\TestResults.xml
+Saving result file failed.
+IOException: Sharing violation on path C:\Users\Usuariocc\AppData\LocalLow\DefaultCompany\Operation Heist\TestResults.xml
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+(wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding, System.Int32 bufferSize) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+(wrapper remoting-invoke-with-check) System.IO.StreamWriter..ctor(string,bool)
+System.IO.File.CreateText (System.String path) (at <816f70bc2a9c4332b0bd119906a8d40e>:0)
+UnityEditor.TestTools.TestRunner.Api.ResultsWriter.WriteResultToFile (UnityEditor.TestTools.TestRunner.Api.ITestResultAdaptor result, System.String filePath) (at ./Library/PackageCache/com.unity.test-framework@1405238725ab/UnityEditor.TestRunner/Api/ResultsWriter.cs:43)
+UnityEditor.TestTools.TestRunner.Api.ResultsWriter:WriteResultToFile(ITestResultAdaptor, String)
+Unity.PerformanceTesting.Editor.PerformanceTestRunSaver:UnityEditor.TestTools.TestRunner.Api.ICallbacks.RunFinished(ITestResultAdaptor) (at ./Library/PackageCache/com.unity.test-framework.performance@8b56083ec0f0/Editor/PerformanceTestRunSaver.cs:27)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+Saving results to: D:\ae\OH_Audit_2223e7a4\systems-20261112-missions-host.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

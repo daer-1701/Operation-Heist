@@ -28,10 +28,10 @@ Actualización del usuario: autoriza expresamente crear modelos nuevos con Hunyu
 
 ## Alcance y pruebas
 
-El presupuesto original de 240 horas no tenía reserva y asumía reutilización de recursos externos. La producción propia aumenta la carga; dos golpes son un objetivo condicionado a capacidad, no una garantía. Congelar capítulos 3–5. Si la producción propia amenaza el cierre, completar primero una misión y la estabilidad de red; consultar Docs/AssetProductionPlan.md para la planificación propuesta.
+El presupuesto original de 240 horas no tenía reserva y asumía reutilización de recursos externos. La producción propia aumenta la carga. Desde el 12 de noviembre de 2026 el usuario prioriza el juego completo de cinco capítulos: consultar [FullGamePlan.md](FullGamePlan.md). La anterior congelación de capítulos queda sin efecto; la prohibición de contenido de terceros y el registro de procedencia se mantienen para toda la campaña.
 
 La aceptación exige revisar procedencia, referencias de escenas/prefabs y build, además de las pruebas de gameplay. La compilación o una licencia válida por sí solas no prueban cumplimiento de la nueva regla.
 
 ## Archivo de plantilla
 
-El tutorial, icono, README, escena y acciones de ejemplo de la plantilla se conservan fuera de Assets en Docs/Archive/UnityTemplate para poder recuperar cambios. No forman parte de los recursos importados por Unity ni deben incorporarse a una entrega del juego. Settings mantiene únicamente configuración técnica del renderizador, pendiente de auditoría de referencias.
+El tutorial, icono, README, escena y acciones de ejemplo de la plantilla se retiraron de Assets y finalmente se eliminaron de `Docs/Archive/UnityTemplate` durante la limpieza del 12 de noviembre de 2026. No forman parte del proyecto ni de su entrega. Settings mantiene configuración técnica del renderizador; no eliminar perfiles por su nombre de plantilla sin comprobar referencias.

@@ -16,6 +16,7 @@ namespace OperationHeist.Editor
     {
         public const string ScenePath = "Assets/00_Scenes/Heist_NetworkLab.unity";
         public const string DepotScenePath = "Assets/00_Scenes/Heist_DepotCoop.unity";
+        public const string BankScenePath = "Assets/00_Scenes/Heist_BankCoop.unity";
         public const string PlayerPrefabPath = "Assets/02_Prefabs/Network/NetworkFPSPlayer.prefab";
 
         [MenuItem("Operation Heist/Red/Generar laboratorio LAN (reemplaza escena de red)")]
@@ -71,10 +72,19 @@ namespace OperationHeist.Editor
                     "Se reemplazará la copia cooperativa con el depósito local guardado.", "Regenerar", "Cancelar")) return;
             if (!Application.isBatchMode && !EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
+            BuildContract(LocalMvpBuilder.ScenePath, DepotScenePath, false);
+        }
+
+        public static void BuildBank() => BuildContract(MissionSetBuilder.BankScenePath, BankScenePath, true);
+
+        internal static void BuildContract(string source, string destination, bool bank)
+        {
             var player = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
             if (player == null) player = CreatePlayerPrefab();
-            var scene = EditorSceneManager.OpenScene(LocalMvpBuilder.ScenePath, OpenSceneMode.Single);
+            var scene = EditorSceneManager.OpenScene(source, OpenSceneMode.Single);
             var localMission = Object.FindAnyObjectByType<LocalMission>();
+            float duration = localMission.Duration;
+            var controls = localMission.Controls;
             var localPlayer = Object.FindAnyObjectByType<LootCarrier>();
             Vector3 spawn = localPlayer.transform.position;
             Object.DestroyImmediate(localMission.gameObject);
@@ -83,7 +93,7 @@ namespace OperationHeist.Editor
             var point = Object.FindAnyObjectByType<ExtractionPoint>();
             var terminal = point.GetComponent<Collider>();
             Object.DestroyImmediate(point);
-            var zone = GameObject.Find("Zona de extraccion").GetComponent<Renderer>();
+            var zone = bank ? CreateBankExtractionZone() : GameObject.Find("Zona de extraccion").GetComponent<Renderer>();
 
             var localLoot = Object.FindObjectsByType<LootItem>(FindObjectsInactive.Include);
             var dossiers = new NetworkLootItem[localLoot.Length];
@@ -93,30 +103,44 @@ namespace OperationHeist.Editor
                 var root = item.gameObject;
                 string label = item.DisplayName;
                 Object.DestroyImmediate(item);
+                root.SetActive(true);
                 root.AddComponent<NetworkObject>();
                 dossiers[i] = root.AddComponent<NetworkLootItem>();
                 dossiers[i].Configure(label);
             }
 
-            var guard = Object.FindAnyObjectByType<PatrolGuard>();
+            var guards = Object.FindObjectsByType<PatrolGuard>();
+            var guard = System.Array.Find(guards, candidate => candidate.name != "Patrulla interior");
+            var interior = System.Array.Find(guards, candidate => candidate.name == "Patrulla interior");
             // The cooperative mission explicitly steps the same patrol on the host.
             guard.enabled = false;
-            guard.GetComponent<CapsuleCollider>().enabled = true;
+            if (guard.TryGetComponent(out CapsuleCollider capsule)) capsule.enabled = true;
             guard.gameObject.AddComponent<NetworkObject>();
             guard.gameObject.AddComponent<NetworkTransform>();
+            if (interior != null) interior.enabled = false;
 
             var mission = new GameObject("Misión cooperativa", typeof(NetworkObject), typeof(NetworkDepotMission))
                 .GetComponent<NetworkDepotMission>();
-            mission.Configure(dossiers, terminal, zone, guard, spawn);
-            CreateSession(player, mission, new Vector3(0, 2.5f, -11), Quaternion.Euler(8, 0, 0));
-            SaveNetworkScene(scene, DepotScenePath);
+            mission.Configure(dossiers, terminal, zone, guard, spawn, duration, controls, interior);
+            if (bank) mission.ConfigureBank(Object.FindAnyObjectByType<BankSecurity>(),
+                Object.FindObjectsByType<BankSecuritySwitch>(), Object.FindAnyObjectByType<BankVaultAccess>());
+            CreateSession(player, mission, spawn + new Vector3(0, 2.5f, -1), Quaternion.Euler(8, 0, 0));
+            SaveNetworkScene(scene, destination);
 
             var scenes = new System.Collections.Generic.List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
-            if (!scenes.Exists(entry => entry.path == DepotScenePath))
-                scenes.Add(new EditorBuildSettingsScene(DepotScenePath, true));
+            if (!scenes.Exists(entry => entry.path == destination))
+                scenes.Add(new EditorBuildSettingsScene(destination, true));
             EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets();
-            Debug.Log("NETWORK_DEPOT_GENERATED");
+            Debug.Log(bank ? "NETWORK_BANK_GENERATED" : "NETWORK_DEPOT_GENERATED");
+        }
+
+        private static Renderer CreateBankExtractionZone()
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>("Assets/03_Materials/OH_Kit_Teal.mat");
+            var zone = Box("Zona de extracción del equipo", new Vector3(0, .012f, -4.6f), new Vector3(4.5f, .012f, 3.2f), material);
+            Object.DestroyImmediate(zone.GetComponent<Collider>());
+            return zone.GetComponent<Renderer>();
         }
 
         public static void BuildAll()

@@ -1,0 +1,3 @@
+host
+TACTICAL_NAV ready=True version=3 scene=Heist_DepotCoop guardScene=Heist_DepotCoop path=True bounds=Center: (18.90, 5.20, 0.00), Extents: (34.10, 7.80, 17.20) corners=(40.00, 8.05, -4.00);(37.60, 8.05, -0.30);(37.60, 8.05, 0.30);(40.00, 8.05, 4.00)
+client

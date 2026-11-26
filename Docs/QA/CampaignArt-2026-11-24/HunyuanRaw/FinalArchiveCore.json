@@ -1,0 +1,25 @@
+{
+  "model": "FinalArchiveCore",
+  "device": "CPU",
+  "dtype": "float32",
+  "steps": 5,
+  "resolution": 56,
+  "seed": 24112026,
+  "seconds": 489.25,
+  "vertices": 15806,
+  "triangles": 31664,
+  "components_before_cleanup": 2,
+  "watertight": true,
+  "bounds": [
+    [
+      -0.9924149513244629,
+      -0.9923235177993774,
+      -0.9923666715621948
+    ],
+    [
+      0.9569068551063538,
+      0.956889271736145,
+      0.956890344619751
+    ]
+  ]
+}

@@ -12,6 +12,14 @@ namespace OperationHeist.UI
         private Image _fill;
         private Text _label;
         private Font _font;
+        private bool _visible = true;
+
+        public void SetVisible(bool visible)
+        {
+            if (_visible == visible) return;
+            _visible = visible;
+            Refresh();
+        }
 
         public void Configure(PlayerHealth value)
         {
@@ -35,7 +43,7 @@ namespace OperationHeist.UI
             Refresh();
         }
 
-        private void OnEnable() { Subscribe(); if (_canvas != null) _canvas.enabled = true; }
+        private void OnEnable() { Subscribe(); if (_canvas != null) _canvas.enabled = _visible; }
         private void OnDisable()
         {
             Unsubscribe();
@@ -83,7 +91,7 @@ namespace OperationHeist.UI
         private void Refresh()
         {
             if (_fill == null || health == null) return;
-            bool show = health.isActiveAndEnabled;
+            bool show = isActiveAndEnabled && _visible && health.isActiveAndEnabled;
             _canvas.enabled = show;
             if (!show) return;
             float bleedNorm = health.BleedoutDuration > 0f ? health.BleedoutRemaining / health.BleedoutDuration : 0f;
@@ -93,7 +101,7 @@ namespace OperationHeist.UI
                 ? new Color(0.95f, 0.35f, 0.25f, 1f)
                 : Color.Lerp(new Color(0.9f, 0.35f, 0.25f), new Color(0.35f, 0.85f, 0.7f), health.NormalizedHealth);
             _label.text = health.IsIncapacitated
-                ? "DERRIBADO  ·  sangrado " + Mathf.CeilToInt(health.BleedoutRemaining) + "s"
+                ? (health.IsAlive ? "DERRIBADO  ·  sangrado " + Mathf.CeilToInt(health.BleedoutRemaining) + "s" : "FUERA DE COMBATE")
                 : "VITALIDAD  " + Mathf.CeilToInt(health.CurrentHealth) + " / " + Mathf.CeilToInt(health.MaxHealth);
         }
 

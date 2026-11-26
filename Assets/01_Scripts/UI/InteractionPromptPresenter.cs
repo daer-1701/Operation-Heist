@@ -69,6 +69,7 @@ namespace OperationHeist.UI
 
         private void OnInteracted(IInteractable target)
         {
+            if (target is BankSecuritySwitch) return;
             if (target is PrototypeInteractable)
                 _feedback.text = "Inspeccionado: " + target.DisplayName;
             else if (target is LootItem)

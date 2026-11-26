@@ -1,0 +1,627 @@
+{
+  "models": [
+    {
+      "name": "OH_DepotTutorialStation", "category": "Depot", "use": "Puesto de tutorial de acceso y recogida", "source": "",
+      "parts": [
+        {"name": "Pie", "material": "Dark", "position": {"x": 0, "y": 0.08, "z": 0}, "size": {"x": 0.64, "y": 0.16, "z": 0.58}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Soporte", "material": "Steel", "position": {"x": 0, "y": 0.55, "z": 0.13}, "size": {"x": 0.42, "y": 0.92, "z": 0.23}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marco", "material": "Teal", "position": {"x": 0, "y": 1.14, "z": 0}, "size": {"x": 0.78, "y": 0.45, "z": 0.22}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Cartel", "material": "Ivory", "position": {"x": 0, "y": 1.14, "z": -0.121}, "size": {"x": 0.64, "y": 0.32, "z": 0.024}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Símbolo1", "material": "Dark", "position": {"x": -0.19, "y": 1.14, "z": -0.14}, "size": {"x": 0.11, "y": 0.09, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Símbolo2", "material": "Dark", "position": {"x": 0, "y": 1.14, "z": -0.14}, "size": {"x": 0.11, "y": 0.09, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Símbolo3", "material": "Teal", "position": {"x": 0.19, "y": 1.14, "z": -0.14}, "size": {"x": 0.11, "y": 0.09, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 1.14, "z": -0.15}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_DepotRestrictedSign", "category": "Depot", "use": "Identificar el acceso restringido", "source": "",
+      "parts": [
+        {"name": "Placa", "material": "Dark", "position": {"x": 0, "y": 0.16, "z": 0}, "size": {"x": 0.49, "y": 0.32, "z": 0.06}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Banda", "material": "Brass", "position": {"x": 0, "y": 0.16, "z": -0.036}, "size": {"x": 0.42, "y": 0.2, "z": 0.024}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marca1", "material": "Dark", "position": {"x": -0.13, "y": 0.16, "z": -0.052}, "size": {"x": 0.045, "y": 0.16, "z": 0.016}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": -23}},
+        {"name": "Marca2", "material": "Dark", "position": {"x": 0, "y": 0.16, "z": -0.052}, "size": {"x": 0.045, "y": 0.16, "z": 0.016}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": -23}},
+        {"name": "Marca3", "material": "Dark", "position": {"x": 0.13, "y": 0.16, "z": -0.052}, "size": {"x": 0.045, "y": 0.16, "z": 0.016}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": -23}}
+      ],
+      "anchors": [
+        {"name": "Mount", "position": {"x": 0, "y": 0.16, "z": 0.035}}
+      ]
+    },
+    {
+      "name": "OH_ExtractionMarker", "category": "Shared", "use": "Marcar extracción en depósito, banco y final", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.055, "z": 0}, "size": {"x": 0.67, "y": 0.11, "z": 0.43}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Montante1", "material": "Steel", "position": {"x": -0.25, "y": 0.6, "z": 0.02}, "size": {"x": 0.1, "y": 1.04, "z": 0.1}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Montante2", "material": "Steel", "position": {"x": 0.25, "y": 0.6, "z": 0.02}, "size": {"x": 0.1, "y": 1.04, "z": 0.1}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Travesaño", "material": "Teal", "position": {"x": 0, "y": 1.06, "z": 0.02}, "size": {"x": 0.64, "y": 0.21, "z": 0.19}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Flecha1", "material": "Ivory", "position": {"x": -0.075, "y": 1.065, "z": -0.09}, "size": {"x": 0.2, "y": 0.043, "z": 0.016}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": -32}},
+        {"name": "Flecha2", "material": "Ivory", "position": {"x": 0.075, "y": 1.065, "z": -0.09}, "size": {"x": 0.2, "y": 0.043, "z": 0.016}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 32}}
+      ],
+      "anchors": []
+    },
+    {
+      "name": "OH_BankAccessReader", "category": "Bank", "use": "Validación de acceso ficticia en la entrada alternativa", "source": "",
+      "parts": [
+        {"name": "Carcasa", "material": "Steel", "position": {"x": 0, "y": 0.195, "z": 0}, "size": {"x": 0.24, "y": 0.39, "z": 0.09}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoPantalla", "material": "Dark", "position": {"x": 0, "y": 0.2379, "z": -0.045899999999999996}, "size": {"x": 0.1824, "y": 0.1638, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pantalla", "material": "Screen", "position": {"x": 0, "y": 0.2379, "z": -0.053099999999999994}, "size": {"x": 0.156, "y": 0.12480000000000001, "z": 0.022}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador1", "material": "Brass", "position": {"x": -0.0576, "y": 0.0897, "z": -0.054}, "size": {"x": 0.0264, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador2", "material": "Teal", "position": {"x": 0, "y": 0.0897, "z": -0.054}, "size": {"x": 0.0264, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador3", "material": "Brass", "position": {"x": 0.0576, "y": 0.0897, "z": -0.054}, "size": {"x": 0.0264, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.24, "z": -0.07}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BankBearerBundle", "category": "Bank", "use": "Botín opcional de valores", "source": "",
+      "parts": [
+        {"name": "Fajo1", "material": "Ivory", "position": {"x": -0.07, "y": 0.03, "z": 0}, "size": {"x": 0.13, "y": 0.06, "z": 0.19}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Fajo2", "material": "Ivory", "position": {"x": 0.03, "y": 0.041999999999999996, "z": 0}, "size": {"x": 0.13, "y": 0.08399999999999999, "z": 0.19}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Fajo3", "material": "Ivory", "position": {"x": 0.13, "y": 0.054, "z": 0}, "size": {"x": 0.13, "y": 0.108, "z": 0.19}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello1", "material": "Teal", "position": {"x": -0.07, "y": 0.064, "z": 0}, "size": {"x": 0.137, "y": 0.008, "z": 0.052}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello2", "material": "Teal", "position": {"x": 0.03, "y": 0.088, "z": 0}, "size": {"x": 0.137, "y": 0.008, "z": 0.052}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello3", "material": "Teal", "position": {"x": 0.13, "y": 0.112, "z": 0}, "size": {"x": 0.137, "y": 0.008, "z": 0.052}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.04, "z": -0.105}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BankReserveCase", "category": "Bank", "use": "Botín secundario portátil de la bóveda", "source": "",
+      "parts": [
+        {"name": "Fondo", "material": "Dark", "position": {"x": 0, "y": 0.095, "z": 0}, "size": {"x": 0.49, "y": 0.19, "z": 0.34}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Tapa", "material": "Steel", "position": {"x": 0, "y": 0.202, "z": 0}, "size": {"x": 0.49, "y": 0.035, "z": 0.34}, "shape": "Box", "group": "Lid", "pivot": {"x": 0, "y": 0.184, "z": 0.155}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CierreIzq", "material": "Brass", "position": {"x": -0.14, "y": 0.14, "z": -0.181}, "size": {"x": 0.05, "y": 0.076, "z": 0.028}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CierreDer", "material": "Brass", "position": {"x": 0.14, "y": 0.14, "z": -0.181}, "size": {"x": 0.05, "y": 0.076, "z": 0.028}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Asa", "material": "Teal", "position": {"x": 0, "y": 0.077, "z": -0.227}, "size": {"x": 0.15, "y": 0.03, "z": 0.048}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "SoporteAsa1", "material": "Steel", "position": {"x": -0.074, "y": 0.077, "z": -0.2}, "size": {"x": 0.035, "y": 0.036, "z": 0.067}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "SoporteAsa2", "material": "Steel", "position": {"x": 0.074, "y": 0.077, "z": -0.2}, "size": {"x": 0.035, "y": 0.036, "z": 0.067}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.125, "z": -0.25}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_MuseumShowcase", "category": "Museum", "use": "Vitrina modular con tapa móvil y punto de pieza", "source": "",
+      "parts": [
+        {"name": "Zócalo", "material": "Dark", "position": {"x": 0, "y": 0.09, "z": 0}, "size": {"x": 1.2, "y": 0.18, "z": 0.78}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Mesa", "material": "Ivory", "position": {"x": 0, "y": 0.56, "z": 0}, "size": {"x": 1.16, "y": 0.77, "z": 0.72}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Cubierta", "material": "Dark", "position": {"x": 0, "y": 0.99, "z": 0}, "size": {"x": 1.2, "y": 0.09, "z": 0.77}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Brass", "position": {"x": -0.54, "y": 1.26, "z": -0.34}, "size": {"x": 0.043, "y": 0.5, "z": 0.043}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Brass", "position": {"x": -0.54, "y": 1.26, "z": 0.34}, "size": {"x": 0.043, "y": 0.5, "z": 0.043}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Brass", "position": {"x": 0.54, "y": 1.26, "z": -0.34}, "size": {"x": 0.043, "y": 0.5, "z": 0.043}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Brass", "position": {"x": 0.54, "y": 1.26, "z": 0.34}, "size": {"x": 0.043, "y": 0.5, "z": 0.043}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoX", "material": "Brass", "position": {"x": 0, "y": 1.51, "z": -0.34}, "size": {"x": 1.12, "y": 0.045, "z": 0.042}, "shape": "Box", "group": "Lid", "pivot": {"x": 0, "y": 1.48, "z": 0.34}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoX", "material": "Brass", "position": {"x": 0, "y": 1.51, "z": 0.34}, "size": {"x": 1.12, "y": 0.045, "z": 0.042}, "shape": "Box", "group": "Lid", "pivot": {"x": 0, "y": 1.48, "z": 0.34}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoZ", "material": "Brass", "position": {"x": -0.54, "y": 1.51, "z": 0}, "size": {"x": 0.043, "y": 0.045, "z": 0.69}, "shape": "Box", "group": "Lid", "pivot": {"x": 0, "y": 1.48, "z": 0.34}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoZ", "material": "Brass", "position": {"x": 0.54, "y": 1.51, "z": 0}, "size": {"x": 0.043, "y": 0.045, "z": 0.69}, "shape": "Box", "group": "Lid", "pivot": {"x": 0, "y": 1.48, "z": 0.34}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CristalIzquierdo", "material": "Glass", "position": {"x": -0.537, "y": 1.27, "z": 0}, "size": {"x": 0.014, "y": 0.45, "z": 0.65}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CristalDerecho", "material": "Glass", "position": {"x": 0.537, "y": 1.27, "z": 0}, "size": {"x": 0.014, "y": 0.45, "z": 0.65}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CristalTrasero", "material": "Glass", "position": {"x": 0, "y": 1.27, "z": 0.335}, "size": {"x": 1.04, "y": 0.45, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CristalFrontal", "material": "Glass", "position": {"x": 0, "y": 1.27, "z": -0.335}, "size": {"x": 1.04, "y": 0.45, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "CristalTapa", "material": "Glass", "position": {"x": 0, "y": 1.515, "z": 0}, "size": {"x": 1.03, "y": 0.014, "z": 0.65}, "shape": "Box", "group": "Lid", "pivot": {"x": 0, "y": 1.48, "z": 0.34}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Exhibit", "position": {"x": 0, "y": 1.047, "z": 0}},
+        {"name": "Contact", "position": {"x": 0, "y": 1.48, "z": -0.36}},
+        {"name": "SnapLeft", "position": {"x": -0.6, "y": 0, "z": 0}},
+        {"name": "SnapRight", "position": {"x": 0.6, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_MuseumPlinth", "category": "Museum", "use": "Pedestal de exposición y anclaje de objeto", "source": "",
+      "parts": [
+        {"name": "Pie", "material": "Dark", "position": {"x": 0, "y": 0.05, "z": 0}, "size": {"x": 0.72, "y": 0.1, "z": 0.69}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Columna", "material": "Ivory", "position": {"x": 0, "y": 0.5, "z": 0}, "size": {"x": 0.59, "y": 0.82, "z": 0.57}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Tapa", "material": "Steel", "position": {"x": 0, "y": 0.96, "z": 0}, "size": {"x": 0.73, "y": 0.1, "z": 0.7}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Cartela", "material": "Brass", "position": {"x": 0, "y": 0.76, "z": -0.293}, "size": {"x": 0.23, "y": 0.1, "z": 0.022}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Exhibit", "position": {"x": 0, "y": 1.01, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_MuseumGalleryDivider", "category": "Museum", "use": "Módulo de galería que admite recorridos alternativos", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.06, "z": 0}, "size": {"x": 3, "y": 0.12, "z": 0.39}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Paño", "material": "Ivory", "position": {"x": 0, "y": 1.29, "z": 0}, "size": {"x": 2.97, "y": 2.36, "z": 0.18}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Friso", "material": "Teal", "position": {"x": 0, "y": 2.48, "z": 0}, "size": {"x": 3, "y": 0.09, "z": 0.25}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Riel", "material": "Brass", "position": {"x": 0, "y": 1.82, "z": -0.104}, "size": {"x": 2.62, "y": 0.036, "z": 0.034}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "SnapLeft", "position": {"x": -1.5, "y": 0, "z": 0}},
+        {"name": "SnapRight", "position": {"x": 1.5, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_MuseumGallerySensor", "category": "Museum", "use": "Seguridad de galería y señal de vigilancia ficticia", "source": "",
+      "parts": [
+        {"name": "Soporte", "material": "Steel", "position": {"x": 0, "y": 0.18, "z": 0.06}, "size": {"x": 0.26, "y": 0.36, "z": 0.16}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Carcasa", "material": "Ivory", "position": {"x": 0, "y": 0.19, "z": -0.06}, "size": {"x": 0.36, "y": 0.28, "z": 0.23}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Visor", "material": "Dark", "position": {"x": 0, "y": 0.22, "z": -0.188}, "size": {"x": 0.24, "y": 0.125, "z": 0.036}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Lente", "material": "Teal", "position": {"x": 0, "y": 0.22, "z": -0.216}, "size": {"x": 0.064, "y": 0.026, "z": 0.064}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Señal", "material": "Red", "position": {"x": 0.13, "y": 0.12, "z": -0.19}, "size": {"x": 0.034, "y": 0.035, "z": 0.025}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Mount", "position": {"x": 0, "y": 0.18, "z": 0.148}}
+      ]
+    },
+    {
+      "name": "OH_MuseumCustodyTablet", "category": "Museum", "use": "Segundo objetivo, registro físico de custodia", "source": "",
+      "parts": [
+        {"name": "Soporte", "material": "Dark", "position": {"x": 0, "y": 0.13, "z": 0}, "size": {"x": 0.25, "y": 0.26, "z": 0.064}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Placa", "material": "Brass", "position": {"x": 0, "y": 0.15, "z": -0.038}, "size": {"x": 0.21, "y": 0.177, "z": 0.029}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Incisión1", "material": "Steel", "position": {"x": -0.047, "y": 0.15, "z": -0.058}, "size": {"x": 0.018, "y": 0.102, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Incisión2", "material": "Steel", "position": {"x": 0, "y": 0.15, "z": -0.058}, "size": {"x": 0.018, "y": 0.102, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Incisión3", "material": "Steel", "position": {"x": 0.047, "y": 0.15, "z": -0.058}, "size": {"x": 0.018, "y": 0.102, "z": 0.014}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello", "material": "Teal", "position": {"x": 0, "y": 0.23, "z": -0.059}, "size": {"x": 0.075, "y": 0.027, "z": 0.015}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.15, "z": -0.064}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_MuseumServiceCart", "category": "Museum", "use": "Utilería de las áreas de servicio", "source": "",
+      "parts": [
+        {"name": "Chasis", "material": "Dark", "position": {"x": 0, "y": 0.21, "z": 0}, "size": {"x": 0.66, "y": 0.11, "z": 0.46}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Bandeja", "material": "Steel", "position": {"x": 0, "y": 0.67, "z": 0}, "size": {"x": 0.63, "y": 0.06, "z": 0.43}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Steel", "position": {"x": -0.26, "y": 0.45, "z": -0.15}, "size": {"x": 0.046, "y": 0.43, "z": 0.046}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Steel", "position": {"x": -0.26, "y": 0.45, "z": 0.15}, "size": {"x": 0.046, "y": 0.43, "z": 0.046}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Steel", "position": {"x": 0.26, "y": 0.45, "z": -0.15}, "size": {"x": 0.046, "y": 0.43, "z": 0.046}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Steel", "position": {"x": 0.26, "y": 0.45, "z": 0.15}, "size": {"x": 0.046, "y": 0.43, "z": 0.046}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Rueda", "material": "Dark", "position": {"x": -0.23, "y": 0.095, "z": -0.16}, "size": {"x": 0.18, "y": 0.063, "z": 0.18}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 90}},
+        {"name": "Rueda", "material": "Dark", "position": {"x": -0.23, "y": 0.095, "z": 0.16}, "size": {"x": 0.18, "y": 0.063, "z": 0.18}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 90}},
+        {"name": "Rueda", "material": "Dark", "position": {"x": 0.23, "y": 0.095, "z": -0.16}, "size": {"x": 0.18, "y": 0.063, "z": 0.18}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 90}},
+        {"name": "Rueda", "material": "Dark", "position": {"x": 0.23, "y": 0.095, "z": 0.16}, "size": {"x": 0.18, "y": 0.063, "z": 0.18}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 90}},
+        {"name": "Caja", "material": "Teal", "position": {"x": 0, "y": 0.79, "z": 0}, "size": {"x": 0.44, "y": 0.2, "z": 0.27}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": []
+    },
+    {
+      "name": "OH_BlackoutOfficePartition", "category": "Blackout", "use": "Separador de oficina con encaje de 1,5 m", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.06, "z": 0}, "size": {"x": 1.5, "y": 0.12, "z": 0.28}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Paño", "material": "Cloth", "position": {"x": 0, "y": 0.66, "z": 0}, "size": {"x": 1.48, "y": 1.17, "z": 0.12}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perfil", "material": "Steel", "position": {"x": 0, "y": 1.28, "z": 0}, "size": {"x": 1.5, "y": 0.07, "z": 0.17}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "SnapLeft", "position": {"x": -0.75, "y": 0, "z": 0}},
+        {"name": "SnapRight", "position": {"x": 0.75, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BlackoutServerRack", "category": "Blackout", "use": "Rack visual repetible de sala técnica", "source": "",
+      "parts": [
+        {"name": "Cuerpo", "material": "Dark", "position": {"x": 0, "y": 1.04, "z": 0}, "size": {"x": 0.7, "y": 2.08, "z": 0.85}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marco", "material": "Steel", "position": {"x": 0, "y": 1.04, "z": -0.43}, "size": {"x": 0.67, "y": 1.94, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo1", "material": "Dark", "position": {"x": 0, "y": 0.24, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal1", "material": "Teal", "position": {"x": -0.2, "y": 0.24, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo2", "material": "Dark", "position": {"x": 0, "y": 0.46499999999999997, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal2", "material": "Teal", "position": {"x": -0.2, "y": 0.46499999999999997, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo3", "material": "Dark", "position": {"x": 0, "y": 0.69, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal3", "material": "Brass", "position": {"x": -0.2, "y": 0.69, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo4", "material": "Dark", "position": {"x": 0, "y": 0.915, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal4", "material": "Teal", "position": {"x": -0.2, "y": 0.915, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo5", "material": "Dark", "position": {"x": 0, "y": 1.1400000000000001, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal5", "material": "Teal", "position": {"x": -0.2, "y": 1.1400000000000001, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo6", "material": "Dark", "position": {"x": 0, "y": 1.365, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal6", "material": "Teal", "position": {"x": -0.2, "y": 1.365, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo7", "material": "Dark", "position": {"x": 0, "y": 1.59, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal7", "material": "Teal", "position": {"x": -0.2, "y": 1.59, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Módulo8", "material": "Dark", "position": {"x": 0, "y": 1.815, "z": -0.465}, "size": {"x": 0.57, "y": 0.185, "z": 0.075}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Señal8", "material": "Teal", "position": {"x": -0.2, "y": 1.815, "z": -0.51}, "size": {"x": 0.047, "y": 0.035, "z": 0.018}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}},
+        {"name": "SnapLeft", "position": {"x": -0.35, "y": 0, "z": 0}},
+        {"name": "SnapRight", "position": {"x": 0.35, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BlackoutSwitchCabinet", "category": "Blackout", "use": "Armario técnico de control ficticio con puerta", "source": "",
+      "parts": [
+        {"name": "Cuerpo", "material": "Dark", "position": {"x": 0, "y": 0.79, "z": 0}, "size": {"x": 0.65, "y": 1.56, "z": 0.38}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Panel", "material": "Steel", "position": {"x": 0, "y": 0.81, "z": -0.214}, "size": {"x": 0.597, "y": 1.48, "z": 0.052}, "shape": "Box", "group": "Door", "pivot": {"x": -0.3, "y": 0.81, "z": -0.212}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Mando", "material": "Brass", "position": {"x": 0.22, "y": 0.91, "z": -0.257}, "size": {"x": 0.058, "y": 0.135, "z": 0.032}, "shape": "Box", "group": "Door", "pivot": {"x": -0.3, "y": 0.81, "z": -0.212}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Testigo", "material": "Red", "position": {"x": 0, "y": 1.38, "z": -0.251}, "size": {"x": 0.17, "y": 0.074, "z": 0.024}, "shape": "Box", "group": "Door", "pivot": {"x": -0.3, "y": 0.81, "z": -0.212}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.91, "z": -0.28}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BlackoutControlTerminal", "category": "Blackout", "use": "Objetivo de terminal corporativo", "source": "",
+      "parts": [
+        {"name": "Zócalo", "material": "Dark", "position": {"x": 0, "y": 0.058, "z": 0}, "size": {"x": 0.65, "y": 0.116, "z": 0.59}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Soporte", "material": "Steel", "position": {"x": 0, "y": 0.57, "z": 0.08}, "size": {"x": 0.47, "y": 1.03, "z": 0.4}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Carcasa", "material": "Dark", "position": {"x": 0, "y": 1.246, "z": 0}, "size": {"x": 0.65, "y": 0.44, "z": 0.28}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoPantalla", "material": "Dark", "position": {"x": 0, "y": 1.2944, "z": -0.1428}, "size": {"x": 0.49400000000000005, "y": 0.1848, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pantalla", "material": "Teal", "position": {"x": 0, "y": 1.2944, "z": -0.1652}, "size": {"x": 0.42250000000000004, "y": 0.1408, "z": 0.022}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador1", "material": "Brass", "position": {"x": -0.156, "y": 1.1272, "z": -0.168}, "size": {"x": 0.07150000000000001, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador2", "material": "Teal", "position": {"x": 0, "y": 1.1272, "z": -0.168}, "size": {"x": 0.07150000000000001, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador3", "material": "Brass", "position": {"x": 0.156, "y": 1.1272, "z": -0.168}, "size": {"x": 0.07150000000000001, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 1.3, "z": -0.19}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BlackoutPowerCartridge", "category": "Blackout", "use": "Componente extraíble del objetivo abstracto", "source": "",
+      "parts": [
+        {"name": "Cuerpo", "material": "Steel", "position": {"x": 0, "y": 0.085, "z": 0}, "size": {"x": 0.3, "y": 0.17, "z": 0.43}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Dark", "position": {"x": -0.104, "y": 0.13, "z": 0}, "size": {"x": 0.045, "y": 0.11, "z": 0.435}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Dark", "position": {"x": 0.104, "y": 0.13, "z": 0}, "size": {"x": 0.045, "y": 0.11, "z": 0.435}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello", "material": "Brass", "position": {"x": 0, "y": 0.173, "z": -0.09}, "size": {"x": 0.1, "y": 0.025, "z": 0.19}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Agarre", "material": "Teal", "position": {"x": 0, "y": 0.085, "z": -0.235}, "size": {"x": 0.17, "y": 0.069, "z": 0.054}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.085, "z": -0.27}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_BlackoutStatusNormal", "category": "Blackout", "use": "Estado normal de la instalación", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.12, "z": 0}, "size": {"x": 0.35, "y": 0.24, "z": 0.12}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marco", "material": "Steel", "position": {"x": 0, "y": 0.12, "z": -0.07}, "size": {"x": 0.31, "y": 0.19, "z": 0.042}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Difusor", "material": "Teal", "position": {"x": 0, "y": 0.12, "z": -0.101}, "size": {"x": 0.25, "y": 0.117, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Mount", "position": {"x": 0, "y": 0.12, "z": 0.067}}
+      ]
+    },
+    {
+      "name": "OH_BlackoutStatusEmergency", "category": "Blackout", "use": "Estado de apagón de la instalación", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.12, "z": 0}, "size": {"x": 0.35, "y": 0.24, "z": 0.12}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marco", "material": "Steel", "position": {"x": 0, "y": 0.12, "z": -0.07}, "size": {"x": 0.31, "y": 0.19, "z": 0.042}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Difusor", "material": "Red", "position": {"x": 0, "y": 0.12, "z": -0.101}, "size": {"x": 0.25, "y": 0.117, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Mount", "position": {"x": 0, "y": 0.12, "z": 0.067}}
+      ]
+    },
+    {
+      "name": "OH_FinalTunnelWall", "category": "Final", "use": "Paño modular de corredor subterráneo de 3 m", "source": "",
+      "parts": [
+        {"name": "Paño", "material": "Steel", "position": {"x": 0, "y": 1.5, "z": 0}, "size": {"x": 3, "y": 3, "z": 0.28}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Fuste Inferior", "material": "Dark", "position": {"x": 0, "y": 0.34, "z": -0.17}, "size": {"x": 3, "y": 0.62, "z": 0.08}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Fuste Superior", "material": "Dark", "position": {"x": 0, "y": 2.82, "z": -0.17}, "size": {"x": 3, "y": 0.34, "z": 0.08}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Carril", "material": "Brass", "position": {"x": 0, "y": 1.92, "z": -0.17}, "size": {"x": 3, "y": 0.07, "z": 0.09}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Costilla", "material": "Steel", "position": {"x": -1.35, "y": 1.4, "z": -0.2}, "size": {"x": 0.15, "y": 2.65, "z": 0.12}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Costilla", "material": "Steel", "position": {"x": 1.35, "y": 1.4, "z": -0.2}, "size": {"x": 0.15, "y": 2.65, "z": 0.12}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "SnapLeft", "position": {"x": -1.5, "y": 0, "z": 0}},
+        {"name": "SnapRight", "position": {"x": 1.5, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_FinalBulkhead", "category": "Final", "use": "Acceso entre etapas con marco independiente y hoja articulada", "source": "",
+      "parts": [
+        {"name": "Jamba", "material": "Steel", "position": {"x": -0.8, "y": 1.13, "z": 0}, "size": {"x": 0.21, "y": 2.26, "z": 0.42}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Jamba", "material": "Steel", "position": {"x": 0.8, "y": 1.13, "z": 0}, "size": {"x": 0.21, "y": 2.26, "z": 0.42}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Dintel", "material": "Steel", "position": {"x": 0, "y": 2.3, "z": 0}, "size": {"x": 1.81, "y": 0.21, "z": 0.42}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Brass", "position": {"x": 0, "y": 0.06, "z": 0}, "size": {"x": 1.42, "y": 0.12, "z": 0.32}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Hoja", "material": "Dark", "position": {"x": 0, "y": 1.15, "z": 0}, "size": {"x": 1.39, "y": 2.05, "z": 0.18}, "shape": "Box", "group": "Door", "pivot": {"x": -0.7, "y": 1.15, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Nervadura", "material": "Steel", "position": {"x": -0.47, "y": 1.15, "z": -0.108}, "size": {"x": 0.12, "y": 1.8, "z": 0.069}, "shape": "Box", "group": "Door", "pivot": {"x": -0.7, "y": 1.15, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Nervadura", "material": "Steel", "position": {"x": 0, "y": 1.15, "z": -0.108}, "size": {"x": 0.12, "y": 1.8, "z": 0.069}, "shape": "Box", "group": "Door", "pivot": {"x": -0.7, "y": 1.15, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Nervadura", "material": "Steel", "position": {"x": 0.47, "y": 1.15, "z": -0.108}, "size": {"x": 0.12, "y": 1.8, "z": 0.069}, "shape": "Box", "group": "Door", "pivot": {"x": -0.7, "y": 1.15, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Mando", "material": "Brass", "position": {"x": 0.48, "y": 1.22, "z": -0.177}, "size": {"x": 0.15, "y": 0.12, "z": 0.09}, "shape": "Box", "group": "Door", "pivot": {"x": -0.7, "y": 1.15, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 1.22, "z": -0.225}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_FinalStageConsole", "category": "Final", "use": "Control de etapas y sincronización del equipo", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.08, "z": 0}, "size": {"x": 0.9, "y": 0.16, "z": 0.57}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pilar", "material": "Steel", "position": {"x": 0, "y": 0.57, "z": 0.1}, "size": {"x": 0.71, "y": 0.98, "z": 0.38}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Carcasa", "material": "Steel", "position": {"x": 0, "y": 1.2759999999999998, "z": 0}, "size": {"x": 0.93, "y": 0.47, "z": 0.36}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "MarcoPantalla", "material": "Dark", "position": {"x": 0, "y": 1.3276999999999999, "z": -0.18359999999999999}, "size": {"x": 0.7068000000000001, "y": 0.1974, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pantalla", "material": "Screen", "position": {"x": 0, "y": 1.3276999999999999, "z": -0.21239999999999998}, "size": {"x": 0.6045, "y": 0.1504, "z": 0.022}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador1", "material": "Brass", "position": {"x": -0.2232, "y": 1.1491, "z": -0.216}, "size": {"x": 0.1023, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador2", "material": "Teal", "position": {"x": 0, "y": 1.1491, "z": -0.216}, "size": {"x": 0.1023, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador3", "material": "Brass", "position": {"x": 0.2232, "y": 1.1491, "z": -0.216}, "size": {"x": 0.1023, "y": 0.028, "z": 0.03}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Seguridad", "material": "Brass", "position": {"x": -0.37, "y": 1.38, "z": -0.214}, "size": {"x": 0.052, "y": 0.1, "z": 0.04}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Seguridad", "material": "Brass", "position": {"x": 0.37, "y": 1.38, "z": -0.214}, "size": {"x": 0.052, "y": 0.1, "z": 0.04}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 1.33, "z": -0.24}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_FinalCoreCradle", "category": "Final", "use": "Anclaje del botín final y zona de toma", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.07, "z": 0}, "size": {"x": 0.91, "y": 0.14, "z": 0.66}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Columna", "material": "Steel", "position": {"x": 0, "y": 0.45, "z": 0}, "size": {"x": 0.68, "y": 0.62, "z": 0.49}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Bandeja", "material": "Dark", "position": {"x": 0, "y": 0.8, "z": 0}, "size": {"x": 0.82, "y": 0.09, "z": 0.61}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Brass", "position": {"x": -0.34, "y": 0.88, "z": 0}, "size": {"x": 0.066, "y": 0.09, "z": 0.55}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Brass", "position": {"x": 0.34, "y": 0.88, "z": 0}, "size": {"x": 0.066, "y": 0.09, "z": 0.55}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Testigo", "material": "Teal", "position": {"x": 0, "y": 0.7, "z": -0.263}, "size": {"x": 0.19, "y": 0.065, "z": 0.034}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Exhibit", "position": {"x": 0, "y": 0.845, "z": 0}},
+        {"name": "Contact", "position": {"x": 0, "y": 0.88, "z": -0.32}}
+      ]
+    },
+    {
+      "name": "OH_BasePlanningTable", "category": "Shared", "use": "Base de operaciones, briefing y selección de contrato", "source": "",
+      "parts": [
+        {"name": "Tablero", "material": "Dark", "position": {"x": 0, "y": 0.87, "z": 0}, "size": {"x": 1.81, "y": 0.153, "z": 1.08}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pie", "material": "Steel", "position": {"x": -0.7, "y": 0.4, "z": -0.37}, "size": {"x": 0.11, "y": 0.8, "z": 0.11}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pie", "material": "Steel", "position": {"x": -0.7, "y": 0.4, "z": 0.37}, "size": {"x": 0.11, "y": 0.8, "z": 0.11}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pie", "material": "Steel", "position": {"x": 0.7, "y": 0.4, "z": -0.37}, "size": {"x": 0.11, "y": 0.8, "z": 0.11}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pie", "material": "Steel", "position": {"x": 0.7, "y": 0.4, "z": 0.37}, "size": {"x": 0.11, "y": 0.8, "z": 0.11}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Plano", "material": "Screen", "position": {"x": 0, "y": 0.955, "z": 0}, "size": {"x": 1.59, "y": 0.019, "z": 0.87}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Zona1", "material": "Teal", "position": {"x": -0.4, "y": 0.968, "z": 0.04}, "size": {"x": 0.2, "y": 0.008, "z": 0.13}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Zona2", "material": "Brass", "position": {"x": 0, "y": 0.968, "z": 0.04}, "size": {"x": 0.2, "y": 0.008, "z": 0.13}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Zona3", "material": "Brass", "position": {"x": 0.4, "y": 0.968, "z": 0.04}, "size": {"x": 0.2, "y": 0.008, "z": 0.13}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.96, "z": -0.54}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_HackerModule", "category": "Shared", "use": "Hacker, inhibidor ficticio", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.058, "z": 0}, "size": {"x": 0.18039999999999998, "y": 0.116, "z": 0.26239999999999997}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pantalla", "material": "Teal", "position": {"x": 0, "y": 0.122, "z": -0.038}, "size": {"x": 0.13, "y": 0.024, "z": 0.12}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Tirador", "material": "Steel", "position": {"x": 0, "y": 0.09, "z": 0.14}, "size": {"x": 0.09, "y": 0.049, "z": 0.09}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Grip", "position": {"x": 0, "y": 0.06, "z": 0.08}}
+      ]
+    },
+    {
+      "name": "OH_InfiltratorProbe", "category": "Shared", "use": "Infiltrador, herramienta ficticia de acceso", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.058, "z": 0}, "size": {"x": 0.14300000000000002, "y": 0.116, "z": 0.20800000000000002}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Núcleo", "material": "Brass", "position": {"x": 0, "y": 0.12, "z": -0.035}, "size": {"x": 0.09, "y": 0.028, "z": 0.1}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Punta", "material": "Steel", "position": {"x": 0, "y": 0.102, "z": -0.133}, "size": {"x": 0.047, "y": 0.042, "z": 0.07}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Grip", "position": {"x": 0, "y": 0.06, "z": 0.08}}
+      ]
+    },
+    {
+      "name": "OH_SpecialistHarness", "category": "Shared", "use": "Especialista, soporte de carga", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.058, "z": 0}, "size": {"x": 0.24200000000000002, "y": 0.116, "z": 0.35200000000000004}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Correa", "material": "Red", "position": {"x": -0.096, "y": 0.103, "z": 0}, "size": {"x": 0.04, "y": 0.067, "z": 0.36}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Correa", "material": "Red", "position": {"x": 0.096, "y": 0.103, "z": 0}, "size": {"x": 0.04, "y": 0.067, "z": 0.36}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Hebilla", "material": "Steel", "position": {"x": 0, "y": 0.132, "z": -0.04}, "size": {"x": 0.18, "y": 0.034, "z": 0.084}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Grip", "position": {"x": 0, "y": 0.06, "z": 0.08}}
+      ]
+    },
+    {
+      "name": "OH_DriverBeacon", "category": "Shared", "use": "Conductor, baliza de ruta", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.058, "z": 0}, "size": {"x": 0.1958, "y": 0.116, "z": 0.2848}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Baliza", "material": "Screen", "position": {"x": 0, "y": 0.13, "z": 0}, "size": {"x": 0.15, "y": 0.125, "z": 0.15}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Gancho", "material": "Steel", "position": {"x": 0, "y": 0.072, "z": 0.151}, "size": {"x": 0.081, "y": 0.054, "z": 0.06}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Grip", "position": {"x": 0, "y": 0.06, "z": 0.08}}
+      ]
+    },
+    {
+      "name": "OH_MuseumSignalIdol", "category": "Museum", "use": "Primer objetivo, pieza original facetada generada por Hunyuan", "source": "MuseumSignalIdol", "target": {"x": 0.28, "y": 0.43, "z": 0.23},
+      "parts": [],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.21, "z": -0.13}}
+      ]
+    },
+    {
+      "name": "OH_FinalArchiveCore", "category": "Final", "use": "Botín principal, carcasa original generada por Hunyuan", "source": "FinalArchiveCore", "target": {"x": 0.47, "y": 0.34, "z": 0.32},
+      "parts": [
+        {"name": "Placa de custodia", "material": "Dark", "shape": "Box", "group": "Indicator", "position": {"x": 0, "y": 0.163, "z": -0.147}, "size": {"x": 0.175, "y": 0.085, "z": 0.044}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Código visual", "material": "Teal", "shape": "Box", "group": "Indicator", "position": {"x": 0.01, "y": 0.163, "z": -0.174}, "size": {"x": 0.123, "y": 0.032, "z": 0.013}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello", "material": "Brass", "shape": "Box", "group": "Indicator", "position": {"x": -0.068, "y": 0.163, "z": -0.174}, "size": {"x": 0.018, "y": 0.033, "z": 0.012}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.18, "z": -0.18}}
+      ]
+    },
+    {
+      "name": "OH_ReinforcementGuard", "category": "Shared", "use": "Variante visual de refuerzo a partir del guardia articulado original", "source": "", "prefabSource": "Assets/02_Prefabs/Production/Characters/OH_Guard.prefab", "uniform": "Red",
+      "parts": [
+        {"name": "Placa de refuerzo", "shape": "Box", "material": "Dark", "position": {"x": 0, "y": 1.24, "z": -0.122}, "size": {"x": 0.3, "y": 0.235, "z": 0.044}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Señal de refuerzo", "shape": "Box", "material": "Brass", "position": {"x": 0, "y": 1.28, "z": -0.152}, "size": {"x": 0.21, "y": 0.068, "z": 0.026}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "LeftBoot", "shape": "Box", "material": "Steel", "group": "LeftKnee", "position": {"x": -0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": -0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "RightBoot", "shape": "Box", "material": "Steel", "group": "RightKnee", "position": {"x": 0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": 0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Belt", "shape": "Box", "material": "Brass", "group": "", "position": {"x": 0, "y": 0.72, "z": 0}, "size": {"x": 0.46, "y": 0.07, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": []
+    },
+    {
+      "name": "OH_SecurityDoorArt", "category": "Priority", "use": "Hoja y marco de seguridad para depósito y banco, con dimensiones del kit de producción", "source": "",
+      "parts": [
+        {"name": "Jamba", "material": "Steel", "position": {"x": -0.6, "y": 1.13, "z": 0}, "size": {"x": 0.18, "y": 2.26, "z": 0.25}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Jamba", "material": "Steel", "position": {"x": 0.6, "y": 1.13, "z": 0}, "size": {"x": 0.18, "y": 2.26, "z": 0.25}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Dintel", "material": "Steel", "position": {"x": 0, "y": 2.28, "z": 0}, "size": {"x": 1.37, "y": 0.18, "z": 0.25}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Umbral", "material": "Dark", "position": {"x": 0, "y": 0.02, "z": 0}, "size": {"x": 1.05, "y": 0.04, "z": 0.24}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Hoja", "material": "Dark", "position": {"x": 0, "y": 1.12, "z": 0}, "size": {"x": 1.05, "y": 2.15, "z": 0.106}, "shape": "Box", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Panel", "material": "Steel", "position": {"x": 0, "y": 1.22, "z": -0.059}, "size": {"x": 0.88, "y": 1.77, "z": 0.04}, "shape": "Box", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Blindaje", "material": "Dark", "position": {"x": 0, "y": 0.42, "z": -0.085}, "size": {"x": 0.85, "y": 0.37, "z": 0.03}, "shape": "Box", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Franja", "material": "Teal", "position": {"x": 0, "y": 1.7, "z": -0.084}, "size": {"x": 0.82, "y": 0.065, "z": 0.024}, "shape": "Box", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Mando", "material": "Brass", "position": {"x": 0.3, "y": 1.12, "z": -0.119}, "size": {"x": 0.136, "y": 0.08, "z": 0.055}, "shape": "Box", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Cierre", "material": "Dark", "position": {"x": 0.3, "y": 1.12, "z": -0.094}, "size": {"x": 0.18, "y": 0.18, "z": 0.038}, "shape": "Box", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Brass", "position": {"x": -0.47, "y": 0.23, "z": -0.064}, "size": {"x": 0.04, "y": 0.026, "z": 0.04}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Brass", "position": {"x": -0.47, "y": 1.99, "z": -0.064}, "size": {"x": 0.04, "y": 0.026, "z": 0.04}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Brass", "position": {"x": 0.47, "y": 0.23, "z": -0.064}, "size": {"x": 0.04, "y": 0.026, "z": 0.04}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Brass", "position": {"x": 0.47, "y": 1.99, "z": -0.064}, "size": {"x": 0.04, "y": 0.026, "z": 0.04}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -0.525, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0.3, "y": 1.12, "z": -0.154}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_VaultDoorArt", "category": "Priority", "use": "Hoja acorazada y marco por separado, con pivote compatible con el kit de banco", "source": "",
+      "parts": [
+        {"name": "Jamba", "material": "Steel", "position": {"x": -1.16, "y": 1.27, "z": 0}, "size": {"x": 0.22, "y": 2.54, "z": 0.57}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Jamba", "material": "Steel", "position": {"x": 1.16, "y": 1.27, "z": 0}, "size": {"x": 0.22, "y": 2.54, "z": 0.57}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Dintel", "material": "Steel", "position": {"x": 0, "y": 2.62, "z": 0}, "size": {"x": 2.54, "y": 0.3, "z": 0.57}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Umbral", "material": "Dark", "position": {"x": 0, "y": 0.06, "z": 0}, "size": {"x": 2.54, "y": 0.12, "z": 0.56}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Hoja", "material": "Dark", "position": {"x": 0, "y": 1.32, "z": 0}, "size": {"x": 2.14, "y": 2.38, "z": 0.3}, "shape": "Box", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Placa", "material": "Steel", "position": {"x": 0, "y": 1.32, "z": -0.173}, "size": {"x": 1.92, "y": 2.12, "z": 0.08}, "shape": "Box", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Cerrojo", "material": "Brass", "position": {"x": 0, "y": 1.32, "z": -0.27}, "size": {"x": 0.81, "y": 0.105, "z": 0.81}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Núcleo", "material": "Dark", "position": {"x": 0, "y": 1.32, "z": -0.333}, "size": {"x": 0.61, "y": 0.065, "z": 0.61}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Radial", "material": "Brass", "position": {"x": 0, "y": 1.32, "z": -0.391}, "size": {"x": 0.69, "y": 0.075, "z": 0.047}, "shape": "Box", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Radial", "material": "Brass", "position": {"x": 0, "y": 1.32, "z": -0.391}, "size": {"x": 0.69, "y": 0.075, "z": 0.047}, "shape": "Box", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 45}},
+        {"name": "Radial", "material": "Brass", "position": {"x": 0, "y": 1.32, "z": -0.391}, "size": {"x": 0.69, "y": 0.075, "z": 0.047}, "shape": "Box", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 90}},
+        {"name": "Radial", "material": "Brass", "position": {"x": 0, "y": 1.32, "z": -0.391}, "size": {"x": 0.69, "y": 0.075, "z": 0.047}, "shape": "Box", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 135}},
+        {"name": "Perno", "material": "Dark", "position": {"x": -0.74, "y": 0.43, "z": -0.23}, "size": {"x": 0.079, "y": 0.035, "z": 0.079}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Dark", "position": {"x": -0.74, "y": 1.33, "z": -0.23}, "size": {"x": 0.079, "y": 0.035, "z": 0.079}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Dark", "position": {"x": -0.74, "y": 2.23, "z": -0.23}, "size": {"x": 0.079, "y": 0.035, "z": 0.079}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Dark", "position": {"x": 0.74, "y": 0.43, "z": -0.23}, "size": {"x": 0.079, "y": 0.035, "z": 0.079}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Dark", "position": {"x": 0.74, "y": 1.33, "z": -0.23}, "size": {"x": 0.079, "y": 0.035, "z": 0.079}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Perno", "material": "Dark", "position": {"x": 0.74, "y": 2.23, "z": -0.23}, "size": {"x": 0.079, "y": 0.035, "z": 0.079}, "shape": "Cylinder", "group": "Door", "pivot": {"x": -1.075, "y": 0, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 1.32, "z": -0.425}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_ElectricalPanelArt", "category": "Priority", "use": "Panel de seguridad con hoja mecánica, placa de símbolos y anclaje mural", "source": "",
+      "parts": [
+        {"name": "Cuerpo", "material": "Steel", "position": {"x": 0, "y": 0.45, "z": 0}, "size": {"x": 0.6, "y": 0.9, "z": 0.18}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Fondo", "material": "Dark", "position": {"x": 0, "y": 0.47, "z": -0.092}, "size": {"x": 0.47, "y": 0.67, "z": 0.028}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Testigo", "material": "Teal", "position": {"x": -0.13, "y": 0.49, "z": -0.111}, "size": {"x": 0.047, "y": 0.1, "z": 0.027}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Testigo", "material": "Teal", "position": {"x": 0, "y": 0.49, "z": -0.111}, "size": {"x": 0.047, "y": 0.1, "z": 0.027}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Testigo", "material": "Teal", "position": {"x": 0.13, "y": 0.49, "z": -0.111}, "size": {"x": 0.047, "y": 0.1, "z": 0.027}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Hoja", "material": "Dark", "position": {"x": 0, "y": 0.45, "z": -0.139}, "size": {"x": 0.53, "y": 0.79, "z": 0.055}, "shape": "Box", "group": "Door", "pivot": {"x": -0.27, "y": 0, "z": -0.09}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Placa", "material": "Steel", "position": {"x": 0, "y": 0.54, "z": -0.173}, "size": {"x": 0.44, "y": 0.32, "z": 0.021}, "shape": "Box", "group": "Door", "pivot": {"x": -0.27, "y": 0, "z": -0.09}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Símbolo", "material": "Brass", "position": {"x": 0, "y": 0.58, "z": -0.192}, "size": {"x": 0.13, "y": 0.13, "z": 0.022}, "shape": "Box", "group": "Door", "pivot": {"x": -0.27, "y": 0, "z": -0.09}, "rotation": {"x": 0, "y": 0, "z": 45}},
+        {"name": "Mando", "material": "Teal", "position": {"x": 0.178, "y": 0.36, "z": -0.191}, "size": {"x": 0.086, "y": 0.033, "z": 0.044}, "shape": "Box", "group": "Door", "pivot": {"x": -0.27, "y": 0, "z": -0.09}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0.17, "y": 0.36, "z": -0.224}},
+        {"name": "Mount", "position": {"x": 0, "y": 0.45, "z": 0.099}}
+      ]
+    },
+    {
+      "name": "OH_WirePanelArt", "category": "Priority", "use": "Panel de interacción estilizado con símbolos de color y caras separadas", "source": "",
+      "parts": [
+        {"name": "Bastidor", "material": "Steel", "position": {"x": 0, "y": 0.4, "z": 0}, "size": {"x": 0.7, "y": 0.8, "z": 0.13}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Hueco", "material": "Dark", "position": {"x": 0, "y": 0.4, "z": -0.069}, "size": {"x": 0.6, "y": 0.67, "z": 0.028}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Steel", "position": {"x": -0.19, "y": 0.41, "z": -0.097}, "size": {"x": 0.073, "y": 0.44, "z": 0.039}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marca", "material": "Teal", "position": {"x": -0.19, "y": 0.46, "z": -0.124}, "size": {"x": 0.045, "y": 0.28, "z": 0.021}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Selector", "material": "Ivory", "position": {"x": -0.19, "y": 0.24, "z": -0.125}, "size": {"x": 0.07, "y": 0.055, "z": 0.038}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Steel", "position": {"x": 0, "y": 0.41, "z": -0.097}, "size": {"x": 0.073, "y": 0.44, "z": 0.039}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marca", "material": "Brass", "position": {"x": 0, "y": 0.46, "z": -0.124}, "size": {"x": 0.045, "y": 0.28, "z": 0.021}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Selector", "material": "Ivory", "position": {"x": 0, "y": 0.24, "z": -0.125}, "size": {"x": 0.07, "y": 0.055, "z": 0.038}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Guía", "material": "Steel", "position": {"x": 0.19, "y": 0.41, "z": -0.097}, "size": {"x": 0.073, "y": 0.44, "z": 0.039}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Marca", "material": "Red", "position": {"x": 0.19, "y": 0.46, "z": -0.124}, "size": {"x": 0.045, "y": 0.28, "z": 0.021}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Selector", "material": "Ivory", "position": {"x": 0.19, "y": 0.24, "z": -0.125}, "size": {"x": 0.07, "y": 0.055, "z": 0.038}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Franja", "material": "Teal", "position": {"x": 0, "y": 0.686, "z": -0.09}, "size": {"x": 0.53, "y": 0.045, "z": 0.035}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.4, "z": -0.154}},
+        {"name": "Mount", "position": {"x": 0, "y": 0.4, "z": 0.075}}
+      ]
+    },
+    {
+      "name": "OH_SecurityCameraArt", "category": "Priority", "use": "Carcasa de cámara separada del soporte, con pivote de giro y eje visual", "source": "",
+      "parts": [
+        {"name": "Montaje", "material": "Dark", "position": {"x": 0, "y": 0.335, "z": 0.133}, "size": {"x": 0.21, "y": 0.26, "z": 0.07}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Brazo", "material": "Steel", "position": {"x": 0, "y": 0.278, "z": 0.062}, "size": {"x": 0.08, "y": 0.09, "z": 0.19}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Eje", "material": "Brass", "position": {"x": 0, "y": 0.3, "z": -0.001}, "size": {"x": 0.11, "y": 0.052, "z": 0.11}, "shape": "Cylinder", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Carcasa", "material": "Steel", "position": {"x": 0, "y": 0.367, "z": -0.217}, "size": {"x": 0.244, "y": 0.177, "z": 0.373}, "shape": "Box", "group": "Swivel", "pivot": {"x": 0, "y": 0.3, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Visera", "material": "Dark", "position": {"x": 0, "y": 0.432, "z": -0.249}, "size": {"x": 0.267, "y": 0.047, "z": 0.432}, "shape": "Box", "group": "Swivel", "pivot": {"x": 0, "y": 0.3, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Frontal", "material": "Dark", "position": {"x": 0, "y": 0.365, "z": -0.416}, "size": {"x": 0.194, "y": 0.126, "z": 0.044}, "shape": "Box", "group": "Swivel", "pivot": {"x": 0, "y": 0.3, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Lente", "material": "Teal", "position": {"x": 0, "y": 0.366, "z": -0.446}, "size": {"x": 0.089, "y": 0.027, "z": 0.089}, "shape": "Cylinder", "group": "Swivel", "pivot": {"x": 0, "y": 0.3, "z": 0}, "rotation": {"x": 90, "y": 0, "z": 0}},
+        {"name": "Testigo", "material": "Red", "position": {"x": 0.065, "y": 0.339, "z": -0.447}, "size": {"x": 0.029, "y": 0.024, "z": 0.019}, "shape": "Box", "group": "Swivel", "pivot": {"x": 0, "y": 0.3, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Mount", "position": {"x": 0, "y": 0.335, "z": 0.176}},
+        {"name": "SightOrigin", "position": {"x": 0, "y": 0.366, "z": -0.461}, "parent": "Swivel"}
+      ]
+    },
+    {
+      "name": "OH_ExtractionTerminalArt", "category": "Priority", "use": "Terminal de pie con pantalla reconocible y mando de confirmación", "source": "",
+      "parts": [
+        {"name": "Base", "material": "Dark", "position": {"x": 0, "y": 0.06, "z": 0}, "size": {"x": 0.7, "y": 0.12, "z": 0.46}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pilar", "material": "Steel", "position": {"x": 0, "y": 0.54, "z": 0.07}, "size": {"x": 0.42, "y": 0.96, "z": 0.28}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Cuerpo", "material": "Dark", "position": {"x": 0, "y": 1.24, "z": 0.008}, "size": {"x": 0.65, "y": 0.54, "z": 0.29}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Pantalla", "material": "Screen", "position": {"x": 0, "y": 1.33, "z": -0.146}, "size": {"x": 0.51, "y": 0.22, "z": 0.036}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Confirmar", "material": "Teal", "position": {"x": 0.165, "y": 1.108, "z": -0.171}, "size": {"x": 0.137, "y": 0.069, "z": 0.06}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Indicador", "material": "Brass", "position": {"x": -0.171, "y": 1.113, "z": -0.159}, "size": {"x": 0.069, "y": 0.041, "z": 0.039}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Franja", "material": "Teal", "position": {"x": 0, "y": 0.86, "z": -0.08}, "size": {"x": 0.37, "y": 0.065, "z": 0.031}, "shape": "Box", "group": "", "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0.15, "y": 1.108, "z": -0.222}},
+        {"name": "Mount", "position": {"x": 0, "y": 0, "z": 0}}
+      ]
+    },
+    {
+      "name": "OH_AgentArt", "category": "Priority", "use": "Agente original articulado, con arnés y señal de equipo", "source": "", "prefabSource": "Assets/02_Prefabs/Production/Characters/OH_Agent.prefab",
+      "parts": [
+        {"name": "Correa izquierda", "shape": "Box", "material": "Steel", "position": {"x": -0.124, "y": 1.23, "z": -0.118}, "size": {"x": 0.062, "y": 0.44, "z": 0.028}, "rotation": {"x": 0, "y": 0, "z": 6}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Correa derecha", "shape": "Box", "material": "Steel", "position": {"x": 0.124, "y": 1.23, "z": -0.118}, "size": {"x": 0.062, "y": 0.44, "z": 0.028}, "rotation": {"x": 0, "y": 0, "z": -6}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Cierre", "shape": "Box", "material": "Teal", "position": {"x": 0, "y": 1.19, "z": -0.146}, "size": {"x": 0.26, "y": 0.07, "z": 0.042}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Mochila", "shape": "Box", "material": "Dark", "position": {"x": 0, "y": 1.19, "z": 0.168}, "size": {"x": 0.32, "y": 0.44, "z": 0.153}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "LeftBoot", "shape": "Box", "material": "Steel", "group": "LeftKnee", "position": {"x": -0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": -0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "RightBoot", "shape": "Box", "material": "Steel", "group": "RightKnee", "position": {"x": 0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": 0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Belt", "shape": "Box", "material": "Brass", "group": "", "position": {"x": 0, "y": 0.72, "z": 0}, "size": {"x": 0.46, "y": 0.07, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": []
+    },
+    {
+      "name": "OH_GuardArt", "category": "Priority", "use": "Guardia original articulado con protección frontal y distintivo institucional ficticio", "source": "", "prefabSource": "Assets/02_Prefabs/Production/Characters/OH_Guard.prefab",
+      "parts": [
+        {"name": "Chaleco", "shape": "Box", "material": "Dark", "position": {"x": 0, "y": 1.21, "z": -0.121}, "size": {"x": 0.35, "y": 0.35, "z": 0.058}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Banda", "shape": "Box", "material": "Steel", "position": {"x": 0, "y": 1.25, "z": -0.156}, "size": {"x": 0.3, "y": 0.057, "z": 0.027}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Distintivo", "shape": "Box", "material": "Brass", "position": {"x": 0.092, "y": 1.34, "z": -0.156}, "size": {"x": 0.058, "y": 0.081, "z": 0.025}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "LeftBoot", "shape": "Box", "material": "Steel", "group": "LeftKnee", "position": {"x": -0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": -0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "RightBoot", "shape": "Box", "material": "Steel", "group": "RightKnee", "position": {"x": 0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": 0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Belt", "shape": "Box", "material": "Brass", "group": "", "position": {"x": 0, "y": 0.72, "z": 0}, "size": {"x": 0.46, "y": 0.07, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": []
+    },
+    {
+      "name": "OH_BankClerkArt", "category": "Priority", "use": "Empleado original articulado con credencial y chaqueta", "source": "", "prefabSource": "Assets/02_Prefabs/Production/Characters/OH_BankClerk.prefab",
+      "parts": [
+        {"name": "Solapa izquierda", "shape": "Box", "material": "Steel", "position": {"x": -0.118, "y": 1.31, "z": -0.114}, "size": {"x": 0.052, "y": 0.3, "z": 0.026}, "rotation": {"x": 0, "y": 0, "z": 18}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Solapa derecha", "shape": "Box", "material": "Steel", "position": {"x": 0.118, "y": 1.31, "z": -0.114}, "size": {"x": 0.052, "y": 0.3, "z": 0.026}, "rotation": {"x": 0, "y": 0, "z": -18}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "Credencial", "shape": "Box", "material": "Brass", "position": {"x": 0.145, "y": 1.25, "z": -0.145}, "size": {"x": 0.088, "y": 0.07, "z": 0.018}, "rotation": {"x": 0, "y": 0, "z": 0}, "pivot": {"x": 0, "y": 0.76, "z": 0}, "group": "Spine"},
+        {"name": "LeftBoot", "shape": "Box", "material": "Dark", "group": "LeftKnee", "position": {"x": -0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": -0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "RightBoot", "shape": "Box", "material": "Dark", "group": "RightKnee", "position": {"x": 0.14, "y": 0.1, "z": 0}, "size": {"x": 0.17, "y": 0.2, "z": 0.22}, "pivot": {"x": 0.13, "y": 0.28, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Belt", "shape": "Box", "material": "Dark", "group": "", "position": {"x": 0, "y": 0.72, "z": 0}, "size": {"x": 0.46, "y": 0.07, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": []
+    },
+    {
+      "name": "OH_DossierArt", "category": "Priority", "use": "Expediente de depósito y banco, carpeta cerrada original para corregir el FBX con silueta de puerta", "source": "",
+      "parts": [
+        {"name": "Contratapa", "shape": "Box", "material": "Dark", "group": "", "position": {"x": 0, "y": 0.005, "z": 0}, "size": {"x": 0.32, "y": 0.01, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Papel", "shape": "Box", "material": "Ivory", "group": "", "position": {"x": 0.01, "y": 0.032, "z": 0}, "size": {"x": 0.284, "y": 0.044, "z": 0.217}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Lomo", "shape": "Box", "material": "Steel", "group": "", "position": {"x": -0.148, "y": 0.031, "z": 0}, "size": {"x": 0.024, "y": 0.062, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Tapa", "shape": "Box", "material": "Dark", "group": "", "position": {"x": 0, "y": 0.057, "z": 0}, "size": {"x": 0.32, "y": 0.011, "z": 0.24}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Etiqueta", "shape": "Box", "material": "Ivory", "group": "", "position": {"x": 0.039, "y": 0.064, "z": 0.023}, "size": {"x": 0.115, "y": 0.003, "z": 0.084}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Sello", "shape": "Box", "material": "Teal", "group": "", "position": {"x": 0.055, "y": 0.0665, "z": 0.023}, "size": {"x": 0.049, "y": 0.002, "z": 0.039}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}},
+        {"name": "Broche", "shape": "Box", "material": "Brass", "group": "", "position": {"x": 0.135, "y": 0.065, "z": -0.046}, "size": {"x": 0.044, "y": 0.01, "z": 0.055}, "pivot": {"x": 0, "y": 0, "z": 0}, "rotation": {"x": 0, "y": 0, "z": 0}}
+      ],
+      "anchors": [
+        {"name": "Contact", "position": {"x": 0, "y": 0.035, "z": -0.12}}
+      ]
+    }
+  ]
+}

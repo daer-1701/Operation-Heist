@@ -14,7 +14,13 @@ namespace OperationHeist.Tests
         [UnityTest]
         public IEnumerator SceneLoadsFourOriginalPropsAndRenders()
         {
-            yield return SceneManager.LoadSceneAsync("Assets/00_Scenes/FPSPrototype.unity");
+#if UNITY_EDITOR
+            yield return UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
+                "Assets/00_Scenes/FPSPrototype.unity", new LoadSceneParameters(LoadSceneMode.Single));
+#else
+            Assert.Ignore("El prototipo se comprueba desde el editor.");
+            yield break;
+#endif
             foreach (string name in new[] { "TransportCrate", "StorageShelf", "ServiceCounter", "CompactSafe" })
             {
                 var prop = GameObject.Find("OH_" + name);

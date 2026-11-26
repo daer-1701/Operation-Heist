@@ -1,0 +1,25 @@
+{
+  "model": "MuseumSignalIdol",
+  "device": "CPU",
+  "dtype": "float32",
+  "steps": 5,
+  "resolution": 56,
+  "seed": 24112026,
+  "seconds": 511.96,
+  "vertices": 8122,
+  "triangles": 16240,
+  "components_before_cleanup": 1,
+  "watertight": true,
+  "bounds": [
+    [
+      -0.5872374176979065,
+      -0.9925646781921387,
+      -0.6380622386932373
+    ],
+    [
+      0.5373312830924988,
+      0.9568850994110107,
+      0.5691877007484436
+    ]
+  ]
+}

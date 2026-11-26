@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using OperationHeist.Player;
 using OperationHeist.UI;
 using UnityEditor;
@@ -15,13 +16,23 @@ namespace OperationHeist.Editor
         public const string ScenePath = "Assets/00_Scenes/Heist_Depot.unity";
         private static Material floor, wall, dark, teal, amber, white;
 
+        public static void PatchSavedDepotSystems()
+        {
+            var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+            PatchSystemsOntoOpenDepot();
+            if (!EditorSceneManager.SaveScene(scene))
+                throw new IOException("No se pudo guardar el depósito.");
+        }
+
         [MenuItem("Operation Heist/MVP/Añadir salud y objetivos al depósito abierto")]
         public static void PatchSystemsOntoOpenDepot()
         {
-            var mission = UnityEngine.Object.FindFirstObjectByType<LocalMission>();
-            var player = UnityEngine.Object.FindFirstObjectByType<FpsController>();
-            if (mission == null || player == null)
+            var mission = UnityEngine.Object.FindAnyObjectByType<LocalMission>();
+            var player = mission != null ? mission.Player : null;
+            if (player == null || mission.gameObject.scene.path != ScenePath)
             {
+                if (Application.isBatchMode)
+                    throw new InvalidOperationException("La escena del depósito requiere LocalMission y jugador.");
                 EditorUtility.DisplayDialog("Sistemas", "Abre Heist_Depot con LocalMission y jugador.", "OK");
                 return;
             }
@@ -157,11 +168,17 @@ namespace OperationHeist.Editor
             EditorSceneManager.SaveScene(scene,ScenePath);
             var scenes = new System.Collections.Generic.List<EditorBuildSettingsScene>
             {
-                new(ScenePath, true),
-                new("Assets/00_Scenes/FPSPrototype.unity", true)
+                new(ScenePath, true)
             };
             if (File.Exists(NetworkLabBuilder.DepotScenePath))
                 scenes.Add(new EditorBuildSettingsScene(NetworkLabBuilder.DepotScenePath, true));
+            if (File.Exists(MissionSetBuilder.BankScenePath))
+                scenes.Add(new EditorBuildSettingsScene(MissionSetBuilder.BankScenePath, true));
+            if (File.Exists(NetworkLabBuilder.BankScenePath))
+                scenes.Add(new EditorBuildSettingsScene(NetworkLabBuilder.BankScenePath, true));
+            scenes.Add(new EditorBuildSettingsScene("Assets/00_Scenes/FPSPrototype.unity", false));
+            if (File.Exists(NetworkLabBuilder.ScenePath))
+                scenes.Add(new EditorBuildSettingsScene(NetworkLabBuilder.ScenePath, false));
             EditorBuildSettings.scenes = scenes.ToArray();
             AssetDatabase.SaveAssets(); Debug.Log("LOCAL_MVP_GENERATED");
         }
@@ -171,9 +188,7 @@ namespace OperationHeist.Editor
             string output=Environment.GetEnvironmentVariable("OH_BUILD_OUTPUT");
             if(string.IsNullOrEmpty(output)) output=Path.GetFullPath("Builds/OperationHeist/OperationHeist.exe");
             Directory.CreateDirectory(Path.GetDirectoryName(output));
-            string[] scenes = File.Exists(NetworkLabBuilder.DepotScenePath)
-                ? new[] { ScenePath, NetworkLabBuilder.DepotScenePath }
-                : new[] { ScenePath };
+            string[] scenes = EditorBuildSettings.scenes.Where(scene => scene.enabled).Select(scene => scene.path).ToArray();
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=scenes,locationPathName=output,target=BuildTarget.StandaloneWindows64,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded) throw new Exception("Build fallido: "+report.summary.result);
             Debug.Log("LOCAL_MVP_BUILD_OK: "+output);
@@ -200,7 +215,7 @@ namespace OperationHeist.Editor
             var prop=Prop("TransportCrate",position,Quaternion.identity);prop.name=label; prop.AddComponent<LootItem>().Configure(label);
             Box("Marca de objetivo",position+Vector3.up*.015f,new Vector3(1.4f,.02f,1.4f),amber,false);
         }
-        private static void Sign(string value,Vector3 position,Quaternion rotation,Color color,float size)
+        internal static void Sign(string value,Vector3 position,Quaternion rotation,Color color,float size)
         {
             var go=new GameObject(value);go.transform.SetPositionAndRotation(position,rotation);
             var text=go.AddComponent<TextMesh>(); text.text=value;text.anchor=TextAnchor.MiddleCenter;text.alignment=TextAlignment.Center;text.characterSize=size;text.fontSize=64;text.color=color;

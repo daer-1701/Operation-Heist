@@ -263,14 +263,32 @@ namespace OperationHeist.Tests
         }
 
         [Test]
-        public void MaximumAlarmEndsMission()
+        public void MaximumAlarmStartsEmergencyBeforeMissionFails()
         {
             StartMission();
             _mission.RaiseAlarm(0.4f);
             Assert.That(_mission.Phase, Is.EqualTo(MissionPhase.Playing));
             _mission.RaiseAlarm(0.6f);
             Assert.That(_mission.Alarm, Is.EqualTo(1));
+            Assert.That(_mission.AlarmLevel, Is.EqualTo(3));
+            Assert.That(_mission.Phase, Is.EqualTo(MissionPhase.Playing));
+            _mission.Tick(59f);
+            Assert.That(_mission.Phase, Is.EqualTo(MissionPhase.Playing));
+            _mission.Tick(1f);
             Assert.That(_mission.Phase, Is.EqualTo(MissionPhase.Lost));
+        }
+
+        [Test]
+        public void IncapacitationRecoversCarriedLootAndBlocksFurtherPickup()
+        {
+            StartMission();
+            var item = Pickup();
+            Assert.That(_mission.Health.ApplyDamage(100f, "Guardia"), Is.True);
+            Assert.That(_carrier.IsCarrying, Is.False);
+            Assert.That(item.Carrier, Is.Null);
+            Assert.That(item.GetComponent<Collider>().enabled, Is.True);
+            AimAt(item.GetComponent<Collider>().bounds.center);
+            Assert.That(_carrier.TryPickup(item), Is.False);
         }
 
         [Test]

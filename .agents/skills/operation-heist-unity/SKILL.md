@@ -9,16 +9,17 @@ Trabajar desde la raíz del proyecto que contiene AGENTS.md. Leer Docs/Progress.
 
 ## Decisiones del proyecto
 
-- Leer ProjectSettings/ProjectVersion.txt y Packages/manifest.json antes de usar APIs cuya versión importe. El editor fijado actualmente es 6000.5.6f1. No introducir dependencias de NGO antes de su instalación y validación explícitas.
+- Leer ProjectSettings/ProjectVersion.txt y Packages/manifest.json antes de usar APIs cuya versión importe. El editor fijado es 6000.5.6f1; NGO 2.13.3 y Unity Transport ya están integrados. Los servicios de sesión por código siguen pendientes.
 - El controlador real es OperationHeist.Player.FpsController. Usa CharacterController e InputActions creadas en runtime. SetLocalControl controla ownership local, cámara y audio; no es una API de pausa de gameplay.
-- La escena activa de desarrollo es Assets/00_Scenes/FPSPrototype.unity. FpsPrototypeBuilder y OriginalPropsBuilder son herramientas de Editor que reemplazan esa escena; no ejecutarlas sobre cambios manuales sin conservarlos.
+- El juego usa Heist_Depot, Heist_DepotCoop, Heist_Bank y Heist_BankCoop en Assets/00_Scenes. FPSPrototype y Heist_NetworkLab son escenas de pruebas; no eliminarlas como demos sin revisar sus consumidores. Los builders pueden reemplazar escenas y prefabs: conservar cambios manuales y ejecutar generaciones en copia aislada.
+- El alcance vigente es el juego completo de cinco capítulos según Docs/FullGamePlan.md. Las antiguas restricciones a demo/dos contratos y congelación de capítulos son antecedentes, no el objetivo actual. Progress registra qué está realmente implementado.
 - Geometría original: Assets/04_Models/Codex; materiales en 03_Materials y prefabs en 02_Prefabs. Cualquier recurso nuevo requiere procedencia y registro en Docs/AssetManifest.csv. Respetar la política en AGENTS.md, incluidas las autorizaciones de generación original con Codex/Hunyuan.
 
 ## Implementación y revisión
 
 Reservar rutas en Docs/Coordination.md y acotar la tarea. Buscar símbolos en Assets/01_Scripts antes de leer archivos completos. Preservar .meta y los GUID de recursos existentes; separar cambios de reglas de los cambios de presentación. No editar escenas con reemplazos masivos de YAML cuando un generador de Editor acotado pueda conservar referencias y verificar el resultado.
 
-Para networking, distinguir intención local y validación autoritativa del host según el GDD. Mientras el stack no exista, implementar y probar la regla local sin simular una integración ya terminada. No compartir InputActions, cámaras o audio entre futuros proxies remotos.
+Para networking, distinguir intención local y validación autoritativa del host según Docs/NetworkContract.md. Comprobar cada integración en host/cliente; una regla local aislada no demuestra sincronización. No compartir InputActions, cámaras o audio entre proxies remotos.
 
 Escoger verificaciones proporcionales al cambio: compilación para C#, Play Mode para física/ciclo de vida, y concurrencia host/cliente al introducir red. Los tests de controles deben usar InputTestFixture y restaurar estado global; no exigir foco de una ventana real a un test headless. Conservar la prueba manual de captura del cursor separada.
 

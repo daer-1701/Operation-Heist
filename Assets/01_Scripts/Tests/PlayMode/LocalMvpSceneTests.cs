@@ -22,12 +22,13 @@ namespace OperationHeist.Tests
             var cc=mission.Player.GetComponent<CharacterController>();cc.enabled=false;
             mission.Player.transform.position=guard.transform.position+Vector3.forward*4;cc.enabled=true;
             Physics.SyncTransforms();
-            var detect=typeof(PatrolGuard).GetMethod("DetectPlayer",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
-            detect.Invoke(guard,new object[]{1f});
+            var targets = new[] { new GuardTarget(mission.Player.transform, mission.Player.PlayerCamera.transform.position,
+                false, false, mission.Health) };
+            if (guard.TickSecurity(.1f, targets, 0)) mission.RaiseAlarm(.0195f);
             Assert.That(mission.Alarm,Is.GreaterThan(0));
             var wall=new GameObject("Vision blocker",typeof(BoxCollider));wall.transform.position=guard.transform.position+new Vector3(0,1.5f,2);wall.transform.localScale=new Vector3(3,3,.3f);
             Physics.SyncTransforms();float before=mission.Alarm;
-            detect.Invoke(guard,new object[]{1f});
+            Assert.That(guard.TickSecurity(.1f, targets, 0), Is.False);
             Assert.That(mission.Alarm,Is.EqualTo(before),"Un muro sólido debe bloquear detección");
             Object.Destroy(wall);
         }
