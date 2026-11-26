@@ -2,6 +2,8 @@
 
 [Estado y trabajo pendiente de Operation Heist](Estado_Operation_Heist.docx) reúne el avance estimado frente al GDD.
 
+[Traspaso para retomar el desarrollo](Traspaso_Operation_Heist.docx) recoge la base publicada `093d5a7`, la verificación disponible y una primera tarea propuesta en Banco central. El documento fue revisado en Word el 26 de noviembre de 2026.
+
 Objetivo vigente del usuario: terminar el juego completo de cinco capítulos. Leer este archivo al retomar y consultar FullGamePlan, Architecture y contratos según la tarea. No orientar el desarrollo a una demo ni reactivar recortes históricos.
 
 ## Campaña de cinco capítulos — 26 de noviembre de 2026
